@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "start": "nodemon ./bin/www",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "test": "jasmine"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
