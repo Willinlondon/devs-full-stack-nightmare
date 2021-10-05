@@ -20,6 +20,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.24.2",
     "jasmine": "^3.9.0",
+    "jasmine-node": "^3.0.0",
     "nodemon": "^2.0.13"
   }
 }
