@@ -8,7 +8,11 @@ class Battle {
     winner(player1Roll, player2Roll) {
         if (player1Roll > player2Roll) {
             return 'Player1 Wins!';
-        }
+        } 
+        else if (player1Roll < player2Roll){
+          return 'Player 2 Wins!'
+        } else 
+        return 'Boo!! Draw Try Harder!'
     }
 
 }

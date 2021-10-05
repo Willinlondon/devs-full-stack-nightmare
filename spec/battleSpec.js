@@ -41,6 +41,19 @@ describe('Battle', () => {
     let player2Roll = 2
     expect(battle.winner(player1Roll, player2Roll)).toEqual('Player1 Wins!')
   })
+
+  it('lets player 2 win if they roll higher', () => {
+    let player1Roll = 6
+    let player2Roll = 7
+    expect(battle.winner(player1Roll, player2Roll)).toEqual('Player 2 Wins!')
+  })
+
+  it('allows for the characters to draw', () => {
+    let player1Roll = 1
+    let player2Roll = 1
+    expect(battle.winner(player1Roll, player2Roll)).toEqual('Boo!! Draw Try Harder!')
+  })
+
   })
 
 })
