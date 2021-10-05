@@ -2,7 +2,7 @@ describe('Character', () => {
   const Character = require('../public/javascripts/Character');
 
   beforeEach(() => {
-    let player = new Character("Will");
+    const player = new Character("Will");
   });
 
   it('has a default health of 100', () => {
