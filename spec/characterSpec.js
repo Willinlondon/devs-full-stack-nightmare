@@ -59,17 +59,9 @@ describe("these should test when a character attacks", function() {
       expect(player2.location).toEqual([0,-1]);
     });
 
-    it('expects to receive a specific format after a series of moves', () => {
-      // We've written a helper method which you can find in the helpers
-      // folder and is referenced above
-      // No idea how to call it though so we've stuck the player actions in here
-      player2.move('right');
-      player2.move('right');
-      player2.move('up'); 
-      player2.move('up'); 
-      player2.move('left'); 
-      player2.move('down');
-      expect(player2.location).toEqual([1,1]);
+      it('expects to receive a specific format after a series of moves', () => {
+        characterMoves(player2);
+        expect(player2.location).toEqual([1,1]);
     });
   });
 });
