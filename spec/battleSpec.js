@@ -1,7 +1,4 @@
-
-describe('Battle', () => {
-  const Battle = require('../public/javascripts/battle');
-  
+describe('Battle', () => {  
   describe("when battle has been called with default values", function() {
   let player1;
   let player2;
