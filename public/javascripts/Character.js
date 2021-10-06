@@ -16,9 +16,16 @@ class Character {
     if (direction == 'down') {return move_down()};
   }
 
-  move_right() {
-    this.location[0] += 1
-  }
+  // - Jasmine says this is undefined
+  //move_right() {
+  //  this.location[0] += 1
+  //}
+
+  // - Jasmine says this is undefined
+  // move_right = function() {
+  //   this.location[0] += 1
+  // }
+
 }
 
 module.exports = { Character: Character }
