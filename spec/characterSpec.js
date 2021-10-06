@@ -15,12 +15,6 @@ describe('Character', () => {
     expect(player.location).toEqual([0, 0]);
   });
 
-  it('expects a player attack to return a number greater than 0', () => {
-    let attack = player.attack();
-
-    expect(attack).toBeGreaterThan(0)
-  });
-
   it('expects a player attack to return a number less than 21', () => {
     let attack = player.attack();
 
