@@ -4,7 +4,13 @@ class Game {
     this.player = player;
   }
 
-  
+  // while state = in game
+  // player.playerMove()
+  // roll dice to see if battle is commenced
+  // if battle commenced, run battle
+  //    // if player wins, back to square one
+  //    // if player loses, state = game over
+  // else go back to square one
 
   // mapPosition() 
   // player.move('direction') - this will move the player
