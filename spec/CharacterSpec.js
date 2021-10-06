@@ -20,4 +20,23 @@ describe('Character', () => {
   it('expects a player attack to return a number between 1 and 20', () => {
     expect(player.attack()).toBeWithinRange(1,20);
   });
+
+  it('expects a player to be able to move right', () => {
+    player.move(right);
+    expect(player.location).toEqual([1,0]);
+  });
+
+  // describe('Movement'), function() {
+
+  // // beforeEach(() => {
+  // //   player2 = new Character("Spiderman");
+  // // });
+
+  // it('expects a player to be able to move right', () => {
+  //   player2 = new Character("Spiderman");
+  //   player2.move(right);
+  //   expect(player2.location).toEqual([1,0]);
+  // });
+
+  // }
 });
