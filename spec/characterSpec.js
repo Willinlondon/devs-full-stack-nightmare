@@ -20,6 +20,11 @@ describe('Character', () => {
 });
 
 describe("these should test when a character attacks", function() {
+
+  beforeEach(() => {
+    player = new Character("Spiderman");
+  });
+
   it('expects a player attack to return a number less than 21', () => {
     let attack = player.attack();
 
