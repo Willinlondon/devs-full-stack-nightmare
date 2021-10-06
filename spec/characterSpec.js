@@ -1,4 +1,6 @@
 describe('Character', () => {
+
+  describe("when a new user is initialized the following should pass", function() {
   beforeEach(() => {
     player = new Character("Will");
   });
@@ -15,10 +17,12 @@ describe('Character', () => {
     expect(player.location).toEqual([0, 0]);
   });
 
-  it('expects a player attack to return a number greater than 0', () => {
-    let attack = player.attack();
+});
 
-    expect(attack).toBeGreaterThan(0)
+describe("these should test when a character attacks", function() {
+
+  beforeEach(() => {
+    player = new Character("Spiderman");
   });
 
   it('expects a player attack to return a number less than 21', () => {
@@ -26,6 +30,8 @@ describe('Character', () => {
 
     expect(attack).toBeLessThan(21)
   });
+
+});
 
   describe("when a user is attempting to move", function() {
 
@@ -53,17 +59,9 @@ describe('Character', () => {
       expect(player2.location).toEqual([0,-1]);
     });
 
-    it('expects to receive a specific format after a series of moves', () => {
-      // We've written a helper method which you can find in the helpers
-      // folder and is referenced above
-      // No idea how to call it though so we've stuck the player actions in here
-      player2.move('right');
-      player2.move('right');
-      player2.move('up'); 
-      player2.move('up'); 
-      player2.move('left'); 
-      player2.move('down');
-      expect(player2.location).toEqual([1,1]);
+      it('expects to receive a specific format after a series of moves', () => {
+        characterMoves(player2);
+        expect(player2.location).toEqual([1,1]);
     });
   });
 });
