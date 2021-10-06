@@ -1,6 +1,4 @@
-characterMoves = function () {
-
-let character = new Character("Aquaman")
+characterMoves = function (character) {
 
 character.move('right'); [1, 0]
 character.move('right'); [2, 0]
