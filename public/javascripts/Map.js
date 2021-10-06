@@ -81,7 +81,7 @@ class Map {
 	}
 }
 
-module.exports = Map;
+// module.exports = Map;
 
 // let map = new Map();
 // console.log(map.createMap(20, 3));
