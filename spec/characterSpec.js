@@ -1,4 +1,6 @@
 describe('Character', () => {
+
+  describe("when a new user is initialized the following should pass", function() {
   beforeEach(() => {
     player = new Character("Will");
   });
@@ -15,17 +17,16 @@ describe('Character', () => {
     expect(player.location).toEqual([0, 0]);
   });
 
-  it('expects a player attack to return a number greater than 0', () => {
-    let attack = player.attack();
+});
 
-    expect(attack).toBeGreaterThan(0)
-  });
-
+describe("these should test when a character attacks", function() {
   it('expects a player attack to return a number less than 21', () => {
     let attack = player.attack();
 
     expect(attack).toBeLessThan(21)
   });
+
+});
 
   describe("when a user is attempting to move", function() {
 
