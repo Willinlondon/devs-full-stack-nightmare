@@ -22,7 +22,7 @@ describe('Character', () => {
   });
 
   it('expects a player to be able to move right', () => {
-    player.move(right);
+    player.move('right');
     expect(player.location).toEqual([1,0]);
   });
 
