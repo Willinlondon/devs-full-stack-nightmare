@@ -10,12 +10,7 @@ class Character {
   }
 
   move(direction) {
-    // -----
-    // Leaving this line in - this is the ideal for how this function
-    // would operate but you can see our issue documented below.
     if (direction == 'right') {this._moveRight()};
-    // -----
-    //if (direction == 'right') {this.location[0] += 1 };
     if (direction == 'left') {this._moveLeft()};
     if (direction == 'up') {this._moveUp()};
     if (direction == 'down') {this._moveDown()};
