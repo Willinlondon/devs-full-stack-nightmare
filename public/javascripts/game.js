@@ -4,12 +4,21 @@ class Game {
 		this.player = player;
 		this.state = "inGame";
 	}
+	
+
+	//player takes a move
+	//it rolls for random encounter
+	//if you win, yay, you can move again
+	//if you lose, boo, gameOver
+	
+
+
 	play() {
 		// while state = in game
 		while (this.state === "inGame") {
 			// player.playerMove()
 			// Have added a manual input before we incorporate Amelia's P5 movement stuff
-			this.player.move('right');
+			this.player.move(this._playerInput());
 			console.log(this.player.location);
 			console.log('the player has moved');
 			// roll dice to see if battle is commenced
@@ -35,6 +44,13 @@ class Game {
 		}
 	}
 
+	_playerInput(){
+		if (keyCode === 87) {'up'};
+		if (keyCode === 83) {'down'};
+		if (keyCode === 65) {'left'};
+		if (keyCode === 68) {'right'};
+}
+
 	_checkState(_encounterRoll) {
 		if (_encounterRoll > 80) {
 			this.state = "battle";
@@ -47,6 +63,8 @@ class Game {
 	_encounterRoll() {
 		return Math.random() * 100;
 	}
+
+
 
 	// -----------
 	// mapPosition()
