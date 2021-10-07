@@ -36,6 +36,9 @@ body {
 #left-sidebar { grid-area: left-sidebar; }
 
 #play-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: black;
   grid-area: play-area;
 }
