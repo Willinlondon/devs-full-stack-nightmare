@@ -37,13 +37,10 @@ describe("Game", () => {
 			game = new Game();
 		});
 
-		it("can allow player to move", () => {
-			game.play().player.move = jasmine.createSpy();
-			// spyOn(game.player, "move");
-			game.play().player.move();
-			game.play();
-			// console.log(game.player.move());
-			expect(game.play().player.move()).toHaveBeenCalled();
+		it("the player should lose - with a let and cheese but good enough", () => {
+			let lostGame = losingTheGame(game);
+			expect(lostGame).toEqual('gameOver')
 		});
+
 	});
 });

@@ -8,16 +8,24 @@ class Game {
 		// while state = in game
 		while (this.state === "inGame") {
 			// player.playerMove()
-			this.player.move();
+			// Have added a manual input before we incorporate Amelia's P5 movement stuff
+			this.player.move('right');
+			console.log(this.player.location);
+			console.log('the player has moved');
 			// roll dice to see if battle is commenced
 			this._checkState(this._encounterRoll());
+			console.log('the encounter roll has happened');
+			console.log(this.state);
 			// if battle commenced, run battle
 			if (this.state === "battle") {
+				console.log('BATTLE!');
 				let battle = new Battle();
+				console.log(battle)
 				battle.winner(Math.random() * 20, Math.random() * 20);
 				// if player loses, state = game over
 				if ("Player2 Wins!") {
-					this.state = "gameOver";
+					this.state = "gameOver"
+					return ;
 				}
 				// else go back to square one
 				else {

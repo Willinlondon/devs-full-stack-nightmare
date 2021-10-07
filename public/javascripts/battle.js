@@ -6,9 +6,11 @@ class Battle {
 
   winner(player1Roll, player2Roll) {
     if (player1Roll > player2Roll) {
+      console.log('PLAYER1 WINS');
       return 'Player1 Wins!';
     } 
     else if (player1Roll < player2Roll){
+      console.log('PLAYER2 WINS');
       return 'Player 2 Wins!'
     } else 
     return 'Boo!! Draw Try Harder!'
