@@ -2,30 +2,30 @@ class Game {
   constructor(map = new Map, player = new Character) {
     this.map = map.createMap();
     this.player = player;
-    this.state = inGame;
+    this.state = 'inGame';
   }
 
   // while state = in game
-  while (this.state === inGame) {
+  while (this.state === 'inGame') {
     // player.playerMove()
     player.playerMove()
     // roll dice to see if battle is commenced
     this._checkState(_encounterRoll())
     // if battle commenced, run battle
-    if (this.state === battle){
+    if (this.state === 'battle'){
       battle = new Battle
       battle.winner((Math.random() * 20), (Math.random() * 20))
       // if player loses, state = game over
       if('Player2 Wins!'){
-        this.state === gameOver
+        this.state === 'gameOver'
       }
       // else go back to square one
     }
   }
 
   _checkState(_encounterRoll()) {
-    if (_encounterRoll > 80){ this.state = battle};
-    if (_encounterRoll <= 80)( this.state = inGame);
+    if (_encounterRoll > 80){ this.state = 'battle'};
+    if (_encounterRoll <= 80)( this.state = 'inGame');
   }
 
   _encounterRoll() {
