@@ -1,4 +1,5 @@
 html {
+  background: hotpink;
   padding: 0;
   margin: 0;
 }
@@ -34,7 +35,18 @@ body {
 
 #left-sidebar { grid-area: left-sidebar; }
 
-#play-area { grid-area: play-area; }
+#play-area {
+  background: black;
+  grid-area: play-area;
+}
 
 #right-sidebar { grid-area: right-sidebar; }
+
+#page-header, #page-footer {
+  background: hotpink;
+}
+
+#left-sidebar, #right-sidebar {
+  background: darkslategrey;
+}
 
