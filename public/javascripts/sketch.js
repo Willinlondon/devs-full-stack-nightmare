@@ -1,5 +1,6 @@
 function setup() {
-  createCanvas(400, 400);
+  canvas = createCanvas(400, 400);
+  canvas.parent("play-area")
 }
 
 function draw() {
