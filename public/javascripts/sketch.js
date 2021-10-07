@@ -1,5 +1,5 @@
 function setup() {
-  canvas = createCanvas(400, 400);
+  canvas = createCanvas(1200, 800);
   canvas.parent("play-area")
 }
 
