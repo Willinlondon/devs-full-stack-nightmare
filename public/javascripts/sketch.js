@@ -1,13 +1,12 @@
+const game = new Game
+
 function setup() {
-  canvas = createCanvas(1200, 800);
+  canvas = createCanvas(750, 750);
   canvas.parent("play-area")
 }
 
 function draw() {
-  if (mouseIsPressed) {
-    fill(0);
-  } else {
-    fill(255);
-  }
-  ellipse(mouseX, mouseY, 80, 80);
+  background(0)
+  fill(155)
+  rect(0,0,75)
 }

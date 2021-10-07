@@ -39,7 +39,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  background: black;
+  background: rgb(206, 16, 16);
   grid-area: play-area;
 }
 
