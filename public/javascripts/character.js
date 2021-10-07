@@ -19,18 +19,22 @@ class Character {
   // Directions are here as private methods
   
   _moveRight(amount) {
+    if (this.location[0] == 675) {return}
     this.location[0] += amount
   }
   
   _moveLeft(amount) {
+    if (this.location[0] == 0) {return}
     this.location[0] -= amount
   }
 
   _moveUp(amount) {
+    if (this.location[1] == 0) {return}
     this.location[1] -= amount
   }
 
   _moveDown(amount) {
+    if (this.location[1] == 675) {return}
     this.location[1] += amount
   }
 

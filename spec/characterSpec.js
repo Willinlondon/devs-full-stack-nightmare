@@ -37,31 +37,59 @@ describe("these should test when a character attacks", function() {
 
    beforeEach(() => {
      player2 = new Character("Spiderman");
+     square = 75
+     player2.location = [square,square]
    });
 
    it('expects a player to be able to move right', () => {
-     player2.move('right', 1);
-     expect(player2.location).toEqual([1,0]);
+     player2.move('right', square);
+     expect(player2.location).toEqual([square * 2, square]);
    });
 
     it('expects a player to be able to move left', () => {
-      player2.move('left', 1);
-      expect(player2.location).toEqual([-1,0]);
+      player2.move('left', square);
+      expect(player2.location).toEqual([0,square]);
     });
 
     it('expects a player to be able to move up', () => {
-      player2.move('up', 1);
-      expect(player2.location).toEqual([0,-1]);
+      player2.move('up', square);
+      expect(player2.location).toEqual([square,0]);
     });
 
     it('expects a player to be able to move down', () => {
-      player2.move('down', 1);
-      expect(player2.location).toEqual([0,1]);
+      player2.move('down', square);
+      expect(player2.location).toEqual([square,square * 2]);
     });
 
-      it('expects to receive a specific format after a series of moves', () => {
-        characterMoves(player2);
-        expect(player2.location).toEqual([1,-1]);
+    it('expects to receive a specific format after a series of moves', () => {
+      characterMoves(player2,square);
+      expect(player2.location).toEqual([square * 2,square]);
+    });
+
+    it('is unable to move out of the play area to the left', () => {
+      player2.move('left', square);
+      player2.move('left', square);
+      expect(player2.location).toEqual([0,square]);
+    });
+
+    it('is unable to move out of the play area up', () => {
+      player2.move('up', square);
+      player2.move('up', square);
+      expect(player2.location).toEqual([square,0]);
+    });
+
+    it('is unable to move out of the play area to the right', () => {
+      player2.location = [square * 8,square * 8]
+      player2.move('right', square);
+      player2.move('right', square);
+      expect(player2.location).toEqual([square * 9,square * 8]);
+    });
+
+    it('is unable to move out of the play area down', () => {
+      player2.location = [square * 8,square * 8]
+      player2.move('down', square);
+      player2.move('down', square);
+      expect(player2.location).toEqual([square * 8,square * 9]);
     });
   });
 });
