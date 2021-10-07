@@ -19,4 +19,15 @@ describe('Game', () => {
     });
 
   });
+
+  describe('checks the random battle trigger', () => {
+
+    beforeEach(() => {
+      game = new Game;
+    });
+
+    it('checks the range of the encounter roll', () => {
+      expect(game._encounterRoll()).toBeLessThanOrEqual(100);
+    });
+  })
 });
