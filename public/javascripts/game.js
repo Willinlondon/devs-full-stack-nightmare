@@ -10,7 +10,7 @@ class Game {
     // player.playerMove()
     player.playerMove()
     // roll dice to see if battle is commenced
-    this._checkState(_encounterRoll)
+    this._checkState(_encounterRoll())
     // if battle commenced, run battle
     if (this.state === battle){
       battle = new Battle
