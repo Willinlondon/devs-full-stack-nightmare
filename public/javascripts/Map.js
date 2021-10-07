@@ -1,14 +1,12 @@
 class Map {
   constructor() {
-    this.mapArray = [
-      [0, 0, 0],
-      [0, 0, 0],
-      [0, 0, 0],
+    this.dimensions = 10;
+    this.directions = [
+      [-1, 0],
+      [1, 0],
+      [0, -1],
+      [0, 1],
     ];
-  }
-
-  createHardCodedMap() {
-    return this.mapArray;
   }
 
   createArray(wall, dimensions) {
@@ -26,38 +24,40 @@ class Map {
     return Math.random();
   }
 
+  static isInvalidDirection(randomDirection, lastDirection) {
+    return (
+      (randomDirection[0] === -lastDirection[0] &&
+        randomDirection[1] === -lastDirection[1]) ||
+      (randomDirection[0] === lastDirection[0] &&
+        randomDirection[1] === lastDirection[1])
+    );
+  }
+
+  static randomPositionGenerator() {
+    return Math.floor(Map.sampleNumber() * this.dimensions);
+  }
+
   createMap() {
     // console.log('test', Map.sampleNumber());
     // setting Map parameters
-    const dimensions = 10;
     let maxTunnels = 10;
     const maxLength = 4;
     // generating "empty map" full of walls represented by 1's
-    const map = this.createArray(1, dimensions);
+    const map = this.createArray(1, this.dimensions);
     // setting random starting point
-    let currentRow = Math.floor(Map.sampleNumber() * dimensions);
-    let currentColumn = Math.floor(Map.sampleNumber() * dimensions);
+    let currentRow = Math.floor(Map.sampleNumber() * this.dimensions);
+    let currentColumn = Math.floor(Map.sampleNumber() * this.dimensions);
     // setting directions that tunnels can be generated in i.e N, S, E, W
-    const directions = [
-      [-1, 0],
-      [1, 0],
-      [0, -1],
-      [0, 1],
-    ];
     let lastDirection = [];
     let randomDirection;
     // pick a new random direction to make a tunnel in so long as its not the same as before or going back on itself
-    while (maxTunnels && dimensions && maxLength) {
+    while (maxTunnels && this.dimensions && maxLength) {
       do {
         randomDirection =
-          directions[Math.floor(Map.sampleNumber() * directions.length)];
-        console.log('line 54', randomDirection);
-      } while (
-        (randomDirection[0] === -lastDirection[0] &&
-          randomDirection[1] === -lastDirection[1]) ||
-        (randomDirection[0] === lastDirection[0] &&
-          randomDirection[1] === lastDirection[1])
-      );
+          this.directions[
+            Math.floor(Map.sampleNumber() * this.directions.length)
+          ];
+      } while (Map.isInvalidDirection(randomDirection, lastDirection));
       // set random tunnel length
       const randomLength = Math.ceil(Map.sampleNumber() * maxLength);
       let tunnelLength = 0;
@@ -66,8 +66,8 @@ class Map {
           // break to stop tunnel leaving map
           (currentRow === 0 && randomDirection[0] === -1) ||
           (currentColumn === 0 && randomDirection[1] === -1) ||
-          (currentRow === dimensions - 1 && randomDirection[0] === 1) ||
-          (currentColumn === dimensions - 1 && randomDirection[1] === 1)
+          (currentRow === this.dimensions - 1 && randomDirection[0] === 1) ||
+          (currentColumn === this.dimensions - 1 && randomDirection[1] === 1)
         ) {
           break;
         } else {
