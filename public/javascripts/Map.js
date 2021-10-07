@@ -22,8 +22,12 @@ class Map {
     return array;
   }
 
+  static sampleNumber() {
+    return Math.random();
+  }
+
   createMap() {
-    console.log(Math.random());
+    // console.log('test', Map.sampleNumber());
     // setting Map parameters
     const dimensions = 10;
     let maxTunnels = 10;
@@ -31,9 +35,8 @@ class Map {
     // generating "empty map" full of walls represented by 1's
     const map = this.createArray(1, dimensions);
     // setting random starting point
-    let currentRow = Math.floor(Math.random() * dimensions);
-    let currentColumn = Math.floor(Math.random() * dimensions);
-    console.log(currentColumn);
+    let currentRow = Math.floor(Map.sampleNumber() * dimensions);
+    let currentColumn = Math.floor(Map.sampleNumber() * dimensions);
     // setting directions that tunnels can be generated in i.e N, S, E, W
     const directions = [
       [-1, 0],
@@ -47,7 +50,8 @@ class Map {
     while (maxTunnels && dimensions && maxLength) {
       do {
         randomDirection =
-          directions[Math.floor(Math.random() * directions.length)];
+          directions[Math.floor(Map.sampleNumber() * directions.length)];
+        console.log('line 54', randomDirection);
       } while (
         (randomDirection[0] === -lastDirection[0] &&
           randomDirection[1] === -lastDirection[1]) ||
@@ -55,7 +59,7 @@ class Map {
           randomDirection[1] === lastDirection[1])
       );
       // set random tunnel length
-      const randomLength = Math.ceil(Math.random() * maxLength);
+      const randomLength = Math.ceil(Map.sampleNumber() * maxLength);
       let tunnelLength = 0;
       while (tunnelLength < randomLength) {
         if (
@@ -84,3 +88,6 @@ class Map {
 }
 
 module.exports = Map;
+
+map = new Map();
+console.log(map.createMap());

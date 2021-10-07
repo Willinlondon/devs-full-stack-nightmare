@@ -26,8 +26,9 @@ fdescribe('Map', () => {
       expect(map.createMap()[0].length).toEqual(10);
     });
 
-    fit('returns correct array with Math.rand stubbed', () => {
-      spyOn(Math, 'random').and.returnValues(0.5);
+    it('returns correct array with Math.rand stubbed', () => {
+      // can't quite get this test working
+      spyOn(Map, 'sampleNumber').and.returnValues(0.5, 0.5, 0.5, 0.5, 0.5);
       expect(map.createMap()).toEqual([]);
     });
   });
