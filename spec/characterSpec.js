@@ -40,28 +40,28 @@ describe("these should test when a character attacks", function() {
    });
 
    it('expects a player to be able to move right', () => {
-     player2.move('right');
+     player2.move('right', 1);
      expect(player2.location).toEqual([1,0]);
    });
 
     it('expects a player to be able to move left', () => {
-      player2.move('left');
+      player2.move('left', 1);
       expect(player2.location).toEqual([-1,0]);
     });
 
     it('expects a player to be able to move up', () => {
-      player2.move('up');
-      expect(player2.location).toEqual([0,1]);
+      player2.move('up', 1);
+      expect(player2.location).toEqual([0,-1]);
     });
 
     it('expects a player to be able to move down', () => {
-      player2.move('down');
-      expect(player2.location).toEqual([0,-1]);
+      player2.move('down', 1);
+      expect(player2.location).toEqual([0,1]);
     });
 
       it('expects to receive a specific format after a series of moves', () => {
         characterMoves(player2);
-        expect(player2.location).toEqual([1,1]);
+        expect(player2.location).toEqual([1,-1]);
     });
   });
 });

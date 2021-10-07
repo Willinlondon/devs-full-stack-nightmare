@@ -1,5 +1,6 @@
 const game = new Game
-console.log(game.player.location)
+
+
 function setup() {
   canvas = createCanvas(750, 750);
   canvas.parent("play-area")
@@ -12,8 +13,8 @@ function draw() {
 }
 
 function keyPressed() {
-  if (keyCode === LEFT_ARROW) {game.player.move('left')};
-  if (keyCode === RIGHT_ARROW) {game.player.move('right')};
-  if (keyCode === UP_ARROW) {game.player.move('up')};
-  if (keyCode === DOWN_ARROW) {game.player.move('down')};
+  if (keyCode === LEFT_ARROW) {game.player.move('left', 75)};
+  if (keyCode === RIGHT_ARROW) {game.player.move('right', 75)};
+  if (keyCode === UP_ARROW) {game.player.move('up', 75)};
+  if (keyCode === DOWN_ARROW) {game.player.move('down', 75)};
 }

@@ -9,29 +9,29 @@ class Character {
     return Math.floor(Math.random() * 20)
   }
 
-  move(direction) {
-    if (direction == 'right') {this._moveRight()};
-    if (direction == 'left') {this._moveLeft()};
-    if (direction == 'up') {this._moveUp()};
-    if (direction == 'down') {this._moveDown()};
+  move(direction, amount) {
+    if (direction == 'right') {this._moveRight(amount)};
+    if (direction == 'left') {this._moveLeft(amount)};
+    if (direction == 'up') {this._moveUp(amount)};
+    if (direction == 'down') {this._moveDown(amount)};
   }
 
   // Directions are here as private methods
   
-  _moveRight() {
-    this.location[0] += 1 
+  _moveRight(amount) {
+    this.location[0] += amount
   }
   
-  _moveLeft() {
-    this.location[0] -= 1 
+  _moveLeft(amount) {
+    this.location[0] -= amount
   }
 
-  _moveUp() {
-    this.location[1] -= 1 
+  _moveUp(amount) {
+    this.location[1] -= amount
   }
 
-  _moveDown() {
-    this.location[1] += 1 
+  _moveDown(amount) {
+    this.location[1] += amount
   }
 
 
