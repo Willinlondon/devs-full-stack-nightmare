@@ -20,6 +20,7 @@ class Game {
           this.state = 'gameOver'
         }
       // else go back to square one
+      else {this.state = 'inGame'}
       }
     }
   }
