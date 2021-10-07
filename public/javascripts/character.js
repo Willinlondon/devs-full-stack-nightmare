@@ -27,11 +27,11 @@ class Character {
   }
 
   _moveUp() {
-    this.location[1] += 1 
+    this.location[1] -= 1 
   }
 
   _moveDown() {
-    this.location[1] -= 1 
+    this.location[1] += 1 
   }
 
 
