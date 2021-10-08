@@ -1,13 +1,14 @@
 class Character {
+
   constructor(name) {
     this.name = name;
     this.health = 100;
     this.location = [0,0];
   }
 
-  attack() {
-    return Math.floor(Math.random() * 20)
-  }
+	attack() {
+		return Math.floor(Math.random() * 20);
+	}
 
   move(direction, amount) {
     if (direction == 'right') {this._moveRight(amount)};
@@ -16,13 +17,13 @@ class Character {
     if (direction == 'down') {this._moveDown(amount)};
   }
 
-  // Directions are here as private methods
-  
+	// Directions are here as private methods
+
   _moveRight(amount) {
     if (this.location[0] == 675) {return}
     this.location[0] += amount
   }
-  
+
   _moveLeft(amount) {
     if (this.location[0] == 0) {return}
     this.location[0] -= amount
@@ -38,11 +39,4 @@ class Character {
     this.location[1] += amount
   }
 
-
-  // - Jasmine says this is undefined
-  // move_right = function() {
-  //   this.location[0] += 1
-  // }
-
 }
-
