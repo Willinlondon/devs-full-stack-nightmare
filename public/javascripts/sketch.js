@@ -42,6 +42,7 @@ function createOkButton() {
     switch(game.battleWinner) {
       case 'Player' || 'Draw' :
         game.state = 'mapScreen'
+        break
       case 'Enemy' :
         game.state = 'gameOver'
     }
