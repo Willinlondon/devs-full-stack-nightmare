@@ -2,6 +2,8 @@ class Map {
 	constructor() {
 		this.dimensions = 10;
 		this.maxTunnels = 10;
+		this.startingRow;
+		this.startingColumn;
 		this.maxLength = 4;
 		this.directions = [
 			[-1, 0],
@@ -19,7 +21,9 @@ class Map {
 		const map = Map._createArray(1, this.dimensions);
 		// setting random starting point
 		let currentRow = this._randomPositionGenerator();
+		this.startingRow = currentRow;
 		let currentColumn = this._randomPositionGenerator();
+		this.startingColumn = currentColumn;
 		// setting directions that tunnels can be generated in i.e N, S, E, W
 		let lastDirection = [];
 		let randomDirection;
@@ -35,7 +39,7 @@ class Map {
 			const randomLength = this._randomLength();
 			let tunnelLength = 0;
 			while (tunnelLength < randomLength) {
-				if(
+				if (
 					// break to stop tunnel leaving map
 					this._isLeavingMap(currentRow, currentColumn, randomDirection)
 				) {
@@ -97,5 +101,6 @@ class Map {
 		return Math.ceil(Map._sampleNumber() * this.maxLength);
 	}
 }
+let map = new Map();
 
 module.exports = Map;
