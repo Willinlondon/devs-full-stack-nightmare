@@ -1,15 +1,15 @@
 const game = new Game
 
-
 function setup() {
   canvas = createCanvas(750, 750);
-  canvas.parent("play-area")
+  canvas.parent("play-area");
 }
 
 function draw() {
-  background(0)
-  fill(155)
-  rect(game.player.location[0],game.player.location[1],75)
+  background(0);
+  game.showMap();
+  fill(155);
+  rect(game.player.location[0],game.player.location[1],75);
 }
 
 function keyPressed() {

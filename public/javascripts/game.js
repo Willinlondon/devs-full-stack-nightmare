@@ -14,6 +14,17 @@ class Game {
 		}
 	}
 
+	showMap() {
+		this.map.forEach((y, y_index) => {
+			y.forEach((x, x_index) => {
+				if(x == 1) {
+					fill(150, 50, 150);
+					rect(x_index * 75, y_index * 75, 75);
+				}
+			});
+		});
+	}
+
 	_playerFight(){
 		let battle = new Battle();
 		battle.winner(Math.random() * 20, Math.random() * 20);
