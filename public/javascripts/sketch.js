@@ -12,6 +12,7 @@ function draw() {
 
   switch(game.state) {
     case "mapScreen":
+      okButton.hide()
       game.showMap();
 
       fill(155);
