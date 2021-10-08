@@ -17,20 +17,13 @@ class Game {
 	_playerFight(){
 		let battle = new Battle();
 		battle.winner(Math.random() * 20, Math.random() * 20);
-		if ("Player2 Wins!") {
+		if ('Player 2 Wins!') {
 			console.log('PLAYER 2 WON BB')
 			this.state = "gameOver"
-			return ;
+			{ return } ;
 		}
 		else {this.state = "inGame"};
 	}
-
-	_playerInput(){
-		if (keyCode === 87) {"up"};
-		if (keyCode === 83) {"down"};
-		if (keyCode === 65) {"left"};
-		if (keyCode === 68) {"right"};
-}
 
 	_checkState(_encounterRoll) {
 		if (_encounterRoll > 80) {
