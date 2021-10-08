@@ -17,12 +17,7 @@ class Game {
 	_playerFight(){
 		let battle = new Battle();
 		battle.winner(Math.random() * 20, Math.random() * 20);
-		if ('Player 2 Wins!') {
-			console.log('PLAYER 2 WON BB')
-			this.state = "gameOver"
-			{ return } ;
-		}
-		else {this.state = "inGame"};
+		this.state = "inGame";
 	}
 
 	_checkState(_encounterRoll) {
