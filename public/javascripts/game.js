@@ -70,7 +70,7 @@ class Game {
 		textSize(32);
 		textAlign(CENTER, CENTER);
 		text(this.battleInfo, 400, 200);
-		text(`${this.battleWinner}`,400, 400);
+		text(`${this.battleWinner} wins!`,400, 400);
 	}
 
 	_doBattle() {

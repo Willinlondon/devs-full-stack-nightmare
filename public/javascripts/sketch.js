@@ -17,6 +17,9 @@ function draw() {
       break;
     case "battleScreen":
       game.showBattle();
+
+    case "gameOver":
+      game.showGameOver();
   }
 }
 
