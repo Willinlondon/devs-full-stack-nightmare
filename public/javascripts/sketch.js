@@ -21,8 +21,9 @@ function draw() {
     case "battleScreen":
       game.showBattle();
       okButton.show()
-
+      break;
     case "gameOver":
+      okButton.hide()
       game.showGameOver();
   }
 }
@@ -40,11 +41,14 @@ function createOkButton() {
 
   okButton.mousePressed(() => {
     switch(game.battleWinner) {
-      case 'Player' || 'Draw' :
+      case 'Player' :
         game.state = 'mapScreen'
-        break
+        break;
       case 'Enemy' :
         game.state = 'gameOver'
+        break;
+      default :
+        game.state = 'mapScreen'
     }
   });
 }

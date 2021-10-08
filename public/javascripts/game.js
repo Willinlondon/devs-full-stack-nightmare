@@ -73,6 +73,14 @@ class Game {
 		text(`${this.battleWinner} wins!`,400, 400);
 	}
 
+	showGameOver() {
+		background(0);
+		fill(255);
+		textSize(32);
+		textAlign(CENTER, CENTER);
+		text("GAME OVER", 400, 200);
+	}
+
 	_doBattle() {
 		let battle = new Battle();
 		let playerRoll = Math.floor(Math.random() * 20);
