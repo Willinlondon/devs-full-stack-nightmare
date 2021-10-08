@@ -7,12 +7,15 @@ class Game {
 	}
 	
 	//player takes a move
-	playerAction(direction = _playerInput(), amount){
-		this.player.move(direction, amount);
-		this._checkState(this._encounterRoll());
-		if (this.state === "battle") {
-			this._playerFight()
+	playerAction(direction, amount) {
+		if() {
+			this.player.move(direction, amount);
+			this._checkState(this._encounterRoll());
+			if (this.state === "battle") {
+				this._playerFight()
+			}
 		}
+
 	}
 
 	showMap() {
