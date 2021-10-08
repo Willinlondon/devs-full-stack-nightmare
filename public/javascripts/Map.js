@@ -1,6 +1,8 @@
 class Map {
   constructor() {
     this.dimensions = 10;
+    this.maxTunnels = 10;
+    this.maxLength = 4;
     this.directions = [
       [-1, 0],
       [1, 0],
@@ -9,65 +11,33 @@ class Map {
     ];
   }
 
-  createArray(wall, dimensions) {
-    const array = [];
-    for (let i = 0; i < dimensions; i++) {
-      array.push([]);
-      for (let j = 0; j < dimensions; j++) {
-        array[i].push(wall);
-      }
-    }
-    return array;
-  }
-
-  static sampleNumber() {
-    return Math.random();
-  }
-
-  static isInvalidDirection(randomDirection, lastDirection) {
-    return (
-      (randomDirection[0] === -lastDirection[0] &&
-        randomDirection[1] === -lastDirection[1]) ||
-      (randomDirection[0] === lastDirection[0] &&
-        randomDirection[1] === lastDirection[1])
-    );
-  }
-
-  static randomPositionGenerator() {
-    return Math.floor(Map.sampleNumber() * this.dimensions);
-  }
-
   createMap() {
     // console.log('test', Map.sampleNumber());
     // setting Map parameters
-    let maxTunnels = 10;
-    const maxLength = 4;
+    let { maxTunnels } = this;
     // generating "empty map" full of walls represented by 1's
-    const map = this.createArray(1, this.dimensions);
+    const map = Map._createArray(1, this.dimensions);
     // setting random starting point
-    let currentRow = Math.floor(Map.sampleNumber() * this.dimensions);
-    let currentColumn = Math.floor(Map.sampleNumber() * this.dimensions);
+    let currentRow = this._randomPositionGenerator();
+    let currentColumn = this._randomPositionGenerator();
     // setting directions that tunnels can be generated in i.e N, S, E, W
     let lastDirection = [];
     let randomDirection;
     // pick a new random direction to make a tunnel in so long as its not the same as before or going back on itself
-    while (maxTunnels && this.dimensions && maxLength) {
+    while (maxTunnels && this.dimensions && this.maxLength) {
       do {
         randomDirection =
           this.directions[
-            Math.floor(Map.sampleNumber() * this.directions.length)
+            Math.floor(Map._sampleNumber() * this.directions.length)
           ];
-      } while (Map.isInvalidDirection(randomDirection, lastDirection));
+      } while (Map._isInvalidDirection(randomDirection, lastDirection));
       // set random tunnel length
-      const randomLength = Math.ceil(Map.sampleNumber() * maxLength);
+      const randomLength = this._randomLength();
       let tunnelLength = 0;
       while (tunnelLength < randomLength) {
         if (
           // break to stop tunnel leaving map
-          (currentRow === 0 && randomDirection[0] === -1) ||
-          (currentColumn === 0 && randomDirection[1] === -1) ||
-          (currentRow === this.dimensions - 1 && randomDirection[0] === 1) ||
-          (currentColumn === this.dimensions - 1 && randomDirection[1] === 1)
+          this._isLeavingMap(currentRow, currentColumn, randomDirection)
         ) {
           break;
         } else {
@@ -84,6 +54,47 @@ class Map {
       }
     }
     return map;
+  }
+
+  static _createArray(wall, dimensions) {
+    const array = [];
+    for (let i = 0; i < dimensions; i++) {
+      array.push([]);
+      for (let j = 0; j < dimensions; j++) {
+        array[i].push(wall);
+      }
+    }
+    return array;
+  }
+
+  static _sampleNumber() {
+    return Math.random();
+  }
+
+  static _isInvalidDirection(randomDirection, lastDirection) {
+    return (
+      (randomDirection[0] === -lastDirection[0] &&
+        randomDirection[1] === -lastDirection[1]) ||
+      (randomDirection[0] === lastDirection[0] &&
+        randomDirection[1] === lastDirection[1])
+    );
+  }
+
+  _randomPositionGenerator() {
+    return Math.floor(Map._sampleNumber() * this.dimensions);
+  }
+
+  _isLeavingMap(currentRow, currentColumn, randomDirection) {
+    return (
+      (currentRow === 0 && randomDirection[0] === -1) ||
+      (currentColumn === 0 && randomDirection[1] === -1) ||
+      (currentRow === this.dimensions - 1 && randomDirection[0] === 1) ||
+      (currentColumn === this.dimensions - 1 && randomDirection[1] === 1)
+    );
+  }
+
+  _randomLength() {
+    return Math.ceil(Map._sampleNumber() * this.maxLength);
   }
 }
 
