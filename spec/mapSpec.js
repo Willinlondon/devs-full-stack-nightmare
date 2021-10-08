@@ -12,7 +12,6 @@ fdescribe('Map', () => {
         [3, 3, 3],
         [3, 3, 3],
       ]);
-      // spyOn(Math, 'random').and.returnValues(0.1, 0.2, 0.3, 0.4);
     });
   });
 
@@ -31,11 +30,58 @@ fdescribe('Map', () => {
         expect(newMap[i].length).toEqual(10);
       }
     });
-
-    // it('returns correct array with Math.rand stubbed', () => {
-    //   // can't quite get this test working
-    //   spyOn(Map, 'sampleNumber').and.returnValues(0.5, 0.5, 0.5, 0.5, 0.5);
-    //   expect(map.createMap()).toEqual([]);
-    // });
+    it('returns correct array with Math.rand stubbed', () => {
+      spyOn(Math, 'random').and.returnValues(
+        0.5,
+        0.5,
+        0.1,
+        0.2,
+        0.8,
+        0.2,
+        0.45,
+        0.2,
+        0.5,
+        0.2,
+        0.1,
+        0.2,
+        0.8,
+        0.2,
+        0.45,
+        0.2,
+        0.5,
+        0.2,
+        0.1,
+        0.2,
+        0.8,
+        0.2,
+        0.45,
+        0.2,
+        0.5,
+        0.2,
+        0.1,
+        0.2,
+        0.8,
+        0.2,
+        0.45,
+        0.2,
+        0.5,
+        0.2,
+        0.1,
+        0.2,
+        0.8
+      );
+      expect(map.createMap()).toEqual([
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
+        [1, 1, 1, 1, 1, 0, 0, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+        [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
+      ]);
+    });
   });
 });
