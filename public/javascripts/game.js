@@ -2,7 +2,7 @@ class Game {
 	constructor(map = new Map(), player = new Character()) {
 		this.map = map.createMap();
 		this.player = player;
-		this.state = "inGame";
+		this.state = "mapScreen";
 		this.cells = this._generateCells();
 	}
 	
@@ -29,12 +29,11 @@ class Game {
 		
 		if(legalMove) {
 			this.player.move(direction, amount);
-			this._checkState(this._encounterRoll());
-			if (this.state === "battle") {
-				this._playerFight()
-			}
+			this._setState(this._encounterRoll());
+			// if (this.state === "battleScreen") {
+			// 	this._playerFight()
+			// }
 		}
-
 	}
 
 	showMap() {
@@ -68,18 +67,29 @@ class Game {
 		return cellArray;
 	}
 
-	_playerFight(){
+	showBattle() {
 		let battle = new Battle();
-		battle.winner(Math.random() * 20, Math.random() * 20);
-		this.state = "inGame";
+		let playerRoll = Math.random() * 20;
+		let enemyRoll = Math.random() * 20;
+		let winner = battle.winner(playerRoll, enemyRoll);
+		let battleText = `You encountered an angry troll called Jasmine.
+		\nYou attacked with ${playerRoll}!
+		\nThey attacked with ${enemyRoll}`
+		// this.state = "mapScreen";
+    background(0, 255, 0);
+		fill(0);
+		textSize(32);
+		textAlign(CENTER, CENTER);
+		text(battleText, 400, 200);
+		text(`${winner}`,400, 400)
 	}
 
-	_checkState(_encounterRoll) {
+	_setState(_encounterRoll) {
 		if (_encounterRoll > 80) {
-			this.state = "battle";
+			this.state = "battleScreen";
 		}
 		if (_encounterRoll <= 80) {
-			this.state = "inGame";
+			this.state = "mapScreen";
 		}
 	}
 
