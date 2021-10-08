@@ -98,7 +98,7 @@ class Map {
   }
 }
 
-module.exports = Map;
+// module.exports = Map;
 
 map = new Map();
 console.log(map.createMap());
