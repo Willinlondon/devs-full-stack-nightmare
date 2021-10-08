@@ -1,5 +1,0 @@
-class Grid {
-    constructor(map) {
-        
-    }
-}
