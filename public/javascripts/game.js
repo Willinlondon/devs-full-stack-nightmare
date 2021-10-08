@@ -8,7 +8,27 @@ class Game {
 	
 	//player takes a move
 	playerAction(direction, amount) {
-		if() {
+		let playerX = this.player.location[0] / amount;
+		let playerY = this.player.location[1] / amount;
+		let distance = (amount / 75);
+		let legalMove = true;
+
+		switch (direction) {
+		  case 'right':
+		  	legalMove = !this._cellAt(playerX + distance, playerY).isWall();
+		    break;
+		  case 'left':
+		  	legalMove = !this._cellAt(playerX - distance, playerY).isWall();
+		  	break;
+		  case 'up':
+		  	legalMove = !this._cellAt(playerX, playerY - distance).isWall();
+		    break;
+		  case 'down':
+		  	legalMove = !this._cellAt(playerX, playerY + distance).isWall();
+		    break;
+		}
+		
+		if(legalMove) {
 			this.player.move(direction, amount);
 			this._checkState(this._encounterRoll());
 			if (this.state === "battle") {
