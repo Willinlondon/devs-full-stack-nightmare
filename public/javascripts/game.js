@@ -3,11 +3,14 @@ class Game {
 		this.gameMap = map;
 		this.map = this.gameMap.createMap();
 		this.player = player;
+
+		this.state = "mapScreen";
+
 		this.player.startLocation(
 			this.gameMap.startingColumn,
 			this.gameMap.startingRow
 		);
-		this.state = "inGame";
+
 		this.cells = this._generateCells();
 	}
 
@@ -35,10 +38,10 @@ class Game {
 
 		if (legalMove) {
 			this.player.move(direction, amount);
-			this._checkState(this._encounterRoll());
-			if (this.state === "battle") {
-				this._playerFight();
-			}
+
+			this._setState(this._encounterRoll());
+
+
 		}
 	}
 
@@ -73,18 +76,38 @@ class Game {
 		return cellArray;
 	}
 
-	_playerFight() {
-		let battle = new Battle();
-		battle.winner(Math.random() * 20, Math.random() * 20);
-		this.state = "inGame";
+
+	showBattle() {
+    background(0, 255, 0);
+		fill(0);
+		textSize(32);
+		textAlign(CENTER, CENTER);
+		text(this.battleInfo, 400, 200);
+		text(`${this.battleWinner}`,400, 400);
 	}
 
-	_checkState(_encounterRoll) {
+	_doBattle() {
+
+		let battle = new Battle();
+		let playerRoll = Math.floor(Math.random() * 20);
+		let enemyRoll = Math.floor(Math.random() * 20);
+		let winner = battle.winner(playerRoll, enemyRoll);
+		let battleText = `
+		You encountered an angry troll called Jasmine.
+		\nYou attacked with ${playerRoll}!
+		\nThey attacked with ${enemyRoll}`
+
+		this.battleWinner = winner;
+		this.battleInfo = battleText;
+	}
+
+	_setState(_encounterRoll) {
 		if (_encounterRoll > 80) {
-			this.state = "battle";
+			this._doBattle();
+			this.state = "battleScreen";
 		}
 		if (_encounterRoll <= 80) {
-			this.state = "inGame";
+			this.state = "mapScreen";
 		}
 	}
 
