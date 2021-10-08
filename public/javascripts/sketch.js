@@ -7,7 +7,6 @@ function setup() {
 
 function draw() {
   background(0);
-  console.log(game.state)
 
   switch(game.state) {
     case "mapScreen":

@@ -75,8 +75,8 @@ class Game {
 
 	_doBattle() {
 		let battle = new Battle();
-		let playerRoll = Math.random() * 20;
-		let enemyRoll = Math.random() * 20;
+		let playerRoll = Math.floor(Math.random() * 20);
+		let enemyRoll = Math.floor(Math.random() * 20);
 		let winner = battle.winner(playerRoll, enemyRoll);
 		let battleText = `
 		You encountered an angry troll called Jasmine.
