@@ -30,9 +30,6 @@ class Game {
 		if(legalMove) {
 			this.player.move(direction, amount);
 			this._setState(this._encounterRoll());
-			// if (this.state === "battleScreen") {
-			// 	this._playerFight()
-			// }
 		}
 	}
 
@@ -68,24 +65,31 @@ class Game {
 	}
 
 	showBattle() {
-		let battle = new Battle();
-		let playerRoll = Math.random() * 20;
-		let enemyRoll = Math.random() * 20;
-		let winner = battle.winner(playerRoll, enemyRoll);
-		let battleText = `You encountered an angry troll called Jasmine.
-		\nYou attacked with ${playerRoll}!
-		\nThey attacked with ${enemyRoll}`
-		// this.state = "mapScreen";
     background(0, 255, 0);
 		fill(0);
 		textSize(32);
 		textAlign(CENTER, CENTER);
-		text(battleText, 400, 200);
-		text(`${winner}`,400, 400)
+		text(this.battleInfo, 400, 200);
+		text(`${this.battleWinner}`,400, 400);
+	}
+
+	_doBattle() {
+		let battle = new Battle();
+		let playerRoll = Math.random() * 20;
+		let enemyRoll = Math.random() * 20;
+		let winner = battle.winner(playerRoll, enemyRoll);
+		let battleText = `
+		You encountered an angry troll called Jasmine.
+		\nYou attacked with ${playerRoll}!
+		\nThey attacked with ${enemyRoll}`
+
+		this.battleWinner = winner;
+		this.battleInfo = battleText;
 	}
 
 	_setState(_encounterRoll) {
 		if (_encounterRoll > 80) {
+			this._doBattle();
 			this.state = "battleScreen";
 		}
 		if (_encounterRoll <= 80) {
@@ -96,5 +100,4 @@ class Game {
 	_encounterRoll() {
 		return Math.random() * 100;
 	}
-
 }
