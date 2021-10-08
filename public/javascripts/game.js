@@ -8,23 +8,22 @@ class Game {
 	
 	//player takes a move
 	playerAction(direction, amount) {
-		let playerX = this.player.location[0] / amount;
-		let playerY = this.player.location[1] / amount;
-		let distance = (amount / 75);
+		let playerX = this.player.location[0];
+		let playerY = this.player.location[1];
 		let legalMove = true;
 
 		switch (direction) {
 		  case 'right':
-		  	legalMove = !this._cellAt(playerX + distance, playerY).isWall();
+		  	legalMove = !this._cellAt(playerX + amount, playerY).isWall();
 		    break;
 		  case 'left':
-		  	legalMove = !this._cellAt(playerX - distance, playerY).isWall();
+		  	legalMove = !this._cellAt(playerX - amount, playerY).isWall();
 		  	break;
 		  case 'up':
-		  	legalMove = !this._cellAt(playerX, playerY - distance).isWall();
+		  	legalMove = !this._cellAt(playerX, playerY - amount).isWall();
 		    break;
 		  case 'down':
-		  	legalMove = !this._cellAt(playerX, playerY + distance).isWall();
+		  	legalMove = !this._cellAt(playerX, playerY + amount).isWall();
 		    break;
 		}
 		
@@ -41,9 +40,11 @@ class Game {
 	showMap() {
 		this.map.forEach((y, y_index) => {
 			y.forEach((x, x_index) => {
-				if(this._cellAt(x_index, y_index).isWall()) {
+				let currentCell = this._cellAt(x_index * 75, y_index * 75);
+
+				if(currentCell.isWall()) {
 					fill(150, 50, 150);
-					rect(x_index * 75, y_index * 75, 75);
+					rect(currentCell.x, currentCell.y, 75);
 				}
 			});
 		});
@@ -60,7 +61,7 @@ class Game {
 			y.forEach((x, x_index) => {
 				let wall = (x == 1) ? true : false
 
-				cellArray.push(new Cell(x_index, y_index, wall));
+				cellArray.push(new Cell(x_index * 75, y_index * 75, wall));
 			});
 		});
 
