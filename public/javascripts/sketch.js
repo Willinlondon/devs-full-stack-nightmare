@@ -1,7 +1,11 @@
 const game = new Game
 
+function preload() {
+
+}
+
 function setup() {
-  canvas = createCanvas(750, 750);
+  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
   canvas.parent("play-area");
 }
 

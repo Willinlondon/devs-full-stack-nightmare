@@ -14,8 +14,6 @@ class Game {
 		this.cells = this._generateCells();
 	}
 
-	//player takes a move
-
 	playerAction(direction, amount) {
 		let playerX = this.player.location[0];
 		let playerY = this.player.location[1];
