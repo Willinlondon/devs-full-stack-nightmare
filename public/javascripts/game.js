@@ -46,7 +46,9 @@ class Game {
 	showMap() {
 		this.map.forEach((y, y_index) => {
 			y.forEach((x, x_index) => {
-				let currentCell = this._cellAt(x_index * 75, y_index * 75);
+				let currentCell = this._cellAt(
+					x_index * Config.cellSize, y_index * Config.cellSize
+					);
 
 				if (currentCell.isWall()) {
 					fill(150, 50, 150);
