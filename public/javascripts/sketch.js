@@ -7,9 +7,17 @@ function setup() {
 
 function draw() {
   background(0);
-  game.showMap();
-  fill(155);
-  rect(game.player.location[0],game.player.location[1],75);
+
+  switch(game.state) {
+    case "mapScreen":
+      game.showMap();
+
+      fill(155);
+      rect(game.player.location[0],game.player.location[1],75);
+      break;
+    case "battleScreen":
+      game.showBattle();
+  }
 }
 
 function keyPressed() {
