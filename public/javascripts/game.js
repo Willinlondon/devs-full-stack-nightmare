@@ -52,7 +52,7 @@ class Game {
 
 				if (currentCell.isWall()) {
 					fill(150, 50, 150);
-					rect(currentCell.x, currentCell.y, 75);
+					rect(currentCell.x, currentCell.y, Config.cellSize);
 				}
 			});
 		});
@@ -69,7 +69,7 @@ class Game {
 			y.forEach((x, x_index) => {
 				let wall = x == 1 ? true : false;
 
-				cellArray.push(new Cell(x_index * 75, y_index * 75, wall));
+				cellArray.push(new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall));
 			});
 		});
 
