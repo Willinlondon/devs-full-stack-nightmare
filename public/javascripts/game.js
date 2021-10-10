@@ -14,8 +14,6 @@ class Game {
 		this.cells = this._generateCells();
 	}
 
-	//player takes a move
-
 	playerAction(direction, amount) {
 		let playerX = this.player.location[0];
 		let playerY = this.player.location[1];
@@ -48,11 +46,13 @@ class Game {
 	showMap() {
 		this.map.forEach((y, y_index) => {
 			y.forEach((x, x_index) => {
-				let currentCell = this._cellAt(x_index * 75, y_index * 75);
+				let currentCell = this._cellAt(
+					x_index * Config.cellSize, y_index * Config.cellSize
+					);
 
 				if (currentCell.isWall()) {
-					fill(150, 50, 150);
-					rect(currentCell.x, currentCell.y, 75);
+					fill(Config.wallColour);
+					rect(currentCell.x, currentCell.y, Config.cellSize);
 				}
 			});
 		});
@@ -69,7 +69,7 @@ class Game {
 			y.forEach((x, x_index) => {
 				let wall = x == 1 ? true : false;
 
-				cellArray.push(new Cell(x_index * 75, y_index * 75, wall));
+				cellArray.push(new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall));
 			});
 		});
 
@@ -79,7 +79,9 @@ class Game {
 
 	showBattle() {
 
-		textSize(32);
+    	background(Config.battleBackground);
+		fill(0);
+		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
 		text(this.battleInfo, 400, 200);
 		fill(212, 217, 166);
@@ -103,16 +105,16 @@ class Game {
 	}
 
 	_setState(_encounterRoll) {
-		if (_encounterRoll > 80) {
+		if (_encounterRoll > Config.encounterProbability) {
 			this._doBattle();
 			this.state = "battleScreen";
 		}
-		if (_encounterRoll <= 80) {
+		if (_encounterRoll <= Config.encounterProbability) {
 			this.state = "mapScreen";
 		}
 	}
 
 	_encounterRoll() {
-		return Math.random() * 100;
+		return Math.random();
 	}
 }

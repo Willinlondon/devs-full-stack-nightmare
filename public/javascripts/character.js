@@ -6,7 +6,10 @@ class Character {
 	}
 
 	startLocation(startingColumn, startingRow) {
-		this.location = [startingColumn * 75, startingRow * 75];
+		this.location = [
+		startingColumn * Config.cellSize, 
+		startingRow * Config.cellSize
+		];
 	}
 
 	attack() {
@@ -31,30 +34,30 @@ class Character {
 	// Directions are here as private methods
 
 	_moveRight(amount) {
-		if (this.location[0] == 675) {
+		if (this.location[0] == Config.cellSize * Config.gridSize - 1) {
 			return;
 		}
-		this.location[0] += amount;
+		this.location[0] += Config.cellSize;
 	}
 
 	_moveLeft(amount) {
 		if (this.location[0] == 0) {
 			return;
 		}
-		this.location[0] -= amount;
+		this.location[0] -= Config.cellSize;
 	}
 
 	_moveUp(amount) {
 		if (this.location[1] == 0) {
 			return;
 		}
-		this.location[1] -= amount;
+		this.location[1] -= Config.cellSize;
 	}
 
 	_moveDown(amount) {
-		if (this.location[1] == 675) {
+		if (this.location[1] == Config.cellSize * Config.gridSize - 1) {
 			return;
 		}
-		this.location[1] += amount;
+		this.location[1] += Config.cellSize;
 	}
 }
