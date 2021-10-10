@@ -14,16 +14,16 @@ class Character {
   }
 
   move(direction, amount) {
-    if (direction == 'right') {
+    if (direction === 'right') {
       this._moveRight(amount);
     }
-    if (direction == 'left') {
+    if (direction === 'left') {
       this._moveLeft(amount);
     }
-    if (direction == 'up') {
+    if (direction === 'up') {
       this._moveUp(amount);
     }
-    if (direction == 'down') {
+    if (direction === 'down') {
       this._moveDown(amount);
     }
   }
@@ -31,28 +31,28 @@ class Character {
   // Directions are here as private methods
 
   _moveRight(amount) {
-    if (this.location[0] == 675) {
+    if (this.location[0] === 675) {
       return;
     }
     this.location[0] += amount;
   }
 
   _moveLeft(amount) {
-    if (this.location[0] == 0) {
+    if (this.location[0] === 0) {
       return;
     }
     this.location[0] -= amount;
   }
 
   _moveUp(amount) {
-    if (this.location[1] == 0) {
+    if (this.location[1] === 0) {
       return;
     }
     this.location[1] -= amount;
   }
 
   _moveDown(amount) {
-    if (this.location[1] == 675) {
+    if (this.location[1] === 675) {
       return;
     }
     this.location[1] += amount;
