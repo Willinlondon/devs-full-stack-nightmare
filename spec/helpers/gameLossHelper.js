@@ -4,7 +4,7 @@ losingTheGame = function (game) {
 
     game.state = "inGame"
     game.player.move('left')
-    game._checkState(85);
+    game._setState(85);
     let battle = new Battle();
     battle.winner(2, 5);
     	if ("Player 2 Wins!") {
@@ -17,7 +17,7 @@ losingTheGame = function (game) {
     		//return ;
     	}
     	else {
-    		game.state = "inGame";
+    		game.state = "mapScreen";
     	}
         console.log(game.state);
     };

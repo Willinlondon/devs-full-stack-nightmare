@@ -1,10 +1,21 @@
 const game = new Game
 let okButton
 
+
+let img;
+let imagePath = './stylesheets/assets/battleBackground.jpg';
+
+
+function preload() {
+
+}
+
+
 function setup() {
   createOkButton()
-  canvas = createCanvas(750, 750);
+  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
   canvas.parent("play-area");
+  img = loadImage(imagePath);
 }
 
 function draw() {
@@ -15,16 +26,18 @@ function draw() {
       okButton.hide()
       game.showMap();
 
-      fill(155);
-      rect(game.player.location[0],game.player.location[1],75);
+      fill(Config.playerColour);
+      rect(game.player.location[0],game.player.location[1], Config.spriteSize);
       break;
     case "battleScreen":
+      background(img, 0, 0);
       game.showBattle();
       okButton.show()
       break;
     case "gameOver":
       okButton.hide()
       game.showGameOver();
+
   }
 }
 
@@ -53,4 +66,5 @@ function createOkButton() {
         game.state = 'mapScreen'
     }
   });
+
 }
