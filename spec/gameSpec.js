@@ -13,7 +13,7 @@ describe("Game", () => {
 		});
 
 		it("creates a default inGame state upon new game", () => {
-			expect(game.state).toEqual("inGame");
+			expect(game.state).toEqual("mapScreen");
 		});
 	});
 
@@ -27,8 +27,8 @@ describe("Game", () => {
 		});
 
 		it("can change this.state ", () => {
-			game._checkState(81);
-			expect(game.state).toEqual("battle");
+			game._setState(81);
+			expect(game.state).toEqual("battleScreen");
 		});
 	});
 
