@@ -6,7 +6,10 @@ class Character {
 	}
 
 	startLocation(startingColumn, startingRow) {
-		this.location = [startingColumn * Config.cellSize, startingRow * Config.cellSize];
+		this.location = [
+		startingColumn * Config.cellSize, 
+		startingRow * Config.cellSize
+		];
 	}
 
 	attack() {

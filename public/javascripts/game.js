@@ -102,16 +102,16 @@ class Game {
 	}
 
 	_setState(_encounterRoll) {
-		if (_encounterRoll > 80) {
+		if (_encounterRoll > Config.encounterProbability) {
 			this._doBattle();
 			this.state = "battleScreen";
 		}
-		if (_encounterRoll <= 80) {
+		if (_encounterRoll <= Config.encounterProbability) {
 			this.state = "mapScreen";
 		}
 	}
 
 	_encounterRoll() {
-		return Math.random() * 100;
+		return Math.random();
 	}
 }
