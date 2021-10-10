@@ -1,15 +1,12 @@
+
 const game = new Game
 let okButton
-
-
 let img;
 let imagePath = './stylesheets/assets/battleBackground.jpg';
-
 
 function preload() {
 
 }
-
 
 function setup() {
   createOkButton()
@@ -37,16 +34,15 @@ function draw() {
     case "gameOver":
       okButton.hide()
       game.showGameOver();
-
   }
 }
 
 function keyPressed() {
   if (game.state === "mapScreen") {
-    if (keyCode === LEFT_ARROW || keyCode === 65) {game.playerAction('left', 75)};
-    if (keyCode === RIGHT_ARROW || keyCode === 68) {game.playerAction('right', 75)};
-    if (keyCode === UP_ARROW || keyCode === 87) {game.playerAction('up', 75)};
-    if (keyCode === DOWN_ARROW || keyCode === 83) {game.playerAction('down', 75)};
+  if (keyCode === LEFT_ARROW || keyCode === 65) {game.playerAction('left', 75)};
+  if (keyCode === RIGHT_ARROW || keyCode === 68) {game.playerAction('right', 75)};
+  if (keyCode === UP_ARROW || keyCode === 87) {game.playerAction('up', 75)};
+  if (keyCode === DOWN_ARROW || keyCode === 83) {game.playerAction('down', 75)};
   }
 }
 
@@ -66,5 +62,4 @@ function createOkButton() {
         game.state = 'mapScreen'
     }
   });
-
 }

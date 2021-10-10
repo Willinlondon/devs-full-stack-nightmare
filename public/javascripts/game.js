@@ -7,8 +7,8 @@ class Game {
 		this.state = "mapScreen";
 
 		this.player.startLocation(
-			this.gameMap.startingColumn,
-			this.gameMap.startingRow
+		this.gameMap.startingColumn,
+		this.gameMap.startingRow
 		);
 
 		this.cells = this._generateCells();
@@ -78,8 +78,7 @@ class Game {
 
 
 	showBattle() {
-
-    	background(Config.battleBackground);
+    background(Config.battleBackground);
 		fill(0);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
