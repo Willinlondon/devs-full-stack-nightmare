@@ -37,14 +37,19 @@ body {
 #left-sidebar { grid-area: left-sidebar; }
 
 #play-area {
-  display: flex;
   justify-content: center;
   align-items: center;
   grid-area: play-area;
 }
 
-#right-sidebar { grid-area: right-sidebar; }
+#play-area img {
+  position: relative;
+  align-items: left;
+  top: 100px;
+  left: 75px;
+}
 
+#right-sidebar { grid-area: right-sidebar; }
 
 #page-header, #page-footer {
   text-align: center;
@@ -54,5 +59,9 @@ body {
 
 #left-sidebar, #right-sidebar {
   
+}
+
+#left-sidebar img {
+  position: absolute;
 }
 
