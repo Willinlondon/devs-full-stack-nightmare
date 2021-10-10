@@ -5,4 +5,5 @@ class Config {
     static encounterProbability = 0.8
     static gridSize = 10;
     static spriteSize = 75;
+    static playerColour = 155;
 }

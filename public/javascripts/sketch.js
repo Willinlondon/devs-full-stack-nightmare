@@ -16,7 +16,7 @@ function draw() {
     case "mapScreen":
       game.showMap();
 
-      fill(155);
+      fill(Config.playerColour);
       rect(game.player.location[0],game.player.location[1], Config.spriteSize);
       break;
     case "battleScreen":
