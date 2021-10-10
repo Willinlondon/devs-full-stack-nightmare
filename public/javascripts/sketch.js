@@ -17,7 +17,7 @@ function draw() {
       game.showMap();
 
       fill(155);
-      rect(game.player.location[0],game.player.location[1],75);
+      rect(game.player.location[0],game.player.location[1], Config.spriteSize);
       break;
     case "battleScreen":
       game.showBattle();

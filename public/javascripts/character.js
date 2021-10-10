@@ -37,27 +37,27 @@ class Character {
 		if (this.location[0] == Config.cellSize * Config.gridSize - 1) {
 			return;
 		}
-		this.location[0] += amount;
+		this.location[0] += Config.cellSize;
 	}
 
 	_moveLeft(amount) {
 		if (this.location[0] == 0) {
 			return;
 		}
-		this.location[0] -= amount;
+		this.location[0] -= Config.cellSize;
 	}
 
 	_moveUp(amount) {
 		if (this.location[1] == 0) {
 			return;
 		}
-		this.location[1] -= amount;
+		this.location[1] -= Config.cellSize;
 	}
 
 	_moveDown(amount) {
 		if (this.location[1] == Config.cellSize * Config.gridSize - 1) {
 			return;
 		}
-		this.location[1] += amount;
+		this.location[1] += Config.cellSize;
 	}
 }
