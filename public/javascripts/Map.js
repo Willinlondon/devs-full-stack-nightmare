@@ -2,8 +2,6 @@ class Map {
   constructor() {
     this.dimensions = 10;
     this.maxTunnels = 10;
-    this.startingRow;
-    this.startingColumn;
     this.maxLength = 4;
     this.directions = [
       [-1, 0],
@@ -15,25 +13,32 @@ class Map {
 
   createMap() {
     // console.log('test', Map.sampleNumber());
+
     // setting Map parameters
     let { maxTunnels } = this;
+
     // generating "empty map" full of walls represented by 1's
     const map = Map._createArray(1, this.dimensions);
+
     // setting random starting point
     let currentRow = this._randomPositionGenerator();
     this.startingRow = currentRow;
     let currentColumn = this._randomPositionGenerator();
     this.startingColumn = currentColumn;
+
     // setting directions that tunnels can be generated in i.e N, S, E, W
     let lastDirection = [];
     let randomDirection;
-    // pick a new random direction to make a tunnel in so long as its not the same as before or going back on itself
+
+    // pick a new random direction to make a tunnel in so long as its not
+    // the same as before or going back on itself
     while (maxTunnels && this.dimensions && this.maxLength) {
       do {
-        randomDirection =					this.directions[
-					  Math.floor(Map._sampleNumber() * this.directions.length)
+        randomDirection = this.directions[
+          Math.floor(Map._sampleNumber() * this.directions.length)
         ];
       } while (Map._isInvalidDirection(randomDirection, lastDirection));
+
       // set random tunnel length
       const randomLength = this._randomLength();
       let tunnelLength = 0;
@@ -77,9 +82,9 @@ class Map {
   static _isInvalidDirection(randomDirection, lastDirection) {
     return (
       (randomDirection[0] === -lastDirection[0]
-				&& randomDirection[1] === -lastDirection[1])
-			|| (randomDirection[0] === lastDirection[0]
-				&& randomDirection[1] === lastDirection[1])
+        && randomDirection[1] === -lastDirection[1])
+      || (randomDirection[0] === lastDirection[0]
+        && randomDirection[1] === lastDirection[1])
     );
   }
 
@@ -90,9 +95,9 @@ class Map {
   _isLeavingMap(currentRow, currentColumn, randomDirection) {
     return (
       (currentRow === 0 && randomDirection[0] === -1)
-			|| (currentColumn === 0 && randomDirection[1] === -1)
-			|| (currentRow === this.dimensions - 1 && randomDirection[0] === 1)
-			|| (currentColumn === this.dimensions - 1 && randomDirection[1] === 1)
+      || (currentColumn === 0 && randomDirection[1] === -1)
+      || (currentRow === this.dimensions - 1 && randomDirection[0] === 1)
+      || (currentColumn === this.dimensions - 1 && randomDirection[1] === 1)
     );
   }
 
