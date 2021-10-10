@@ -17,6 +17,9 @@ function draw() {
       break;
     case 'battleScreen':
       game.showBattle();
+      break;
+    default:
+      game.showMap();
   }
 }
 
