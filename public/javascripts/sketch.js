@@ -1,8 +1,18 @@
 const game = new Game
 
+//let battleBackground;
+
+let img;
+let imagePath = './stylesheets/assets/battleBackground.jpg';
+
+//function preload() {
+  //  battleBackground = loadImage("/battleBackground.jpg");
+//}
+
 function setup() {
   canvas = createCanvas(750, 750);
   canvas.parent("play-area");
+  img = loadImage(imagePath);
 }
 
 function draw() {
@@ -15,8 +25,11 @@ function draw() {
       fill(155);
       rect(game.player.location[0],game.player.location[1],75);
       break;
-    case "battleScreen":
-      game.showBattle();
+    case "battleScreen":  
+    background(img, 0, 0);
+    game.showBattle();
+    //background(img, 0, 0);
+      
   }
 }
 

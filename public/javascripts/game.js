@@ -79,7 +79,6 @@ class Game {
 
 	showBattle() {
 
-    background('./battleBackground.jpg');
 		textSize(32);
 		textAlign(CENTER, CENTER);
 		text(this.battleInfo, 400, 200);
