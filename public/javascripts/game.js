@@ -34,6 +34,8 @@ class Game {
       case 'down':
         legalMove = !this._cellAt(playerX, playerY + amount).isWall();
         break;
+      default:
+        break;
     }
 
     if (legalMove) {
@@ -44,9 +46,9 @@ class Game {
   }
 
   showMap() {
-    this.map.forEach((y, y_index) => {
-      y.forEach((x, x_index) => {
-        const currentCell = this._cellAt(x_index * 75, y_index * 75);
+    this.map.forEach((y, yIndex) => {
+      y.forEach((x, xIndex) => {
+        const currentCell = this._cellAt(xIndex * 75, yIndex * 75);
 
         if (currentCell.isWall()) {
           fill(150, 50, 150);
@@ -57,17 +59,17 @@ class Game {
   }
 
   _cellAt(x, y) {
-    return this.cells.find((cell) => cell.x == x && cell.y == y);
+    return this.cells.find((cell) => cell.x === x && cell.y === y);
   }
 
   _generateCells() {
     const cellArray = [];
 
-    this.map.forEach((y, y_index) => {
-      y.forEach((x, x_index) => {
-        const wall = x == 1;
+    this.map.forEach((y, yIndex) => {
+      y.forEach((x, xIndex) => {
+        const wall = x === 1;
 
-        cellArray.push(new Cell(x_index * 75, y_index * 75, wall));
+        cellArray.push(new Cell(xIndex * 75, yIndex * 75, wall));
       });
     });
 
@@ -89,9 +91,9 @@ class Game {
     const enemyRoll = Math.floor(Math.random() * 20);
     const winner = battle.winner(playerRoll, enemyRoll);
     const battleText = `
-		You encountered an angry troll called Jasmine.
-		\nYou attacked with ${playerRoll}!
-		\nThey attacked with ${enemyRoll}`;
+    You encountered an angry troll called Jasmine.
+    \nYou attacked with ${playerRoll}!
+    \nThey attacked with ${enemyRoll}`;
 
     this.battleWinner = winner;
     this.battleInfo = battleText;
