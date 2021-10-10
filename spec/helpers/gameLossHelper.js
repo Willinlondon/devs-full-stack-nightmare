@@ -15,8 +15,10 @@ losingTheGame = function (game) {
     return 'gameOver';
     		// return ;
     	}
-
-    		game.state = 'inGame';
+    	else {
+    		game.state = "mapScreen";
+    	}
+    game.state = 'inGame';
 
   console.log(game.state);
 };

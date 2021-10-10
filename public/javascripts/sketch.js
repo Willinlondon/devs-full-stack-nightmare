@@ -1,31 +1,65 @@
-const game = new Game();
+
+const game = new Game
+let okButton
+let img;
+let imagePath = './stylesheets/assets/battleBackground.jpg';
+
+function preload() {
+
+}
 
 function setup() {
-  canvas = createCanvas(750, 750);
-  canvas.parent('play-area');
+  createOkButton()
+  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
+  canvas.parent("play-area");
+  img = loadImage(imagePath);
 }
 
 function draw() {
   background(0);
 
-  switch (game.state) {
-    case 'mapScreen':
+  switch(game.state) {
+    case "mapScreen":
+      okButton.hide()
       game.showMap();
 
-      fill(155);
-      rect(game.player.location[0], game.player.location[1], 75);
+      fill(Config.playerColour);
+      rect(game.player.location[0],game.player.location[1], Config.spriteSize);
       break;
-    case 'battleScreen':
+    case "battleScreen":
+      background(img, 0, 0);
       game.showBattle();
+      okButton.show()
       break;
-    default:
-      game.showMap();
+    case "gameOver":
+      okButton.hide()
+      game.showGameOver();
   }
 }
 
 function keyPressed() {
-  if (keyCode === LEFT_ARROW || keyCode === 65) { game.playerAction('left', 75); }
-  if (keyCode === RIGHT_ARROW || keyCode === 68) { game.playerAction('right', 75); }
-  if (keyCode === UP_ARROW || keyCode === 87) { game.playerAction('up', 75); }
-  if (keyCode === DOWN_ARROW || keyCode === 83) { game.playerAction('down', 75); }
+  if (game.state === "mapScreen") {
+  if (keyCode === LEFT_ARROW || keyCode === 65) {game.playerAction('left', 75)};
+  if (keyCode === RIGHT_ARROW || keyCode === 68) {game.playerAction('right', 75)};
+  if (keyCode === UP_ARROW || keyCode === 87) {game.playerAction('up', 75)};
+  if (keyCode === DOWN_ARROW || keyCode === 83) {game.playerAction('down', 75)};
+  }
+}
+
+function createOkButton() {
+  okButton = createButton('OK');
+  okButton.position(400,500);
+
+  okButton.mousePressed(() => {
+    switch(game.battleWinner) {
+      case 'Player' :
+        game.state = 'mapScreen'
+        break;
+      case 'Enemy' :
+        game.state = 'gameOver'
+        break;
+      default :
+        game.state = 'mapScreen'
+    }
+  });
 }
