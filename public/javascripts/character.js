@@ -34,7 +34,7 @@ class Character {
 	// Directions are here as private methods
 
 	_moveRight(amount) {
-		if (this.location[0] == Config.cellSize * 9) {
+		if (this.location[0] == Config.cellSize * Config.gridSize - 1) {
 			return;
 		}
 		this.location[0] += amount;
@@ -55,7 +55,7 @@ class Character {
 	}
 
 	_moveDown(amount) {
-		if (this.location[1] == Config.cellSize * 9) {
+		if (this.location[1] == Config.cellSize * Config.gridSize - 1) {
 			return;
 		}
 		this.location[1] += amount;
