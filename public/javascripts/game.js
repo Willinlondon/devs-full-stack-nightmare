@@ -1,117 +1,113 @@
 class Game {
-	constructor(map = new Map(), player = new Character()) {
-		this.gameMap = map;
-		this.map = this.gameMap.createMap();
-		this.player = player;
+  constructor(map = new Map(), player = new Character()) {
+    this.gameMap = map;
+    this.map = this.gameMap.createMap();
+    this.player = player;
 
-		this.state = "mapScreen";
+    this.state = 'mapScreen';
 
-		this.player.startLocation(
-			this.gameMap.startingColumn,
-			this.gameMap.startingRow
-		);
+    this.player.startLocation(
+      this.gameMap.startingColumn,
+      this.gameMap.startingRow,
+    );
 
-		this.cells = this._generateCells();
-	}
+    this.cells = this._generateCells();
+  }
 
-	//player takes a move
+  // player takes a move
 
-	playerAction(direction, amount) {
-		let playerX = this.player.location[0];
-		let playerY = this.player.location[1];
-		let legalMove = true;
+  playerAction(direction, amount) {
+    const playerX = this.player.location[0];
+    const playerY = this.player.location[1];
+    let legalMove = true;
 
-		switch (direction) {
-			case "right":
-				legalMove = !this._cellAt(playerX + amount, playerY).isWall();
-				break;
-			case "left":
-				legalMove = !this._cellAt(playerX - amount, playerY).isWall();
-				break;
-			case "up":
-				legalMove = !this._cellAt(playerX, playerY - amount).isWall();
-				break;
-			case "down":
-				legalMove = !this._cellAt(playerX, playerY + amount).isWall();
-				break;
-		}
+    switch (direction) {
+      case 'right':
+        legalMove = !this._cellAt(playerX + amount, playerY).isWall();
+        break;
+      case 'left':
+        legalMove = !this._cellAt(playerX - amount, playerY).isWall();
+        break;
+      case 'up':
+        legalMove = !this._cellAt(playerX, playerY - amount).isWall();
+        break;
+      case 'down':
+        legalMove = !this._cellAt(playerX, playerY + amount).isWall();
+        break;
+    }
 
-		if (legalMove) {
-			this.player.move(direction, amount);
+    if (legalMove) {
+      this.player.move(direction, amount);
 
-			this._setState(this._encounterRoll());
+      this._setState(this._encounterRoll());
+    }
+  }
 
+  showMap() {
+    this.map.forEach((y, y_index) => {
+      y.forEach((x, x_index) => {
+        const currentCell = this._cellAt(x_index * 75, y_index * 75);
 
-		}
-	}
+        if (currentCell.isWall()) {
+          fill(150, 50, 150);
+          rect(currentCell.x, currentCell.y, 75);
+        }
+      });
+    });
+  }
 
-	showMap() {
-		this.map.forEach((y, y_index) => {
-			y.forEach((x, x_index) => {
-				let currentCell = this._cellAt(x_index * 75, y_index * 75);
+  _cellAt(x, y) {
+    return this.cells.find((cell) => cell.x == x && cell.y == y);
+  }
 
-				if (currentCell.isWall()) {
-					fill(150, 50, 150);
-					rect(currentCell.x, currentCell.y, 75);
-				}
-			});
-		});
-	}
+  _generateCells() {
+    const cellArray = [];
 
-	_cellAt(x, y) {
-		return this.cells.find((cell) => cell.x == x && cell.y == y);
-	}
+    this.map.forEach((y, y_index) => {
+      y.forEach((x, x_index) => {
+        const wall = x == 1;
 
-	_generateCells() {
-		let cellArray = [];
+        cellArray.push(new Cell(x_index * 75, y_index * 75, wall));
+      });
+    });
 
-		this.map.forEach((y, y_index) => {
-			y.forEach((x, x_index) => {
-				let wall = x == 1 ? true : false;
+    return cellArray;
+  }
 
-				cellArray.push(new Cell(x_index * 75, y_index * 75, wall));
-			});
-		});
-
-		return cellArray;
-	}
-
-
-	showBattle() {
+  showBattle() {
     background(0, 255, 0);
-		fill(0);
-		textSize(32);
-		textAlign(CENTER, CENTER);
-		text(this.battleInfo, 400, 200);
-		text(`${this.battleWinner}`,400, 400);
-	}
+    fill(0);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text(this.battleInfo, 400, 200);
+    text(`${this.battleWinner}`, 400, 400);
+  }
 
-	_doBattle() {
-
-		let battle = new Battle();
-		let playerRoll = Math.floor(Math.random() * 20);
-		let enemyRoll = Math.floor(Math.random() * 20);
-		let winner = battle.winner(playerRoll, enemyRoll);
-		let battleText = `
+  _doBattle() {
+    const battle = new Battle();
+    const playerRoll = Math.floor(Math.random() * 20);
+    const enemyRoll = Math.floor(Math.random() * 20);
+    const winner = battle.winner(playerRoll, enemyRoll);
+    const battleText = `
 		You encountered an angry troll called Jasmine.
 		\nYou attacked with ${playerRoll}!
-		\nThey attacked with ${enemyRoll}`
+		\nThey attacked with ${enemyRoll}`;
 
-		this.battleWinner = winner;
-		this.battleInfo = battleText;
-	}
+    this.battleWinner = winner;
+    this.battleInfo = battleText;
+  }
 
-	_setState(_encounterRoll) {
-		if (_encounterRoll > 80) {
-			this._doBattle();
-			this.state = "battleScreen";
-		}
-		if (_encounterRoll <= 80) {
-			this.state = "mapScreen";
-		}
-	}
+  _setState(_encounterRoll) {
+    if (_encounterRoll > 80) {
+      this._doBattle();
+      this.state = 'battleScreen';
+    }
+    if (_encounterRoll <= 80) {
+      this.state = 'mapScreen';
+    }
+  }
 
-	_encounterRoll() {
-		return Math.random() * 100;
-	}
+  _encounterRoll() {
+    return Math.random() * 100;
+  }
 }
