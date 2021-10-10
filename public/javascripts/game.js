@@ -51,7 +51,7 @@ class Game {
 					);
 
 				if (currentCell.isWall()) {
-					fill(150, 50, 150);
+					fill(Config.wallColour);
 					rect(currentCell.x, currentCell.y, Config.cellSize);
 				}
 			});
