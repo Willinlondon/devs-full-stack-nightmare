@@ -1,10 +1,10 @@
 html {
-  background: hotpink;
   padding: 0;
   margin: 0;
 }
 
 body {
+  background-image: url("./assets/outerSpaceBackground.jpg");
   padding: 0;
   margin: 0;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -36,20 +36,31 @@ body {
 #left-sidebar { grid-area: left-sidebar; }
 
 #play-area {
-  display: flex;
   justify-content: center;
   align-items: center;
-  background: rgb(206, 16, 16);
   grid-area: play-area;
+}
+
+#play-area img {
+  position: relative;
+  align-items: left;
+  top: 100px;
+  left: 75px;
 }
 
 #right-sidebar { grid-area: right-sidebar; }
 
 #page-header, #page-footer {
-  background: hotpink;
+  text-align: center;
+  display:block;
+  margin:auto;
 }
 
 #left-sidebar, #right-sidebar {
-  background: darkslategrey;
+  
+}
+
+#left-sidebar img {
+  position: absolute;
 }
 

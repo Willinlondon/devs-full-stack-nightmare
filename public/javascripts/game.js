@@ -78,12 +78,15 @@ class Game {
 
 
 	showBattle() {
+
     	background(Config.battleBackground);
 		fill(0);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
 		text(this.battleInfo, 400, 200);
+		fill(212, 217, 166);
 		text(`${this.battleWinner}`,400, 400);
+		fill(212, 217, 166);
 	}
 
 	_doBattle() {
