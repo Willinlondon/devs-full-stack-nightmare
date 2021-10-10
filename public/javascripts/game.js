@@ -84,9 +84,15 @@ class Game {
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
 		text(this.battleInfo, 400, 200);
-		fill(212, 217, 166);
-		text(`${this.battleWinner}`,400, 400);
-		fill(212, 217, 166);
+		text(`${this.battleWinner} wins!`,400, 400);
+	}
+
+	showGameOver() {
+		background(0);
+		fill(255);
+		textSize(32);
+		textAlign(CENTER, CENTER);
+		text("GAME OVER", 400, 200);
 	}
 
 	_doBattle() {
