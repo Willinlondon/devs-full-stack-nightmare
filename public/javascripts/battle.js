@@ -33,7 +33,7 @@ class Battle {
   }
 
   over() {
-    return this.player1.isDead() || this.player2.isDead();
+    return this.player1.hasFainted() || this.player2.hasFainted();
   }
 
   winner() {

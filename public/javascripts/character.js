@@ -32,7 +32,7 @@ class Character {
 		}
 	}
 
-  isDead() {
+  hasFainted() {
     return this.health <= 0;
   }
 
