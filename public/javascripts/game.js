@@ -78,8 +78,10 @@ class Game {
 		fill(Config.battleTextColor);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
-		text(this.battleInfo, 400, 200);
-		text(`${this.battleWinner} wins!`,400, 400);
+		// text(this.battleInfo, 400, 200);
+		// text(`${this.battleWinner} wins!`,400, 400);
+    text(this.battle.player1.name, 400, 200)
+    text(this.battle.player2.name, 400, 400)
 	}
 
 	showGameOver() {
@@ -90,23 +92,25 @@ class Game {
 		text("GAME OVER", 400, 200);
 	}
 
-	_doBattle() {
-		let battle = new Battle();
-		let playerRoll = Math.floor(Math.random() * 20);
-		let enemyRoll = Math.floor(Math.random() * 20);
-		let winner = battle.winner(playerRoll, enemyRoll);
-		let battleText = `
-		You encountered an angry troll called Jasmine.
-		\nYou attacked with ${playerRoll}!
-		\nThey attacked with ${enemyRoll}`
-		this.battleWinner = winner;
-		this.battleInfo = battleText;
+	_enterBattle() {
+		this.battle = new Battle(this.player, new Character("Jasmine"));
+    this.state = "battleScreen";
+
+		// let playerRoll = Math.floor(Math.random() * 20);
+		// let enemyRoll = Math.floor(Math.random() * 20);
+		// let winner = battle.winner(playerRoll, enemyRoll);
+		// let battleText = `
+		// You encountered an angry troll called Jasmine.
+		// \nYou attacked with ${playerRoll}!
+		// \nThey attacked with ${enemyRoll}`
+		// this.battleWinner = winner;
+		// this.battleInfo = battleText;
 	}
 
 	_setState(_encounterRoll) {
 		if (_encounterRoll > Config.encounterProbability) {
-			this._doBattle();
-			this.state = "battleScreen";
+			this._enterBattle();
+      // this.state = "battleScreen";
 		}
 		if (_encounterRoll <= Config.encounterProbability) {
 			this.state = "mapScreen";

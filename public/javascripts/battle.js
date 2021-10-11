@@ -20,9 +20,10 @@ class Battle {
     let player1Attack = Math.floor(Math.random() * Config.baseAttack);
     let player2Attack = Math.floor(Math.random() * Config.baseAttack);
 
-    switch() {
+    switch (player1Attack) {
       case player1Attack >= player2Attack:
         player2.takeHit(player1Attack);
+        // player1.takeHit(Math.floor(Math.random(player2Attack / 2)));
       break;
       case player2Attack < player1Attack:
         player1.takeHit(player2Attack);
