@@ -15,4 +15,20 @@ class Battle {
       return 'Draw'
     }
   }
+
+  takeTurn() {
+    let player1Attack = Math.floor(Math.random() * Config.baseAttack);
+    let player2Attack = Math.floor(Math.random() * Config.baseAttack);
+
+    switch() {
+      case player1Attack >= player2Attack:
+        player2.takeHit(player1Attack);
+      break;
+      case player2Attack < player1Attack:
+        player1.takeHit(player2Attack);
+      break;
+      default:
+      break;
+    }
+  }
 }

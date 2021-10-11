@@ -38,8 +38,6 @@ class Game {
 			this.player.move(direction, amount);
 
 			this._setState(this._encounterRoll());
-
-
 		}
 	}
 
@@ -76,11 +74,8 @@ class Game {
 		return cellArray;
 	}
 
-
 	showBattle() {
-		
 		fill(Config.battleTextColor);
-		//fill(0);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
 		text(this.battleInfo, 400, 200);
@@ -96,7 +91,6 @@ class Game {
 	}
 
 	_doBattle() {
-
 		let battle = new Battle();
 		let playerRoll = Math.floor(Math.random() * 20);
 		let enemyRoll = Math.floor(Math.random() * 20);
