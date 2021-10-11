@@ -14,11 +14,14 @@ class Turn {
 
     let p1AttackString;
     let p2AttackString;
-
-    if (!this.p1Attack.dodged) {
-      p1AttackString = `${p1CritString}${this.player1.name} dealt ${this.p1Attack.totalDamage} damage to ${this.player2.name}!`
+    if (this.flee === false) {
+      if (!this.p1Attack.dodged) {
+        p1AttackString = `${p1CritString}${this.player1.name} dealt ${this.p1Attack.totalDamage} damage to ${this.player2.name}!`
+      } else {
+        p1AttackString = `${this.player2.name} dodged ${this.player1.name}'s attack!`
+      }
     } else {
-      p1AttackString = `${this.player2.name} dodged ${this.player1.name}'s attack!`
+      p1AttackString = `${this.player1.name} was unable to flee!`
     }
 
     if (!this.p2Attack.dodged) {
@@ -53,9 +56,6 @@ class Turn {
         this.p1Attack.dodged = true;
         this.p1Attack.totalDamage = this.p1Attack.baseDamage;
       }
-    }
-    else {
-      
     }
     // Judge player 2 move
 
