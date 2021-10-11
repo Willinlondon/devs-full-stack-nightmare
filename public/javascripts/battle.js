@@ -10,7 +10,7 @@ class Battle {
    
     if (Math.random() * 100 > Config.dodgeChance) {
       if (Math.random() * 100 < Config.critChance) {
-        console.log("Player CRIT", player1Attack * 2)
+        console.log("Player CRIT", player1Attack * 3)
         this.player2.takeHit(player1Attack * 2)
       }
       else {
@@ -24,7 +24,7 @@ class Battle {
 
     if (Math.random() * 100 > Config.dodgeChance) {
       if (Math.random() * 100 < Config.critChance) {
-        console.log("Jasmine CRIT", player1Attack * 2)
+        console.log("Jasmine CRIT", player1Attack * 3)
         this.player2.takeHit(player1Attack * 2)
       }
       else {

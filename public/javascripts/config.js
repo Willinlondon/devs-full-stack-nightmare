@@ -11,6 +11,7 @@ class Config {
     static battleTextColor = [212, 217, 166]
     static baseMinAttack = 5;
     static baseMaxAttack = 8;
+    static critAttackMultiplier = 3;
     static victoryScreenBackground = [251, 72, 196];
     static dodgeChance = 10;
     static critChance = 10;
