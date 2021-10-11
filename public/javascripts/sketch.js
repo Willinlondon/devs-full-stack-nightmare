@@ -39,6 +39,12 @@ function draw() {
       okButton.hide();
       attackButton.hide();
       game.showGameOver();
+      break;
+    case "victoryScreen":
+      okButton.show();
+      attackButton.hide();
+      game.showVictoryScreen();
+      break;
   }
 }
 
@@ -56,16 +62,8 @@ function createOkButton() {
   okButton.position(Config.canvasWidth / 2, Config.canvasHeight / 2);
 
   okButton.mousePressed(() => {
-    switch(game.battleWinner) {
-      case 'Player' :
-        game.state = 'mapScreen'
-        break;
-      case 'Enemy' :
-        game.state = 'gameOver'
-        break;
-      default :
-        game.state = 'mapScreen'
-    }
+    game.battle = null;
+    game.state = "mapScreen"
   });
 }
 
@@ -74,6 +72,6 @@ function createAttackButton() {
   attackButton.position(500, 500);
 
   attackButton.mousePressed(() => {
-    game.battle.takeTurn();
+    if (game.battle) { game.battle.takeTurn() }
   });
 }

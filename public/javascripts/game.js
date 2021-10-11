@@ -3,12 +3,10 @@ class Game {
 		this.gameMap = map;
 		this.map = this.gameMap.createMap();
 		this.player = player;
-
 		this.state = "mapScreen";
-
 		this.player.startLocation(
-		this.gameMap.startingColumn,
-		this.gameMap.startingRow
+		  this.gameMap.startingColumn,
+		  this.gameMap.startingRow
 		);
 
 		this.cells = this._generateCells();
@@ -41,8 +39,8 @@ class Game {
 		}
 	}
 
-	showMap() {
-		this.map.forEach((y, y_index) => {
+	showMap() {		
+    this.map.forEach((y, y_index) => {
 			y.forEach((x, x_index) => {
 				let currentCell = this._cellAt(
 					x_index * Config.cellSize, y_index * Config.cellSize
@@ -76,11 +74,12 @@ class Game {
 
 	showBattle() {
     if (this.battle.over()) {
-      if (this.battle.winner() == this.player) {
-        this.state = "victoryScreen"
+      if (this.player.hasFainted()) {
+        this.state = "gameOver";
       } else {
-        this.state = "gameOver"
+        this.state = "victoryScreen";
       }
+      return
     }
 
 		fill(Config.battleTextColor);
@@ -109,7 +108,7 @@ class Game {
     textAlign(CENTER, CENTER);
     text(`${this.battle.player2.name} fainted!`,
       canvas.width / 2, canvas.height / 3
-      );
+    );
   }
 
 	_enterBattle() {
@@ -127,11 +126,10 @@ class Game {
 		// this.battleInfo = battleText;
 	}
 
-  // Should be called checkEncounter
+  // Should be called checkEncounter?
 	_setState(_encounterRoll) {
 		if (_encounterRoll > Config.encounterProbability) {
 			this._enterBattle();
-      // this.state = "battleScreen";
 		}
 		if (_encounterRoll <= Config.encounterProbability) {
 			this.state = "mapScreen";
@@ -141,4 +139,8 @@ class Game {
 	_encounterRoll() {
 		return Math.random();
 	}
+
+  _removeEnemy() {
+
+  }
 }

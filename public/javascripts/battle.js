@@ -4,18 +4,6 @@ class Battle {
     this.player2 = player2;
   }
 
-  // winner(player1Roll, player2Roll) {
-  //   if (player1Roll > player2Roll) {
-  //     return 'Player';
-  //   } 
-  //   else if (player1Roll < player2Roll){
-  //     return 'Enemy'
-  //   } 
-  //   else {
-  //     return 'Draw'
-  //   }
-  // }
-
   takeTurn() {
     let player1Attack = Math.floor(Math.random() * Config.baseAttack);
     let player2Attack = Math.floor(Math.random() * Config.baseAttack);
@@ -33,7 +21,7 @@ class Battle {
   }
 
   over() {
-    return this.player1.hasFainted() || this.player2.hasFainted();
+    return (this.player1.hasFainted() || this.player2.hasFainted());
   }
 
   winner() {
