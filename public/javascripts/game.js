@@ -12,8 +12,8 @@ class Game {
 		this.player = player;
 		this.state = "mapScreen";
 		this.player.startLocation(
-		  this.gameMap.startingColumn,
-		  this.gameMap.startingRow
+			this.gameMap.startingColumn,
+			this.gameMap.startingRow
 		);
 
 		this.cells = this._generateCells();
@@ -46,8 +46,8 @@ class Game {
 		}
 	}
 
-	showMap() {		
-    this.map.forEach((y, y_index) => {
+	showMap() {
+		this.map.forEach((y, y_index) => {
 			y.forEach((x, x_index) => {
 				let currentCell = this._cellAt(
 					x_index * Config.cellSize,
@@ -56,7 +56,13 @@ class Game {
 
 				if (currentCell.isWall()) {
 					fill(Config.wallColour);
+					wallImg.resize(Config.cellSize, Config.cellSize);
+					image(wallImg, currentCell.x, currentCell.y);
+					// rect(currentCell.x, currentCell.y, Config.cellSize);
+				} else {
 					rect(currentCell.x, currentCell.y, Config.cellSize);
+					tileImg.resize(Config.cellSize, Config.cellSize);
+					image(tileImg, currentCell.x, currentCell.y);
 				}
 			});
 		});
@@ -83,47 +89,57 @@ class Game {
 	}
 
 	showBattle() {
-    if (this.battle.over()) {
-      if (this.player.hasFainted()) {
-        this.state = "gameOver";
-      } else {
-        this.state = "victoryScreen";
-      }
-      return
-    }
+		if (this.battle.over()) {
+			if (this.player.hasFainted()) {
+				this.state = "gameOver";
+			} else {
+				this.state = "victoryScreen";
+			}
+			return;
+		}
 
 		fill(Config.battleTextColor);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
 		// text(this.battleInfo, 400, 200);
 		// text(`${this.battleWinner} wins!`,400, 400);
-    text(this.battle.player1.name, canvas.width / 2, canvas.height / 3)
-    text(`HP: ${this.battle.player1.health}/100`, canvas.width / 2, canvas.height / 3 + 35)
-    text(this.battle.player2.name, canvas.width / 2, canvas.height / 3 * 2)
-    text(`HP: ${this.battle.player2.health}/100`, canvas.width / 2, canvas.height / 3 * 2 + 35)
+		text(this.battle.player1.name, canvas.width / 2, canvas.height / 3);
+		text(
+			`HP: ${this.battle.player1.health}/100`,
+			canvas.width / 2,
+			canvas.height / 3 + 35
+		);
+		text(this.battle.player2.name, canvas.width / 2, (canvas.height / 3) * 2);
+		text(
+			`HP: ${this.battle.player2.health}/100`,
+			canvas.width / 2,
+			(canvas.height / 3) * 2 + 35
+		);
 	}
 
 	showGameOver() {
 		background(0);
 		fill(255);
 		textSize(32);
-    textAlign(CENTER, CENTER);
+		textAlign(CENTER, CENTER);
 		text("GAME OVER", Config.canvasWidth / 2, Config.canvasHeight / 2);
 	}
 
-  showVictoryScreen() {
-    background(Config.victoryScreenBackground);
-    fill(0);
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    text(`${this.battle.player2.name} fainted!`,
-      canvas.width / 2, canvas.height / 3
-    );
-  }
+	showVictoryScreen() {
+		background(Config.victoryScreenBackground);
+		fill(0);
+		textSize(32);
+		textAlign(CENTER, CENTER);
+		text(
+			`${this.battle.player2.name} fainted!`,
+			canvas.width / 2,
+			canvas.height / 3
+		);
+	}
 
 	_enterBattle() {
 		this.battle = new Battle(this.player, new Character("Jasmine"));
-    this.state = "battleScreen";
+		this.state = "battleScreen";
 
 		// let playerRoll = Math.floor(Math.random() * 20);
 		// let enemyRoll = Math.floor(Math.random() * 20);
@@ -136,7 +152,7 @@ class Game {
 		// this.battleInfo = battleText;
 	}
 
-  // Should be called checkEncounter?
+	// Should be called checkEncounter?
 	_setState(_encounterRoll) {
 		if (_encounterRoll > Config.encounterProbability) {
 			this._enterBattle();
@@ -150,7 +166,5 @@ class Game {
 		return Math.random();
 	}
 
-  _removeEnemy() {
-
-  }
+	_removeEnemy() {}
 }
