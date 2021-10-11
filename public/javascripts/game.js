@@ -98,7 +98,7 @@ class Game {
 		fill(255);
 		textSize(32);
     textAlign(CENTER, CENTER);
-		text("GAME OVER", 400, 200);
+		text("GAME OVER", Config.canvasWidth / 2, Config.canvasHeight / 2);
 	}
 
   showVictoryScreen() {
