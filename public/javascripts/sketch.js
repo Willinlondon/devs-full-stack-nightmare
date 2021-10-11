@@ -1,92 +1,112 @@
-
-const game = new Game
+const game = new Game();
 let attackButton;
 let okButton;
 let fleeButton;
 let img;
-let imagePath = './stylesheets/assets/battleBackground.jpg';
+let imagePath = "./stylesheets/assets/battleBackground.jpg";
+let tileImg;
+let wallImg;
+let playerImg;
 
 function preload() {
-
+	tileImg = loadImage("./images/tile1.png");
+	wallImg = loadImage("./images/wall1.png");
+	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
 }
 
 function setup() {
-  createAttackButton();
-  createOkButton();
-  createFleeButton();
-  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
-  canvas.parent("play-area");
-  img = loadImage(imagePath);
+	createAttackButton();
+	createOkButton();
+	createFleeButton();
+	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
+	canvas.parent("play-area");
+	img = loadImage(imagePath);
 }
 
 function draw() {
-  background(0);
+	background(0);
 
-  switch(game.state) {
-    case "mapScreen":
-      okButton.hide();
-      attackButton.hide();
-      fleeButton.hide();
-      game.showMap();
+	switch (game.state) {
+		case "mapScreen":
+			okButton.hide();
+			attackButton.hide();
+			fleeButton.hide();
+			game.showMap();
 
-      fill(Config.playerColour);
-      rect(game.player.location[0],game.player.location[1], Config.spriteSize);
-      break;
-    case "battleScreen":
-      background(img, 0, 0);
-      game.showBattle();
-      attackButton.show();
-      fleeButton.show();
-      break;
-    case "gameOver":
-      okButton.hide();
-      attackButton.hide();
-      fleeButton.hide();
-      game.showGameOver();
-      break;
-    case "victoryScreen":
-      okButton.show();
-      attackButton.hide();
-      fleeButton.hide();
-      game.showVictoryScreen();
-      break;
-  }
+			// fill(Config.playerColour);
+			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+			image(
+				playerImg,
+				game.player.location[0] + Config.cellSize / 4,
+				game.player.location[1] + Config.cellSize / 4
+			);
+
+			break;
+		case "battleScreen":
+			background(img, 0, 0);
+			game.showBattle();
+			attackButton.show();
+			fleeButton.show();
+			break;
+		case "gameOver":
+			okButton.hide();
+			attackButton.hide();
+			fleeButton.hide();
+			game.showGameOver();
+			break;
+		case "victoryScreen":
+			okButton.show();
+			attackButton.hide();
+			fleeButton.hide();
+			game.showVictoryScreen();
+			break;
+	}
 }
 
 function keyPressed() {
-  if (game.state === "mapScreen") {
-  if (keyCode === LEFT_ARROW || keyCode === 65) {game.playerAction('left', 75)};
-  if (keyCode === RIGHT_ARROW || keyCode === 68) {game.playerAction('right', 75)};
-  if (keyCode === UP_ARROW || keyCode === 87) {game.playerAction('up', 75)};
-  if (keyCode === DOWN_ARROW || keyCode === 83) {game.playerAction('down', 75)};
-  }
+	if (game.state === "mapScreen") {
+		if (keyCode === LEFT_ARROW || keyCode === 65) {
+			game.playerAction("left", 75);
+		}
+		if (keyCode === RIGHT_ARROW || keyCode === 68) {
+			game.playerAction("right", 75);
+		}
+		if (keyCode === UP_ARROW || keyCode === 87) {
+			game.playerAction("up", 75);
+		}
+		if (keyCode === DOWN_ARROW || keyCode === 83) {
+			game.playerAction("down", 75);
+		}
+	}
 }
 
 function createOkButton() {
-  okButton = createButton('OK');
-  okButton.position(Config.canvasWidth / 2, Config.canvasHeight / 2);
+	okButton = createButton("OK");
+	okButton.position(Config.canvasWidth / 2, Config.canvasHeight / 2);
 
-  okButton.mousePressed(() => {
-    game.battle = null;
-    game.state = "mapScreen"
-  });
+	okButton.mousePressed(() => {
+		game.battle = null;
+		game.state = "mapScreen";
+	});
 }
 
 function createAttackButton() {
-  attackButton = createButton('Attack!');
-  attackButton.position(500, 500);
+	attackButton = createButton("Attack!");
+	attackButton.position(500, 500);
 
-  attackButton.mousePressed(() => {
-    if (game.battle) { game.battle.takeTurn() }
-  });
+	attackButton.mousePressed(() => {
+		if (game.battle) {
+			game.battle.takeTurn();
+		}
+	});
 }
 
 function createFleeButton() {
-  fleeButton = createButton('Flee!');
-  fleeButton.position(600, 500);
+	fleeButton = createButton("Flee!");
+	fleeButton.position(600, 500);
 
-  fleeButton.mousePressed(() => {
-    game.battle = null;
-    game.state = "mapScreen"
-  });
+	fleeButton.mousePressed(() => {
+		game.battle = null;
+		game.state = "mapScreen";
+	});
 }
