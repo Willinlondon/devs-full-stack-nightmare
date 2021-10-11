@@ -87,3 +87,11 @@ As a player,
 To increase replayability,
 I want the map to be different each time
 ```
+
+#Database Setup
+
+```
+CREATE DATABASE the_game;
+CREATE DATABASE the_game_test;
+CREATE TABLE scores(id SERIAL PRIMARY KEY, username VARCHAR(200), score integer);
+```

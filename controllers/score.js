@@ -12,14 +12,6 @@ const ScoreController = {
       console.log(error.message);
     }
   },
-  async Index(req, res) {
-    try {
-      console.log('This is the score index');
-      res.render('scores/index');
-    } catch (error) {
-      console.log(error.message);
-    }
-  },
 };
 
 module.exports = ScoreController;
