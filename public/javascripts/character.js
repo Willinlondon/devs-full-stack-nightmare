@@ -1,6 +1,6 @@
 class Character {
 
-	constructor(name) {
+	constructor(name = "Player") {
 		this.name = name;
 		this.health = 100;
 		this.location = [0, 0];
@@ -30,6 +30,14 @@ class Character {
 		if (direction == "down") {
 			this._moveDown(amount);
 		}
+	}
+
+  hasFainted() {
+    return this.health <= 0;
+  }
+
+	takeHit(amount) {
+		this.health -= amount;
 	}
 
 	// Directions are here as private methods
