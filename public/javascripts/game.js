@@ -80,10 +80,10 @@ class Game {
 		textAlign(CENTER, CENTER);
 		// text(this.battleInfo, 400, 200);
 		// text(`${this.battleWinner} wins!`,400, 400);
-    text(this.battle.player1.name, 400 200)
-    text(this.battle.player1.health, 400, 225)
-    text(this.battle.player2.name, 400, 400)
-    text(this.battle.player2.health, 400, 425)
+    text(this.battle.player1.name, canvas.width / 2, canvas.height / 3)
+    text(`HP: ${this.battle.player1.health}/100`, canvas.width / 2, canvas.height / 3 + 35)
+    text(this.battle.player2.name, canvas.width / 2, canvas.height / 3 * 2)
+    text(`HP: ${this.battle.player2.health}/100`, canvas.width / 2, canvas.height / 3 * 2 + 35)
 	}
 
 	showGameOver() {
