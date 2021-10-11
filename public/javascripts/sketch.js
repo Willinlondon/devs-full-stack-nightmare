@@ -34,8 +34,12 @@ function draw() {
 			game.showMap();
 
 			// fill(Config.playerColour);
-			playerImg.resize(Config.spriteSize, Config.spriteSize);
-			image(playerImg, game.player.location[0], game.player.location[1]);
+			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+			image(
+				playerImg,
+				game.player.location[0] + Config.cellSize / 4,
+				game.player.location[1] + Config.cellSize / 4
+			);
 
 			break;
 		case "battleScreen":
