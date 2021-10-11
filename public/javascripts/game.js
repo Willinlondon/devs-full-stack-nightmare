@@ -78,12 +78,14 @@ class Game {
 
 
 	showBattle() {
-    background(Config.battleBackground);
+		
 		fill(0);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
 		text(this.battleInfo, 400, 200);
+		fill(Config.battleTextColor);
 		text(`${this.battleWinner} wins!`,400, 400);
+		fill(Config.battleTextColor);
 	}
 
 	showGameOver() {
@@ -104,7 +106,6 @@ class Game {
 		You encountered an angry troll called Jasmine.
 		\nYou attacked with ${playerRoll}!
 		\nThey attacked with ${enemyRoll}`
-
 		this.battleWinner = winner;
 		this.battleInfo = battleText;
 	}
