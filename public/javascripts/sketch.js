@@ -1,6 +1,7 @@
 
 const game = new Game
-let okButton
+let attackButton;
+let okButton;
 let img;
 let imagePath = './stylesheets/assets/battleBackground.jpg';
 
@@ -9,7 +10,8 @@ function preload() {
 }
 
 function setup() {
-  createOkButton()
+  createAttackButton();
+  createOkButton();
   canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
   canvas.parent("play-area");
   img = loadImage(imagePath);
@@ -68,7 +70,7 @@ function createOkButton() {
 }
 
 function createAttackButton() {
-  attackButton = attackButton('Attack!');
+  attackButton = createButton('Attack!');
   attackButton.position(500, 500);
 
   attackButton.mousePressed(() => {
