@@ -15,4 +15,7 @@ class Config {
     static victoryScreenBackground = [251, 72, 196];
     static dodgeChance = 10;
     static critChance = 10;
+	  static mapDimension = 10;
+	  static NoOfTunnels = 15;
+  	static maxTunnelLength = 6;
 }
