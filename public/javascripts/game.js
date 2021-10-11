@@ -1,5 +1,12 @@
 class Game {
-	constructor(map = new Map(), player = new Character()) {
+	constructor(
+		map = new Map(
+			Config.mapDimension,
+			Config.NoOfTunnels,
+			Config.maxTunnelLength
+		),
+		player = new Character()
+	) {
 		this.gameMap = map;
 		this.map = this.gameMap.createMap();
 		this.player = player;
@@ -7,8 +14,8 @@ class Game {
 		this.state = "mapScreen";
 
 		this.player.startLocation(
-		this.gameMap.startingColumn,
-		this.gameMap.startingRow
+			this.gameMap.startingColumn,
+			this.gameMap.startingRow
 		);
 
 		this.cells = this._generateCells();
@@ -38,8 +45,6 @@ class Game {
 			this.player.move(direction, amount);
 
 			this._setState(this._encounterRoll());
-
-
 		}
 	}
 
@@ -47,8 +52,9 @@ class Game {
 		this.map.forEach((y, y_index) => {
 			y.forEach((x, x_index) => {
 				let currentCell = this._cellAt(
-					x_index * Config.cellSize, y_index * Config.cellSize
-					);
+					x_index * Config.cellSize,
+					y_index * Config.cellSize
+				);
 
 				if (currentCell.isWall()) {
 					fill(Config.wallColour);
@@ -69,22 +75,22 @@ class Game {
 			y.forEach((x, x_index) => {
 				let wall = x == 1 ? true : false;
 
-				cellArray.push(new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall));
+				cellArray.push(
+					new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall)
+				);
 			});
 		});
 
 		return cellArray;
 	}
 
-
 	showBattle() {
-		
 		fill(Config.battleTextColor);
 		//fill(0);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
 		text(this.battleInfo, 400, 200);
-		text(`${this.battleWinner} wins!`,400, 400);
+		text(`${this.battleWinner} wins!`, 400, 400);
 	}
 
 	showGameOver() {
@@ -96,7 +102,6 @@ class Game {
 	}
 
 	_doBattle() {
-
 		let battle = new Battle();
 		let playerRoll = Math.floor(Math.random() * 20);
 		let enemyRoll = Math.floor(Math.random() * 20);
@@ -104,7 +109,7 @@ class Game {
 		let battleText = `
 		You encountered an angry troll called Jasmine.
 		\nYou attacked with ${playerRoll}!
-		\nThey attacked with ${enemyRoll}`
+		\nThey attacked with ${enemyRoll}`;
 		this.battleWinner = winner;
 		this.battleInfo = battleText;
 	}

@@ -1,8 +1,8 @@
 class Map {
-  constructor() {
-    this.dimensions = 10;
-    this.maxTunnels = 10;
-    this.maxLength = 4;
+  constructor(dimensions, tunnels, maxTunnelLength) {
+    this.dimensions = dimensions;
+    this.maxTunnels = tunnels;
+    this.maxLength = maxTunnelLength;
     this.directions = [
       [-1, 0],
       [1, 0],
