@@ -1,5 +1,12 @@
 class Game {
-	constructor(map = new Map(), player = new Character()) {
+	constructor(
+		map = new Map(
+			Config.mapDimension,
+			Config.NoOfTunnels,
+			Config.maxTunnelLength
+		),
+		player = new Character()
+	) {
 		this.gameMap = map;
 		this.map = this.gameMap.createMap();
 		this.player = player;
@@ -43,8 +50,9 @@ class Game {
     this.map.forEach((y, y_index) => {
 			y.forEach((x, x_index) => {
 				let currentCell = this._cellAt(
-					x_index * Config.cellSize, y_index * Config.cellSize
-					);
+					x_index * Config.cellSize,
+					y_index * Config.cellSize
+				);
 
 				if (currentCell.isWall()) {
 					fill(Config.wallColour);
@@ -65,7 +73,9 @@ class Game {
 			y.forEach((x, x_index) => {
 				let wall = x == 1 ? true : false;
 
-				cellArray.push(new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall));
+				cellArray.push(
+					new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall)
+				);
 			});
 		});
 
