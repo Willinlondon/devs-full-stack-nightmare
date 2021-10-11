@@ -5,13 +5,13 @@ class Battle {
   }
 
   takeTurn() {
-    let player1Attack = Math.floor(Math.random() * Config.baseAttack);
-    let player2Attack = Math.floor(Math.random() * Config.baseAttack);
+    let player1Attack = Math.floor(Math.random() * (Config.baseMaxAttack - Config.baseMinAttack) + Config.baseMinAttack);
+    let player2Attack = Math.floor(Math.random() * (Config.baseMaxAttack - Config.baseMinAttack) + Config.baseMinAttack);
    
     if (Math.random() * 100 > Config.dodgeChance) {
       if (Math.random() * 100 < Config.critChance) {
-        console.log("Player CRIT", player1Attack * 3)
-        this.player2.takeHit(player1Attack * 2)
+        console.log("Player CRIT", player1Attack * Config.critAttackMultiplier)
+        this.player2.takeHit(player1Attack * Config.critAttackMultiplier)
       }
       else {
       console.log("Player attack", player1Attack)
@@ -24,8 +24,8 @@ class Battle {
 
     if (Math.random() * 100 > Config.dodgeChance) {
       if (Math.random() * 100 < Config.critChance) {
-        console.log("Jasmine CRIT", player1Attack * 3)
-        this.player2.takeHit(player1Attack * 2)
+        console.log("Jasmine CRIT", player2Attack * Config.critAttackMultiplier)
+        this.player1.takeHit(player2Attack * Config.critAttackMultiplier)
       }
       else {
       console.log("Jasmine attack", player2Attack)
@@ -35,16 +35,6 @@ class Battle {
     else {
       console.log("Player dodged Jasmine's attack")
     }
-    // switch (true) {
-    //   case player1Attack >= player2Attack:
-    //     this.player2.takeHit(player1Attack);
-    //   break;
-    //   case player2Attack > player1Attack:
-    //     this.player1.takeHit(player2Attack);
-    //   break;
-    //   default:
-    //   break;
-    // }
   }
 
   over() {
