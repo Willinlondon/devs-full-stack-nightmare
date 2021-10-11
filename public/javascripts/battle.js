@@ -2,12 +2,13 @@ class Battle {
   constructor(player1 = 'Captain Planet', player2 = 'Skeletor') {
     this.player1 = player1;
     this.player2 = player2;
+    this.log = [];
   }
 
   takeTurn() {
-    let player1Attack = Math.floor(Math.random() * (Config.baseMaxAttack - Config.baseMinAttack) + Config.baseMinAttack);
-    let player2Attack = Math.floor(Math.random() * (Config.baseMaxAttack - Config.baseMinAttack) + Config.baseMinAttack);
-   
+    let player1Attack = this._attack(Config.baseMinAttack, Config.baseMaxAttack);
+    let player2Attack = this._attack(Config.baseMinAttack, Config.baseMaxAttack);
+
     if (Math.random() * 100 > Config.dodgeChance) {
       if (Math.random() * 100 < Config.critChance) {
         console.log("Player CRIT", player1Attack * Config.critAttackMultiplier)
@@ -44,4 +45,8 @@ class Battle {
   winner() {
     return this.player1.health >= this.player2.health ? this.player1 : this.player2
   }
+
+  _attack(min, max) {
+    return Math.floor(Math.random() * (max - min) + min)
+  } 
 }
