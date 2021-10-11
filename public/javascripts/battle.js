@@ -6,37 +6,9 @@ class Battle {
   }
 
   takeTurn() {
-    this.log.push(new Turn(this.player1, this.player2))
-//     let player1Attack = this._attack(Config.baseMinAttack, Config.baseMaxAttack);
-//     let player2Attack = this._attack(Config.baseMinAttack, Config.baseMaxAttack);
-// 
-//     if (Math.random() * 100 > Config.dodgeChance) {
-//       if (Math.random() * 100 < Config.critChance) {
-//         console.log("Player CRIT", player1Attack * Config.critAttackMultiplier)
-//         this.player2.takeHit(player1Attack * Config.critAttackMultiplier)
-//       }
-//       else {
-//       console.log("Player attack", player1Attack)
-//       this.player2.takeHit(player1Attack);
-//       }
-//     }
-//     else {
-//       console.log("Jasmine dodged the Player's attack")
-//     }
-// 
-//     if (Math.random() * 100 > Config.dodgeChance) {
-//       if (Math.random() * 100 < Config.critChance) {
-//         console.log("Jasmine CRIT", player2Attack * Config.critAttackMultiplier)
-//         this.player1.takeHit(player2Attack * Config.critAttackMultiplier)
-//       }
-//       else {
-//       console.log("Jasmine attack", player2Attack)
-//       this.player1.takeHit(player2Attack);
-//       }
-//     }
-//     else {
-//       console.log("Player dodged Jasmine's attack")
-//     }
+    let turn = new Turn(this.player1, this.player2);
+    this.log.push(turn);
+    this.string = turn.outcome();
   }
 
   over() {
