@@ -1,9 +1,10 @@
 class Turn {
-  constructor(player1, player2) {
+  constructor(player1, player2, flee) {
     this.player1 = player1;
     this.player2 = player2;
     this.p1Attack = new Object;
     this.p2Attack = new Object;
+    this.flee = flee
     this._judge();
   }
 
@@ -34,25 +35,28 @@ class Turn {
     this.p2Attack.baseDamage = this._attack(Config.baseMinAttack, Config.baseMaxAttack);
 
     // Judge player 1 move
+    if (this.flee === false) {
+      if (Math.random() > Config.dodgeChance) {
+        this.p1Attack.dodged = false;
 
-    if (Math.random() > Config.dodgeChance) {
-      this.p1Attack.dodged = false;
-
-      if (Math.random() < Config.critChance) {
-        this.p1Attack.crit = true;
-        this.p1Attack.totalDamage = this.p1Attack.baseDamage * Config.critAttackMultiplier;
-        this.player2.takeHit(this.p1Attack.totalDamage);
-      }
-      else {
-        this.p1Attack.crit = false;
+        if (Math.random() < Config.critChance) {
+          this.p1Attack.crit = true;
+          this.p1Attack.totalDamage = this.p1Attack.baseDamage * Config.critAttackMultiplier;
+          this.player2.takeHit(this.p1Attack.totalDamage);
+        }
+        else {
+          this.p1Attack.crit = false;
+          this.p1Attack.totalDamage = this.p1Attack.baseDamage;
+          this.player2.takeHit(this.p1Attack.baseDamage);
+        }
+      } else {
+        this.p1Attack.dodged = true;
         this.p1Attack.totalDamage = this.p1Attack.baseDamage;
-        this.player2.takeHit(this.p1Attack.baseDamage);
       }
-    } else {
-      this.p1Attack.dodged = true;
-      this.p1Attack.totalDamage = this.p1Attack.baseDamage;
     }
-
+    else {
+      
+    }
     // Judge player 2 move
 
     if (Math.random() > Config.dodgeChance) {

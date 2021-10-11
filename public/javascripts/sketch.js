@@ -111,7 +111,7 @@ function createFleeButton() {
 		  game.state = "mapScreen";
     }
     else {
-      
+      game.battle.takeTurn(true);
     }
 
 	});
