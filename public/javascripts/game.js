@@ -79,13 +79,12 @@ class Game {
 
 	showBattle() {
 		
-		fill(0);
+		fill(Config.battleTextColor);
+		//fill(0);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
 		text(this.battleInfo, 400, 200);
-		fill(Config.battleTextColor);
 		text(`${this.battleWinner} wins!`,400, 400);
-		fill(Config.battleTextColor);
 	}
 
 	showGameOver() {
