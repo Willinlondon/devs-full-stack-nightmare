@@ -6,7 +6,7 @@
     "start": "node ./bin/www",
     "start:dev": "nodemon ./bin/www",
     "cypress:open": "cypress open",
-    "test": "jasmine"
+    "test": "NODE_ENV=test jasmine"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
