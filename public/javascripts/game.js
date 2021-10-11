@@ -107,17 +107,17 @@ class Game {
     };
 
     textSize(32);
-		text(this.battle.player1.name, canvas.width / 2, canvas.height / 3);
+		text(this.battle.player1.name, canvas.width / 5, canvas.height / 5 * 4);
 		text(
 			`HP: ${this.battle.player1.health}/100`,
-			canvas.width / 2,
-			canvas.height / 3 + 35
+			canvas.width / 5,
+			canvas.height / 5 * 4 + 35
 		);
-		text(this.battle.player2.name, canvas.width / 2, (canvas.height / 3) * 2);
+		text(this.battle.player2.name, canvas.width / 5 * 4, canvas.height / 5 * 4);
 		text(
 			`HP: ${this.battle.player2.health}/100`,
-			canvas.width / 2,
-			(canvas.height / 3) * 2 + 35
+			canvas.width / 5 * 4,
+			canvas.height / 5 * 4 + 35
 		);
 	}
 
