@@ -10,4 +10,5 @@ class Config {
     static battleFontSize = 32;
     static battleTextColor = [212, 217, 166]
     static baseAttack = 20;
+    static victoryScreenBackground = [251, 72, 196];
 }

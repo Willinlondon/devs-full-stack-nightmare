@@ -77,7 +77,7 @@ class Game {
 	showBattle() {
     if (this.battle.over()) {
       if (this.battle.winner() == this.player) {
-        this.state = "mapScreen"
+        this.state = "victoryScreen"
       } else {
         this.state = "gameOver"
       }
@@ -98,9 +98,19 @@ class Game {
 		background(0);
 		fill(255);
 		textSize(32);
-		textAlign(CENTER, CENTER);
+    textAlign(CENTER, CENTER);
 		text("GAME OVER", 400, 200);
 	}
+
+  showVictoryScreen() {
+    background(Config.victoryScreenBackground);
+    fill(0);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text(`${this.battle.player2.name} fainted!`,
+      canvas.width / 2, canvas.height / 3
+      );
+  }
 
 	_enterBattle() {
 		this.battle = new Battle(this.player, new Character("Jasmine"));
