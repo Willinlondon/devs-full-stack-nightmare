@@ -20,7 +20,8 @@ function draw() {
 
   switch(game.state) {
     case "mapScreen":
-      okButton.hide()
+      okButton.hide();
+      attackButton.hide();
       game.showMap();
 
       fill(Config.playerColour);
@@ -29,10 +30,12 @@ function draw() {
     case "battleScreen":
       background(img, 0, 0);
       game.showBattle();
-      okButton.show()
+      okButton.show();
+      attackButton.show();
       break;
     case "gameOver":
-      okButton.hide()
+      okButton.hide();
+      attackButton.hide();
       game.showGameOver();
   }
 }
@@ -61,5 +64,14 @@ function createOkButton() {
       default :
         game.state = 'mapScreen'
     }
+  });
+}
+
+function createAttackButton() {
+  attackButton = attackButton('Attack!');
+  attackButton.position(500, 500);
+
+  attackButton.mousePressed(() => {
+    game.battle.takeTurn();
   });
 }
