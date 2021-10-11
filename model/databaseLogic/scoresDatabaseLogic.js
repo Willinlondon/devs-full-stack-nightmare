@@ -1,6 +1,6 @@
 const connection = require('../../database/connection');
 
-class scoresDatabase {
+class scoresDatabaseLogic {
   static async newScore(username, score) {
     const newScore = await connection.pool.query(
       'INSERT INTO scores(username, score) VALUES($1, $2) RETURNING id, username, score;',
@@ -17,4 +17,4 @@ class scoresDatabase {
   }
 }
 
-module.exports = scoresDatabase;
+module.exports = scoresDatabaseLogic;
