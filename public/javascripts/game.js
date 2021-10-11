@@ -101,6 +101,7 @@ class Game {
 		fill(Config.battleTextColor);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
+    text(`You were ambushed by an angry, \nobnoxious troll called ${this.battle.player2.name}!`, canvas.width / 2, canvas.height / 6)
     textSize(28);
     if (this.battle.string) {
       text(this.battle.string, canvas.width / 2, canvas.height / 2);
