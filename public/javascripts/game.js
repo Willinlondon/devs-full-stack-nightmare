@@ -75,6 +75,14 @@ class Game {
 	}
 
 	showBattle() {
+    if (this.battle.over()) {
+      if (this.battle.winner() == this.player) {
+        this.state = "mapScreen"
+      } else {
+        this.state = "gameOver"
+      }
+    }
+
 		fill(Config.battleTextColor);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
@@ -109,6 +117,7 @@ class Game {
 		// this.battleInfo = battleText;
 	}
 
+  // Should be called checkEncounter
 	_setState(_encounterRoll) {
 		if (_encounterRoll > Config.encounterProbability) {
 			this._enterBattle();

@@ -32,6 +32,10 @@ class Character {
 		}
 	}
 
+  isDead() {
+    return this.health <= 0;
+  }
+
 	takeHit(amount) {
 		this.health -= amount;
 	}
