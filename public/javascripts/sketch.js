@@ -2,6 +2,7 @@
 const game = new Game
 let attackButton;
 let okButton;
+let fleeButton;
 let img;
 let imagePath = './stylesheets/assets/battleBackground.jpg';
 
@@ -12,6 +13,7 @@ function preload() {
 function setup() {
   createAttackButton();
   createOkButton();
+  createFleeButton();
   canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
   canvas.parent("play-area");
   img = loadImage(imagePath);
@@ -24,6 +26,7 @@ function draw() {
     case "mapScreen":
       okButton.hide();
       attackButton.hide();
+      fleeButton.hide();
       game.showMap();
 
       fill(Config.playerColour);
@@ -32,17 +35,19 @@ function draw() {
     case "battleScreen":
       background(img, 0, 0);
       game.showBattle();
-      okButton.show();
       attackButton.show();
+      fleeButton.show();
       break;
     case "gameOver":
       okButton.hide();
       attackButton.hide();
+      fleeButton.hide();
       game.showGameOver();
       break;
     case "victoryScreen":
       okButton.show();
       attackButton.hide();
+      fleeButton.hide();
       game.showVictoryScreen();
       break;
   }
@@ -73,5 +78,15 @@ function createAttackButton() {
 
   attackButton.mousePressed(() => {
     if (game.battle) { game.battle.takeTurn() }
+  });
+}
+
+function createFleeButton() {
+  fleeButton = createButton('Flee!');
+  fleeButton.position(600, 500);
+
+  fleeButton.mousePressed(() => {
+    game.battle = null;
+    game.state = "mapScreen"
   });
 }
