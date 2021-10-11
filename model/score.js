@@ -1,7 +1,7 @@
-const scoresDatabase = require('./databaseLogic/scoresDatabase');
+const scoresDatabaseLogic = require('./databaseLogic/scoresDatabaseLogic');
 
 class Score {
-  constructor(scoresDatabaseClass = scoresDatabase) {
+  constructor(scoresDatabaseClass = scoresDatabaseLogic) {
     this.scoresDatabaseClass = scoresDatabaseClass;
   }
 
