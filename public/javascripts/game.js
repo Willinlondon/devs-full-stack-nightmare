@@ -21,6 +21,7 @@ class Game {
     this.cells = Cell.all;
     this.cells.forEach((cell) => {
       cell.calculateExits();
+      cell.calculateTile();
     });
 	}
 

@@ -26,6 +26,14 @@ class Cell {
     // this.exits.southeast = this._freeCell([this.x + Config.cellSize, this.y + Config.cellSize]);
   }
 
+  calculateTile() { 
+    this.tileType = 0; 
+    this.tileType = this.exits.north ? this.tileType + 1 : this.tileType; 
+    this.tileType = this.exits.east ? this.tileType + 2 : this.tileType; 
+    this.tileType = this.exits.south ? this.tileType + 4 : this.tileType; 
+    this.tileType = this.exits.west ? this.tileType + 8 : this.tileType; 
+  } 
+
   _freeCell(position) {
     let x = position[0];
     let y = position[1];
