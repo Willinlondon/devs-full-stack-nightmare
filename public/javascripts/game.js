@@ -101,19 +101,24 @@ class Game {
 		fill(Config.battleTextColor);
 		textSize(Config.battleFontSize);
 		textAlign(CENTER, CENTER);
-		// text(this.battleInfo, 400, 200);
-		// text(`${this.battleWinner} wins!`,400, 400);
-		text(this.battle.player1.name, canvas.width / 2, canvas.height / 3);
+    text(`You were ambushed by an angry, \nobnoxious troll called ${this.battle.player2.name}!`, canvas.width / 2, canvas.height / 6)
+    textSize(28);
+    if (this.battle.string) {
+      text(this.battle.string, canvas.width / 2, canvas.height / 2);
+    };
+
+    textSize(32);
+		text(this.battle.player1.name, canvas.width / 5, canvas.height / 5 * 4);
 		text(
 			`HP: ${this.battle.player1.health}/100`,
-			canvas.width / 2,
-			canvas.height / 3 + 35
+			canvas.width / 5,
+			canvas.height / 5 * 4 + 35
 		);
-		text(this.battle.player2.name, canvas.width / 2, (canvas.height / 3) * 2);
+		text(this.battle.player2.name, canvas.width / 5 * 4, canvas.height / 5 * 4);
 		text(
 			`HP: ${this.battle.player2.health}/100`,
-			canvas.width / 2,
-			(canvas.height / 3) * 2 + 35
+			canvas.width / 5 * 4,
+			canvas.height / 5 * 4 + 35
 		);
 	}
 
@@ -140,16 +145,6 @@ class Game {
 	_enterBattle() {
 		this.battle = new Battle(this.player, new Character("Jasmine"));
 		this.state = "battleScreen";
-
-		// let playerRoll = Math.floor(Math.random() * 20);
-		// let enemyRoll = Math.floor(Math.random() * 20);
-		// let winner = battle.winner(playerRoll, enemyRoll);
-		// let battleText = `
-		// You encountered an angry troll called Jasmine.
-		// \nYou attacked with ${playerRoll}!
-		// \nThey attacked with ${enemyRoll}`
-		// this.battleWinner = winner;
-		// this.battleInfo = battleText;
 	}
 
 	// Should be called checkEncounter?
