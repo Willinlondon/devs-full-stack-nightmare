@@ -29,7 +29,7 @@ function preload() {
 	tileImg = loadImage("./images/tile1.png");
 	wallImg = loadImage("./images/wall1.png");
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
-	enemyImg = createImg('./images/idlePlayer1CROPPED.png', 'enemy');
+	enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
 }
 
 function setup() {
