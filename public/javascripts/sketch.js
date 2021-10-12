@@ -40,8 +40,7 @@ function setup() {
 	createFleeButton();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
-  	enemyImg.parent("right");
-	//enemyImg.id('right');
+  enemyImg.parent("right");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
@@ -56,8 +55,6 @@ function draw() {
       wildFlailButton.hide();
 			fleeButton.hide();
 			game.showMap();
-			//Comment to push
-			// fill(Config.playerColour);
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 			image(
 				playerImg,
@@ -83,6 +80,7 @@ function draw() {
 			game.showGameOver();
 			break;
 		case "victoryScreen":
+      background(battleBackroundImage, 0, 0);
       enemyImg.hide();
 			okButton.show();
 			precisionStrikeButton.hide();

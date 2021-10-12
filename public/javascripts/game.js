@@ -139,8 +139,8 @@ class Game {
   }
 
   showVictoryScreen() {
-    background(Config.victoryScreenBackground);
-    fill(0);
+    //background(Config.victoryScreenBackground);
+    //fill(0);
     textSize(32);
     textAlign(CENTER, CENTER);
     text(
