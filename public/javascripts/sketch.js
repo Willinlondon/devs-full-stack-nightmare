@@ -1,7 +1,7 @@
 function addToScoreDatabase(username, score) {
   const gameData = { username, score };
 
-  fetch('https://sleepy-meadow-72878.herokuapp.com/score', {
+  fetch('/score', {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
