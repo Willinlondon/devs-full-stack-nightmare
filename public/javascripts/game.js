@@ -17,6 +17,9 @@ class Game {
 		);
 
 		this.cells = this._generateCells();
+    this.cells.forEach((cell) => {
+      cell.calculateExits();
+    });
 	}
 
 	playerAction(direction, amount) {
