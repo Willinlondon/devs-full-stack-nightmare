@@ -1,7 +1,7 @@
 function addToScoreDatabase(username, score) {
   const gameData = { username, score };
 
-  fetch('http://localhost:3000/score', {
+  fetch('https://sleepy-meadow-72878.herokuapp.com/score', {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
@@ -19,72 +19,72 @@ let attackButton;
 let okButton;
 let fleeButton;
 let battleBackgroundImage;
-let battleBackgroundImagePath = "./stylesheets/assets/battleBackground.jpg";
+const battleBackgroundImagePath = './stylesheets/assets/battleBackground.jpg';
 let tileImg;
 let wallImg;
 let playerImg;
 let enemyImg;
 
 function preload() {
-	tileImg = loadImage("./images/tile1.png");
-	wallImg = loadImage("./images/wall1.png");
-	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
-	enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
+  tileImg = loadImage('./images/tile1.png');
+  wallImg = loadImage('./images/wall1.png');
+  playerImg = loadImage('./images/idlePlayer1CROPPED.png');
+  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
 }
 
 function setup() {
-	createAttackButton();
-	createOkButton();
-	createFleeButton();
-	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
-	canvas.parent("play-area");
-  	enemyImg.parent("right");
-	//enemyImg.id('right');
-	battleBackroundImage = loadImage(battleBackgroundImagePath);
+  createAttackButton();
+  createOkButton();
+  createFleeButton();
+  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
+  canvas.parent('play-area');
+  enemyImg.parent('right');
+  // enemyImg.id('right');
+  battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
 function draw() {
   background(0);
 
-	switch (game.state) {
-		case "mapScreen":
+  switch (game.state) {
+    case 'mapScreen':
       enemyImg.hide();
-			okButton.hide();
-			attackButton.hide();
-			fleeButton.hide();
-			game.showMap();
-			//Comment to push
-			// fill(Config.playerColour);
-			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
-			image(
-				playerImg,
-				game.player.location[0] + Config.cellSize / 4,
-				game.player.location[1] + Config.cellSize / 4
-			);
+      okButton.hide();
+      attackButton.hide();
+      fleeButton.hide();
+      game.showMap();
+      // Comment to push
+      // fill(Config.playerColour);
+      playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      image(
+        playerImg,
+        game.player.location[0] + Config.cellSize / 4,
+        game.player.location[1] + Config.cellSize / 4
+      );
 
-			break;
-		case "battleScreen":
-			background(battleBackroundImage, 0, 0);
+      break;
+    case 'battleScreen':
+      background(battleBackroundImage, 0, 0);
       enemyImg.show();
-			game.showBattle();
-			attackButton.show();
-			fleeButton.show();
-			break;
-		case "gameOver":
-			okButton.hide();
+      game.showBattle();
+      attackButton.show();
+      fleeButton.show();
+      break;
+    case 'gameOver':
+      okButton.hide();
       enemyImg.hide();
-			attackButton.hide();
-			fleeButton.hide();
-			game.showGameOver();
-			break;
-		case "victoryScreen":
+      attackButton.hide();
+      fleeButton.hide();
+      game.showGameOver();
+      break;
+    case 'victoryScreen':
       enemyImg.hide();
-			okButton.show();
-			attackButton.hide();
-			fleeButton.hide();
-			game.showVictoryScreen();
-			break;
-	}
+      okButton.show();
+      attackButton.hide();
+      fleeButton.hide();
+      game.showVictoryScreen();
+      break;
+  }
 }
 
 function keyPressed() {
@@ -115,16 +115,15 @@ function createOkButton() {
 }
 
 function createAttackButton() {
+  attackButton = createButton('Basic Attack');
+  attackButton.position(500, 500);
 
-	attackButton = createButton("Basic Attack");
-	attackButton.position(500, 500);
-
-	attackButton.mousePressed(() => {
-		if (game.battle) {
-      basicAttack = new Ability("Basic Attack")
-			game.battle.takeTurn(basicAttack);
-		}
-	});
+  attackButton.mousePressed(() => {
+    if (game.battle) {
+      basicAttack = new Ability('Basic Attack');
+      game.battle.takeTurn(basicAttack);
+    }
+  });
 }
 
 function createFleeButton() {
@@ -133,13 +132,10 @@ function createFleeButton() {
 
   fleeButton.mousePressed(() => {
     if (Math.random() > Config.fleeFailureChance) {
-		  game.battle = null;
-		  game.state = "mapScreen";
+      game.battle = null;
+      game.state = 'mapScreen';
+    } else {
+      game.battle.takeTurn('Flee!', true);
     }
-    else {
-      game.battle.takeTurn("Flee!", true);
-
-    }
-	});
+  });
 }
-
