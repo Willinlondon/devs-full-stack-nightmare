@@ -41,11 +41,18 @@ body {
   grid-area: play-area;
 }
 
-#play-area img {
+.left {
   position: relative;
   align-items: left;
   top: 100px;
   left: 75px;
+}
+
+#right {
+  position: relative;
+  align-items: right;
+  bottom: 225px;
+  left: 1175px;
 }
 
 #right-sidebar { grid-area: right-sidebar; }

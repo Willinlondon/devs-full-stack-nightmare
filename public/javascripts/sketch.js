@@ -18,65 +18,73 @@ const game = new Game();
 let attackButton;
 let okButton;
 let fleeButton;
-let img;
-const imagePath = './stylesheets/assets/battleBackground.jpg';
+let battleBackgroundImage;
+let battleBackgroundImagePath = "./stylesheets/assets/battleBackground.jpg";
 let tileImg;
 let wallImg;
 let playerImg;
+let enemyImg;
 
 function preload() {
-  tileImg = loadImage('./images/tile1.png');
-  wallImg = loadImage('./images/wall1.png');
-  playerImg = loadImage('./images/idlePlayer1CROPPED.png');
+	tileImg = loadImage("./images/tile1.png");
+	wallImg = loadImage("./images/wall1.png");
+	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
+	enemyImg = createImg('./images/idlePlayer1CROPPED.png', 'enemy');
 }
 
 function setup() {
-  createAttackButton();
-  createOkButton();
-  createFleeButton();
-  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
-  canvas.parent('play-area');
-  img = loadImage(imagePath);
+	createAttackButton();
+	createOkButton();
+	createFleeButton();
+	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
+	canvas.parent("play-area");
+  	enemyImg.parent("right");
+	//enemyImg.id('right');
+	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
 function draw() {
   background(0);
 
-  switch (game.state) {
-    case 'mapScreen':
-      okButton.hide();
-      attackButton.hide();
-      fleeButton.hide();
-      game.showMap();
+	switch (game.state) {
+		case "mapScreen":
+      enemyImg.hide();
+			okButton.hide();
+			attackButton.hide();
+			fleeButton.hide();
+			game.showMap();
+			//Comment to push
+			// fill(Config.playerColour);
+			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+			image(
+				playerImg,
+				game.player.location[0] + Config.cellSize / 4,
+				game.player.location[1] + Config.cellSize / 4
+			);
 
-      // fill(Config.playerColour);
-      playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
-      image(
-        playerImg,
-        game.player.location[0] + Config.cellSize / 4,
-        game.player.location[1] + Config.cellSize / 4
-      );
-
-      break;
-    case 'battleScreen':
-      background(img, 0, 0);
-      game.showBattle();
-      attackButton.show();
-      fleeButton.show();
-      break;
-    case 'gameOver':
-      okButton.hide();
-      attackButton.hide();
-      fleeButton.hide();
-      game.showGameOver();
-      break;
-    case 'victoryScreen':
-      okButton.show();
-      attackButton.hide();
-      fleeButton.hide();
-      game.showVictoryScreen();
-      break;
-  }
+			break;
+		case "battleScreen":
+			background(battleBackroundImage, 0, 0);
+      enemyImg.show();
+			game.showBattle();
+			attackButton.show();
+			fleeButton.show();
+			break;
+		case "gameOver":
+			okButton.hide();
+      enemyImg.hide();
+			attackButton.hide();
+			fleeButton.hide();
+			game.showGameOver();
+			break;
+		case "victoryScreen":
+      enemyImg.hide();
+			okButton.show();
+			attackButton.hide();
+			fleeButton.hide();
+			game.showVictoryScreen();
+			break;
+	}
 }
 
 function keyPressed() {
@@ -128,5 +136,6 @@ function createFleeButton() {
     } else {
       game.battle.takeTurn(true);
     }
-  });
+	});
 }
+
