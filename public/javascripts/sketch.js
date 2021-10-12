@@ -8,11 +8,10 @@ function addToScoreDatabase(username, score) {
     },
     method: 'POST',
     body: JSON.stringify(gameData),
-  }).then((res) => {
-    console.log('Score added to database:', res);
-  });
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data.scores));
 }
-addToScoreDatabase('new-test-player', 100);
 
 const game = new Game();
 let precisionStrikeButton;
