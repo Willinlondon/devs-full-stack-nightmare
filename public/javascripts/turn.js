@@ -3,7 +3,7 @@ class Turn {
     this.player1 = player1;
     this.player2 = player2;
     this.p1Attack = new Ability("Basic Attack");
-    this.p2Attack = new Ability("Basic Attack");
+    this.p2Attack = new Ability("Confusion & Chaos"); //Hard coded placeholder name
     this.flee = flee
     this._judge();
   }
