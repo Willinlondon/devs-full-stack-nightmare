@@ -26,6 +26,7 @@ let wallImg;
 let playerImg;
 let playerImg2;
 let enemyImg;
+let backgroundMusic
 
 function preload() {
 	tileImg = loadImage("./images/tile1.png");
@@ -35,6 +36,8 @@ function preload() {
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
   playerImg2 = createImg("./images/idlePlayer1CROPPED.png");
 	enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
+  backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav')
+
 }
 
 function setup() {
@@ -54,6 +57,7 @@ function draw() {
 
 	switch (game.state) {
 		case "mapScreen":
+    //  backgroundMusic.play();
       enemyImg.hide();
       playerImg2.show();
 			okButton.hide();
