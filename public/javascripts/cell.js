@@ -5,7 +5,10 @@ class Cell {
     this.wall = wall;
     this.exits = new Object;
     this.neighbours = this._calculateNeighbours();
+    this.constructor.all.push(this);
   }
+
+  static all = [];
 
   isWall() {
     return this.wall;
@@ -29,7 +32,8 @@ class Cell {
     });
 
     cellNeighbours = cellNeighbours.filter((dir) => {
-      return (dir[0] >= 0 && dir[1] >= 0 && dir[0] < Config.canvasWidth && dir[1] < Config.canvasHeight);
+      return (dir[0] >= 0 && dir[1] >= 0 &&
+        dir[0] < Config.canvasWidth && dir[1] < Config.canvasHeight);
     });
 
     return cellNeighbours;
