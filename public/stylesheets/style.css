@@ -128,3 +128,8 @@ body {
   grid-area: 2 / 3 / span 1 / span 2;
   color: #d4d9a6;
 }
+
+#Will {
+  grid-area: 3 / 2 / span 1 / span 2;
+  color: #d4d9a6;
+}
