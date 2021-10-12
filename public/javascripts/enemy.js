@@ -1,5 +1,5 @@
 class Enemy {
-  constructor(name, health) {
+  constructor(name, health = Config.defaultEnemyHealth) {
     this.name = name
     this.health = health
   }
