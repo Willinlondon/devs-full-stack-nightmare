@@ -32,8 +32,8 @@ function preload() {
 	wallImg = loadImage("./images/wall1.png");
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
 	enemyImg = createImg('./images/idlePlayer1CROPPED.png', 'enemy');
-	backgroundMusic = loadSound('assets/map-music.wav');
-	battleMusic = loadSound('assets/battle-music.wav');
+	backgroundMusic = loadSound('./stylesheets/assets/map-music.wav');
+	battleMusic = loadSound('./stylesheets/assets/battle-music.wav');
 }
 
 function setup() {
@@ -43,7 +43,7 @@ function setup() {
 	//backgroundMusic.loop();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
-  	enemyImg.parent("right");
+  enemyImg.parent("right");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
@@ -53,7 +53,8 @@ function draw() {
 	switch (game.state) {
 		case "mapScreen":
       enemyImg.hide();
-	  		
+
+      backgroundMusic.play();
 	  okButton.hide();
 			attackButton.hide();
 			fleeButton.hide();
