@@ -91,6 +91,7 @@ class Game {
   showBattle() {
     if (this.battle.over()) {
       if (this.player.hasFainted()) {
+        addToScoreDatabase('new-test-player-2', 500);
         this.state = 'gameOver';
       } else {
         this.state = 'victoryScreen';
@@ -139,8 +140,8 @@ class Game {
   }
 
   showVictoryScreen() {
-    //background(Config.victoryScreenBackground);
-    //fill(0);
+    // background(Config.victoryScreenBackground);
+    // fill(0);
     textSize(32);
     textAlign(CENTER, CENTER);
     text(
