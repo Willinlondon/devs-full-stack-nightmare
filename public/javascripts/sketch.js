@@ -22,7 +22,8 @@ function setup() {
 	createFleeButton();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
-  	enemyImg.parent("play-area");
+  	enemyImg.parent("right");
+	//enemyImg.id('right');
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 

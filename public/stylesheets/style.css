@@ -48,11 +48,11 @@ body {
   left: 75px;
 }
 
-.right {
+#right {
   position: relative;
   align-items: right;
   bottom: 225px;
-  left: 1205px;
+  left: 1175px;
 }
 
 #right-sidebar { grid-area: right-sidebar; }
