@@ -144,8 +144,7 @@ function createPrecisionStrikeButton() {
 
   precisionStrikeButton.mousePressed(() => {
     if (game.battle) {
-      precisionStrike = new Ability('Precision Strike');
-      game.battle.takeTurn(precisionStrike);
+      game.battle.takeTurn(Ability.find("Precision Strike"));
     }
   });
 }

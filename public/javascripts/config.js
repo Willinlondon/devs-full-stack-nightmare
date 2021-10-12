@@ -22,4 +22,5 @@ class Config {
     static precisionStrike = new Ability("Precision Strike", 5, 8, 0, 0);
     static wildFlail = new Ability("Wild Flail", 2, 13, 0, 0);
     static heal = new Ability("Recovery", 0, 0, 4, 7);
+    static undefinitedReality = new Ability("Undefined Reality", 5, 8, 0, 0);
 }
