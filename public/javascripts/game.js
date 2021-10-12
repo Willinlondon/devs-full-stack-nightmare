@@ -124,7 +124,7 @@ class Game {
       (canvas.height / 5) * 4
     );
     text(
-      `HP: ${this.battle.player2.health}/100`,
+      `HP: ${this.battle.player2.health}/${this.battle.player2.maxHealth}`,
       (canvas.width / 5) * 4,
       (canvas.height / 5) * 4 + 35
     );
