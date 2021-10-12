@@ -1,3 +1,19 @@
+function addToScoreDatabase(username, score) {
+  const gameData = { username, score };
+
+  fetch('http://localhost:3000/score', {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    body: JSON.stringify(gameData),
+  }).then((res) => {
+    console.log('Score added to database:', res);
+  });
+}
+addToScoreDatabase('new-test-player', 100);
+
 const game = new Game();
 let attackButton;
 let okButton;
@@ -28,7 +44,7 @@ function setup() {
 }
 
 function draw() {
-	background(0);
+  background(0);
 
 	switch (game.state) {
 		case "mapScreen":
@@ -72,54 +88,54 @@ function draw() {
 }
 
 function keyPressed() {
-	if (game.state === "mapScreen") {
-		if (keyCode === LEFT_ARROW || keyCode === 65) {
-			game.playerAction("left", 75);
-		}
-		if (keyCode === RIGHT_ARROW || keyCode === 68) {
-			game.playerAction("right", 75);
-		}
-		if (keyCode === UP_ARROW || keyCode === 87) {
-			game.playerAction("up", 75);
-		}
-		if (keyCode === DOWN_ARROW || keyCode === 83) {
-			game.playerAction("down", 75);
-		}
-	}
+  if (game.state === 'mapScreen') {
+    if (keyCode === LEFT_ARROW || keyCode === 65) {
+      game.playerAction('left', 75);
+    }
+    if (keyCode === RIGHT_ARROW || keyCode === 68) {
+      game.playerAction('right', 75);
+    }
+    if (keyCode === UP_ARROW || keyCode === 87) {
+      game.playerAction('up', 75);
+    }
+    if (keyCode === DOWN_ARROW || keyCode === 83) {
+      game.playerAction('down', 75);
+    }
+  }
 }
 
 function createOkButton() {
-	okButton = createButton("OK");
-	okButton.position(Config.canvasWidth / 2, Config.canvasHeight / 2);
+  okButton = createButton('OK');
+  okButton.position(Config.canvasWidth / 2, Config.canvasHeight / 2);
 
-	okButton.mousePressed(() => {
-		game.battle = null;
-		game.state = "mapScreen";
-	});
+  okButton.mousePressed(() => {
+    game.battle = null;
+    game.state = 'mapScreen';
+  });
 }
 
 function createAttackButton() {
-	attackButton = createButton("Attack!");
-	attackButton.position(500, 500);
+  attackButton = createButton('Attack!');
+  attackButton.position(500, 500);
 
-	attackButton.mousePressed(() => {
-		if (game.battle) {
-			game.battle.takeTurn();
-		}
-	});
+  attackButton.mousePressed(() => {
+    if (game.battle) {
+      game.battle.takeTurn();
+    }
+  });
 }
 
 function createFleeButton() {
-	fleeButton = createButton("Flee!");
-	fleeButton.position(600, 500);
+  fleeButton = createButton('Flee!');
+  fleeButton.position(600, 500);
 
-	fleeButton.mousePressed(() => {
+  fleeButton.mousePressed(() => {
     if (Math.random() > Config.fleeFailureChance) {
-		  game.battle = null;
-		  game.state = "mapScreen";
-    }
-    else {
+      game.battle = null;
+      game.state = 'mapScreen';
+    } else {
       game.battle.takeTurn(true);
     }
 	});
 }
+
