@@ -16,7 +16,11 @@ class Game {
       this.gameMap.startingRow
     );
 
-    this.cells = this._generateCells();
+    this.cells = Cell.all;
+    this.cells.forEach((cell) => {
+      cell.calculateExits();
+      cell.calculateTile();
+    });
   }
 
   playerAction(direction, amount) {
