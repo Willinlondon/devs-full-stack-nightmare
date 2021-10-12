@@ -20,7 +20,8 @@ class Config {
     static critChance = 0.1;
     static fleeFailureChance = 0.4;
     static defaultEnemyHealth = 80;
-	  static mapDimension = 10;
-	  static NoOfTunnels = 15;
-  	static maxTunnelLength = 6;
+    static mapDimension = 10;
+    static NoOfTunnels = 15;
+    static maxTunnelLength = 6;
+    static regionDivisor = 2; // meaning e.g. 2 horizontally * 2 vertically, = 4 in total
 }
