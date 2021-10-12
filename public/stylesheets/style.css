@@ -50,6 +50,11 @@ body {
   top: 250px;
 }
 
+#heal {
+  position: absolute;
+  left: 250px;
+}
+
 #wildflail {
   position: absolute;
   left: 575px;
@@ -62,7 +67,7 @@ body {
 
 #flee {
   position: absolute;
-  left: 350px;
+  left: 400px;
 }
 
 #left {

@@ -17,6 +17,7 @@ addToScoreDatabase('new-test-player', 100);
 const game = new Game();
 let precisionStrikeButton;
 let wildFlailButton;
+let healButton;
 let okButton;
 let fleeButton;
 let battleBackgroundImage;
@@ -150,10 +151,21 @@ function createWildFlailButton() {
 
 	wildFlailButton.mousePressed(() => {
 		if (game.battle) {
-      wildFlail = new Ability("Wild Flail", Config.wildFlailMin, Config.wildFlailMax)
+      wildFlail = new Ability("Wild Flail", Config.wildFlailMin, Config.wildFlailMax);
 			game.battle.takeTurn(wildFlail);
 		}
 	});
+}
+
+function createHealButton() {
+  healButton = createButton('Recovery');
+  healButton.parent('heal');
+
+  healButton.mousePressed(() => {
+		if (game.battle) {
+      heal = new Ability("Recovery");
+			game.battle.takeTurn(heal);
+  });
 }
 
 function createFleeButton() {
