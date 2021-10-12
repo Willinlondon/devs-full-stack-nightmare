@@ -114,7 +114,7 @@ class Game {
     textSize(32);
     text(this.battle.player1.name, canvas.width / 5, (canvas.height / 5) * 4);
     text(
-      `HP: ${this.battle.player1.health}/100`,
+      `HP: ${this.battle.player1.health}/${Config.playerHealth}`,
       canvas.width / 5,
       (canvas.height / 5) * 4 + 35
     );
@@ -124,7 +124,7 @@ class Game {
       (canvas.height / 5) * 4
     );
     text(
-      `HP: ${this.battle.player2.health}/100`,
+      `HP: ${this.battle.player2.health}/${this.battle.player2.maxHealth}`,
       (canvas.width / 5) * 4,
       (canvas.height / 5) * 4 + 35
     );
@@ -151,7 +151,7 @@ class Game {
   }
 
   _enterBattle() {
-    this.battle = new Battle(this.player, new Character('Jasmine'));
+    this.battle = new Battle(this.player, new Enemy('Jasmine'));
     this.state = 'battleScreen';
   }
 
