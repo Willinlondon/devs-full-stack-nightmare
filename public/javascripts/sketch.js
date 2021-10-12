@@ -32,7 +32,7 @@ function preload() {
 	wallImg = loadImage("./images/wall1.png");
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
 	enemyImg = createImg('./images/idlePlayer1CROPPED.png', 'enemy');
-	backgroundMusic = loadSound('./stylesheets/assets/map-music.wav');
+	backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
 	battleMusic = loadSound('./stylesheets/assets/battle-music.wav');
 }
 
@@ -68,7 +68,7 @@ function draw() {
 				game.player.location[0] + Config.cellSize / 4,
 				game.player.location[1] + Config.cellSize / 4
 			);
-			//backgroundMusic.play()
+			backgroundMusic.play()
 			break;
 		case "battleScreen":
 			background(battleBackroundImage, 0, 0);
