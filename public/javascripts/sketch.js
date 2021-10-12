@@ -91,7 +91,7 @@ function createOkButton() {
 }
 
 function createAttackButton() {
-	attackButton = createButton("Attack!");
+	attackButton = createButton("Basic Attack");
 	attackButton.position(500, 500);
 
 	attackButton.mousePressed(() => {
