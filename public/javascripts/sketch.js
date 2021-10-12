@@ -115,14 +115,16 @@ function createOkButton() {
 }
 
 function createAttackButton() {
-  attackButton = createButton('Attack!');
-  attackButton.position(500, 500);
 
-  attackButton.mousePressed(() => {
-    if (game.battle) {
-      game.battle.takeTurn();
-    }
-  });
+	attackButton = createButton("Basic Attack");
+	attackButton.position(500, 500);
+
+	attackButton.mousePressed(() => {
+		if (game.battle) {
+      basicAttack = new Ability("Basic Attack")
+			game.battle.takeTurn(basicAttack);
+		}
+	});
 }
 
 function createFleeButton() {
@@ -131,10 +133,12 @@ function createFleeButton() {
 
   fleeButton.mousePressed(() => {
     if (Math.random() > Config.fleeFailureChance) {
-      game.battle = null;
-      game.state = 'mapScreen';
-    } else {
-      game.battle.takeTurn(true);
+		  game.battle = null;
+		  game.state = "mapScreen";
+    }
+    else {
+      game.battle.takeTurn("Flee!", true);
+
     }
 	});
 }

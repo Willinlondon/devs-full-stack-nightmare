@@ -1,9 +1,9 @@
 class Turn {
-  constructor(player1, player2, flee) {
+  constructor(player1, player2, playerAbility, flee) {
     this.player1 = player1;
     this.player2 = player2;
-    this.p1Attack = new Object;
-    this.p2Attack = new Object;
+    this.p1Attack = playerAbility;
+    this.p2Attack = new Ability("Undefined Reality"); //Hard coded placeholder name
     this.flee = flee
     this._judge();
   }
@@ -16,7 +16,7 @@ class Turn {
     let p2AttackString;
     if (this.flee === false) {
       if (!this.p1Attack.dodged) {
-        p1AttackString = `${p1CritString}${this.player1.name} dealt ${this.p1Attack.totalDamage} damage to ${this.player2.name}!`
+        p1AttackString = `${p1CritString}${this.player1.name} used ${this.p1Attack.name}\nand dealt ${this.p1Attack.totalDamage} damage to ${this.player2.name}!`
       } else {
         p1AttackString = `${this.player2.name} dodged ${this.player1.name}'s attack!`
       }
@@ -25,7 +25,7 @@ class Turn {
     }
 
     if (!this.p2Attack.dodged) {
-      p2AttackString = `${p2CritString}${this.player2.name} dealt ${this.p2Attack.totalDamage} damage to ${this.player1.name}!`
+      p2AttackString = `${p2CritString}${this.player2.name} used ${this.p2Attack.name}\n and dealt ${this.p2Attack.totalDamage} damage to ${this.player1.name}!`
     } else {
       p2AttackString = `${this.player1.name} dodged ${this.player2.name}'s attack!`
     }
@@ -34,11 +34,11 @@ class Turn {
   }
 
   _judge() {
-    this.p1Attack.baseDamage = this._attack(Config.baseMinAttack, Config.baseMaxAttack);
-    this.p2Attack.baseDamage = this._attack(Config.baseMinAttack, Config.baseMaxAttack);
+    this.p2Attack.baseDamage = this._attack(this.p2Attack.min, this.p2Attack.max);
 
     // Judge player 1 move
     if (this.flee === false) {
+      this.p1Attack.baseDamage = this._attack(this.p1Attack.min, this.p1Attack.max);
       if (Math.random() > Config.dodgeChance) {
         this.p1Attack.dodged = false;
 
