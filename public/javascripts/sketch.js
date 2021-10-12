@@ -9,7 +9,7 @@ function addToScoreDatabase(username, score) {
     method: 'POST',
     body: JSON.stringify(gameData),
   }).then((res) => {
-    console.log('Request complete! response:', res);
+    console.log('Score added to database:', res);
   });
 }
 addToScoreDatabase('new-test-player', 100);
