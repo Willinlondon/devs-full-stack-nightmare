@@ -129,7 +129,7 @@ function keyPressed() {
 
 function createOkButton() {
   okButton = createButton('OK');
-  okButton.position(Config.canvasWidth / 2, Config.canvasHeight / 2);
+  okButton.parent('okButton');
 
   okButton.mousePressed(() => {
     game.battle = null;
