@@ -48,6 +48,13 @@ body {
   left: 75px;
 }
 
+.right {
+  position: relative;
+  align-items: right;
+  bottom: 225px;
+  left: 1205px;
+}
+
 #right-sidebar { grid-area: right-sidebar; }
 
 #page-header, #page-footer {
