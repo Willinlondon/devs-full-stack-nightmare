@@ -152,7 +152,7 @@ class Game {
   }
 
   _enterBattle() {
-    this.battle = new Battle(this.player, new Enemy('Jasmine'));
+    this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth));
     this.state = 'battleScreen';
   }
 
