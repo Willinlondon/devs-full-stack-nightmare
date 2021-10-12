@@ -24,6 +24,7 @@ let battleBackgroundImagePath = "./stylesheets/assets/battleBackground.jpg";
 let tileImg;
 let wallImg;
 let playerImg;
+let playerImg2;
 let enemyImg;
 
 function preload() {
@@ -32,6 +33,7 @@ function preload() {
 	wallImg = loadImage("./images/wall1.png");
 	wallImg.resize(Config.cellSize, Config.cellSize);
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
+  playerImg2 = createImg("./images/idlePlayer1CROPPED.png");
 	enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
 }
 
@@ -42,8 +44,8 @@ function setup() {
 	createFleeButton();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
-  	enemyImg.parent("right");
-	//enemyImg.id('right');
+  enemyImg.parent("right");
+  playerImg2.parent("left");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
@@ -53,13 +55,12 @@ function draw() {
 	switch (game.state) {
 		case "mapScreen":
       enemyImg.hide();
+      playerImg2.show();
 			okButton.hide();
 			precisionStrikeButton.hide();
       wildFlailButton.hide();
 			fleeButton.hide();
 			game.showMap();
-			//Comment to push
-			// fill(Config.playerColour);
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 			image(
 				playerImg,
@@ -73,6 +74,7 @@ function draw() {
 		case "battleScreen":
 			background(battleBackroundImage, 0, 0);
       enemyImg.show();
+      playerImg2.show();
 			game.showBattle();
 			precisionStrikeButton.show();
       wildFlailButton.show();
@@ -81,14 +83,17 @@ function draw() {
 		case "gameOver":
 			okButton.hide();
       enemyImg.hide();
+      playerImg2.show();
 			precisionStrikeButton.hide();
       wildFlailButton.hide();
 			fleeButton.hide();
 			game.showGameOver();
 			break;
 		case "victoryScreen":
+      background(battleBackroundImage, 0, 0);
       enemyImg.hide();
 			okButton.show();
+      playerImg2.show();
 			precisionStrikeButton.hide();
       wildFlailButton.hide();
 			fleeButton.hide();
@@ -127,7 +132,7 @@ function createOkButton() {
 function createPrecisionStrikeButton() {
 
 	precisionStrikeButton = createButton("Precision Strike");
-	precisionStrikeButton.position(350, 500);
+	precisionStrikeButton.parent("strike");
 
 	precisionStrikeButton.mousePressed(() => {
 		if (game.battle) {
@@ -140,7 +145,8 @@ function createPrecisionStrikeButton() {
 function createWildFlailButton() {
 
 	wildFlailButton = createButton("Wild Flail");
-	wildFlailButton.position(500, 500);
+	//wildFlailButton.position(500, 500);
+  wildFlailButton.parent("wildflail");
 
 	wildFlailButton.mousePressed(() => {
 		if (game.battle) {
@@ -152,7 +158,7 @@ function createWildFlailButton() {
 
 function createFleeButton() {
   fleeButton = createButton('Flee!');
-  fleeButton.position(650, 500);
+  fleeButton.parent('flee');
 
   fleeButton.mousePressed(() => {
     if (Math.random() > Config.fleeFailureChance) {
