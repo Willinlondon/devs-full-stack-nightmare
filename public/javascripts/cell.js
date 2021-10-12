@@ -10,6 +10,10 @@ class Cell {
 
   static all = [];
 
+  static filterByRegion(region) {
+    return Cell.all.filter(cell => cell.region === region)
+  }
+
   static find(x, y) {
     return Cell.all.find(cell => cell.x === x && cell.y === y)
   }

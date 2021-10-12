@@ -24,6 +24,7 @@ class Game {
     });
 
     this.player.setCell();
+    this.player.setRegion();
   }
 
   playerAction(direction, amount) {
@@ -54,21 +55,33 @@ class Game {
   }
 
   showMap() {
-    this.map.forEach((y, yi) => {
-      y.forEach((x, xi) => {
-        let cell = Cell.find(xi * Config.cellSize, yi * Config.cellSize)
+//     this.map.forEach((y, yi) => {
+//       y.forEach((x, xi) => {
+//         let cell = Cell.find(xi * Config.cellSize, yi * Config.cellSize)
+// 
+//         if (cell.isWall()) {
+//           // image(wallImg, cell.x, cell.y);
+//         } else {
+//           // image(tileImg, cell.x, cell.y);
+//         }
+// 
+//         fill(255)
+//         textAlign(CENTER, CENTER)
+//         text(`${cell.region},${cell.regionX},${cell.regionY}`, cell.x + Config.cellSize / 2, cell.y + Config.cellSize / 2)
+//       });
+//     });
+    Cell.filterByRegion(this.player.region).forEach((cell) => {
+      if (cell.isWall()) {
+        image(wallImg, cell.regionX, cell.regionY);
+      } else {
+        image(tileImg, cell.regionX, cell.regionY);
+      }
 
-        if (cell.isWall()) {
-          // image(wallImg, cell.x, cell.y);
-        } else {
-          // image(tileImg, cell.x, cell.y);
-        }
-
-        fill(255)
-        textAlign(CENTER, CENTER)
-        text(`${cell.region},${cell.regionX},${cell.regionY}`, cell.x + Config.cellSize / 2, cell.y + Config.cellSize / 2)
-      });
-    });
+      fill(255)
+      textAlign(CENTER, CENTER)
+      text(`${cell.region},${cell.regionX},${cell.regionY}`, cell.regionX + Config.cellSize / 2, cell.regionY + Config.cellSize / 2)
+     
+    })
   }
 
   _cellAt(x, y) {
@@ -81,8 +94,8 @@ class Game {
       y.forEach((x, xi) => {
         let cell = new Cell(xi * Config.cellSize, yi * Config.cellSize, x == 1)
 
-        cell.regionY = (xi * Config.gridSize + yi) % (Config.gridSize / Config.regionDivisor)
-        cell.regionX = (yi * Config.gridSize + xi) % (Config.gridSize / Config.regionDivisor)
+        cell.regionY = (xi * Config.gridSize + yi) % (Config.gridSize / Config.regionDivisor) * Config.cellSize
+        cell.regionX = (yi * Config.gridSize + xi) % (Config.gridSize / Config.regionDivisor) * Config.cellSize
 
         if (cell.regionX === 0 && cell.regionY === 0) { region ++ }
 

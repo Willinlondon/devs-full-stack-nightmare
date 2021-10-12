@@ -32,6 +32,7 @@ class Character {
 		}
 
     this.setCell();
+    this.setRegion();
 	}
 
   hasFainted() {
@@ -44,6 +45,10 @@ class Character {
 
   setCell() {
     this.cell = Cell.find(this.location[0], this.location[1]);
+  }
+
+  setRegion() {
+    this.region = this.cell.region
   }
 
 	// Directions are here as private methods
