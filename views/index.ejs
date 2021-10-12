@@ -3,10 +3,16 @@
   <head>
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
     <script type="text/javascript" src="javascripts/config.js"></script>
     <script src="javascripts/character.js"></script>
     <script src="javascripts/Map.js"></script>
+    <script src='javascripts/ability.js'></script>
+    <script src="javascripts/turn.js"></script>
     <script src="javascripts/battle.js"></script>
     <script src="javascripts/cell.js"></script>
     <script src="javascripts/game.js"></script>
@@ -27,8 +33,19 @@
         <div id="left-sidebar">
         </div>
         <div id="play-area">
-          <img src="./images/idlePlayer1CROPPED.png"/>
+          <img
+          src="./images/idlePlayer1CROPPED.png"
+          class="left"
+          />
+
         </div>
+        <div id="right"></div>
+        <!--
+        <img
+        src="./images/idlePlayer1CROPPED.png"
+        id="right"
+        />
+      -->
         <div id="right-sidebar"></div>
       </div>
     </div>

@@ -13,8 +13,9 @@ class Config {
     static baseMaxAttack = 9;
     static critAttackMultiplier = 3;
     static victoryScreenBackground = [251, 72, 196];
-    static dodgeChance = 10;
-    static critChance = 10;
+    static dodgeChance = 0.1;
+    static critChance = 0.1;
+    static fleeFailureChance = 0.4;
 	  static mapDimension = 10;
 	  static NoOfTunnels = 15;
   	static maxTunnelLength = 6;

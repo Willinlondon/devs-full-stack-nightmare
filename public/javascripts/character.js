@@ -13,9 +13,9 @@ class Character {
 		];
 	}
 
-	attack() {
-		return Math.floor(Math.random() * 20);
-	}
+	// attack() {
+	// 	return Math.floor(Math.random() * 20);
+	// }
 
 	move(direction, amount) {
 		if (direction == "right") {
