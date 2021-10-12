@@ -117,7 +117,7 @@ function createOkButton() {
 function createPrecisionStrikeButton() {
 
 	precisionStrikeButton = createButton("Precision Strike");
-	precisionStrikeButton.position(500, 500);
+	precisionStrikeButton.position(400, 500);
 
 	precisionStrikeButton.mousePressed(() => {
 		if (game.battle) {
