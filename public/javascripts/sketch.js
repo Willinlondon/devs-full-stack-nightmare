@@ -16,6 +16,7 @@ addToScoreDatabase('new-test-player', 100);
 
 const game = new Game();
 let precisionStrikeButton;
+let wildFlailButton;
 let okButton;
 let fleeButton;
 let battleBackgroundImage;
@@ -34,6 +35,7 @@ function preload() {
 
 function setup() {
 	createPrecisionStrikeButton();
+  createWildFlailButton();
 	createOkButton();
 	createFleeButton();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
@@ -51,6 +53,7 @@ function draw() {
       enemyImg.hide();
 			okButton.hide();
 			precisionStrikeButton.hide();
+      wildFlailButton.hide();
 			fleeButton.hide();
 			game.showMap();
 			//Comment to push
@@ -68,12 +71,14 @@ function draw() {
       enemyImg.show();
 			game.showBattle();
 			precisionStrikeButton.show();
+      wildFlailButton.show();
 			fleeButton.show();
 			break;
 		case "gameOver":
 			okButton.hide();
       enemyImg.hide();
 			precisionStrikeButton.hide();
+      wildFlailButton.hide();
 			fleeButton.hide();
 			game.showGameOver();
 			break;
@@ -81,6 +86,7 @@ function draw() {
       enemyImg.hide();
 			okButton.show();
 			precisionStrikeButton.hide();
+      wildFlailButton.hide();
 			fleeButton.hide();
 			game.showVictoryScreen();
 			break;
