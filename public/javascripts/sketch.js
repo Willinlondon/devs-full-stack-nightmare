@@ -106,7 +106,13 @@ function createFleeButton() {
 	fleeButton.position(600, 500);
 
 	fleeButton.mousePressed(() => {
-		game.battle = null;
-		game.state = "mapScreen";
+    if (Math.random() > Config.fleeFailureChance) {
+		  game.battle = null;
+		  game.state = "mapScreen";
+    }
+    else {
+      game.battle.takeTurn(true);
+    }
+
 	});
 }
