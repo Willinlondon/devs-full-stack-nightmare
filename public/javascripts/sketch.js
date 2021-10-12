@@ -140,7 +140,7 @@ function createWildFlailButton() {
 
 	wildFlailButton.mousePressed(() => {
 		if (game.battle) {
-      wildFlail = new Ability("Wild Flail", 1, 12)
+      wildFlail = new Ability("Wild Flail", Config.wildFlailMin, Config.wildFlailMax)
 			game.battle.takeTurn(wildFlail);
 		}
 	});
