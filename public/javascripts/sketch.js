@@ -15,7 +15,7 @@ function addToScoreDatabase(username, score) {
 addToScoreDatabase('new-test-player', 100);
 
 const game = new Game();
-let attackButton;
+let precisionStrikeButton;
 let okButton;
 let fleeButton;
 let battleBackgroundImage;
@@ -33,7 +33,7 @@ function preload() {
 }
 
 function setup() {
-	createAttackButton();
+	createPrecisionStrikeButton();
 	createOkButton();
 	createFleeButton();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
@@ -50,7 +50,7 @@ function draw() {
 		case "mapScreen":
       enemyImg.hide();
 			okButton.hide();
-			attackButton.hide();
+			precisionStrikeButton.hide();
 			fleeButton.hide();
 			game.showMap();
 			//Comment to push
@@ -67,20 +67,20 @@ function draw() {
 			background(battleBackroundImage, 0, 0);
       enemyImg.show();
 			game.showBattle();
-			attackButton.show();
+			precisionStrikeButton.show();
 			fleeButton.show();
 			break;
 		case "gameOver":
 			okButton.hide();
       enemyImg.hide();
-			attackButton.hide();
+			precisionStrikeButton.hide();
 			fleeButton.hide();
 			game.showGameOver();
 			break;
 		case "victoryScreen":
       enemyImg.hide();
 			okButton.show();
-			attackButton.hide();
+			precisionStrikeButton.hide();
 			fleeButton.hide();
 			game.showVictoryScreen();
 			break;
@@ -114,7 +114,7 @@ function createOkButton() {
   });
 }
 
-function createPrecisionStrike() {
+function createPrecisionStrikeButton() {
 
 	precisionStrikeButton = createButton("Precision Strike");
 	precisionStrikeButton.position(500, 500);
