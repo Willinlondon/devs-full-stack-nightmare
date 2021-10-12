@@ -114,15 +114,15 @@ function createOkButton() {
   });
 }
 
-function createAttackButton() {
+function createPrecisionStrike() {
 
-	attackButton = createButton("Basic Attack");
-	attackButton.position(500, 500);
+	precisionStrikeButton = createButton("Precision Strike");
+	precisionStrikeButton.position(500, 500);
 
-	attackButton.mousePressed(() => {
+	precisionStrikeButton.mousePressed(() => {
 		if (game.battle) {
-      basicAttack = new Ability("Basic Attack")
-			game.battle.takeTurn(basicAttack);
+      precisionStrike = new Ability("Precision Strike")
+			game.battle.takeTurn(precisionStrike);
 		}
 	});
 }
