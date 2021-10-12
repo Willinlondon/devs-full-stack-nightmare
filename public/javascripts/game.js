@@ -55,13 +55,13 @@ class Game {
 				);
 
 				if (currentCell.isWall()) {
-					fill(Config.wallColour);
-					wallImg.resize(Config.cellSize, Config.cellSize);
+					// fill(Config.wallColour);
+					// wallImg.resize(Config.cellSize, Config.cellSize);
 					image(wallImg, currentCell.x, currentCell.y);
 					// rect(currentCell.x, currentCell.y, Config.cellSize);
 				} else {
-					rect(currentCell.x, currentCell.y, Config.cellSize);
-					tileImg.resize(Config.cellSize, Config.cellSize);
+					// rect(currentCell.x, currentCell.y, Config.cellSize);
+					// tileImg.resize(Config.cellSize, Config.cellSize);
 					image(tileImg, currentCell.x, currentCell.y);
 				}
 			});

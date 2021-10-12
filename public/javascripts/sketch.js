@@ -10,8 +10,11 @@ let playerImg;
 
 function preload() {
 	tileImg = loadImage("./images/tile1.png");
+	tileImg.resize(Config.cellSize, Config.cellSize);
 	wallImg = loadImage("./images/wall1.png");
+	wallImg.resize(Config.cellSize, Config.cellSize);
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
+	
 }
 
 function setup() {
@@ -40,6 +43,8 @@ function draw() {
 				game.player.location[0] + Config.cellSize / 4,
 				game.player.location[1] + Config.cellSize / 4
 			);
+			// fill(Config.playerColour);
+      // rect(game.player.location[0],game.player.location[1], Config.spriteSize);
 
 			break;
 		case "battleScreen":
