@@ -50,10 +50,16 @@ body {
   top: 250px;
 }
 
+
 #okButton {
   position: relative;
   left: 350px;
   top: 450px;
+}
+
+#heal {
+  position: absolute;
+  left: 250px;
 }
 
 #wildflail {
@@ -68,7 +74,7 @@ body {
 
 #flee {
   position: absolute;
-  left: 350px;
+  left: 400px;
 }
 
 #left {
