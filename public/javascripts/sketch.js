@@ -34,7 +34,7 @@ function preload() {
 	wallImg = loadImage("./images/wall1.png");
 	wallImg.resize(Config.cellSize, Config.cellSize);
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
-  playerImg2 = createImg("./images/idlePlayer1CROPPED.png");
+  playerImg2 = createImg("./images/playerIdleAnimations.gif");
 	enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav')
 
@@ -149,7 +149,6 @@ function createPrecisionStrikeButton() {
 function createWildFlailButton() {
 
 	wildFlailButton = createButton("Wild Flail");
-	//wildFlailButton.position(500, 500);
   wildFlailButton.parent("wildflail");
 
 	wildFlailButton.mousePressed(() => {
