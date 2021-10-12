@@ -16,7 +16,7 @@ class Turn {
     let p2AttackString;
     if (this.flee === false) {
       if (!this.p1Attack.dodged) {
-        p1AttackString = `${p1CritString}${this.player1.name} used ${this.p1Attack.name} and dealt ${this.p1Attack.totalDamage} damage to ${this.player2.name}!`
+        p1AttackString = `${p1CritString}${this.player1.name} used ${this.p1Attack.name}\nand dealt ${this.p1Attack.totalDamage} damage to ${this.player2.name}!`
       } else {
         p1AttackString = `${this.player2.name} dodged ${this.player1.name}'s attack!`
       }
@@ -25,7 +25,7 @@ class Turn {
     }
 
     if (!this.p2Attack.dodged) {
-      p2AttackString = `${p2CritString}${this.player2.name} used ${this.p2Attack.name} and dealt ${this.p2Attack.totalDamage} damage to ${this.player1.name}!`
+      p2AttackString = `${p2CritString}${this.player2.name} used ${this.p2Attack.name}\n and dealt ${this.p2Attack.totalDamage} damage to ${this.player1.name}!`
     } else {
       p2AttackString = `${this.player1.name} dodged ${this.player2.name}'s attack!`
     }
