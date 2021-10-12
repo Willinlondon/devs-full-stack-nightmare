@@ -44,11 +44,25 @@ body {
   margin-right: auto;
 }
 
-#wild1 {
+#buttonrow{
   position: relative;
-  justify-content: right;
-  top: 225px;
-  left: 550px;
+  justify-content: center;
+  top: 250px;
+}
+
+#wild1 {
+  position: absolute;
+  left: 575px;
+}
+
+#strike1 {
+  position: absolute;
+  left: 75px;
+}
+
+#flee1 {
+  position: absolute;
+  left: 350px;
 }
 
 #left {
@@ -63,13 +77,6 @@ body {
   align-items: right;
   bottom: 225px;
   left: 750px;
-}
-
-#wildflail {
-  position: relative;
-  align-items: right;
-  left: 650px;
-  bottom: 500px;
 }
 
 #right-sidebar { grid-area: right-sidebar; }
