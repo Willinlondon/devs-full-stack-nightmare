@@ -127,6 +127,19 @@ function createAttackButton() {
 	});
 }
 
+function createWildFlailButton() {
+
+	wildFlailButton = createButton("Wild Flail");
+	wildFlailButton.position(500, 500);
+
+	wildFlailButton.mousePressed(() => {
+		if (game.battle) {
+      wildFlail = new Ability("Wild Flail", 1, 12)
+			game.battle.takeTurn(wildFlail);
+		}
+	});
+}
+
 function createFleeButton() {
   fleeButton = createButton('Flee!');
   fleeButton.position(600, 500);
