@@ -114,7 +114,7 @@ class Game {
     textSize(32);
     text(this.battle.player1.name, canvas.width / 5, (canvas.height / 5) * 4);
     text(
-      `HP: ${this.battle.player1.health}/100`,
+      `HP: ${this.battle.player1.health}/${Config.playerHealth}`,
       canvas.width / 5,
       (canvas.height / 5) * 4 + 35
     );
