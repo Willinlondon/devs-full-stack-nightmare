@@ -57,10 +57,14 @@ class Game {
         let cell = Cell.find(xi * Config.cellSize, yi * Config.cellSize)
 
         if (cell.isWall()) {
-          image(wallImg, cell.x, cell.y);
+          // image(wallImg, cell.x, cell.y);
         } else {
-          image(tileImg, cell.x, cell.y);
+          // image(tileImg, cell.x, cell.y);
         }
+
+        fill(255)
+        textAlign(CENTER, CENTER)
+        text(`${cell.region},${cell.regionX},${cell.regionY}`, cell.x + Config.cellSize / 2, cell.y + Config.cellSize / 2)
       });
     });
   }
@@ -70,9 +74,17 @@ class Game {
   }
 
   _generateCells() {
+    let region = -1;
     this.map.forEach((y, yi) => {
       y.forEach((x, xi) => {
-        new Cell(xi * Config.cellSize, yi * Config.cellSize, x == 1)
+        let cell = new Cell(xi * Config.cellSize, yi * Config.cellSize, x == 1)
+
+        cell.regionY = (xi * Config.gridSize + yi) % (Config.gridSize / Config.regionDivisor)
+        cell.regionX = (yi * Config.gridSize + xi) % (Config.gridSize / Config.regionDivisor)
+
+        if (cell.regionX === 0 && cell.regionY === 0) { region ++ }
+
+        cell.region = region
       });
     });
 

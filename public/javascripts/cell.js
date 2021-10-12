@@ -5,6 +5,7 @@ class Cell {
     this.wall = wall;
     this.exits = new Object;
     this.constructor.all.push(this);
+    this.region;
   }
 
   static all = [];
