@@ -128,7 +128,7 @@ function createOkButton() {
 function createPrecisionStrikeButton() {
 
 	precisionStrikeButton = createButton("Precision Strike");
-	precisionStrikeButton.parent("strike1");
+	precisionStrikeButton.parent("strike");
 
 	precisionStrikeButton.mousePressed(() => {
 		if (game.battle) {
@@ -142,7 +142,7 @@ function createWildFlailButton() {
 
 	wildFlailButton = createButton("Wild Flail");
 	//wildFlailButton.position(500, 500);
-  wildFlailButton.parent("wild1");
+  wildFlailButton.parent("wildflail");
 
 	wildFlailButton.mousePressed(() => {
 		if (game.battle) {
@@ -154,7 +154,7 @@ function createWildFlailButton() {
 
 function createFleeButton() {
   fleeButton = createButton('Flee!');
-  fleeButton.parent('flee1');
+  fleeButton.parent('flee');
 
   fleeButton.mousePressed(() => {
     if (Math.random() > Config.fleeFailureChance) {
