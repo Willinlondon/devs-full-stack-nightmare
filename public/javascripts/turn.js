@@ -2,8 +2,8 @@ class Turn {
   constructor(player1, player2, flee) {
     this.player1 = player1;
     this.player2 = player2;
-    this.p1Attack = new Object;
-    this.p2Attack = new Object;
+    this.p1Attack = new Ability("Basic Attack");
+    this.p2Attack = new Ability("Basic Attack");
     this.flee = flee
     this._judge();
   }
