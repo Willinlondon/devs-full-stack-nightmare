@@ -37,9 +37,7 @@ class Cell {
       && cell.y < Config.canvasHeight
       && !cell.isWall();
     })
-
-    console.log(result);
-
+    
     return result;
   }
 }
