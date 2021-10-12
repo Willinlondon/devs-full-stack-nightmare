@@ -1,8 +1,9 @@
 class Character {
 
-	constructor(name = "Player") {
+	constructor(name = "Player", health = Config.playerHealth) {
 		this.name = name;
-		this.health = Config.playerHealth;
+		this.health = health;
+    this.maxHealth = health;
 		this.location = [0, 0];
 	}
 
