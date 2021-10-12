@@ -5,11 +5,11 @@ class Region {
   }
 
   show() {
-    this.cells.forEach((y, y_index) => {
-      y.forEach((x, x_index) => {
+    this.cells.forEach((y, yi) => {
+      y.forEach((x, xi) => {
         const currentCell = this._cellAt(
-          x_index * Config.cellSize,
-          y_index * Config.cellSize
+          xi * Config.cellSize,
+          yi * Config.cellSize
         );
 
         if (currentCell.isWall()) {

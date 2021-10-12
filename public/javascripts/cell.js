@@ -9,6 +9,10 @@ class Cell {
 
   static all = [];
 
+  static find(x, y) {
+    return Cell.all.find(cell => cell.x === x && cell.y === y)
+  }
+
   isWall() {
     return this.wall;
   }
