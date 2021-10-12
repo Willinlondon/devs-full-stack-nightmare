@@ -1,10 +1,11 @@
 class Character {
 
-	constructor(name = "Player", health = Config.playerHealth) {
+	constructor(name = "Player", health = Config.playerHealth, abilities) {
 		this.name = name;
 		this.health = health;
     this.maxHealth = health;
 		this.location = [0, 0];
+    this.abilities = abilities
 	}
 
 	startLocation(startingColumn, startingRow) {
