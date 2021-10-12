@@ -9,6 +9,7 @@ class Config {
     static wallColour = [150, 50, 150];
     static battleFontSize = 32;
     static battleTextColor = [212, 217, 166]
+    static playerHealth = 100;
     static baseMinAttack = 5;
     static baseMaxAttack = 8;
     static wildFlailMin = 2;
