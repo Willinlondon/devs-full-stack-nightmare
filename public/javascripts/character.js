@@ -2,7 +2,7 @@ class Character {
 
 	constructor(name = "Player") {
 		this.name = name;
-		this.health = 100;
+		this.health = Config.playerHealth;
 		this.location = [0, 0];
 	}
 
