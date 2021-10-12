@@ -2,16 +2,18 @@ const game = new Game();
 let attackButton;
 let okButton;
 let fleeButton;
-let img;
-let imagePath = "./stylesheets/assets/battleBackground.jpg";
+let battleBackgroundImage;
+let battleBackgroundImagePath = "./stylesheets/assets/battleBackground.jpg";
 let tileImg;
 let wallImg;
 let playerImg;
+let enemyImg;
 
 function preload() {
 	tileImg = loadImage("./images/tile1.png");
 	wallImg = loadImage("./images/wall1.png");
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
+	enemyImg = createImg('./images/idlePlayer1CROPPED.png', 'enemy');
 }
 
 function setup() {
@@ -20,7 +22,8 @@ function setup() {
 	createFleeButton();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
-	img = loadImage(imagePath);
+  enemyImg.parent("play-area");
+	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
 function draw() {
@@ -28,6 +31,7 @@ function draw() {
 
 	switch (game.state) {
 		case "mapScreen":
+      enemyImg.hide();
 			okButton.hide();
 			attackButton.hide();
 			fleeButton.hide();
@@ -43,18 +47,21 @@ function draw() {
 
 			break;
 		case "battleScreen":
-			background(img, 0, 0);
+			background(battleBackroundImage, 0, 0);
+      enemyImg.show();
 			game.showBattle();
 			attackButton.show();
 			fleeButton.show();
 			break;
 		case "gameOver":
 			okButton.hide();
+      enemyImg.hide();
 			attackButton.hide();
 			fleeButton.hide();
 			game.showGameOver();
 			break;
 		case "victoryScreen":
+      enemyImg.hide();
 			okButton.show();
 			attackButton.hide();
 			fleeButton.hide();
@@ -113,6 +120,5 @@ function createFleeButton() {
     else {
       game.battle.takeTurn(true);
     }
-
 	});
 }
