@@ -16,7 +16,8 @@ class Game {
       this.gameMap.startingRow
     );
 
-    this.cells = Cell.all;
+    this._generateCells();
+
     this.cells.forEach((cell) => {
       cell.calculateExits();
       cell.calculateTile();
@@ -77,19 +78,13 @@ class Game {
   }
 
   _generateCells() {
-    const cellArray = [];
-
-    this.map.forEach((y, y_index) => {
-      y.forEach((x, x_index) => {
-        const wall = x == 1;
-
-        cellArray.push(
-          new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall)
-        );
+    this.map.forEach((y, yi) => {
+      y.forEach((x, xi) => {
+        new Cell(xi * Config.cellSize, yi * Config.cellSize, x == 1)
       });
     });
 
-    return cellArray;
+    this.cells = Cell.all;
   }
 
   showBattle() {
