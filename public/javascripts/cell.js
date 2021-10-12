@@ -4,7 +4,6 @@ class Cell {
     this.y = y;
     this.wall = wall;
     this.exits = new Object;
-    this.neighbours = this._calculateNeighbours();
     this.constructor.all.push(this);
   }
 
@@ -14,59 +13,33 @@ class Cell {
     return this.wall;
   }
 
-  _calculateNeighbours() {
-    let cellNeighbours = [];
-
-    let west = [this.x - Config.cellSize, this.y];
-    let east = [this.x + Config.cellSize, this.y];
-    let north = [this.y - Config.cellSize, this.x];
-    let south = [this.y + Config.cellSize, this.x];
-    let northwest = [this.x - Config.cellSize, this.y - Config.cellSize];
-    let southwest = [this.x - Config.cellSize, this.y + Config.cellSize];
-    let northeast = [this.x + Config.cellSize, this.y - Config.cellSize];
-    let southeast = [this.x + Config.cellSize, this.y + Config.cellSize];
-
-    [north, east, south, west, northeast,
-    northwest, southeast, southwest].forEach((dir) => {
-      cellNeighbours.push(dir);
-    });
-
-    cellNeighbours = cellNeighbours.filter((dir) => {
-      return (dir[0] >= 0 && dir[1] >= 0 &&
-        dir[0] < Config.canvasWidth && dir[1] < Config.canvasHeight);
-    });
-
-    return cellNeighbours;
+  calculateExits() {
+    this.exits.west = this._freeCell([this.x - Config.cellSize, this.y]);
+    this.exits.east = this._freeCell([this.x + Config.cellSize, this.y]);
+    this.exits.north = this._freeCell([this.y - Config.cellSize, this.x]);
+    this.exits.south = this._freeCell([this.y + Config.cellSize, this.x]);
+    this.exits.northwest = this._freeCell([this.x - Config.cellSize, this.y - Config.cellSize]);
+    this.exits.southwest = this._freeCell([this.x - Config.cellSize, this.y + Config.cellSize]);
+    this.exits.northeast = this._freeCell([this.x + Config.cellSize, this.y - Config.cellSize]);
+    this.exits.southeast = this._freeCell([this.x + Config.cellSize, this.y + Config.cellSize]);
   }
 
-  calculateExits() {
-    ["north", "east", "south", "west",
-    "northeast", "northwest", "southeast", "southwest"].forEach((dir) => {
-      this.exits[dir] = true
+  _freeCell(position) {
+    let x = position[0];
+    let y = position[1];
+
+    let result = Cell.all.some((cell) => {
+      return cell.x === x
+      && cell.y === y
+      && cell.x >= 0
+      && cell.y >= 0
+      && cell.x < Config.canvasWidth
+      && cell.y < Config.canvasHeight
+      && !cell.isWall();
     })
 
-    if (this.x === 0) {
-      this.exits.west = false
-      this.exits.northwest = false
-      this.exits.southwest = false
-    }
+    console.log(result);
 
-    if (this.x === Config.canvasWidth - Config.cellSize) {
-      this.exits.east = false
-      this.exits.northeast = false
-      this.exits.southeast = false
-    }
-
-    if (this.y === 0) {
-      this.exits.north = false
-      this.exits.northeast = false
-      this.exits.northwest = false
-    }
-
-    if (this.y === Config.canvasHeight - Config.cellSize) {
-      this.exits.south = false
-      this.exits.southeast = false
-      this.exits.southwest = false
-    }
+    return result;
   }
 }
