@@ -7,18 +7,21 @@ const ScoreController = {
       const playerUsername = req.body.username;
       const playerScore = req.body.score;
       await score.addScore(playerUsername, playerScore);
-      res.send('response');
+      const scores = await score.getScores();
+      res.json({ scores });
     } catch (error) {
       console.log(error.message);
     }
   },
-  Index(req, res) {
-    try {
-      res.render('scores/index');
-    } catch (error) {
-      console.log(error.message);
-    }
-  },
+  // async Index(req, res) {
+  //   try {
+  //     const score = new Score();
+  //     const scores = await score.getScores();
+  //     res.json({ scores });
+  //   } catch (error) {
+  //     console.log(error.message);
+  //   }
+  // },
 };
 
 module.exports = ScoreController;
