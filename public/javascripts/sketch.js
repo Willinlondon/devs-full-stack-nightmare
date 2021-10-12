@@ -142,7 +142,7 @@ function createWildFlailButton() {
 
 	wildFlailButton = createButton("Wild Flail");
 	//wildFlailButton.position(500, 500);
-  wildFlailButton.parent("button");
+  wildFlailButton.parent("wild1");
 
 	wildFlailButton.mousePressed(() => {
 		if (game.battle) {
