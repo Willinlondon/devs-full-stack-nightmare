@@ -3,11 +3,18 @@ const Score = require('../model/score');
 const ScoreController = {
   async New(req, res) {
     try {
-      console.log('This is the score controller');
+      console.log('score controller', req.body.username);
       const score = new Score();
-      await score.addScore('dan', 10);
-      const scores = await score.getScores();
-      res.render('scores/index', { scores });
+      const playerUsername = req.body.username;
+      const playerScore = req.body.score;
+      await score.addScore(playerUsername, playerScore);
+    } catch (error) {
+      console.log(error.message);
+    }
+  },
+  Index(req, res) {
+    try {
+      res.render('scores/index');
     } catch (error) {
       console.log(error.message);
     }
