@@ -96,7 +96,8 @@ function createAttackButton() {
 
 	attackButton.mousePressed(() => {
 		if (game.battle) {
-			game.battle.takeTurn("Basic Attack");
+      basicAttack = new Ability("Basic Attack")
+			game.battle.takeTurn(basicAttack);
 		}
 	});
 }

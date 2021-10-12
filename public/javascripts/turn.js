@@ -2,7 +2,7 @@ class Turn {
   constructor(player1, player2, playerAbility, flee) {
     this.player1 = player1;
     this.player2 = player2;
-    this.p1Attack = new Ability(playerAbility);
+    this.p1Attack = playerAbility;
     this.p2Attack = new Ability("Undefined Reality"); //Hard coded placeholder name
     this.flee = flee
     this._judge();
