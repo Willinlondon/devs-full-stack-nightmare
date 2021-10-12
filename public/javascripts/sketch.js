@@ -133,8 +133,6 @@ function createOkButton() {
 }
 
 function createPrecisionStrikeButton() {
-  precisionStrikeButton = createButton('Precision Strike');
-  precisionStrikeButton.position(350, 500);
 
   precisionStrikeButton = createButton('Precision Strike');
   precisionStrikeButton.parent('strike');
