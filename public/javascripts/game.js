@@ -52,22 +52,14 @@ class Game {
   }
 
   showMap() {
-    this.map.forEach((y, y_index) => {
-      y.forEach((x, x_index) => {
-        const currentCell = this._cellAt(
-          x_index * Config.cellSize,
-          y_index * Config.cellSize
-        );
+    this.map.forEach((y, yi) => {
+      y.forEach((x, xi) => {
+        let cell = Cell.find(xi * Config.cellSize, yi * Config.cellSize)
 
-        if (currentCell.isWall()) {
-          // fill(Config.wallColour);
-          // wallImg.resize(Config.cellSize, Config.cellSize);
-          image(wallImg, currentCell.x, currentCell.y);
-          // rect(currentCell.x, currentCell.y, Config.cellSize);
+        if (cell.isWall()) {
+          image(wallImg, cell.x, cell.y);
         } else {
-          // rect(currentCell.x, currentCell.y, Config.cellSize);
-          // tileImg.resize(Config.cellSize, Config.cellSize);
-          image(tileImg, currentCell.x, currentCell.y);
+          image(tileImg, cell.x, cell.y);
         }
       });
     });
