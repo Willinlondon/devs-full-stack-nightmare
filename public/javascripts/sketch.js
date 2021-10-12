@@ -33,7 +33,7 @@ function preload() {
 	wallImg = loadImage("./images/wall1.png");
 	wallImg.resize(Config.cellSize, Config.cellSize);
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
-  playerImg2 = createImg("./images/idlePlayer1CROPPED.png");
+  playerImg2 = createImg("./images/playerIdleAnimations.gif");
 	enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
 }
 
