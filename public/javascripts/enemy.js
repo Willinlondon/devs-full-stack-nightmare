@@ -3,4 +3,12 @@ class Enemy {
     this.name = name
     this.health = health
   }
+
+  hasFainted() {
+    return this.health <= 0;
+  }
+
+	takeHit(amount) {
+		this.health -= amount;
+	}
 }
