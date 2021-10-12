@@ -91,6 +91,7 @@ class Game {
   showBattle() {
     if (this.battle.over()) {
       if (this.player.hasFainted()) {
+        addToScoreDatabase('new-test-player-2', 500);
         this.state = 'gameOver';
       } else {
         this.state = 'victoryScreen';
