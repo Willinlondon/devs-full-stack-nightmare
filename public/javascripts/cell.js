@@ -14,5 +14,7 @@ class Cell {
   _calculateExits() {
     if(this.x == 0) { this.exits.west = false };
     if(this.x == Config.canvasWidth - Config.cellSize) { this.exits.east = false };
+    if(this.y == 0) { this.exits.north = false };
+    if(this.y == Config.canvasHeight - Config.cellSize) { this.exits.south = false };
   }
 }
