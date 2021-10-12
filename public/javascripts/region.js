@@ -7,15 +7,12 @@ class Region {
   show() {
     this.cells.forEach((y, yi) => {
       y.forEach((x, xi) => {
-        const currentCell = this._cellAt(
-          xi * Config.cellSize,
-          yi * Config.cellSize
-        );
+        let cell = Cell.find(xi * Config.cellSize, yi * Config.cellSize)
 
-        if (currentCell.isWall()) {
-          image(wallImg, currentCell.x - offset, currentCell.y - offset);
+        if (cell.isWall()) {
+          image(wallImg, cell.x - this.offset, cell.y - this.offset);
         } else {
-          image(tileImg, currentCell.x - offset, currentCell.y - offset);
+          image(tileImg, cell.x - this.offset, cell.y - this.offset);
         }
       });
     });
