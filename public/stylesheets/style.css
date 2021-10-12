@@ -50,6 +50,12 @@ body {
   top: 250px;
 }
 
+#okButton {
+  position: relative;
+  left: 350px;
+  top: 450px;
+}
+
 #wildflail {
   position: absolute;
   left: 575px;

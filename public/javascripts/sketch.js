@@ -123,7 +123,7 @@ function keyPressed() {
 
 function createOkButton() {
   okButton = createButton('OK');
-  okButton.parent('flee')
+  okButton.parent('okButton');
 
   okButton.mousePressed(() => {
     game.battle = null;
