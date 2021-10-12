@@ -32,7 +32,7 @@ function draw() {
 			attackButton.hide();
 			fleeButton.hide();
 			game.showMap();
-
+			//Comment to push
 			// fill(Config.playerColour);
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 			image(
