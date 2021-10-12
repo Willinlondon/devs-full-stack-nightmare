@@ -145,7 +145,6 @@ function createPrecisionStrikeButton() {
 function createWildFlailButton() {
 
 	wildFlailButton = createButton("Wild Flail");
-	//wildFlailButton.position(500, 500);
   wildFlailButton.parent("wildflail");
 
 	wildFlailButton.mousePressed(() => {
