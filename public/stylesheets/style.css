@@ -36,23 +36,47 @@ body {
 #left-sidebar { grid-area: left-sidebar; }
 
 #play-area {
+  position: relative;
   justify-content: center;
   align-items: center;
   grid-area: play-area;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-.left {
+#buttonrow{
+  position: relative;
+  justify-content: center;
+  top: 250px;
+}
+
+#wildflail {
+  position: absolute;
+  left: 575px;
+}
+
+#strike {
+  position: absolute;
+  left: 75px;
+}
+
+#flee {
+  position: absolute;
+  left: 350px;
+}
+
+#left {
   position: relative;
   align-items: left;
-  top: 100px;
-  left: 75px;
+  bottom: 225px;
+  left: 400px;
 }
 
 #right {
   position: relative;
   align-items: right;
   bottom: 225px;
-  left: 1175px;
+  left: 750px;
 }
 
 #right-sidebar { grid-area: right-sidebar; }

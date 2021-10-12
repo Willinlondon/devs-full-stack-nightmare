@@ -3,9 +3,9 @@ class Game {
     map = new Map(
       Config.mapDimension,
       Config.NoOfTunnels,
-      Config.maxTunnelLength
+      Config.maxTunnelLength,
     ),
-    player = new Character()
+    player = new Character(),
   ) {
     this.gameMap = map;
     this.map = this.gameMap.createMap();
@@ -13,7 +13,7 @@ class Game {
     this.state = 'mapScreen';
     this.player.startLocation(
       this.gameMap.startingColumn,
-      this.gameMap.startingRow
+      this.gameMap.startingRow,
     );
 
     this.cells = this._generateCells();
@@ -51,7 +51,7 @@ class Game {
       y.forEach((x, x_index) => {
         const currentCell = this._cellAt(
           x_index * Config.cellSize,
-          y_index * Config.cellSize
+          y_index * Config.cellSize,
         );
 
         if (currentCell.isWall()) {
@@ -80,7 +80,7 @@ class Game {
         const wall = x == 1;
 
         cellArray.push(
-          new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall)
+          new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall),
         );
       });
     });
@@ -105,7 +105,7 @@ class Game {
     text(
       `You were ambushed by an angry, \nobnoxious troll called ${this.battle.player2.name}!`,
       canvas.width / 2,
-      canvas.height / 6
+      canvas.height / 6,
     );
     textSize(28);
     if (this.battle.string) {
@@ -117,17 +117,17 @@ class Game {
     text(
       `HP: ${this.battle.player1.health}/${Config.playerHealth}`,
       canvas.width / 5,
-      (canvas.height / 5) * 4 + 35
+      (canvas.height / 5) * 4 + 35,
     );
     text(
       this.battle.player2.name,
       (canvas.width / 5) * 4,
-      (canvas.height / 5) * 4
+      (canvas.height / 5) * 4,
     );
     text(
       `HP: ${this.battle.player2.health}/${this.battle.player2.maxHealth}`,
       (canvas.width / 5) * 4,
-      (canvas.height / 5) * 4 + 35
+      (canvas.height / 5) * 4 + 35,
     );
   }
 
@@ -140,14 +140,14 @@ class Game {
   }
 
   showVictoryScreen() {
-    background(Config.victoryScreenBackground);
-    fill(0);
+    // background(Config.victoryScreenBackground);
+    // fill(0);
     textSize(32);
     textAlign(CENTER, CENTER);
     text(
       `${this.battle.player2.name} fainted!`,
       canvas.width / 2,
-      canvas.height / 3
+      canvas.height / 3,
     );
   }
 
