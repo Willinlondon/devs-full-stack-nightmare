@@ -41,6 +41,7 @@ function preload() {
 function setup() {
 	createPrecisionStrikeButton();
   createWildFlailButton();
+  createHealButton();
 	createOkButton();
 	createFleeButton();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
@@ -60,6 +61,7 @@ function draw() {
 			okButton.hide();
 			precisionStrikeButton.hide();
       wildFlailButton.hide();
+      healButton.hide();
 			fleeButton.hide();
 			game.showMap();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -79,6 +81,7 @@ function draw() {
 			game.showBattle();
 			precisionStrikeButton.show();
       wildFlailButton.show();
+      healButton.show();
 			fleeButton.show();
 			break;
 		case "gameOver":
@@ -87,6 +90,7 @@ function draw() {
       playerImg2.show();
 			precisionStrikeButton.hide();
       wildFlailButton.hide();
+      healButton.hide();
 			fleeButton.hide();
 			game.showGameOver();
 			break;
@@ -98,6 +102,7 @@ function draw() {
 			precisionStrikeButton.hide();
       wildFlailButton.hide();
 			fleeButton.hide();
+      healButton.hide();
 			game.showVictoryScreen();
 			break;
 	}
@@ -159,12 +164,13 @@ function createWildFlailButton() {
 
 function createHealButton() {
   healButton = createButton('Recovery');
-  healButton.parent('heal');
+  healButton.parent("heal");
 
   healButton.mousePressed(() => {
 		if (game.battle) {
       heal = new Ability("Recovery");
 			game.battle.takeTurn(heal);
+    }
   });
 }
 
