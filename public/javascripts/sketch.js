@@ -96,7 +96,7 @@ function createAttackButton() {
 
 	attackButton.mousePressed(() => {
 		if (game.battle) {
-			game.battle.takeTurn();
+			game.battle.takeTurn("Basic Attack");
 		}
 	});
 }
@@ -111,7 +111,7 @@ function createFleeButton() {
 		  game.state = "mapScreen";
     }
     else {
-      game.battle.takeTurn(true);
+      game.battle.takeTurn("Flee!", true);
     }
 
 	});
