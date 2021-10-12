@@ -41,7 +41,7 @@ body {
   grid-area: play-area;
 }
 
-#play-area img {
+.left {
   position: relative;
   align-items: left;
   top: 100px;
