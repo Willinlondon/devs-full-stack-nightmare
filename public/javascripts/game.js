@@ -22,6 +22,8 @@ class Game {
       cell.calculateExits();
       cell.calculateTile();
     });
+
+    this.player.setCell();
   }
 
   playerAction(direction, amount) {
@@ -89,6 +91,10 @@ class Game {
     });
 
     this.cells = Cell.all;
+  }
+
+  _setPlayerCell() {
+    this.player.cell = this.cells.find(player.x, player.y);
   }
 
   showBattle() {

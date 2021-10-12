@@ -30,6 +30,8 @@ class Character {
 		if (direction == "down") {
 			this._moveDown(amount);
 		}
+
+    this.setCell();
 	}
 
   hasFainted() {
@@ -39,6 +41,10 @@ class Character {
 	takeHit(amount) {
 		this.health -= amount;
 	}
+
+  setCell() {
+    this.cell = Cell.find(this.location[0], this.location[1]);
+  }
 
 	// Directions are here as private methods
 
