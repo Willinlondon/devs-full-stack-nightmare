@@ -24,12 +24,14 @@ let battleBackgroundImagePath = "./stylesheets/assets/battleBackground.jpg";
 let tileImg;
 let wallImg;
 let playerImg;
+let playerImg2;
 let enemyImg;
 
 function preload() {
 	tileImg = loadImage("./images/tile1.png");
 	wallImg = loadImage("./images/wall1.png");
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
+  playerImg2 = createImg("./images/idlePlayer1CROPPED.png");
 	enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
 }
 
@@ -41,6 +43,7 @@ function setup() {
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
   enemyImg.parent("right");
+  playerImg2.parent("left");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
@@ -50,6 +53,7 @@ function draw() {
 	switch (game.state) {
 		case "mapScreen":
       enemyImg.hide();
+      playerImg2.show();
 			okButton.hide();
 			precisionStrikeButton.hide();
       wildFlailButton.hide();
@@ -66,6 +70,7 @@ function draw() {
 		case "battleScreen":
 			background(battleBackroundImage, 0, 0);
       enemyImg.show();
+      playerImg2.show();
 			game.showBattle();
 			precisionStrikeButton.show();
       wildFlailButton.show();
@@ -74,6 +79,7 @@ function draw() {
 		case "gameOver":
 			okButton.hide();
       enemyImg.hide();
+      playerImg2.show();
 			precisionStrikeButton.hide();
       wildFlailButton.hide();
 			fleeButton.hide();
@@ -83,6 +89,7 @@ function draw() {
       background(battleBackroundImage, 0, 0);
       enemyImg.hide();
 			okButton.show();
+      playerImg2.show();
 			precisionStrikeButton.hide();
       wildFlailButton.hide();
 			fleeButton.hide();
@@ -134,7 +141,8 @@ function createPrecisionStrikeButton() {
 function createWildFlailButton() {
 
 	wildFlailButton = createButton("Wild Flail");
-	wildFlailButton.position(500, 500);
+	//wildFlailButton.position(500, 500);
+  wildFlailButton.parent("button");
 
 	wildFlailButton.mousePressed(() => {
 		if (game.battle) {
