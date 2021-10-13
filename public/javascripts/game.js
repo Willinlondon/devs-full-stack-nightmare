@@ -10,7 +10,7 @@ class Game {
     this.gameMap = map;
     this.map = this.gameMap.createMap();
     this.player = player;
-    this.state = 'mapScreen';
+    this.state = 'nameScreen';
     this.player.spawn(this.gameMap.startingColumn, this.gameMap.startingRow);
     this._generateCells();
 
@@ -22,8 +22,12 @@ class Game {
     this.player.setGridPosition();
   }
 
+  addUserName(name) {
+    console.log(name);
+  }
+
   showMap() {
-    Cell.filterByRegion(this.player.region).forEach(cell => cell.show())
+    Cell.filterByRegion(this.player.region).forEach((cell) => cell.show());
   }
 
   _cellAt(x, y) {
@@ -31,30 +35,36 @@ class Game {
   }
 
   _generateCells() {
-    let region = -1;
+    const region = -1;
 
     this.map.forEach((y, yi) => {
       y.forEach((x, xi) => {
-        let cell = new Cell(xi * Config.cellSize, yi * Config.cellSize, x == 1)
-
-        cell.regionY = (xi * Config.gridSize + yi)
-        % (Config.gridSize / Config.regionDivisor)
-        * Config.cellSize
-
-        cell.regionX = (yi * Config.gridSize + xi)
-        % (Config.gridSize / Config.regionDivisor)
-        * Config.cellSize
-
-        cell.number = (cell.y * Config.gridSize + cell.x) / Config.cellSize
-        
-        cell.region = (
-          Math.floor(
-            (cell.y / Config.cellSize)/(Config.gridSize / Config.regionDivisor)
-          )
-          * Config.regionDivisor
-          + Math.floor(
-            (cell.x / Config.cellSize)/(Config.gridSize / Config.regionDivisor))
+        const cell = new Cell(
+          xi * Config.cellSize,
+          yi * Config.cellSize,
+          x == 1
         );
+
+        cell.regionY =
+          ((xi * Config.gridSize + yi) %
+            (Config.gridSize / Config.regionDivisor)) *
+          Config.cellSize;
+
+        cell.regionX =
+          ((yi * Config.gridSize + xi) %
+            (Config.gridSize / Config.regionDivisor)) *
+          Config.cellSize;
+
+        cell.number = (cell.y * Config.gridSize + cell.x) / Config.cellSize;
+
+        cell.region =
+          Math.floor(
+            cell.y / Config.cellSize / (Config.gridSize / Config.regionDivisor)
+          ) *
+            Config.regionDivisor +
+          Math.floor(
+            cell.x / Config.cellSize / (Config.gridSize / Config.regionDivisor)
+          );
       });
     });
 
@@ -127,9 +137,12 @@ class Game {
   }
 
   enterBattle() {
-    this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth));
+    this.battle = new Battle(
+      this.player,
+      new Character('Jasmine', Config.defaultEnemyHealth)
+    );
     this.state = 'battleScreen';
   }
 
-	_removeEnemy() {}
+  _removeEnemy() {}
 }
