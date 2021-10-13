@@ -13,6 +13,7 @@ class Game {
     this.state = 'mapScreen';
     this.player.spawn(this.gameMap.startingColumn, this.gameMap.startingRow);
     this._generateCells();
+
     this.cells.forEach((cell) => {
       cell.calculateExits();
       cell.calculateTile();
@@ -128,6 +129,7 @@ class Game {
     );
   }
 
+
   showGameOver() {
     background(0);
     fill(255);
@@ -151,19 +153,19 @@ class Game {
     this.state = 'battleScreen';
   }
 
-  // Should be called checkEncounter?
-  _setState(_encounterRoll) {
-    if (_encounterRoll > Config.encounterProbability) {
-      this._enterBattle();
-    }
-    if (_encounterRoll <= Config.encounterProbability) {
-      this.state = 'mapScreen';
-    }
-  }
+	// Should be called checkEncounter?
+	_setState(_encounterRoll) {
+		if (_encounterRoll > Config.encounterProbability) {
+			this._enterBattle();
+		}
+		if (_encounterRoll <= Config.encounterProbability) {
+			this.state = "mapScreen";
+		}
+	}
 
-  _encounterRoll() {
-    return Math.random();
-  }
+	_encounterRoll() {
+		return Math.random();
+	}
 
-  _removeEnemy() {}
+	_removeEnemy() {}
 }

@@ -18,6 +18,8 @@ class Cell {
     return Cell.all.find(cell => cell.x === x && cell.y === y)
   }
 
+  static all = [];
+
   isWall() {
     return this.wall;
   }
@@ -50,6 +52,7 @@ class Cell {
       image(tileImg, this.regionX, this.regionY);
     }
   }
+
 
 
   _freeCell(position) {
