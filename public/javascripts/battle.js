@@ -6,9 +6,9 @@ class Battle {
   }
 
   takeTurn(playerAbility, flee = false) {
-    let turn = new Turn(this.player1, this.player2, playerAbility, flee);
+    let turn = new Turn(this.player1, this.player2, playerAbility, this.player2.abilities, flee);
     this.log.push(turn);
-    this.string = turn.outcome();
+    this.outcomeStrings = turn.outcome();
   }
 
   over() {

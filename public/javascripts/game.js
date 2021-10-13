@@ -81,9 +81,12 @@ class Game {
       canvas.width / 2,
       canvas.height / 6
     );
+
     textSize(28);
-    if (this.battle.string) {
-      text(this.battle.string, canvas.width / 2, canvas.height / 2);
+    if (this.battle.outcomeStrings) {
+      console.log(startTime);
+      if(frameCount > startTime + 30 && frameCount < startTime + 120){text(this.battle.outcomeStrings[0], canvas.width / 2, canvas.height / 2);}
+      if(frameCount > startTime + 60 && frameCount < startTime + 120){text(this.battle.outcomeStrings[1], canvas.width / 2, canvas.height / 2 + 80);}
     }
 
     textSize(32);
@@ -128,7 +131,7 @@ class Game {
   }
 
   enterBattle() {
-    this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth));
+    this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth, ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"]));
     this.state = 'battleScreen';
   }
 

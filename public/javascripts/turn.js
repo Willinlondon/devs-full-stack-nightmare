@@ -1,9 +1,10 @@
 class Turn {
-	constructor(player1, player2, playerAbility, flee) {
+	constructor(player1, player2, playerAbility, enemyAbilities, flee) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.p1Attack = playerAbility;
-		this.p2Attack = Ability.find("Unexpected Failure");
+    this.p2PossibleAttacks = enemyAbilities;
+    this.p2Attack = [];
 		this.flee = flee;
 		this._judge();
 	}
@@ -26,26 +27,15 @@ class Turn {
 				console.log(this.p1Attack.type);
 				p1AttackString = `${this.player1.name} used ${this.p1Attack.name} and healed for ${this.p1Attack.totalHeal}!`;
 			}
-			//  else {
-			// 	p1AttackString = "we got it guys" ;
-			// }
 		} else {
 			p1AttackString = `${this.player1.name} was unable to flee!`;
-		}
-
-		if (this.p2Attack.type === "Damaging") {
-			if (!this.p2Attack.dodged) {
-				p2AttackString = `${p2CritString}${this.player2.name} used ${this.p2Attack.name}\n and dealt ${this.p2Attack.totalDamage} damage to ${this.player1.name}!`;
-			} else {
-				p2AttackString = `${this.player1.name} dodged ${this.player2.name}'s attack!`;
-			}
 		}
 
 		if (this.p2Attack.type === "Heal") {
 			p2AttackString = `${this.player2.name} used ${this.p2Attack.name} and healed for ${this.p2Attack.totalHeal}!`;
 		}
 
-		return `${p1AttackString}\n${p2AttackString}`;
+    return [p1AttackString, p2AttackString];
 	}
 
 	_judge() {
@@ -82,6 +72,8 @@ class Turn {
 			this.player1.takeHeal(this.p1Attack.totalHeal);
 		}
 		// Judge player 2 move
+    let abilityRoll = Math.floor(Math.random() * (this.p2PossibleAttacks.length))
+    this.p2Attack = Ability.find(this.p2PossibleAttacks[abilityRoll])
 		if (this.p2Attack.type == "Damaging") {
 			this.p2Attack.baseDamage = this._valueAmount(
 				this.p2Attack.min,
