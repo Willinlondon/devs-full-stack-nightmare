@@ -15,18 +15,20 @@ class Character {
 	}
 
 	move(direction, amount) {
-		if (direction == "east") {
-			this._moveRight(amount);
-		}
-		if (direction == "west") {
-			this._moveLeft(amount);
-		}
-		if (direction == "north") {
-			this._moveUp(amount);
-		}
-		if (direction == "south") {
-			this._moveDown(amount);
-		}
+    switch(direction) {
+      case "north":
+      this.mapY -= Config.cellSize if this.cell.exits.north;
+      break;
+      case "east":
+      this.mapX += Config.cellSize if this.cell.exits.east;
+      break;
+      case "south":
+      this.mapY += Config.cellSize if this.cell.exits.south;
+      break;
+      case "west":
+      this.mapX -= Config.cellSize if this.cell.exits.west;
+      break;
+    }
 
     this.setCell();
     this.setGridPosition();
@@ -49,34 +51,4 @@ class Character {
     this.gridX = this.cell.regionX;
     this.gridY = this.cell.regionY;
   }
-
-	// Directions are here as private methods
-  
-	_moveRight(amount) {
-		if (this.mapX == Config.cellSize * Config.gridSize - 1) {
-			return;
-		}
-		this.mapX += Config.cellSize;
-	}
-
-	_moveLeft(amount) {
-		if (this.mapX == 0) {
-			return;
-		}
-		this.mapX -= Config.cellSize;
-	}
-
-	_moveUp(amount) {
-		if (this.mapY == 0) {
-			return;
-		}
-		this.mapY -= Config.cellSize;
-	}
-
-	_moveDown(amount) {
-		if (this.mapY == Config.cellSize * Config.gridSize - 1) {
-			return;
-		}
-		this.mapY += Config.cellSize;
-	}
 }
