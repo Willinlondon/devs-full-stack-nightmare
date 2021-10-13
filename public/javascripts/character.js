@@ -1,5 +1,4 @@
 class Character {
-
 	constructor(name = "Player", health = Config.playerHealth, abilities) {
 		this.name = name;
 		this.health = health;
@@ -15,19 +14,21 @@ class Character {
 	}
 
 	move(direction, amount) {
-		if (direction == "east") {
-			this._moveRight(amount);
-		}
-		if (direction == "west") {
-			this._moveLeft(amount);
-		}
-		if (direction == "north") {
-			this._moveUp(amount);
-		}
-		if (direction == "south") {
-			this._moveDown(amount);
-		}
-
+    switch(direction) {
+      case "north":
+      if (this.cell.exits.north) this.mapY -= Config.cellSize 
+      break;
+      case "east":
+      if (this.cell.exits.east) this.mapX += Config.cellSize
+      break;
+      case "south":
+      if (this.cell.exits.south) this.mapY += Config.cellSize
+      break;
+      case "west":
+      if (this.cell.exits.west) this.mapX -= Config.cellSize
+      break;
+    }
+    
     this.setCell();
     this.setGridPosition();
 	}
@@ -49,34 +50,4 @@ class Character {
     this.gridX = this.cell.regionX;
     this.gridY = this.cell.regionY;
   }
-
-	// Directions are here as private methods
-  
-	_moveRight(amount) {
-		if (this.mapX == Config.cellSize * Config.gridSize - 1) {
-			return;
-		}
-		this.mapX += Config.cellSize;
-	}
-
-	_moveLeft(amount) {
-		if (this.mapX == 0) {
-			return;
-		}
-		this.mapX -= Config.cellSize;
-	}
-
-	_moveUp(amount) {
-		if (this.mapY == 0) {
-			return;
-		}
-		this.mapY -= Config.cellSize;
-	}
-
-	_moveDown(amount) {
-		if (this.mapY == Config.cellSize * Config.gridSize - 1) {
-			return;
-		}
-		this.mapY += Config.cellSize;
-	}
 }

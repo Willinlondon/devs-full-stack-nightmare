@@ -22,31 +22,6 @@ class Game {
     this.player.setGridPosition();
   }
 
-  playerAction(direction, amount) {
-    let legalMove = true;
-
-    switch (direction) {
-      case 'east':
-        legalMove = this.player.cell.exits.east;
-        break;
-      case 'west':
-        legalMove = this.player.cell.exits.west;
-        break;
-      case 'north':
-        legalMove = this.player.cell.exits.north;
-        break;
-      case 'south':
-        legalMove = this.player.cell.exits.south;
-        break;
-    }
-
-    if (legalMove) {
-      this.player.move(direction, amount);
-
-      this._setState(this._encounterRoll());
-    }
-  }
-
   showMap() {
     Cell.filterByRegion(this.player.region).forEach(cell => cell.show())
   }
@@ -129,7 +104,6 @@ class Game {
     );
   }
 
-
   showGameOver() {
     background(0);
     fill(255);
@@ -148,24 +122,14 @@ class Game {
     );
   }
 
-  _enterBattle() {
+  setState(state) {
+    this.state = state;
+  }
+
+  enterBattle() {
     this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth));
     this.state = 'battleScreen';
   }
-
-	// Should be called checkEncounter?
-	_setState(_encounterRoll) {
-		if (_encounterRoll > Config.encounterProbability) {
-			this._enterBattle();
-		}
-		if (_encounterRoll <= Config.encounterProbability) {
-			this.state = "mapScreen";
-		}
-	}
-
-	_encounterRoll() {
-		return Math.random();
-	}
 
 	_removeEnemy() {}
 }
