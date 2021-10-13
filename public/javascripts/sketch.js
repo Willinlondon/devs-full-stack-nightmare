@@ -42,44 +42,61 @@ let playerImg;
 let playerImg2;
 let enemyImg;
 let backgroundMusic;
+const images = new Object;
 
 function preload() {
-	tileImg = loadImage(`./images/new-tiles/1.png`);
-	tileImg.resize(Config.cellSize, Config.cellSize);
-	tileImg2 = loadImage(`./images/new-tiles/2.png`);
-	tileImg2.resize(Config.cellSize, Config.cellSize);
-	tileImg3 = loadImage(`./images/new-tiles/3.png`);
-	tileImg3.resize(Config.cellSize, Config.cellSize);
-	tileImg4 = loadImage(`./images/new-tiles/4.png`);
-	tileImg4.resize(Config.cellSize, Config.cellSize);
-	tileImg5 = loadImage(`./images/new-tiles/5.png`);
-	tileImg5.resize(Config.cellSize, Config.cellSize);
-	tileImg6 = loadImage(`./images/new-tiles/6.png`);
-	tileImg6.resize(Config.cellSize, Config.cellSize);
-	tileImg7 = loadImage(`./images/new-tiles/7.png`);
-	tileImg7.resize(Config.cellSize, Config.cellSize);
-	tileImg8 = loadImage(`./images/new-tiles/8.png`);
-	tileImg8.resize(Config.cellSize, Config.cellSize);
-	tileImg9 = loadImage(`./images/new-tiles/9.png`);
-	tileImg9.resize(Config.cellSize, Config.cellSize);
-	tileImg10 = loadImage(`./images/new-tiles/10.png`);
-	tileImg10.resize(Config.cellSize, Config.cellSize);
-	tileImg11 = loadImage(`./images/new-tiles/11.png`);
-	tileImg11.resize(Config.cellSize, Config.cellSize);
-	tileImg12 = loadImage(`./images/new-tiles/12.png`);
-	tileImg12.resize(Config.cellSize, Config.cellSize);
-	tileImg13 = loadImage(`./images/new-tiles/13.png`);
-	tileImg13.resize(Config.cellSize, Config.cellSize);
-	tileImg14 = loadImage(`./images/new-tiles/14.png`);
-	tileImg14.resize(Config.cellSize, Config.cellSize);
-	tileImg15 = loadImage(`./images/new-tiles/15.png`);
-	tileImg15.resize(Config.cellSize, Config.cellSize);
+  tileArray = loadTiles();
+	// tileImg = loadImage(`./images/new-tiles/1.png`);
+ //  tileImg.resize(Config.cellSize, Config.cellSize);
+	// tileImg2 = loadImage(`./images/new-tiles/2.png`);
+	// tileImg2.resize(Config.cellSize, Config.cellSize);
+	// tileImg3 = loadImage(`./images/new-tiles/3.png`);
+	// tileImg3.resize(Config.cellSize, Config.cellSize);
+	// tileImg4 = loadImage(`./images/new-tiles/4.png`);
+	// tileImg4.resize(Config.cellSize, Config.cellSize);
+	// tileImg5 = loadImage(`./images/new-tiles/5.png`);
+	// tileImg5.resize(Config.cellSize, Config.cellSize);
+	// tileImg6 = loadImage(`./images/new-tiles/6.png`);
+	// tileImg6.resize(Config.cellSize, Config.cellSize);
+	// tileImg7 = loadImage(`./images/new-tiles/7.png`);
+	// tileImg7.resize(Config.cellSize, Config.cellSize);
+	// tileImg8 = loadImage(`./images/new-tiles/8.png`);
+	// tileImg8.resize(Config.cellSize, Config.cellSize);
+	// tileImg9 = loadImage(`./images/new-tiles/9.png`);
+	// tileImg9.resize(Config.cellSize, Config.cellSize);
+	// tileImg10 = loadImage(`./images/new-tiles/10.png`);
+	// tileImg10.resize(Config.cellSize, Config.cellSize);
+	// tileImg11 = loadImage(`./images/new-tiles/11.png`);
+	// tileImg11.resize(Config.cellSize, Config.cellSize);
+	// tileImg12 = loadImage(`./images/new-tiles/12.png`);
+	// tileImg12.resize(Config.cellSize, Config.cellSize);
+	// tileImg13 = loadImage(`./images/new-tiles/13.png`);
+	// tileImg13.resize(Config.cellSize, Config.cellSize);
+	// tileImg14 = loadImage(`./images/new-tiles/14.png`);
+	// tileImg14.resize(Config.cellSize, Config.cellSize);
+	// tileImg15 = loadImage(`./images/new-tiles/15.png`);
+	// tileImg15.resize(Config.cellSize, Config.cellSize);
+
 	wallImg = loadImage("./images/wall1.png");
 	wallImg.resize(Config.cellSize, Config.cellSize);
 	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
 	playerImg2 = createImg("./images/playerIdleAnimations.gif");
 	enemyImg = createImg("./images/idleMinotaur.gif", "enemy");
 	backgroundMusic = loadSound("./stylesheets/assets/map-music-but-quiet.wav");
+}
+
+function loadTiles() {
+  let tileArray = [];
+
+  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].forEach((i) => {
+    tileArray.push(loadImage(`./images/new-tiles/${i}.png`));
+  })
+
+  tileArray.forEach((img) => {
+    img.resize(Config.cellSize, Config.cellSize);
+  })
+
+  return tileArray;
 }
 
 function setup() {
