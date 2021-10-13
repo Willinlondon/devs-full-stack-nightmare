@@ -66,6 +66,7 @@ function setup() {
 	createHealButton();
 	createOkButton();
 	createFleeButton();
+  createNewGameButton();
 //  createLocalDifficulty();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
@@ -85,6 +86,7 @@ function draw() {
       enemyImg.hide();
       playerImg2.show();
       okButton.hide();
+      newGameButton.hide();
       faintingEnemy.hide();
       precisionStrikeButton.hide();
       wildFlailButton.hide();
@@ -112,6 +114,7 @@ function draw() {
       fleeButton.show();
       playerFaintAnimation.hide();
       faintingEnemy.hide();
+      newGameButton.hide();
       break;
     case 'gameOver':
       okButton.hide();
@@ -123,6 +126,7 @@ function draw() {
       fleeButton.hide();
       playerFaintAnimation.show();
       faintingEnemy.hide();
+      newGameButton.show();
       game.showGameOver();
       break;
     case 'victoryScreen':
@@ -135,6 +139,7 @@ function draw() {
       wildFlailButton.hide();
       fleeButton.hide();
       healButton.hide();
+      newGameButton.hide();
       game.showVictoryScreen();
       break;
   }
@@ -177,15 +182,14 @@ function createOkButton() {
   });
 }
 
-function changeColor(arg) {
-  precisionStrikeButton.style(
-          "background-color: lightgreen"
-    )};
+function createNewGameButton() {
+  newGameButton = createImg('./images/newGame150px.png');
+  newGameButton.parent('okButton');
 
-function reverseColor() {
-      precisionStrikeButton.style(
-        "background-color: transparent"
-)};
+  newGameButton.mousePressed(() => {
+    window.open('/');
+  });
+}
 
 function createPrecisionStrikeButton() {
 
@@ -241,6 +245,16 @@ function createFleeButton() {
     }
   });
 }
+
+function changeColor() {
+  precisionStrikeButton.style(
+          "background-color: lightgreen"
+    )};
+
+function reverseColor() {
+      precisionStrikeButton.style(
+        "background-color: transparent"
+)};
 
 //function createLocalDifficulty() {
 //  game.cells.forEach((cell) => {
