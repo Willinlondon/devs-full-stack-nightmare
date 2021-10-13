@@ -30,7 +30,7 @@ class Turn {
       p2AttackString = `${this.player1.name} dodged ${this.player2.name}'s attack!`
     }
 
-    return `${p1AttackString}\n${p2AttackString}`
+    return [p1AttackString, p2AttackString]
   }
 
   _judge() {

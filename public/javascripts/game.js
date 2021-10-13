@@ -80,9 +80,10 @@ class Game {
       canvas.width / 2,
       canvas.height / 6
     );
+
     textSize(28);
-    if (this.battle.string) {
-      text(this.battle.string, canvas.width / 2, canvas.height / 2);
+    if (this.battle.outcomeStrings) {
+      text(this.battle.outcomeStrings, canvas.width / 2, canvas.height / 2);
     }
 
     textSize(32);
