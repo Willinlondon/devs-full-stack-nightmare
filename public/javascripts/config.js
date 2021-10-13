@@ -27,6 +27,6 @@ class Config {
 	static unexpectedFailure = new Ability("Unexpected Failure", "Heal", 0, 0, 4, 7);
     static noiseScale = 0.01;
     static noiseRange = 10000;
-    static bossSpawnThreshold = 60;
+    static bossSpawnThreshold = 75;
     static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0)
 }
