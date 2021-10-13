@@ -11,9 +11,11 @@ class Item {
   }
 
   pickUp() {
-    this.game.state = "itemScreen"
-    this.applyEffect();
-    this.available = false;
+    if (this.available) {
+      this.game.state = "itemScreen"
+      this.applyEffect();
+      this.available = false;
+    }
   }
 
   applyEffect() {
