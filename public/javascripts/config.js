@@ -19,8 +19,8 @@ class Config {
 	static mapDimension = 10;
 	static NoOfTunnels = 15;
   	static maxTunnelLength = 6;
-    static precisionStrike = new Ability("Precision Strike", 5, 8, 0, 0);
-    static wildFlail = new Ability("Wild Flail", 2, 13, 0, 0);
-    static heal = new Ability("Recovery", 0, 0, 4, 7);
-    static undefinitedReality = new Ability("Undefined Reality", 5, 8, 0, 0);
+    static precisionStrike = new Ability("Precision Strike", "Damaging", 5, 8, 0, 0);
+    static wildFlail = new Ability("Wild Flail", "Damaging", 2, 13, 0, 0);
+    static heal = new Ability("Recovery", "Heal", 0, 0, 4, 7);
+    static undefinitedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
 }
