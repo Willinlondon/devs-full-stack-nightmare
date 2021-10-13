@@ -14,12 +14,15 @@ class Turn {
 
     let p1AttackString;
     let p2AttackString;
-    if (this.flee === false) {
+    if (this.flee === false && this.p1Attack.type === "Damaging") {
       if (!this.p1Attack.dodged) {
         p1AttackString = `${p1CritString}${this.player1.name} used ${this.p1Attack.name}\nand dealt ${this.p1Attack.totalDamage} damage to ${this.player2.name}!`
       } else {
         p1AttackString = `${this.player2.name} dodged ${this.player1.name}'s attack!`
       }
+    } 
+    if (this.flee === false && this.p1Attack.type === "Heal") {
+      p1AttackString = `${this.player1.name} used ${this.p1Attack.name} and healed for ${this.p1Attack.totalHeal}!`
     } else {
       p1AttackString = `${this.player1.name} was unable to flee!`
     }
