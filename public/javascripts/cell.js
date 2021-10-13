@@ -49,7 +49,52 @@ class Cell {
 		if (this.isWall()) {
 			image(wallImg, this.regionX, this.regionY);
 		} else {
-			image(tileImg, this.regionX, this.regionY);
+			switch (this.tileType) {
+				case 1:
+					image(tileImg1, this.regionX, this.regionY);
+					break;
+				case 2:
+					image(tileImg2, this.regionX, this.regionY);
+					break;
+				case 3:
+					image(tileImg3, this.regionX, this.regionY);
+					break;
+				case 4:
+					image(tileImg4, this.regionX, this.regionY);
+					break;
+				case 5:
+					image(tileImg5, this.regionX, this.regionY);
+					break;
+				case 6:
+					image(tileImg6, this.regionX, this.regionY);
+					break;
+				case 7:
+					image(tileImg7, this.regionX, this.regionY);
+					break;
+				case 8:
+					image(tileImg8, this.regionX, this.regionY);
+					break;
+				case 9:
+					image(tileImg9, this.regionX, this.regionY);
+					break;
+				case 10:
+					image(tileImg10, this.regionX, this.regionY);
+					break;
+				case 11:
+					image(tileImg11, this.regionX, this.regionY);
+					break;
+				case 12:
+					image(tileImg12, this.regionX, this.regionY);
+					break;
+				case 13:
+					image(tileImg13, this.regionX, this.regionY);
+					break;
+				case 14:
+					image(tileImg14, this.regionX, this.regionY);
+					break;
+				default:
+					image(tileImg15, this.regionX, this.regionY);
+			}
 		}
 	}
 
