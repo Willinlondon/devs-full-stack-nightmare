@@ -51,17 +51,18 @@ class Game {
       textSize(16)
       if (cell.isWall()) {
         fill(155)
-        rect(cell.regionX, cell.regionY, 75)
-        // image(wallImg, cell.regionX, cell.regionY);
+        // rect(cell.regionX, cell.regionY, 75)
+        image(wallImg, cell.regionX, cell.regionY);
       } else {
         fill(0)
-        rect(cell.regionX, cell.regionY, 75)
-        // image(tileImg, cell.regionX, cell.regionY);
+        // rect(cell.regionX, cell.regionY, 75)
+        image(tileImg, cell.regionX, cell.regionY);
       }
 
-      fill(255)
-      textAlign(CENTER, CENTER)
-      text(`${cell.region},${cell.regionX},${cell.regionY}`, cell.regionX + Config.cellSize / 2, cell.regionY + Config.cellSize / 2)
+      // info / debug text
+      // fill(255)
+      // textAlign(CENTER, CENTER)
+      // text(`${cell.region},${cell.regionX},${cell.regionY}`, cell.regionX + Config.cellSize / 2, cell.regionY + Config.cellSize / 2)
      
     })
 //     Cell.all.forEach((cell) => {
