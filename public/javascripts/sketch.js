@@ -28,6 +28,7 @@ let enemyImg;
 let backgroundMusic;
 let playerFaintAnimation;
 let faintingEnemy;
+let startTime;
 
 function preload() {
   wallImg = loadImage('./images/wall1.png');
@@ -89,15 +90,13 @@ function draw() {
       fleeButton.hide();
       game.showMap();
       playerFaintAnimation.hide();
-      playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 
       image(
         playerImg,
         game.player.gridX + Config.cellSize / 4,
         game.player.gridY + Config.cellSize / 4
       );
-      // fill(Config.playerColour);
-      // rect(game.player.location[0],game.player.location[1], Config.spriteSize);
 
       break;
     case 'battleScreen':
@@ -177,12 +176,14 @@ function createOkButton() {
 }
 
 function createPrecisionStrikeButton() {
+
   precisionStrikeButton = createImg('./images/precisionStrike150px.png');
   precisionStrikeButton.parent('strike');
 
   precisionStrikeButton.mousePressed(() => {
+    startTime = frameCount;
     if (game.battle) {
-      game.battle.takeTurn(Ability.find('Precision Strike'));
+      game.battle.takeTurn(Ability.find("Precision Strike"));
     }
   });
 }
@@ -193,21 +194,23 @@ function createWildFlailButton() {
   wildFlailButton.parent('wildflail');
 
   wildFlailButton.mousePressed(() => {
-    if (game.battle) {
-      game.battle.takeTurn(Ability.find('Wild Flail'));
-    }
-  });
+    startTime = frameCount;
+		if (game.battle) {
+			game.battle.takeTurn(Ability.find("Wild Flail"));
+		}
+	});
 }
 
 function createHealButton() {
   healButton = createImg('./images/recovery150px.png');
   healButton.parent('heal');
 
-  healButton.mousePressed(() => {
-    if (game.battle) {
-      game.battle.takeTurn(Ability.find('Recovery'));
-    }
-  });
+	healButton.mousePressed(() => {
+    startTime = frameCount;
+		if (game.battle) {
+			game.battle.takeTurn(Ability.find("Recovery"));
+		}
+	});
 }
 
 function createFleeButton() {
@@ -215,6 +218,7 @@ function createFleeButton() {
   fleeButton.parent('flee');
 
   fleeButton.mousePressed(() => {
+    startTime = frameCount;
     if (Math.random() > Config.fleeFailureChance) {
       game.battle = null;
       game.state = 'mapScreen';
