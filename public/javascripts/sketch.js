@@ -29,6 +29,7 @@ let backgroundMusic;
 let playerFaintAnimation;
 let faintingEnemy;
 let startTime;
+let elementHighlight;
 
 function preload() {
   wallImg = loadImage('./images/wall1.png');
@@ -175,13 +176,15 @@ function createOkButton() {
   });
 }
 
-function changeColor() {
-  startTime = frameCount;
-    if (frameCount < startTime + 30){
-        precisionStrikeButton.style(
+function changeColor(arg) {
+  precisionStrikeButton.style(
           "background-color: lightgreen"
     )};
-}
+
+function reverseColor() {
+      precisionStrikeButton.style(
+        "background-color: transparent"
+)};
 
 function createPrecisionStrikeButton() {
 
@@ -189,6 +192,7 @@ function createPrecisionStrikeButton() {
   precisionStrikeButton.parent('strike');
 
   precisionStrikeButton.mouseOver(changeColor);
+  precisionStrikeButton.mouseOut(reverseColor);
   precisionStrikeButton.mousePressed(() => {
     startTime = frameCount;
     if (game.battle) {
