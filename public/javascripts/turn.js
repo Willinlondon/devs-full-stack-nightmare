@@ -26,11 +26,15 @@ class Turn {
     } else {
       p1AttackString = `${this.player1.name} was unable to flee!`
     }
-
-    if (!this.p2Attack.dodged) {
-      p2AttackString = `${p2CritString}${this.player2.name} used ${this.p2Attack.name}\n and dealt ${this.p2Attack.totalDamage} damage to ${this.player1.name}!`
-    } else {
-      p2AttackString = `${this.player1.name} dodged ${this.player2.name}'s attack!`
+    if (this.p2Attack.type === "Damaging") {
+      if (!this.p2Attack.dodged) {
+        p2AttackString = `${p2CritString}${this.player2.name} used ${this.p2Attack.name}\n and dealt ${this.p2Attack.totalDamage} damage to ${this.player1.name}!` 
+      } else {
+        p2AttackString = `${this.player1.name} dodged ${this.player2.name}'s attack!`
+      }
+    }
+    if (this.p2Attack.type === "Heal") {
+      p2AttackString = `${this.player2.name} used ${this.p2Attack.name} and healed for ${this.p2Attack.totalHeal}!`
     }
 
     return `${p1AttackString}\n${p2AttackString}`
