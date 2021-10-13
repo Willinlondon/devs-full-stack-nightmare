@@ -138,24 +138,28 @@ function draw() {
 
 function keyPressed() {
 	if (game.state === "mapScreen") {
+		let moved = false;
 		if (keyCode === LEFT_ARROW || keyCode === 65) {
-			game.playerAction("west", 75);
+			game.player.move("west");
+			moved = true;
 		}
 		if (keyCode === RIGHT_ARROW || keyCode === 68) {
-			game.playerAction("east", 75);
+			game.player.move("east");
+			moved = true;
 		}
 		if (keyCode === UP_ARROW || keyCode === 87) {
-			game.playerAction("north", 75);
+			game.player.move("north");
+			moved = true;
 		}
 		if (keyCode === DOWN_ARROW || keyCode === 83) {
-			game.playerAction("south", 75);
+			game.player.move("south");
+			moved = true;
 		}
 
-    // THIS WAS TAKEN OUT IN MORE TILING AND IS JUST HERE FOR ARCHIVAL PURPOSES
-//     if (moved) {
-//      if (Math.random() > Config.encounterProbability) game.enterBattle();
-//    }
-
+		// THIS WAS TAKEN OUT IN MORE TILING AND IS JUST HERE FOR ARCHIVAL PURPOSES
+		if (moved) {
+			if (Math.random() > Config.encounterProbability) game.enterBattle();
+		}
 	}
 }
 
@@ -170,7 +174,7 @@ function createOkButton() {
 }
 
 function createPrecisionStrikeButton() {
-	precisionStrikeButton = createButton("Precision Strike");
+	precisionStrikeButton = createImg("./images/precisionStrike150px.png");
 	precisionStrikeButton.parent("strike");
 
 	precisionStrikeButton.mousePressed(() => {
