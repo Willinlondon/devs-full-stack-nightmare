@@ -83,7 +83,8 @@ class Game {
 
     textSize(28);
     if (this.battle.outcomeStrings) {
-      text(this.battle.outcomeStrings, canvas.width / 2, canvas.height / 2);
+      text(this.battle.outcomeStrings[0], canvas.width / 2, canvas.height / 2);
+      text(this.battle.outcomeStrings[1], canvas.width / 2, canvas.height / 2 + 80);
     }
 
     textSize(32);
