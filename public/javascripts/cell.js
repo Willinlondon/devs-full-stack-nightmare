@@ -6,6 +6,7 @@ class Cell {
 		this.exits = new Object();
 		this.constructor.all.push(this);
 		this.region;
+		this.boss = null;
 	}
 
 	static all = [];
@@ -50,7 +51,7 @@ class Cell {
 			image(wallImg, this.regionX, this.regionY);
 		} else {
 			image(tileArray[this.tileType - 1], this.regionX, this.regionY);
-			if (this.localDifficulty > Config.bossSpawnThreshold) {
+			if (this.boss) {
 				fill(255, 0, 0)
 				rectMode(CENTER)
 				rect(this.regionX + Config.cellSize / 2, this.regionY + Config.cellSize / 2, 40);

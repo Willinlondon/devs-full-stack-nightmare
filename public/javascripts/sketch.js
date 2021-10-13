@@ -67,6 +67,7 @@ function setup() {
 	createOkButton();
 	createFleeButton();
   createLocalDifficulty();
+  game.spawnBosses();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
   enemyImg.parent("right");
@@ -243,8 +244,7 @@ function createFleeButton() {
 }
 
 function createLocalDifficulty() {
- game.cells.forEach((cell) => {
-   cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
- })
-
+  game.cells.forEach((cell) => {
+    cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
+  })
 };

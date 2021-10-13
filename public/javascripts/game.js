@@ -62,6 +62,14 @@ class Game {
     this.cells = Cell.all;
   }
 
+  spawnBosses() {
+    this.cells.forEach((cell) => {
+      if (cell.localDifficulty > Config.bossSpawnThreshold) {
+        cell.boss = new Character("Git", 1000, ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"]);
+      }
+    })
+  }
+
   showBattle() {
     if (this.battle.over()) {
       if (this.player.hasFainted()) {
