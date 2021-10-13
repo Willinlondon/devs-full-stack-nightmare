@@ -61,18 +61,19 @@ function loadTiles() {
 }
 
 function setup() {
-  createPrecisionStrikeButton();
-  createWildFlailButton();
-  createHealButton();
-  createOkButton();
-  createFleeButton();
-  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
-  canvas.parent('play-area');
-  enemyImg.parent('right');
-  playerImg2.parent('left');
-  playerFaintAnimation.parent('left');
-  faintingEnemy.parent('right');
-  battleBackroundImage = loadImage(battleBackgroundImagePath);
+	createPrecisionStrikeButton();
+	createWildFlailButton();
+	createHealButton();
+	createOkButton();
+	createFleeButton();
+	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
+	canvas.parent("play-area");
+  enemyImg.parent("right");
+  playerImg2.parent("left");
+  playerFaintAnimation.parent("left");
+  faintingEnemy.parent("right");
+	battleBackroundImage = loadImage(battleBackgroundImagePath);
+  createLocalDifficulty();
 }
 
 function draw() {
@@ -239,4 +240,10 @@ function createFleeButton() {
       game.battle.takeTurn('Flee!', true);
     }
   });
+
+function createLocalDifficulty() {
+  game.cells.forEach((cell) => {
+    cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
+  })
+
 }

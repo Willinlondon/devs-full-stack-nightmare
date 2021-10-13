@@ -32,6 +32,7 @@ class Game {
 
   _generateCells() {
     let region = -1;
+    let noiseScale = 0.1;
 
     this.map.forEach((y, yi) => {
       y.forEach((x, xi) => {
