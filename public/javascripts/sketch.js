@@ -67,7 +67,8 @@ function setup() {
 	createOkButton();
 	createFleeButton();
   createNewGameButton();
-//  createLocalDifficulty();
+  createLocalDifficulty();
+  game.spawnBosses();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
   enemyImg.parent("right");
@@ -165,9 +166,12 @@ function keyPressed() {
       moved = true;
     }
 
-    // THIS WAS TAKEN OUT IN MORE TILING AND IS JUST HERE FOR ARCHIVAL PURPOSES
     if (moved) {
-      if (Math.random() > Config.encounterProbability) game.enterBattle();
+      if (game.player.cell.boss) {
+        game.enterBattle(game.player.cell.boss)
+      } else {
+        if (Math.random() > Config.encounterProbability) game.enterBattle()
+      }
     }
   }
 }
@@ -246,6 +250,7 @@ function createFleeButton() {
   });
 }
 
+<<<<<<< HEAD
 function changeColor() {
   precisionStrikeButton.style(
           "background-color: lightgreen"
@@ -256,9 +261,8 @@ function reverseColor() {
         "background-color: transparent"
 )};
 
-//function createLocalDifficulty() {
-//  game.cells.forEach((cell) => {
-//    cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
-//  })
-//
-//};
+function createLocalDifficulty() {
+  game.cells.forEach((cell) => {
+    cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
+  })
+};

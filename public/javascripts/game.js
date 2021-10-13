@@ -47,7 +47,7 @@ class Game {
         * Config.cellSize
 
         cell.number = (cell.y * Config.gridSize + cell.x) / Config.cellSize
-        
+
         cell.region = (
           Math.floor(
             (cell.y / Config.cellSize)/(Config.gridSize / Config.regionDivisor)
@@ -60,6 +60,20 @@ class Game {
     });
 
     this.cells = Cell.all;
+  }
+
+  spawnBosses() {
+    this.cells.forEach((cell) => {
+      if (cell.localDifficulty > Config.bossSpawnThreshold) {
+        cell.boss = new Character(
+          "Git",
+          1000,
+          ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"],
+          "obstructed",
+          "a passive aggressive"
+        );
+      }
+    })
   }
 
   showBattle() {
@@ -77,14 +91,19 @@ class Game {
     textSize(Config.battleFontSize);
     textAlign(CENTER, CENTER);
     text(
-      `You were ambushed by an angry, \nobnoxious troll called ${this.battle.player2.name}!`,
+      `You were ${
+        this.battle.player2.verb
+      } by\n ${
+        this.battle.player2.adjective
+      } troll called ${
+        this.battle.player2.name
+      }!`,
       canvas.width / 2,
       canvas.height / 6
     );
 
     textSize(28);
     if (this.battle.outcomeStrings) {
-      console.log(startTime);
       if(frameCount > startTime + 30 && frameCount < startTime + 120){text(this.battle.outcomeStrings[0], canvas.width / 2, canvas.height / 2);}
       if(frameCount > startTime + 60 && frameCount < startTime + 120){text(this.battle.outcomeStrings[1], canvas.width / 2, canvas.height / 2 + 80);}
     }
@@ -130,8 +149,15 @@ class Game {
     this.state = state;
   }
 
-  enterBattle() {
-    this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth, ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"]));
+  enterBattle(enemy = new Character(
+    'Jasmine',
+    Config.defaultEnemyHealth,
+    ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"],
+    "ambushed",
+    "an angry, obnoxious"
+    )
+  ) {
+    this.battle = new Battle(this.player, enemy);
     this.state = 'battleScreen';
   }
 
