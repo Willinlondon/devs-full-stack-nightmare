@@ -57,6 +57,7 @@ class Turn {
     }
 
     if (this.flee === false && this.p1Attack.type === "Heal") {
+      this.p1Attack.totalHeal = this._valueAmount(this.p1Attack.minHeal, this.p1Attack.maxHeal)
 
     }
     // Judge player 2 move
