@@ -16,8 +16,8 @@ class Config {
     static critChance = 0.1;
     static fleeFailureChance = 0.4;
     static defaultEnemyHealth = 80;
-	  static mapDimension = 10;
-	  static NoOfTunnels = 15;
+	static mapDimension = 10;
+	static NoOfTunnels = 15;
   	static maxTunnelLength = 6;
     static precisionStrike = new Ability("Precision Strike", 5, 8, 0, 0);
     static wildFlail = new Ability("Wild Flail", 2, 13, 0, 0);
