@@ -47,32 +47,7 @@ class Game {
   }
 
   showMap() {
-    Cell.filterByRegion(this.player.region).forEach((cell) => {
-
-      cell.show()
-      // info / debug text
-      // fill(255)
-      // textAlign(CENTER, CENTER)
-      // text(`${cell.region},${cell.regionX},${cell.regionY}`, cell.regionX + Config.cellSize / 2, cell.regionY + Config.cellSize / 2)
-     
-    })
-//     Cell.all.forEach((cell) => {
-//       textSize(16)
-//       if (cell.isWall()) {
-//         fill(155)
-//         rect(cell.x, cell.y, 75)
-//         // image(wallImg, cell.regionX, cell.regionY);
-//       } else {
-//         fill(0)
-//         rect(cell.x, cell.y, 75)
-//         // image(tileImg, cell.regionX, cell.regionY);
-//       }
-// 
-//       fill(255)
-//       textAlign(CENTER, CENTER)
-//       // ${cell.regionX},${cell.regionY}
-//       text(`${cell.number}, ${cell.region}`, cell.x + Config.cellSize / 2, cell.y + Config.cellSize / 2)
-//     })
+    Cell.filterByRegion(this.player.region).forEach(cell => cell.show())
   }
 
   _cellAt(x, y) {
