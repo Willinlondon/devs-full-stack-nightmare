@@ -10,7 +10,19 @@ function addToScoreDatabase(username, score) {
     body: JSON.stringify(gameData),
   })
     .then((response) => response.json())
-    .then((data) => console.log(data.scores));
+    .then((data) => console.log(data));
+}
+
+async function getScores() {
+  const response = await fetch('/score', {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    method: 'GET',
+  });
+  const data = await response.json();
+  return data;
 }
 
 const game = new Game();
@@ -43,13 +55,13 @@ function setup() {
   createPrecisionStrikeButton();
   createWildFlailButton();
   createHealButton();
-	createOkButton();
-	createFleeButton();
-	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
-	canvas.parent("play-area");
-  enemyImg.parent("right");
-  playerImg2.parent("left");
-	battleBackroundImage = loadImage(battleBackgroundImagePath);
+  createOkButton();
+  createFleeButton();
+  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
+  canvas.parent('play-area');
+  enemyImg.parent('right');
+  playerImg2.parent('left');
+  battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
 function draw() {
@@ -64,15 +76,15 @@ function draw() {
       precisionStrikeButton.hide();
       wildFlailButton.hide();
       healButton.hide();
-			fleeButton.hide();
-			game.showMap();
-			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
-			image(
-				playerImg,
-				game.player.location[0] + Config.cellSize / 4,
-				game.player.location[1] + Config.cellSize / 4
-			);
-			// fill(Config.playerColour);
+      fleeButton.hide();
+      game.showMap();
+      playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      image(
+        playerImg,
+        game.player.location[0] + Config.cellSize / 4,
+        game.player.location[1] + Config.cellSize / 4
+      );
+      // fill(Config.playerColour);
       // rect(game.player.location[0],game.player.location[1], Config.spriteSize);
 
       break;
@@ -84,30 +96,30 @@ function draw() {
       precisionStrikeButton.show();
       wildFlailButton.show();
       healButton.show();
-			fleeButton.show();
-			break;
-		case "gameOver":
-			okButton.hide();
+      fleeButton.show();
+      break;
+    case 'gameOver':
+      okButton.hide();
       enemyImg.hide();
       playerImg2.show();
       precisionStrikeButton.hide();
       wildFlailButton.hide();
       healButton.hide();
-			fleeButton.hide();
-			game.showGameOver();
-			break;
-		case "victoryScreen":
+      fleeButton.hide();
+      game.showGameOver();
+      break;
+    case 'victoryScreen':
       background(battleBackroundImage, 0, 0);
       enemyImg.hide();
       okButton.show();
       playerImg2.show();
       precisionStrikeButton.hide();
       wildFlailButton.hide();
-			fleeButton.hide();
+      fleeButton.hide();
       healButton.hide();
-			game.showVictoryScreen();
-			break;
-	}
+      game.showVictoryScreen();
+      break;
+  }
 }
 
 function keyPressed() {
@@ -138,7 +150,6 @@ function createOkButton() {
 }
 
 function createPrecisionStrikeButton() {
-
   precisionStrikeButton = createButton('Precision Strike');
   precisionStrikeButton.parent('strike');
 
@@ -151,27 +162,30 @@ function createPrecisionStrikeButton() {
 }
 
 function createWildFlailButton() {
+  wildFlailButton = createButton('Wild Flail');
+  // wildFlailButton.position(500, 500);
+  wildFlailButton.parent('wildflail');
 
-	wildFlailButton = createButton("Wild Flail");
-	//wildFlailButton.position(500, 500);
-  wildFlailButton.parent("wildflail");
-
-	wildFlailButton.mousePressed(() => {
-		if (game.battle) {
-      wildFlail = new Ability("Wild Flail", Config.wildFlailMin, Config.wildFlailMax);
-			game.battle.takeTurn(wildFlail);
-		}
-	});
+  wildFlailButton.mousePressed(() => {
+    if (game.battle) {
+      wildFlail = new Ability(
+        'Wild Flail',
+        Config.wildFlailMin,
+        Config.wildFlailMax
+      );
+      game.battle.takeTurn(wildFlail);
+    }
+  });
 }
 
 function createHealButton() {
   healButton = createButton('Recovery');
-  healButton.parent("heal");
+  healButton.parent('heal');
 
   healButton.mousePressed(() => {
-		if (game.battle) {
-      heal = new Ability("Recovery");
-			game.battle.takeTurn(heal);
+    if (game.battle) {
+      heal = new Ability('Recovery');
+      game.battle.takeTurn(heal);
     }
   });
 }
