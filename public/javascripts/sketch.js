@@ -113,18 +113,24 @@ function draw() {
 
 function keyPressed() {
   if (game.state === 'mapScreen') {
+    let moved = false;
     if (keyCode === LEFT_ARROW || keyCode === 65) {
-      game.player.move('west');
+      game.player.move('west'); moved = true;
     }
     if (keyCode === RIGHT_ARROW || keyCode === 68) {
-      game.player.move('east');
+      game.player.move('east'); moved = true;
     }
     if (keyCode === UP_ARROW || keyCode === 87) {
-      game.player.move('north');
+      game.player.move('north'); moved = true;
     }
     if (keyCode === DOWN_ARROW || keyCode === 83) {
-      game.player.move('south');
+      game.player.move('south'); moved = true
     }
+
+    if (moved) {
+      if (Math.random() > Config.encounterProbability) game.enterBattle();
+    }
+
   }
 }
 

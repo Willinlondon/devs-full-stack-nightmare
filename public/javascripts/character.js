@@ -28,7 +28,7 @@ class Character {
       if (this.cell.exits.west) this.mapX -= Config.cellSize
       break;
     }
-
+    
     this.setCell();
     this.setGridPosition();
 	}
