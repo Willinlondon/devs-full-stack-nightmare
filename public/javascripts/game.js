@@ -47,7 +47,7 @@ class Game {
         * Config.cellSize
 
         cell.number = (cell.y * Config.gridSize + cell.x) / Config.cellSize
-        
+
         cell.region = (
           Math.floor(
             (cell.y / Config.cellSize)/(Config.gridSize / Config.regionDivisor)

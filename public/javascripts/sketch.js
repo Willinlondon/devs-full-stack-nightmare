@@ -66,7 +66,7 @@ function setup() {
 	createHealButton();
 	createOkButton();
 	createFleeButton();
-//  createLocalDifficulty();
+  createLocalDifficulty();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
   enemyImg.parent("right");
@@ -242,9 +242,9 @@ function createFleeButton() {
   });
 }
 
-//function createLocalDifficulty() {
-//  game.cells.forEach((cell) => {
-//    cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
-//  })
-//
-//};
+function createLocalDifficulty() {
+ game.cells.forEach((cell) => {
+   cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
+ })
+
+};

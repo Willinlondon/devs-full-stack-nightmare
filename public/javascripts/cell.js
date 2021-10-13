@@ -50,8 +50,12 @@ class Cell {
 			image(wallImg, this.regionX, this.regionY);
 		} else {
 			image(tileArray[this.tileType - 1], this.regionX, this.regionY);
+			if (this.localDifficulty > Config.bossSpawnThreshold) {
+				fill(255, 0, 0)
+				rect(this.regionX, this.regionY, 40);
 			}
 		}
+	}
 
 	_freeCell(position) {
 		let x = position[0];
