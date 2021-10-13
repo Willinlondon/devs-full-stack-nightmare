@@ -12,7 +12,8 @@ class Game {
     this.player = player;
     this.state = 'mapScreen';
     this.player.spawn(this.gameMap.startingColumn, this.gameMap.startingRow);
-    this._generateCells();
+		this._generateCells();
+    this.cells = Cell.all;
     this.cells.forEach((cell) => {
       cell.calculateExits();
       cell.calculateTile();
@@ -128,42 +129,44 @@ class Game {
     );
   }
 
-  showGameOver() {
-    background(0);
-    fill(255);
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    text('GAME OVER', Config.canvasWidth / 2, Config.canvasHeight / 2);
-  }
+	showGameOver() {
+		background(0);
+		fill(255);
+		textSize(32);
+		textAlign(CENTER, CENTER);
+		text("GAME OVER", Config.canvasWidth / 2, Config.canvasHeight / 2);
+	}
 
-  showVictoryScreen() {
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    text(
-      `${this.battle.player2.name} fainted!`,
-      canvas.width / 2,
-      canvas.height / 3
-    );
-  }
+	showVictoryScreen() {
+		background(Config.victoryScreenBackground);
+		fill(0);
+		textSize(32);
+		textAlign(CENTER, CENTER);
+		text(
+			`${this.battle.player2.name} fainted!`,
+			canvas.width / 2,
+			canvas.height / 3
+		);
+	}
 
   _enterBattle() {
-    this.battle = new Battle(this.player, new Enemy('Jasmine'));
+    this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth));
     this.state = 'battleScreen';
   }
 
-  // Should be called checkEncounter?
-  _setState(_encounterRoll) {
-    if (_encounterRoll > Config.encounterProbability) {
-      this._enterBattle();
-    }
-    if (_encounterRoll <= Config.encounterProbability) {
-      this.state = 'mapScreen';
-    }
-  }
+	// Should be called checkEncounter?
+	_setState(_encounterRoll) {
+		if (_encounterRoll > Config.encounterProbability) {
+			this._enterBattle();
+		}
+		if (_encounterRoll <= Config.encounterProbability) {
+			this.state = "mapScreen";
+		}
+	}
 
-  _encounterRoll() {
-    return Math.random();
-  }
+	_encounterRoll() {
+		return Math.random();
+	}
 
-  _removeEnemy() {}
+	_removeEnemy() {}
 }
