@@ -145,8 +145,7 @@ function createPrecisionStrikeButton() {
 
   precisionStrikeButton.mousePressed(() => {
     if (game.battle) {
-      precisionStrike = new Ability('Precision Strike');
-      game.battle.takeTurn(precisionStrike);
+      game.battle.takeTurn(Ability.find("Precision Strike"));
     }
   });
 }
@@ -159,8 +158,7 @@ function createWildFlailButton() {
 
 	wildFlailButton.mousePressed(() => {
 		if (game.battle) {
-      wildFlail = new Ability("Wild Flail", Config.wildFlailMin, Config.wildFlailMax);
-			game.battle.takeTurn(wildFlail);
+			game.battle.takeTurn(Ability.find("Wild Flail"));
 		}
 	});
 }
