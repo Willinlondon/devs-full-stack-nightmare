@@ -27,6 +27,8 @@ let playerImg;
 let playerImg2;
 let enemyImg;
 let backgroundMusic;
+let playerFaintAnimation;
+let faintingEnemy;
 
 function preload() {
   tileImg = loadImage('./images/tile1.png');
@@ -36,7 +38,9 @@ function preload() {
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
   playerImg2 = createImg('./images/playerIdleAnimations.gif');
   enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
+  playerFaintAnimation = createImg('./images/playerFaintAnimation.gif', 'fainting player');
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
+  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
 }
 
 function setup() {
@@ -49,6 +53,9 @@ function setup() {
 	canvas.parent("play-area");
   enemyImg.parent("right");
   playerImg2.parent("left");
+  //playerImg2.parent("left");
+  playerFaintAnimation.parent("left");
+  faintingEnemy.parent("right");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
@@ -61,11 +68,13 @@ function draw() {
       enemyImg.hide();
       playerImg2.show();
       okButton.hide();
+      faintingEnemy.hide();
       precisionStrikeButton.hide();
       wildFlailButton.hide();
       healButton.hide();
 			fleeButton.hide();
 			game.showMap();
+      playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 
       image(
@@ -86,20 +95,26 @@ function draw() {
       wildFlailButton.show();
       healButton.show();
 			fleeButton.show();
+      playerFaintAnimation.hide();
+      faintingEnemy.hide();
 			break;
 		case "gameOver":
 			okButton.hide();
       enemyImg.hide();
-      playerImg2.show();
+      playerImg2.hide();
       precisionStrikeButton.hide();
       wildFlailButton.hide();
       healButton.hide();
 			fleeButton.hide();
+      playerFaintAnimation.show();
+      faintingEnemy.hide();
 			game.showGameOver();
 			break;
 		case "victoryScreen":
       background(battleBackroundImage, 0, 0);
       enemyImg.hide();
+      faintingEnemy.show();
+      playerFaintAnimation.hide();
       okButton.show();
       playerImg2.show();
       precisionStrikeButton.hide();
@@ -159,7 +174,6 @@ function createPrecisionStrikeButton() {
 function createWildFlailButton() {
 
 	wildFlailButton = createButton("Wild Flail");
-	//wildFlailButton.position(500, 500);
   wildFlailButton.parent("wildflail");
 
 	wildFlailButton.mousePressed(() => {
