@@ -41,7 +41,16 @@ class Cell {
     this.tileType = this.exits.east ? this.tileType + 2 : this.tileType; 
     this.tileType = this.exits.south ? this.tileType + 4 : this.tileType; 
     this.tileType = this.exits.west ? this.tileType + 8 : this.tileType; 
-  } 
+  }
+
+  show() {
+    if (this.isWall()) {
+      image(wallImg, this.regionX, this.regionY);
+    } else {
+      image(tileImg, this.regionX, this.regionY);
+    }
+  }
+
 
   _freeCell(position) {
     let x = position[0];

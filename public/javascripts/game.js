@@ -48,17 +48,8 @@ class Game {
 
   showMap() {
     Cell.filterByRegion(this.player.region).forEach((cell) => {
-      textSize(16)
-      if (cell.isWall()) {
-        fill(155)
-        // rect(cell.regionX, cell.regionY, 75)
-        image(wallImg, cell.regionX, cell.regionY);
-      } else {
-        fill(0)
-        // rect(cell.regionX, cell.regionY, 75)
-        image(tileImg, cell.regionX, cell.regionY);
-      }
 
+      cell.show()
       // info / debug text
       // fill(255)
       // textAlign(CENTER, CENTER)
