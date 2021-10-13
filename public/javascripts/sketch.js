@@ -150,7 +150,7 @@ function keyPressed() {
 }
 
 function createOkButton() {
-  okButton = createButton('OK');
+  okButton = createImg('./images/okButton150px.png');
   okButton.parent('okButton');
 
   okButton.mousePressed(() => {
@@ -161,7 +161,7 @@ function createOkButton() {
 
 function createPrecisionStrikeButton() {
 
-  precisionStrikeButton = createButton('Precision Strike');
+  precisionStrikeButton = createImg('./images/precisionStrike150px.png');
   precisionStrikeButton.parent('strike');
 
   precisionStrikeButton.mousePressed(() => {
@@ -173,7 +173,7 @@ function createPrecisionStrikeButton() {
 
 function createWildFlailButton() {
 
-	wildFlailButton = createButton("Wild Flail");
+	wildFlailButton = createImg("./images/wildFlail150px.png");
   wildFlailButton.parent("wildflail");
 
 	wildFlailButton.mousePressed(() => {
@@ -184,7 +184,7 @@ function createWildFlailButton() {
 }
 
 function createHealButton() {
-  healButton = createButton('Recovery');
+  healButton = createImg('./images/recovery150px.png');
   healButton.parent("heal");
 
   healButton.mousePressed(() => {
@@ -196,7 +196,7 @@ function createHealButton() {
 }
 
 function createFleeButton() {
-  fleeButton = createButton('Flee!');
+  fleeButton = createImg('./images/flee150px.png');
   fleeButton.parent('flee');
 
   fleeButton.mousePressed(() => {
