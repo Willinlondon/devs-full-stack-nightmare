@@ -127,7 +127,7 @@ class Game {
   }
 
   enterBattle() {
-    this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth));
+    this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth), ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"]);
     this.state = 'battleScreen';
   }
 
