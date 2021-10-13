@@ -200,8 +200,6 @@ function createWildFlailButton() {
 }
 
 function createHealButton() {
-  healButton = createButton('Recovery');
-  healButton.parent('heal');
   healButton = createImg('./images/recovery150px.png');
   healButton.parent('heal');
 
