@@ -23,8 +23,9 @@ class Config {
 	static precisionStrike = new Ability("Precision Strike", "Damaging", 5, 8, 0, 0);
 	static wildFlail = new Ability("Wild Flail", "Damaging", 2, 13, 0, 0);
 	static heal = new Ability("Recovery", "Heal", 0, 0, 4, 7);
-	static undefinitedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
+	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
 	static unexpectedFailure = new Ability("Unexpected Failure", "Heal", 0, 0, 4, 7);
+  static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0)
     static noiseScale = 0.1;
     static noiseRange = 100;
 }

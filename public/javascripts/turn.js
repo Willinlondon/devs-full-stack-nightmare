@@ -1,9 +1,10 @@
 class Turn {
-	constructor(player1, player2, playerAbility, flee) {
+	constructor(player1, player2, playerAbility, enemyAbilities, flee) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.p1Attack = playerAbility;
-		this.p2Attack = Ability.find("Unexpected Failure");
+    this.p2PossibleAttacks = enemyAbilities;
+    this.p2Attack = [];
 		this.flee = flee;
 		this._judge();
 	}
@@ -71,6 +72,8 @@ class Turn {
 			this.player1.takeHeal(this.p1Attack.totalHeal);
 		}
 		// Judge player 2 move
+    let abilityRoll = Math.floor(Math.random() * (this.p2PossibleAttacks.length))
+    this.p2Attack = Ability.find(this.p2PossibleAttacks[abilityRoll])
 		if (this.p2Attack.type == "Damaging") {
 			this.p2Attack.baseDamage = this._valueAmount(
 				this.p2Attack.min,
