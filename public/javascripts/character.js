@@ -1,82 +1,57 @@
 class Character {
-
 	constructor(name = "Player", health = Config.playerHealth, abilities) {
 		this.name = name;
 		this.health = health;
-    this.maxHealth = health;
+		this.maxHealth = health;
 		this.location = [0, 0];
-    this.abilities = abilities
+		this.abilities = abilities;
 	}
 
 	spawn(x, y) {
 		this.location = [x * Config.cellSize, y * Config.cellSize];
-    this.mapX = x * Config.cellSize;
-    this.mapY = y * Config.cellSize;
+		this.mapX = x * Config.cellSize;
+		this.mapY = y * Config.cellSize;
 	}
 
 	move(direction, amount) {
-		if (direction == "east") {
-			this._moveRight(amount);
-		}
-		if (direction == "west") {
-			this._moveLeft(amount);
-		}
-		if (direction == "north") {
-			this._moveUp(amount);
-		}
-		if (direction == "south") {
-			this._moveDown(amount);
+		switch (direction) {
+			case "north":
+				if (this.cell.exits.north) this.mapY -= Config.cellSize;
+				break;
+			case "east":
+				if (this.cell.exits.east) this.mapX += Config.cellSize;
+				break;
+			case "south":
+				if (this.cell.exits.south) this.mapY += Config.cellSize;
+				break;
+			case "west":
+				if (this.cell.exits.west) this.mapX -= Config.cellSize;
+				break;
 		}
 
-    this.setCell();
-    this.setGridPosition();
+		this.setCell();
+		this.setGridPosition();
 	}
 
-  hasFainted() {
-    return this.health <= 0;
-  }
+	hasFainted() {
+		return this.health <= 0;
+	}
 
 	takeHit(amount) {
 		this.health -= amount;
 	}
 
-  setCell() {
-    this.cell = Cell.find(this.mapX, this.mapY);
-  }
-
-  setGridPosition() {
-    this.region = this.cell.region;
-    this.gridX = this.cell.regionX;
-    this.gridY = this.cell.regionY;
-  }
-
-	// Directions are here as private methods
-  
-	_moveRight(amount) {
-		if (this.mapX == Config.cellSize * Config.gridSize - 1) {
-			return;
-		}
-		this.mapX += Config.cellSize;
+	takeHeal(amount) {
+		this.health += amount;
 	}
 
-	_moveLeft(amount) {
-		if (this.mapX == 0) {
-			return;
-		}
-		this.mapX -= Config.cellSize;
+	setCell() {
+		this.cell = Cell.find(this.mapX, this.mapY);
 	}
 
-	_moveUp(amount) {
-		if (this.mapY == 0) {
-			return;
-		}
-		this.mapY -= Config.cellSize;
-	}
-
-	_moveDown(amount) {
-		if (this.mapY == Config.cellSize * Config.gridSize - 1) {
-			return;
-		}
-		this.mapY += Config.cellSize;
+	setGridPosition() {
+		this.region = this.cell.region;
+		this.gridX = this.cell.regionX;
+		this.gridY = this.cell.regionY;
 	}
 }

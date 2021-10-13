@@ -26,6 +26,8 @@ let playerImg;
 let playerImg2;
 let enemyImg;
 let backgroundMusic;
+let playerFaintAnimation;
+let faintingEnemy;
 
 function preload() {
 	wallImg = loadImage("./images/wall1.png");
@@ -34,7 +36,9 @@ function preload() {
 	playerImg2 = createImg("./images/playerIdleAnimations.gif");
 	enemyImg = createImg("./images/idleMinotaur.gif", "enemy");
   tileArray = loadTiles();
-	backgroundMusic = loadSound("./stylesheets/assets/map-music-but-quiet.wav");
+  playerFaintAnimation = createImg('./images/playerFaintAnimation.gif', 'fainting player');
+  backgroundMusic = loadSound("./stylesheets/assets/map-music-but-quiet.wav");
+  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
 }
 
 function loadTiles() {
@@ -59,8 +63,10 @@ function setup() {
 	createFleeButton();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
-	enemyImg.parent("right");
-	playerImg2.parent("left");
+  enemyImg.parent("right");
+  playerImg2.parent("left");
+  playerFaintAnimation.parent("left");
+  faintingEnemy.parent("right");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
@@ -73,11 +79,13 @@ function draw() {
 			enemyImg.hide();
 			playerImg2.show();
 			okButton.hide();
+      faintingEnemy.hide();
 			precisionStrikeButton.hide();
 			wildFlailButton.hide();
 			healButton.hide();
 			fleeButton.hide();
 			game.showMap();
+      playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 
 			image(
@@ -98,20 +106,25 @@ function draw() {
 			wildFlailButton.show();
 			healButton.show();
 			fleeButton.show();
+      playerFaintAnimation.hide();
+      faintingEnemy.hide();
 			break;
 		case "gameOver":
 			okButton.hide();
 			enemyImg.hide();
-			playerImg2.show();
+      playerImg2.hide();
 			precisionStrikeButton.hide();
 			wildFlailButton.hide();
 			healButton.hide();
 			fleeButton.hide();
+      playerFaintAnimation.show();
+      faintingEnemy.hide();
 			game.showGameOver();
 			break;
 		case "victoryScreen":
 			background(battleBackroundImage, 0, 0);
 			enemyImg.hide();
+      faintingEnemy.show();
 			okButton.show();
 			playerImg2.show();
 			precisionStrikeButton.hide();
@@ -137,12 +150,18 @@ function keyPressed() {
 		if (keyCode === DOWN_ARROW || keyCode === 83) {
 			game.playerAction("south", 75);
 		}
+
+    // THIS WAS TAKEN OUT IN MORE TILING AND IS JUST HERE FOR ARCHIVAL PURPOSES
+//     if (moved) {
+//      if (Math.random() > Config.encounterProbability) game.enterBattle();
+//    }
+
 	}
 }
 
 function createOkButton() {
-	okButton = createButton("OK");
-	okButton.parent("okButton");
+  okButton = createImg('./images/okButton150px.png');
+  okButton.parent('okButton');
 
 	okButton.mousePressed(() => {
 		game.battle = null;
@@ -162,11 +181,10 @@ function createPrecisionStrikeButton() {
 }
 
 function createWildFlailButton() {
-	wildFlailButton = createButton("Wild Flail");
-	//wildFlailButton.position(500, 500);
-	wildFlailButton.parent("wildflail");
+	wildFlailButton = createImg("./images/wildFlail150px.png");
+  wildFlailButton.parent("wildflail");
 
-	wildFlailButton.mousePressed(() => {
+  wildFlailButton.mousePressed(() => {
 		if (game.battle) {
 			game.battle.takeTurn(Ability.find("Wild Flail"));
 		}
@@ -174,8 +192,8 @@ function createWildFlailButton() {
 }
 
 function createHealButton() {
-	healButton = createButton("Recovery");
-	healButton.parent("heal");
+  healButton = createImg('./images/recovery150px.png');
+  healButton.parent("heal");
 
 	healButton.mousePressed(() => {
 		if (game.battle) {
@@ -186,15 +204,17 @@ function createHealButton() {
 }
 
 function createFleeButton() {
-	fleeButton = createButton("Flee!");
-	fleeButton.parent("flee");
 
-	fleeButton.mousePressed(() => {
-		if (Math.random() > Config.fleeFailureChance) {
-			game.battle = null;
-			game.state = "mapScreen";
-		} else {
-			game.battle.takeTurn("Flee!", true);
-		}
-	});
+  fleeButton = createImg('./images/flee150px.png');
+  fleeButton.parent('flee');
+
+  fleeButton.mousePressed(() => {
+    if (Math.random() > Config.fleeFailureChance) {
+      game.battle = null;
+      game.state = 'mapScreen';
+    } else {
+      game.battle.takeTurn('Flee!', true);
+    }
+  });
+
 }

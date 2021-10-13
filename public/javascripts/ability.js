@@ -1,12 +1,14 @@
 class Ability {
   constructor(
     name, 
+    type,
     minAttack,
     maxAttack, 
     minHeal,
     maxHeal) 
     {
     this.name = name;
+    this.type = type;
     this.min = minAttack;
     this.max = maxAttack;
     this.minHeal = minHeal;

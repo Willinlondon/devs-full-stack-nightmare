@@ -1,4 +1,4 @@
-fdescribe('Score', () => {
+describe('Score', () => {
   const Score = require('../model/score');
   let scoreDatabaseLogicMock;
   beforeEach(async () => {
@@ -13,10 +13,9 @@ fdescribe('Score', () => {
         score: 10,
       },
     ];
-    scoreDatabaseLogicMock.newPost.and.callFake(() => mockScoreData);
+    scoreDatabaseLogicMock.newScore.and.callFake(() => mockScoreData);
     scoreDatabaseLogicMock.all.and.callFake(() => mockScoreData);
     scoreInstance = new Score(scoreDatabaseLogicMock);
-    console.log(scoreInstance);
   });
 
   describe('#addScore', () => {
@@ -41,7 +40,7 @@ fdescribe('Score', () => {
   describe('#getScores', () => {
     it('should call correct method in scoresDatabaseLogic', async () => {
       await scoreInstance.getScores();
-      expect(scoresDatabaseLogic.all).toHaveBeenCalled;
+      expect(scoreDatabaseLogicMock.all).toHaveBeenCalled;
     });
     it('should return array based on calling .all methd in scoresDatabaseLogic', async () => {
       const allScores = await scoreInstance.getScores();

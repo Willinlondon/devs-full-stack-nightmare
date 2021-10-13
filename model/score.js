@@ -18,8 +18,8 @@ class Score {
     const allScores = await this.scoresDatabaseClass.all();
     return allScores.map((element) => ({
       id: element.id,
-      text: element.username,
-      userID: element.score,
+      username: element.username,
+      score: element.score,
     }));
   }
 }
