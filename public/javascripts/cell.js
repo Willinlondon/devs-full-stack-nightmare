@@ -52,7 +52,8 @@ class Cell {
 			image(tileArray[this.tileType - 1], this.regionX, this.regionY);
 			if (this.localDifficulty > Config.bossSpawnThreshold) {
 				fill(255, 0, 0)
-				rect(this.regionX, this.regionY, 40);
+				rectMode(CENTER)
+				rect(this.regionX + Config.cellSize / 2, this.regionY + Config.cellSize / 2, 40);
 			}
 		}
 	}
