@@ -1,5 +1,4 @@
 class Character {
-
 	constructor(name = "Player", health = Config.playerHealth, abilities) {
 		this.name = name;
 		this.health = health;
@@ -17,16 +16,16 @@ class Character {
 	move(direction, amount) {
     switch(direction) {
       case "north":
-      this.mapY -= Config.cellSize if this.cell.exits.north;
+      if (this.cell.exits.north) this.mapY -= Config.cellSize 
       break;
       case "east":
-      this.mapX += Config.cellSize if this.cell.exits.east;
+      if (this.cell.exits.east) this.mapX += Config.cellSize
       break;
       case "south":
-      this.mapY += Config.cellSize if this.cell.exits.south;
+      if (this.cell.exits.south) this.mapY += Config.cellSize
       break;
       case "west":
-      this.mapX -= Config.cellSize if this.cell.exits.west;
+      if (this.cell.exits.west) this.mapX -= Config.cellSize
       break;
     }
 

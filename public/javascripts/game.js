@@ -22,29 +22,10 @@ class Game {
     this.player.setGridPosition();
   }
 
-  playerAction(direction, amount) {
-    let legalMove = true;
+  playerAction(direction) {
+    this.player.move(direction);
 
-    switch (direction) {
-      case 'east':
-        legalMove = this.player.cell.exits.east;
-        break;
-      case 'west':
-        legalMove = this.player.cell.exits.west;
-        break;
-      case 'north':
-        legalMove = this.player.cell.exits.north;
-        break;
-      case 'south':
-        legalMove = this.player.cell.exits.south;
-        break;
-    }
-
-    if (legalMove) {
-      this.player.move(direction, amount);
-
-      this._setState(this._encounterRoll());
-    }
+    this._setState(this._encounterRoll());
   }
 
   showMap() {
