@@ -175,11 +175,20 @@ function createOkButton() {
   });
 }
 
+function changeColor() {
+  startTime = frameCount;
+    if (frameCount < startTime + 30){
+        precisionStrikeButton.style(
+          "background-color: lightgreen"
+    )};
+}
+
 function createPrecisionStrikeButton() {
 
   precisionStrikeButton = createImg('./images/precisionStrike150px.png');
   precisionStrikeButton.parent('strike');
 
+  precisionStrikeButton.mouseOver(changeColor);
   precisionStrikeButton.mousePressed(() => {
     startTime = frameCount;
     if (game.battle) {
