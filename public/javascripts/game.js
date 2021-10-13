@@ -83,8 +83,9 @@ class Game {
 
     textSize(28);
     if (this.battle.outcomeStrings) {
-      text(this.battle.outcomeStrings[0], canvas.width / 2, canvas.height / 2);
-      text(this.battle.outcomeStrings[1], canvas.width / 2, canvas.height / 2 + 80);
+      console.log(startTime);
+      if(frameCount > startTime + 60){text(this.battle.outcomeStrings[0], canvas.width / 2, canvas.height / 2);}
+      if(frameCount > startTime + 120){text(this.battle.outcomeStrings[1], canvas.width / 2, canvas.height / 2 + 80);}
     }
 
     textSize(32);
