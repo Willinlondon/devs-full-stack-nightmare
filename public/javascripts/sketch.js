@@ -203,8 +203,7 @@ function createHealButton() {
 	healButton.mousePressed(() => {
     startTime = frameCount;
 		if (game.battle) {
-			heal = new Ability("Recovery");
-			game.battle.takeTurn(heal);
+			game.battle.takeTurn(Ability.find("Recovery"));
 		}
 	});
 }
