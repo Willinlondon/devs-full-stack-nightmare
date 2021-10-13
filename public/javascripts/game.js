@@ -68,11 +68,6 @@ class Game {
     });
   }
 
-  async showScoreBoard() {
-    const scores = await getScores();
-    console.log(scores);
-  }
-
   _cellAt(x, y) {
     return this.cells.find((cell) => cell.x == x && cell.y == y);
   }

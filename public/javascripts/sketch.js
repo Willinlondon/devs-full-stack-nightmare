@@ -1,28 +1,16 @@
-function addToScoreDatabase(username, score) {
+async function addToScoreDatabase(username, score) {
   const gameData = { username, score };
 
-  fetch('/score', {
+  const response = await fetch('/score', {
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     method: 'POST',
     body: JSON.stringify(gameData),
-  })
-    .then((response) => response.json())
-    .then((data) => console.log(data));
-}
-
-async function getScores() {
-  const response = await fetch('/score', {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'GET',
   });
   const data = await response.json();
-  return data;
+  console.log(data);
 }
 
 const game = new Game();

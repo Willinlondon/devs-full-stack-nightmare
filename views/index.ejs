@@ -2,17 +2,17 @@
 <html>
   <head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
     />
     <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
     <script type="text/javascript" src="javascripts/config.js"></script>
     <script src="javascripts/character.js"></script>
     <script src="javascripts/Map.js"></script>
-    <script src='javascripts/ability.js'></script>
+    <script src="javascripts/ability.js"></script>
     <script src="javascripts/enemy.js"></script>
     <script src="javascripts/turn.js"></script>
     <script src="javascripts/battle.js"></script>
@@ -22,28 +22,29 @@
   </head>
   <body>
     <div id="page-container">
-      
-      
       <div id="page-header">
-        <img src="./images/theGameText.png", height="50"/>
+        <img src="./images/theGameText.png" , height="50" />
       </div>
+      <a href="/score">Leaderboard</a>
       <div id="page-footer">
-        <a href='/about'><img src="./images/createdByUs.png", height="33"/></a>
+        <a href="/about"
+          ><img src="./images/createdByUs.png" , height="33"
+        /></a>
       </div>
-      
+
       <div id="main-area">
         <div id="left-sidebar"></div>
-        
+
         <div id="play-area">
           <div id="buttonrow">
-          <div id="strike"></div>
-          <div id="wildflail"></div>
-          <div id="heal"></div>
-          <div id="flee"></div>
+            <div id="strike"></div>
+            <div id="wildflail"></div>
+            <div id="heal"></div>
+            <div id="flee"></div>
+          </div>
+          <div id="okButton"></div>
         </div>
-        <div id="okButton"></div>
-        </div>
-        
+
         <div id="left"></div>
         <div id="right"></div>
         <div id="right-sidebar"></div>

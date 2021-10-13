@@ -7,6 +7,14 @@
     <script type="text/javascript" src="javascripts/config.js"></script>
   </head>
   <body>
-    <div id="page-container">scores</div>
+    <a href="/">Back to game</a>
+    <div id="page-container">
+      <ul>
+        <% scores.map((result)=>{ %>
+        <li><%= result.username %></li>
+        <li><%= result.score %></li>
+        <% }) %>
+      </ul>
+    </div>
   </body>
 </html>
