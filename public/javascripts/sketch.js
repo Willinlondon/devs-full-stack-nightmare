@@ -68,9 +68,7 @@ function setup() {
   playerFaintAnimation.parent("left");
   faintingEnemy.parent("right");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
-  game.cells.forEach((cell) => {
-    cell.difficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
-  })
+  createLocalDifficulty();
 }
 
 function draw() {
@@ -222,5 +220,10 @@ function createFleeButton() {
       game.battle.takeTurn('Flee!', true);
     }
   });
+}
 
+function createLocalDifficulty() {
+  game.cells.forEach((cell) => {
+    cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
+  })
 }
