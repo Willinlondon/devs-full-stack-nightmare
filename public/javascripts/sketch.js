@@ -1,16 +1,29 @@
+<<<<<<< HEAD
+function addToScoreDatabase(username, score) {
+  const gameData = { username, score };
+
+  fetch('/score', {
+=======
 async function addToScoreDatabase(username, score) {
   const gameData = { username, score };
 
   const response = await fetch('/score', {
+>>>>>>> main
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
     method: 'POST',
     body: JSON.stringify(gameData),
+<<<<<<< HEAD
+  })
+    .then((response) => response.json())
+    .then((data) => console.log(data.scores));
+=======
   });
   const data = await response.json();
   console.log(data);
+>>>>>>> main
 }
 
 const game = new Game();
@@ -61,6 +74,47 @@ function loadTiles() {
 }
 
 function setup() {
+<<<<<<< HEAD
+  createPrecisionStrikeButton();
+  createWildFlailButton();
+  createHealButton();
+  createOkButton();
+  createFleeButton();
+  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
+  canvas.parent('play-area');
+  enemyImg.parent('right');
+  playerImg2.parent('left');
+  playerFaintAnimation.parent('left');
+  faintingEnemy.parent('right');
+  battleBackroundImage = loadImage(battleBackgroundImagePath);
+  nameSetup();
+}
+
+function inputForm() {
+  // hide all unnecessary stuff in nameScreen state
+  // show form and get user name
+  // call addUserName method in game class which
+  // adds username to Player class and updates this.state in Game class
+  // InputForm will be called in case 'nameScreen'
+}
+
+function nameSetup() {
+  // create canvas
+  createCanvas(710, 400);
+
+  input = createInput();
+  input.position(20, 65);
+
+  button = createButton('submit');
+  button.position(input.x + input.width, 65);
+  button.mousePressed();
+
+  greeting = createElement('h2', 'what is your name?');
+  greeting.position(20, 5);
+
+  textAlign(CENTER);
+  textSize(50);
+=======
 	createPrecisionStrikeButton();
 	createWildFlailButton();
 	createHealButton();
@@ -75,18 +129,32 @@ function setup() {
   playerFaintAnimation.parent("left");
   faintingEnemy.parent("right");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
+>>>>>>> main
 }
 
 function draw() {
   background(0);
 
   switch (game.state) {
+<<<<<<< HEAD
+    case 'nameScreen':
+      okButton.hide();
+      precisionStrikeButton.hide();
+      wildFlailButton.hide();
+      healButton.hide();
+      fleeButton.hide();
+      break;
+=======
+>>>>>>> main
     case 'mapScreen':
       //  backgroundMusic.play();
       enemyImg.hide();
       playerImg2.show();
       okButton.hide();
+<<<<<<< HEAD
+=======
       newGameButton.hide();
+>>>>>>> main
       faintingEnemy.hide();
       precisionStrikeButton.hide();
       wildFlailButton.hide();
@@ -94,13 +162,22 @@ function draw() {
       fleeButton.hide();
       game.showMap();
       playerFaintAnimation.hide();
+<<<<<<< HEAD
+      playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+=======
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+>>>>>>> main
 
       image(
         playerImg,
         game.player.gridX + Config.cellSize / 4,
         game.player.gridY + Config.cellSize / 4
       );
+<<<<<<< HEAD
+      // fill(Config.playerColour);
+      // rect(game.player.location[0],game.player.location[1], Config.spriteSize);
+=======
+>>>>>>> main
 
       break;
     case 'battleScreen':
@@ -114,7 +191,10 @@ function draw() {
       fleeButton.show();
       playerFaintAnimation.hide();
       faintingEnemy.hide();
+<<<<<<< HEAD
+=======
       newGameButton.hide();
+>>>>>>> main
       break;
     case 'gameOver':
       okButton.hide();
@@ -126,7 +206,10 @@ function draw() {
       fleeButton.hide();
       playerFaintAnimation.show();
       faintingEnemy.hide();
+<<<<<<< HEAD
+=======
       newGameButton.show();
+>>>>>>> main
       game.showGameOver();
       break;
     case 'victoryScreen':
@@ -139,7 +222,10 @@ function draw() {
       wildFlailButton.hide();
       fleeButton.hide();
       healButton.hide();
+<<<<<<< HEAD
+=======
       newGameButton.hide();
+>>>>>>> main
       game.showVictoryScreen();
       break;
   }
@@ -147,6 +233,25 @@ function draw() {
 
 function keyPressed() {
   if (game.state === 'mapScreen') {
+<<<<<<< HEAD
+    if (keyCode === LEFT_ARROW || keyCode === 65) {
+      game.playerAction('west', 75);
+    }
+    if (keyCode === RIGHT_ARROW || keyCode === 68) {
+      game.playerAction('east', 75);
+    }
+    if (keyCode === UP_ARROW || keyCode === 87) {
+      game.playerAction('north', 75);
+    }
+    if (keyCode === DOWN_ARROW || keyCode === 83) {
+      game.playerAction('south', 75);
+    }
+
+    // THIS WAS TAKEN OUT IN MORE TILING AND IS JUST HERE FOR ARCHIVAL PURPOSES
+    //     if (moved) {
+    //      if (Math.random() > Config.encounterProbability) game.enterBattle();
+    //    }
+=======
     let moved = false;
     if (keyCode === LEFT_ARROW || keyCode === 65) {
       game.player.move('west');
@@ -169,6 +274,7 @@ function keyPressed() {
     if (moved) {
       if (Math.random() > Config.encounterProbability) game.enterBattle();
     }
+>>>>>>> main
   }
 }
 
@@ -180,6 +286,17 @@ function createOkButton() {
     game.battle = null;
     game.state = 'mapScreen';
   });
+<<<<<<< HEAD
+}
+
+function createPrecisionStrikeButton() {
+  precisionStrikeButton = createButton('Precision Strike');
+  precisionStrikeButton.parent('strike');
+
+  precisionStrikeButton.mousePressed(() => {
+    if (game.battle) {
+      game.battle.takeTurn(Ability.find('Precision Strike'));
+=======
 }
 
 function createNewGameButton() {
@@ -202,12 +319,22 @@ function createPrecisionStrikeButton() {
     startTime = frameCount;
     if (game.battle) {
       game.battle.takeTurn(Ability.find("Precision Strike"));
+>>>>>>> main
     }
   });
 }
 
 function createWildFlailButton() {
   wildFlailButton = createImg('./images/wildFlail150px.png');
+<<<<<<< HEAD
+  wildFlailButton.parent('wildflail');
+
+  wildFlailButton.mousePressed(() => {
+    if (game.battle) {
+      game.battle.takeTurn(Ability.find('Wild Flail'));
+    }
+  });
+=======
 
   wildFlailButton.parent('wildflail');
 
@@ -217,18 +344,28 @@ function createWildFlailButton() {
 			game.battle.takeTurn(Ability.find("Wild Flail"));
 		}
 	});
+>>>>>>> main
 }
 
 function createHealButton() {
   healButton = createImg('./images/recovery150px.png');
   healButton.parent('heal');
 
+<<<<<<< HEAD
+  healButton.mousePressed(() => {
+    if (game.battle) {
+      heal = new Ability('Recovery');
+      game.battle.takeTurn(heal);
+    }
+  });
+=======
 	healButton.mousePressed(() => {
     startTime = frameCount;
 		if (game.battle) {
 			game.battle.takeTurn(Ability.find("Recovery"));
 		}
 	});
+>>>>>>> main
 }
 
 function createFleeButton() {
