@@ -25,4 +25,5 @@ class Config {
 	static heal = new Ability("Recovery", "Heal", 0, 0, 4, 7);
 	static undefinitedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
 	static unexpectedFailure = new Ability("Unexpected Failure", "Heal", 0, 0, 4, 7);
+  static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0)
 }
