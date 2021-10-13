@@ -80,6 +80,11 @@ class Turn {
         this.p2Attack.totalDamage = this.p2Attack.baseDamage;
       }
     }
+
+    if (this.p2Attack.type === "Heal") {
+      this.p2Attack.totalHeal = this._valueAmount(this.p2Attack.minHeal, this.p1Attack.maxHeal)
+      this.player2.takeHeal(this.p2Attack.totalHeal)
+    }
   }
 
   _valueAmount(min, max) {
