@@ -66,6 +66,7 @@ function setup() {
 	createHealButton();
 	createOkButton();
 	createFleeButton();
+//  createLocalDifficulty();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
   enemyImg.parent("right");
@@ -73,7 +74,6 @@ function setup() {
   playerFaintAnimation.parent("left");
   faintingEnemy.parent("right");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
-  createLocalDifficulty();
 }
 
 function draw() {
@@ -240,10 +240,11 @@ function createFleeButton() {
       game.battle.takeTurn('Flee!', true);
     }
   });
-
-function createLocalDifficulty() {
-  game.cells.forEach((cell) => {
-    cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
-  })
-
 }
+
+//function createLocalDifficulty() {
+//  game.cells.forEach((cell) => {
+//    cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
+//  })
+//
+//};
