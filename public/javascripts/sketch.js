@@ -68,6 +68,9 @@ function setup() {
   playerFaintAnimation.parent("left");
   faintingEnemy.parent("right");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
+  game.cells.forEach((cell) => {
+    cell.difficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
+  })
 }
 
 function draw() {
