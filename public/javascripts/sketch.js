@@ -189,6 +189,7 @@ function createWildFlailButton() {
   wildFlailButton.parent("wildflail");
 
   wildFlailButton.mousePressed(() => {
+    startTime = frameCount;
 		if (game.battle) {
 			game.battle.takeTurn(Ability.find("Wild Flail"));
 		}
@@ -200,6 +201,7 @@ function createHealButton() {
   healButton.parent("heal");
 
 	healButton.mousePressed(() => {
+    startTime = frameCount;
 		if (game.battle) {
 			heal = new Ability("Recovery");
 			game.battle.takeTurn(heal);
@@ -213,6 +215,7 @@ function createFleeButton() {
   fleeButton.parent('flee');
 
   fleeButton.mousePressed(() => {
+    startTime = frameCount;
     if (Math.random() > Config.fleeFailureChance) {
       game.battle = null;
       game.state = 'mapScreen';

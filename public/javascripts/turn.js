@@ -30,14 +30,11 @@ class Turn {
 			p1AttackString = `${this.player1.name} was unable to flee!`;
 		}
 
-    return [p1AttackString, p2AttackString]
-  }
-
 		if (this.p2Attack.type === "Heal") {
 			p2AttackString = `${this.player2.name} used ${this.p2Attack.name} and healed for ${this.p2Attack.totalHeal}!`;
 		}
 
-		return `${p1AttackString}\n${p2AttackString}`;
+    return [p1AttackString, p2AttackString];
 	}
 
 	_judge() {
