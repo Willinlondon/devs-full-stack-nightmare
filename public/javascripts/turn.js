@@ -34,8 +34,6 @@ class Turn {
   }
 
   _judge() {
-    this.p2Attack.baseDamage = this._valueAmount(this.p2Attack.min, this.p2Attack.max);
-
     // Judge player 1 move
     if (this.flee === false && this.p1Attack.type === "Damaging") {
       this.p1Attack.baseDamage = this._valueAmount(this.p1Attack.min, this.p1Attack.max);
@@ -63,6 +61,7 @@ class Turn {
     }
     // Judge player 2 move
     if (this.p2Attack.type == "Damaging") {
+      this.p2Attack.baseDamage = this._valueAmount(this.p2Attack.min, this.p2Attack.max);
       if (Math.random() > Config.dodgeChance) {
         this.p2Attack.dodged = false;
 
