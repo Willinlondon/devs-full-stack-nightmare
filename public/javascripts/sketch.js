@@ -64,6 +64,7 @@ function draw() {
       precisionStrikeButton.hide();
       wildFlailButton.hide();
       healButton.hide();
+<<<<<<< HEAD
       fleeButton.hide();
       game.showMap();
       playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -73,6 +74,18 @@ function draw() {
         game.player.location[1] + Config.cellSize / 4
       );
       // fill(Config.playerColour);
+=======
+			fleeButton.hide();
+			game.showMap();
+			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+
+      image(
+        playerImg,
+        game.player.gridX + Config.cellSize / 4,
+        game.player.gridY + Config.cellSize / 4
+      );
+			// fill(Config.playerColour);
+>>>>>>> main
       // rect(game.player.location[0],game.player.location[1], Config.spriteSize);
 
       break;
@@ -112,18 +125,24 @@ function draw() {
 
 function keyPressed() {
   if (game.state === 'mapScreen') {
+    let moved = false;
     if (keyCode === LEFT_ARROW || keyCode === 65) {
-      game.playerAction('left', 75);
+      game.player.move('west'); moved = true;
     }
     if (keyCode === RIGHT_ARROW || keyCode === 68) {
-      game.playerAction('right', 75);
+      game.player.move('east'); moved = true;
     }
     if (keyCode === UP_ARROW || keyCode === 87) {
-      game.playerAction('up', 75);
+      game.player.move('north'); moved = true;
     }
     if (keyCode === DOWN_ARROW || keyCode === 83) {
-      game.playerAction('down', 75);
+      game.player.move('south'); moved = true
     }
+
+    if (moved) {
+      if (Math.random() > Config.encounterProbability) game.enterBattle();
+    }
+
   }
 }
 
@@ -143,8 +162,7 @@ function createPrecisionStrikeButton() {
 
   precisionStrikeButton.mousePressed(() => {
     if (game.battle) {
-      precisionStrike = new Ability('Precision Strike');
-      game.battle.takeTurn(precisionStrike);
+      game.battle.takeTurn(Ability.find("Precision Strike"));
     }
   });
 }
@@ -154,6 +172,7 @@ function createWildFlailButton() {
   // wildFlailButton.position(500, 500);
   wildFlailButton.parent('wildflail');
 
+<<<<<<< HEAD
   wildFlailButton.mousePressed(() => {
     if (game.battle) {
       wildFlail = new Ability(
@@ -164,6 +183,17 @@ function createWildFlailButton() {
       game.battle.takeTurn(wildFlail);
     }
   });
+=======
+	wildFlailButton = createButton("Wild Flail");
+	//wildFlailButton.position(500, 500);
+  wildFlailButton.parent("wildflail");
+
+	wildFlailButton.mousePressed(() => {
+		if (game.battle) {
+			game.battle.takeTurn(Ability.find("Wild Flail"));
+		}
+	});
+>>>>>>> main
 }
 
 function createHealButton() {

@@ -3,7 +3,7 @@ class Turn {
     this.player1 = player1;
     this.player2 = player2;
     this.p1Attack = playerAbility;
-    this.p2Attack = new Ability("Undefined Reality"); //Hard coded placeholder name
+    this.p2Attack = Ability.find("Undefined Reality");
     this.flee = flee
     this._judge();
   }

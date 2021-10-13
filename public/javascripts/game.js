@@ -11,81 +11,54 @@ class Game {
     this.map = this.gameMap.createMap();
     this.player = player;
     this.state = 'mapScreen';
-    this.player.startLocation(
-      this.gameMap.startingColumn,
-      this.gameMap.startingRow
-    );
+    this.player.spawn(this.gameMap.startingColumn, this.gameMap.startingRow);
+    this._generateCells();
 
-    this.cells = this._generateCells();
-  }
-
-  playerAction(direction, amount) {
-    const playerX = this.player.location[0];
-    const playerY = this.player.location[1];
-    let legalMove = true;
-
-    switch (direction) {
-      case 'right':
-        legalMove = !this._cellAt(playerX + amount, playerY).isWall();
-        break;
-      case 'left':
-        legalMove = !this._cellAt(playerX - amount, playerY).isWall();
-        break;
-      case 'up':
-        legalMove = !this._cellAt(playerX, playerY - amount).isWall();
-        break;
-      case 'down':
-        legalMove = !this._cellAt(playerX, playerY + amount).isWall();
-        break;
-    }
-
-    if (legalMove) {
-      this.player.move(direction, amount);
-
-      this._setState(this._encounterRoll());
-    }
+    this.cells.forEach((cell) => {
+      cell.calculateExits();
+      cell.calculateTile();
+    });
+    this.player.setCell();
+    this.player.setGridPosition();
   }
 
   showMap() {
-    this.map.forEach((y, y_index) => {
-      y.forEach((x, x_index) => {
-        const currentCell = this._cellAt(
-          x_index * Config.cellSize,
-          y_index * Config.cellSize
-        );
-
-        if (currentCell.isWall()) {
-          // fill(Config.wallColour);
-          // wallImg.resize(Config.cellSize, Config.cellSize);
-          image(wallImg, currentCell.x, currentCell.y);
-          // rect(currentCell.x, currentCell.y, Config.cellSize);
-        } else {
-          // rect(currentCell.x, currentCell.y, Config.cellSize);
-          // tileImg.resize(Config.cellSize, Config.cellSize);
-          image(tileImg, currentCell.x, currentCell.y);
-        }
-      });
-    });
+    Cell.filterByRegion(this.player.region).forEach(cell => cell.show())
   }
 
   _cellAt(x, y) {
-    return this.cells.find((cell) => cell.x == x && cell.y == y);
+    return this.cells.find((cell) => cell.x === x && cell.y === y);
   }
 
   _generateCells() {
-    const cellArray = [];
+    let region = -1;
 
-    this.map.forEach((y, y_index) => {
-      y.forEach((x, x_index) => {
-        const wall = x == 1;
+    this.map.forEach((y, yi) => {
+      y.forEach((x, xi) => {
+        let cell = new Cell(xi * Config.cellSize, yi * Config.cellSize, x == 1)
 
-        cellArray.push(
-          new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall)
+        cell.regionY = (xi * Config.gridSize + yi)
+        % (Config.gridSize / Config.regionDivisor)
+        * Config.cellSize
+
+        cell.regionX = (yi * Config.gridSize + xi)
+        % (Config.gridSize / Config.regionDivisor)
+        * Config.cellSize
+
+        cell.number = (cell.y * Config.gridSize + cell.x) / Config.cellSize
+        
+        cell.region = (
+          Math.floor(
+            (cell.y / Config.cellSize)/(Config.gridSize / Config.regionDivisor)
+          )
+          * Config.regionDivisor
+          + Math.floor(
+            (cell.x / Config.cellSize)/(Config.gridSize / Config.regionDivisor))
         );
       });
     });
 
-    return cellArray;
+    this.cells = Cell.all;
   }
 
   showBattle() {
@@ -140,8 +113,6 @@ class Game {
   }
 
   showVictoryScreen() {
-    // background(Config.victoryScreenBackground);
-    // fill(0);
     textSize(32);
     textAlign(CENTER, CENTER);
     text(
@@ -151,24 +122,14 @@ class Game {
     );
   }
 
-  _enterBattle() {
-    this.battle = new Battle(this.player, new Enemy('Jasmine'));
+  setState(state) {
+    this.state = state;
+  }
+
+  enterBattle() {
+    this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth));
     this.state = 'battleScreen';
   }
 
-  // Should be called checkEncounter?
-  _setState(_encounterRoll) {
-    if (_encounterRoll > Config.encounterProbability) {
-      this._enterBattle();
-    }
-    if (_encounterRoll <= Config.encounterProbability) {
-      this.state = 'mapScreen';
-    }
-  }
-
-  _encounterRoll() {
-    return Math.random();
-  }
-
-  _removeEnemy() {}
+	_removeEnemy() {}
 }
