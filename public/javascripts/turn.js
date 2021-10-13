@@ -1,9 +1,9 @@
 class Turn {
-	constructor(player1, player2, playerAbility, enemyAbility, flee) {
+	constructor(player1, player2, playerAbility, enemyAbilities, flee) {
 		this.player1 = player1;
 		this.player2 = player2;
 		this.p1Attack = playerAbility;
-		this.p2Attack = enemyAbility;
+    this.p2PossibleAttacks = enemyAbilities;
 		this.flee = flee;
 		this._judge();
 	}
