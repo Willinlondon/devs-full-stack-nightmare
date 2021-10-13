@@ -42,6 +42,10 @@ class Character {
 		this.health -= amount;
 	}
 
+  takeHeal(amount) {
+    this.health += amount;
+  }
+
 	// Directions are here as private methods
 
 	_moveRight(amount) {
