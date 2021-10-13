@@ -1,0 +1,17 @@
+let hoverOverMe;
+let showHighlight = false;
+function setup() {
+  createCanvas(400, 400);
+  hoverOverMe = createElement("h1", "Hover over me");
+  hoverOverMe.mouseOver(() => showInfo = true);
+  hoverOverMe.mouseOut(() => showInfo = false);
+}
+
+function draw() {
+  
+  if (showHighlight) {
+      precisionStrikeButton.style(
+      "background-color: lightgreen"
+    );
+
+}

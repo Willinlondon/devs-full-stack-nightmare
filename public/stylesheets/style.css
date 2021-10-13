@@ -81,14 +81,14 @@ body {
   position: relative;
   align-items: left;
   bottom: 225px;
-  left: 400px;
+  left: 350px;
 }
 
 #right {
   position: relative;
   align-items: right;
   bottom: 225px;
-  left: 750px;
+  left: 800px;
 }
 
 #right-sidebar { grid-area: right-sidebar; }
