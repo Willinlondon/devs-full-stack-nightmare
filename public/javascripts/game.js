@@ -147,6 +147,14 @@ class Game {
     text('GAME OVER', Config.canvasWidth / 2, Config.canvasHeight / 2);
   }
 
+  showItemScreen() {
+    background(0);
+    fill(255);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text(`${this.player.cell.item.info}`, Config.canvasWidth / 2, Config.canvasHeight / 2);
+  }
+
   showVictoryScreen() {
     textSize(32);
     textAlign(CENTER, CENTER);

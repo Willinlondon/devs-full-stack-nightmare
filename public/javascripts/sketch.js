@@ -145,6 +145,19 @@ function draw() {
       newGameButton.hide();
       game.showVictoryScreen();
       break;
+    case 'itemScreen':
+      background(battleBackroundImage, 0, 0);
+      enemyImg.hide();
+      faintingEnemy.hide();
+      okButton.show();
+      playerImg2.show();
+      precisionStrikeButton.hide();
+      wildFlailButton.hide();
+      fleeButton.hide();
+      healButton.hide();
+      newGameButton.hide();
+      game.showItemScreen();
+      break;
   }
 }
 

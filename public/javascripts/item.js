@@ -1,5 +1,5 @@
 class Item {
-  constructor(game, x, y, description = "an item", effect = null, amount = 0) {
+  constructor(game, x, y, description = "an item", info = "You picked up an item", effect = null, amount = 0) {
     this.game = game;
     this.mapX = x;
     this.mapY = y;
@@ -7,9 +7,11 @@ class Item {
     this.effect = effect;
     this.amount = amount;
     this.available = true;
+    this.info = info;
   }
 
   pickUp() {
+    this.game.state = "itemScreen"
     this.applyEffect();
     this.available = false;
   }
