@@ -1,5 +1,34 @@
 class Item {
-  constructor(owner, description = "an item", power = null, amount = 0) {
+  constructor(game, x, y, description = "an item", effect = null, amount = 0) {
+    this.game = game;
+    this.mapX = x;
+    this.mapY = y;
+    this.description = description;
+    this.effect = effect;
+    this.amount = amount;
+    this.available = true;
+  }
 
+  pickUp() {
+    this.applyEffect();
+    this.available = false;
+  }
+
+  applyEffect() {
+    switch(this.effect) {
+      case "addHealth":
+        this.game.player.health += this.amount;
+      break;
+      case "decreaseHealth":
+        this.game.player.health -= this.amount;
+      break;
+      case "addXP":
+      break;
+      case "increaseMaxHealth":
+        this.game.player.maxHealth += this.amount;
+      break;
+      default:
+      break;
+    }
   }
 }
