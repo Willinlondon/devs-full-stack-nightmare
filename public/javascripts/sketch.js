@@ -172,12 +172,9 @@ function createOkButton() {
 }
 
 function changeColor() {
-  startTime = frameCount;
-    if (frameCount < startTime + 30){
         precisionStrikeButton.style(
           "background-color: lightgreen"
     )};
-}
 
 function createPrecisionStrikeButton() {
 
