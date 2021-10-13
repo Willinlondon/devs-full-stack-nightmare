@@ -32,7 +32,7 @@ class Config {
   static heal = new Ability('Recovery', 'Heal', 0, 0, 4, 7);
   static undefinitedReality = new Ability(
     'Undefined Reality',
-    'Heal',
+    'Damaging',
     5,
     8,
     0,
