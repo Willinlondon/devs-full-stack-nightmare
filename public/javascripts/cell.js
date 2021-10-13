@@ -60,7 +60,10 @@ class Cell {
 			}
 
 			if (this.item) {
-				this.item.show();
+				if (this.item.available) {
+					fill(0, 255, 0)
+					circle(this.regionX + Config.cellSize / 2, this.regionY + Config.cellSize / 2, 20);
+				}
 			}
 		}
 	}

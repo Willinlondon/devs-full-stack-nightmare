@@ -31,5 +31,5 @@ class Config {
     static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0)
     static difficultyNoiseOffset = 0.05;
     static luckNoiseOffset = 0.376;
-    static itemSpawnThreshold = 60;
+    static itemSpawnThreshold = 65;
 }

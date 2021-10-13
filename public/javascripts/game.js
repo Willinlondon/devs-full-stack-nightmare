@@ -64,7 +64,7 @@ class Game {
 
   spawnBosses() {
     this.cells.forEach((cell) => {
-      if (cell.localDifficulty > Config.bossSpawnThreshold) {
+      if (cell.localDifficulty > Config.bossSpawnThreshold && !cell.item) {
         cell.boss = new Character(
           "Git",
           1000,
@@ -78,8 +78,9 @@ class Game {
 
   spawnItems() {
     this.cells.forEach((cell) => {
-      if (cell.localLuck > Config.itemSpawnThreshold) {
+      if (cell.localLuck > Config.itemSpawnThreshold && !cell.boss) {
         cell.item = new Item(
+          this,
           cell.x,
           cell.y
         );
