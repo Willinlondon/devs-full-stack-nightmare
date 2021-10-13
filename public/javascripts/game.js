@@ -76,6 +76,17 @@ class Game {
     })
   }
 
+  spawnItems() {
+    this.cells.forEach((cell) => {
+      if (cell.localLuck > Config.itemSpawnThreshold) {
+        cell.item = new Item(
+          cell.x,
+          cell.y
+        );
+      }
+    })
+  }
+
   showBattle() {
     if (this.battle.over()) {
       if (this.player.hasFainted()) {

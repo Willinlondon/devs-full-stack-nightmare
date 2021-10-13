@@ -68,6 +68,7 @@ function setup() {
 	createFleeButton();
   createNewGameButton();
   createLocalDifficulty();
+  createLocalLuck();
   game.spawnBosses();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
@@ -250,7 +251,6 @@ function createFleeButton() {
   });
 }
 
-<<<<<<< HEAD
 function changeColor() {
   precisionStrikeButton.style(
           "background-color: lightgreen"
@@ -263,6 +263,18 @@ function reverseColor() {
 
 function createLocalDifficulty() {
   game.cells.forEach((cell) => {
-    cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
+    cell.localDifficulty = Math.floor((noise(
+      cell.x + Config.difficultyNoiseOffset,
+      cell.y + Config.difficultyNoiseOffset
+      ) * Config.noiseScale) * Config.noiseRange);
   })
 };
+
+function createLocalLuck() {
+  game.cells.forEach((cell) => {
+    cell.localLuck = Math.floor((noise(
+      cell.x + Config.luckNoiseOffset,
+      cell.y + Config.luckNoiseOffset
+      ) * Config.noiseScale) * Config.noiseRange);
+  })
+}
