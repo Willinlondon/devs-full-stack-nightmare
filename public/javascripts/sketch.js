@@ -67,11 +67,12 @@ function draw() {
 			fleeButton.hide();
 			game.showMap();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
-			image(
-				playerImg,
-				game.player.location[0] + Config.cellSize / 4,
-				game.player.location[1] + Config.cellSize / 4
-			);
+
+      image(
+        playerImg,
+        game.player.gridX + Config.cellSize / 4,
+        game.player.gridY + Config.cellSize / 4
+      );
 			// fill(Config.playerColour);
       // rect(game.player.location[0],game.player.location[1], Config.spriteSize);
 
@@ -113,16 +114,16 @@ function draw() {
 function keyPressed() {
   if (game.state === 'mapScreen') {
     if (keyCode === LEFT_ARROW || keyCode === 65) {
-      game.playerAction('left', 75);
+      game.playerAction('west', 75);
     }
     if (keyCode === RIGHT_ARROW || keyCode === 68) {
-      game.playerAction('right', 75);
+      game.playerAction('east', 75);
     }
     if (keyCode === UP_ARROW || keyCode === 87) {
-      game.playerAction('up', 75);
+      game.playerAction('north', 75);
     }
     if (keyCode === DOWN_ARROW || keyCode === 83) {
-      game.playerAction('down', 75);
+      game.playerAction('south', 75);
     }
   }
 }

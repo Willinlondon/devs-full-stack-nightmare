@@ -1,98 +1,90 @@
 class Game {
-	constructor(
-		map = new Map(
-			Config.mapDimension,
-			Config.NoOfTunnels,
-			Config.maxTunnelLength
-		),
-		player = new Character()
-	) {
-		this.gameMap = map;
-		this.map = this.gameMap.createMap();
-		this.player = player;
-		this.state = "mapScreen";
-		this.player.startLocation(
-			this.gameMap.startingColumn,
-			this.gameMap.startingRow
-		);
+  constructor(
+    map = new Map(
+      Config.mapDimension,
+      Config.NoOfTunnels,
+      Config.maxTunnelLength
+    ),
+    player = new Character()
+  ) {
+    this.gameMap = map;
+    this.map = this.gameMap.createMap();
+    this.player = player;
+    this.state = 'mapScreen';
+    this.player.spawn(this.gameMap.startingColumn, this.gameMap.startingRow);
+    this._generateCells();
 
-		this._generateCells();
-
-    this.cells = Cell.all;
     this.cells.forEach((cell) => {
       cell.calculateExits();
       cell.calculateTile();
     });
-	}
+    this.player.setCell();
+    this.player.setGridPosition();
+  }
 
-	playerAction(direction, amount) {
-		let playerX = this.player.location[0];
-		let playerY = this.player.location[1];
-		let legalMove = true;
+  playerAction(direction, amount) {
+    let legalMove = true;
 
-		switch (direction) {
-			case "right":
-				legalMove = !this._cellAt(playerX + amount, playerY).isWall();
-				break;
-			case "left":
-				legalMove = !this._cellAt(playerX - amount, playerY).isWall();
-				break;
-			case "up":
-				legalMove = !this._cellAt(playerX, playerY - amount).isWall();
-				break;
-			case "down":
-				legalMove = !this._cellAt(playerX, playerY + amount).isWall();
-				break;
-		}
+    switch (direction) {
+      case 'east':
+        legalMove = this.player.cell.exits.east;
+        break;
+      case 'west':
+        legalMove = this.player.cell.exits.west;
+        break;
+      case 'north':
+        legalMove = this.player.cell.exits.north;
+        break;
+      case 'south':
+        legalMove = this.player.cell.exits.south;
+        break;
+    }
 
-		if (legalMove) {
-			this.player.move(direction, amount);
+    if (legalMove) {
+      this.player.move(direction, amount);
 
-			this._setState(this._encounterRoll());
-		}
-	}
+      this._setState(this._encounterRoll());
+    }
+  }
 
-	showMap() {
-		this.map.forEach((y, y_index) => {
-			y.forEach((x, x_index) => {
-				let currentCell = this._cellAt(
-					x_index * Config.cellSize,
-					y_index * Config.cellSize
-				);
+  showMap() {
+    Cell.filterByRegion(this.player.region).forEach(cell => cell.show())
+  }
 
-				if (currentCell.isWall()) {
-					// fill(Config.wallColour);
-					// wallImg.resize(Config.cellSize, Config.cellSize);
-					image(wallImg, currentCell.x, currentCell.y);
-					// rect(currentCell.x, currentCell.y, Config.cellSize);
-				} else {
-					// rect(currentCell.x, currentCell.y, Config.cellSize);
-					// tileImg.resize(Config.cellSize, Config.cellSize);
-					image(tileImg, currentCell.x, currentCell.y);
-				}
-			});
-		});
-	}
+  _cellAt(x, y) {
+    return this.cells.find((cell) => cell.x === x && cell.y === y);
+  }
 
-	_cellAt(x, y) {
-		return this.cells.find((cell) => cell.x == x && cell.y == y);
-	}
+  _generateCells() {
+    let region = -1;
 
-	_generateCells() {
-		let cellArray = [];
+    this.map.forEach((y, yi) => {
+      y.forEach((x, xi) => {
+        let cell = new Cell(xi * Config.cellSize, yi * Config.cellSize, x == 1)
 
-		this.map.forEach((y, y_index) => {
-			y.forEach((x, x_index) => {
-				let wall = x == 1 ? true : false;
+        cell.regionY = (xi * Config.gridSize + yi)
+        % (Config.gridSize / Config.regionDivisor)
+        * Config.cellSize
 
-				cellArray.push(
-					new Cell(x_index * Config.cellSize, y_index * Config.cellSize, wall)
-				);
-			});
-		});
+        cell.regionX = (yi * Config.gridSize + xi)
+        % (Config.gridSize / Config.regionDivisor)
+        * Config.cellSize
 
-		return cellArray;
-	}
+        cell.number = (cell.y * Config.gridSize + cell.x) / Config.cellSize
+        
+        cell.region = (
+          Math.floor(
+            (cell.y / Config.cellSize)/(Config.gridSize / Config.regionDivisor)
+          )
+          * Config.regionDivisor
+          + Math.floor(
+            (cell.x / Config.cellSize)/(Config.gridSize / Config.regionDivisor))
+        );
+      });
+    });
+
+    this.cells = Cell.all;
+  }
 
   showBattle() {
     if (this.battle.over()) {
@@ -137,25 +129,24 @@ class Game {
     );
   }
 
-	showGameOver() {
-		background(0);
-		fill(255);
-		textSize(32);
-		textAlign(CENTER, CENTER);
-		text("GAME OVER", Config.canvasWidth / 2, Config.canvasHeight / 2);
-	}
 
-	showVictoryScreen() {
-		background(Config.victoryScreenBackground);
-		fill(0);
-		textSize(32);
-		textAlign(CENTER, CENTER);
-		text(
-			`${this.battle.player2.name} fainted!`,
-			canvas.width / 2,
-			canvas.height / 3
-		);
-	}
+  showGameOver() {
+    background(0);
+    fill(255);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text('GAME OVER', Config.canvasWidth / 2, Config.canvasHeight / 2);
+  }
+
+  showVictoryScreen() {
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text(
+      `${this.battle.player2.name} fainted!`,
+      canvas.width / 2,
+      canvas.height / 3
+    );
+  }
 
   _enterBattle() {
     this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth));

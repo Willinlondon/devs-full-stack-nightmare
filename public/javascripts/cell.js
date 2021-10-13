@@ -5,6 +5,17 @@ class Cell {
     this.wall = wall;
     this.exits = new Object;
     this.constructor.all.push(this);
+    this.region;
+  }
+
+  static all = [];
+
+  static filterByRegion(region) {
+    return Cell.all.filter(cell => cell.region === region)
+  }
+
+  static find(x, y) {
+    return Cell.all.find(cell => cell.x === x && cell.y === y)
   }
 
   static all = [];
@@ -32,7 +43,17 @@ class Cell {
     this.tileType = this.exits.east ? this.tileType + 2 : this.tileType; 
     this.tileType = this.exits.south ? this.tileType + 4 : this.tileType; 
     this.tileType = this.exits.west ? this.tileType + 8 : this.tileType; 
-  } 
+  }
+
+  show() {
+    if (this.isWall()) {
+      image(wallImg, this.regionX, this.regionY);
+    } else {
+      image(tileImg, this.regionX, this.regionY);
+    }
+  }
+
+
 
   _freeCell(position) {
     let x = position[0];
