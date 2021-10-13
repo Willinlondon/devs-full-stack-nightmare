@@ -83,7 +83,10 @@ class Turn {
 			this.player1.takeHeal(this.p1Attack.totalHeal);
 		}
 		// Judge player 2 move
-    let enemyAbility = this.p2PossibleAttacks[0]
+    let abilityRoll = Math.floor(Math.random() * 3)
+    console.log(abilityRoll)
+    let enemyAbility = this.p2PossibleAttacks[abilityRoll]
+    console.log(enemyAbility)
     this.p2Attack = Ability.find(enemyAbility)
     console.log(this.p2Attack)
 		if (this.p2Attack.type == "Damaging") {
