@@ -4,6 +4,7 @@ class Turn {
 		this.player2 = player2;
 		this.p1Attack = playerAbility;
     this.p2PossibleAttacks = enemyAbilities;
+    this.p2Attack = [];
 		this.flee = flee;
 		this._judge();
 	}
@@ -82,6 +83,9 @@ class Turn {
 			this.player1.takeHeal(this.p1Attack.totalHeal);
 		}
 		// Judge player 2 move
+    let enemyAbility = this.p2PossibleAttacks[0]
+    this.p2Attack = Ability.find(enemyAbility)
+    console.log(this.p2Attack)
 		if (this.p2Attack.type == "Damaging") {
 			this.p2Attack.baseDamage = this._valueAmount(
 				this.p2Attack.min,
