@@ -161,9 +161,12 @@ function keyPressed() {
       moved = true;
     }
 
-    // THIS WAS TAKEN OUT IN MORE TILING AND IS JUST HERE FOR ARCHIVAL PURPOSES
     if (moved) {
-      if (Math.random() > Config.encounterProbability) game.enterBattle();
+      if (game.player.cell.boss) {
+        game.enterBattle(game.player.cell.boss)
+      } else {
+        if (Math.random() > Config.encounterProbability) game.enterBattle()
+      }
     }
   }
 }
