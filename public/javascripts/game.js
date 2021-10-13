@@ -61,8 +61,13 @@ class Game {
       y.forEach((x, xi) => {
         let cell = new Cell(xi * Config.cellSize, yi * Config.cellSize, x == 1)
 
-        cell.regionY = (xi * Config.gridSize + yi) % (Config.gridSize / Config.regionDivisor) * Config.cellSize
-        cell.regionX = (yi * Config.gridSize + xi) % (Config.gridSize / Config.regionDivisor) * Config.cellSize
+        cell.regionY = (xi * Config.gridSize + yi)
+        % (Config.gridSize / Config.regionDivisor)
+        * Config.cellSize
+
+        cell.regionX = (yi * Config.gridSize + xi)
+        % (Config.gridSize / Config.regionDivisor)
+        * Config.cellSize
 
         cell.number = (cell.y * Config.gridSize + cell.x) / Config.cellSize
         cell.region = (
@@ -71,7 +76,7 @@ class Game {
           )
           * Config.regionDivisor
           + Math.floor(
-            ((cell.x / Config.cellSize)/(Config.gridSize / Config.regionDivisor)))
+            (cell.x / Config.cellSize)/(Config.gridSize / Config.regionDivisor))
           );
       });
     });
