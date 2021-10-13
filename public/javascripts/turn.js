@@ -83,10 +83,8 @@ class Turn {
 			this.player1.takeHeal(this.p1Attack.totalHeal);
 		}
 		// Judge player 2 move
-    let totalNumberAbilities = this.p2PossibleAttacks.length
-    let abilityRoll = Math.floor(Math.random() * totalNumberAbilities)
-    let enemyAbility = this.p2PossibleAttacks[abilityRoll]
-    this.p2Attack = Ability.find(enemyAbility)
+    let abilityRoll = Math.floor(Math.random() * (this.p2PossibleAttacks.length))
+    this.p2Attack = Ability.find(this.p2PossibleAttacks[abilityRoll])
 		if (this.p2Attack.type == "Damaging") {
 			this.p2Attack.baseDamage = this._valueAmount(
 				this.p2Attack.min,
