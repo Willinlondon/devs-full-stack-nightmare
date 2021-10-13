@@ -25,6 +25,7 @@ class Config {
 	static heal = new Ability("Recovery", "Heal", 0, 0, 4, 7);
 	static undefinitedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
 	static unexpectedFailure = new Ability("Unexpected Failure", "Heal", 0, 0, 4, 7);
-    static noiseScale = 0.1;
-    static noiseRange = 100;
+    static noiseScale = 0.01;
+    static noiseRange = 10000;
+    static bossSpawnThreshold = 60;
 }
