@@ -11,39 +11,31 @@ class Game {
     this.map = this.gameMap.createMap();
     this.player = player;
     this.state = 'mapScreen';
-    this.player.startLocation(
-      this.gameMap.startingColumn,
-      this.gameMap.startingRow
-    );
-
+    this.player.spawn(this.gameMap.startingColumn, this.gameMap.startingRow);
     this._generateCells();
-
     this.cells.forEach((cell) => {
       cell.calculateExits();
       cell.calculateTile();
     });
-
     this.player.setCell();
-    this.player.setRegion();
+    this.player.setGridPosition();
   }
 
   playerAction(direction, amount) {
-    const playerX = this.player.location[0];
-    const playerY = this.player.location[1];
     let legalMove = true;
 
     switch (direction) {
-      case 'right':
-        legalMove = !this._cellAt(playerX + amount, playerY).isWall();
+      case 'east':
+        legalMove = this.player.cell.exits.east;
         break;
-      case 'left':
-        legalMove = !this._cellAt(playerX - amount, playerY).isWall();
+      case 'west':
+        legalMove = this.player.cell.exits.west;
         break;
-      case 'up':
-        legalMove = !this._cellAt(playerX, playerY - amount).isWall();
+      case 'north':
+        legalMove = this.player.cell.exits.north;
         break;
-      case 'down':
-        legalMove = !this._cellAt(playerX, playerY + amount).isWall();
+      case 'south':
+        legalMove = this.player.cell.exits.south;
         break;
     }
 
@@ -55,26 +47,16 @@ class Game {
   }
 
   showMap() {
-//     this.map.forEach((y, yi) => {
-//       y.forEach((x, xi) => {
-//         let cell = Cell.find(xi * Config.cellSize, yi * Config.cellSize)
-// 
-//         if (cell.isWall()) {
-//           // image(wallImg, cell.x, cell.y);
-//         } else {
-//           // image(tileImg, cell.x, cell.y);
-//         }
-// 
-//         fill(255)
-//         textAlign(CENTER, CENTER)
-//         text(`${cell.region},${cell.regionX},${cell.regionY}`, cell.x + Config.cellSize / 2, cell.y + Config.cellSize / 2)
-//       });
-//     });
     Cell.filterByRegion(this.player.region).forEach((cell) => {
+      textSize(16)
       if (cell.isWall()) {
-        image(wallImg, cell.regionX, cell.regionY);
+        fill(155)
+        rect(cell.regionX, cell.regionY, 75)
+        // image(wallImg, cell.regionX, cell.regionY);
       } else {
-        image(tileImg, cell.regionX, cell.regionY);
+        fill(0)
+        rect(cell.regionX, cell.regionY, 75)
+        // image(tileImg, cell.regionX, cell.regionY);
       }
 
       fill(255)
@@ -82,14 +64,32 @@ class Game {
       text(`${cell.region},${cell.regionX},${cell.regionY}`, cell.regionX + Config.cellSize / 2, cell.regionY + Config.cellSize / 2)
      
     })
+//     Cell.all.forEach((cell) => {
+//       textSize(16)
+//       if (cell.isWall()) {
+//         fill(155)
+//         rect(cell.x, cell.y, 75)
+//         // image(wallImg, cell.regionX, cell.regionY);
+//       } else {
+//         fill(0)
+//         rect(cell.x, cell.y, 75)
+//         // image(tileImg, cell.regionX, cell.regionY);
+//       }
+// 
+//       fill(255)
+//       textAlign(CENTER, CENTER)
+//       // ${cell.regionX},${cell.regionY}
+//       text(`${cell.number}, ${cell.region}`, cell.x + Config.cellSize / 2, cell.y + Config.cellSize / 2)
+//     })
   }
 
   _cellAt(x, y) {
-    return this.cells.find((cell) => cell.x == x && cell.y == y);
+    return this.cells.find((cell) => cell.x === x && cell.y === y);
   }
 
   _generateCells() {
     let region = -1;
+
     this.map.forEach((y, yi) => {
       y.forEach((x, xi) => {
         let cell = new Cell(xi * Config.cellSize, yi * Config.cellSize, x == 1)
@@ -97,17 +97,19 @@ class Game {
         cell.regionY = (xi * Config.gridSize + yi) % (Config.gridSize / Config.regionDivisor) * Config.cellSize
         cell.regionX = (yi * Config.gridSize + xi) % (Config.gridSize / Config.regionDivisor) * Config.cellSize
 
-        if (cell.regionX === 0 && cell.regionY === 0) { region ++ }
-
-        cell.region = region
+        cell.number = (cell.y * 10 + cell.x) / 75
+        cell.region = (
+          Math.floor(
+            (cell.y / Config.cellSize)/(Config.gridSize / Config.regionDivisor)
+          )
+          * Config.regionDivisor
+          + Math.floor(
+            ((cell.x / Config.cellSize)/(Config.gridSize / Config.regionDivisor)))
+          );
       });
     });
 
     this.cells = Cell.all;
-  }
-
-  _setPlayerCell() {
-    this.player.cell = this.cells.find(player.x, player.y);
   }
 
   showBattle() {
@@ -162,8 +164,6 @@ class Game {
   }
 
   showVictoryScreen() {
-    // background(Config.victoryScreenBackground);
-    // fill(0);
     textSize(32);
     textAlign(CENTER, CENTER);
     text(

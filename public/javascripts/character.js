@@ -3,36 +3,30 @@ class Character {
 	constructor(name = "Player") {
 		this.name = name;
 		this.health = Config.playerHealth;
-		this.location = [0, 0];
 	}
 
-	startLocation(startingColumn, startingRow) {
-		this.location = [
-		startingColumn * Config.cellSize, 
-		startingRow * Config.cellSize
-		];
+	spawn(x, y) {
+		this.location = [x * Config.cellSize, y * Config.cellSize];
+    this.mapX = x * Config.cellSize;
+    this.mapY = y * Config.cellSize;
 	}
-
-	// attack() {
-	// 	return Math.floor(Math.random() * 20);
-	// }
 
 	move(direction, amount) {
-		if (direction == "right") {
+		if (direction == "east") {
 			this._moveRight(amount);
 		}
-		if (direction == "left") {
+		if (direction == "west") {
 			this._moveLeft(amount);
 		}
-		if (direction == "up") {
+		if (direction == "north") {
 			this._moveUp(amount);
 		}
-		if (direction == "down") {
+		if (direction == "south") {
 			this._moveDown(amount);
 		}
 
     this.setCell();
-    this.setRegion();
+    this.setGridPosition();
 	}
 
   hasFainted() {
@@ -44,40 +38,42 @@ class Character {
 	}
 
   setCell() {
-    this.cell = Cell.find(this.location[0], this.location[1]);
+    this.cell = Cell.find(this.mapX, this.mapY);
   }
 
-  setRegion() {
-    this.region = this.cell.region
+  setGridPosition() {
+    this.region = this.cell.region;
+    this.gridX = this.cell.regionX;
+    this.gridY = this.cell.regionY;
   }
 
 	// Directions are here as private methods
-
+  
 	_moveRight(amount) {
-		if (this.location[0] == Config.cellSize * Config.gridSize - 1) {
+		if (this.mapX == Config.cellSize * Config.gridSize - 1) {
 			return;
 		}
-		this.location[0] += Config.cellSize;
+		this.mapX += Config.cellSize;
 	}
 
 	_moveLeft(amount) {
-		if (this.location[0] == 0) {
+		if (this.mapX == 0) {
 			return;
 		}
-		this.location[0] -= Config.cellSize;
+		this.mapX -= Config.cellSize;
 	}
 
 	_moveUp(amount) {
-		if (this.location[1] == 0) {
+		if (this.mapY == 0) {
 			return;
 		}
-		this.location[1] -= Config.cellSize;
+		this.mapY -= Config.cellSize;
 	}
 
 	_moveDown(amount) {
-		if (this.location[1] == Config.cellSize * Config.gridSize - 1) {
+		if (this.mapY == Config.cellSize * Config.gridSize - 1) {
 			return;
 		}
-		this.location[1] += Config.cellSize;
+		this.mapY += Config.cellSize;
 	}
 }
