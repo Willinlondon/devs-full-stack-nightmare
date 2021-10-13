@@ -47,15 +47,6 @@ function setup() {
   createPrecisionStrikeButton();
   createWildFlailButton();
   createHealButton();
-<<<<<<< HEAD
-  createOkButton();
-  createFleeButton();
-  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
-  canvas.parent('play-area');
-  enemyImg.parent('right');
-  playerImg2.parent('left');
-  battleBackroundImage = loadImage(battleBackgroundImagePath);
-=======
 	createOkButton();
 	createFleeButton();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
@@ -66,7 +57,6 @@ function setup() {
   playerFaintAnimation.parent("left");
   faintingEnemy.parent("right");
 	battleBackroundImage = loadImage(battleBackgroundImagePath);
->>>>>>> main
 }
 
 function draw() {
@@ -82,17 +72,6 @@ function draw() {
       precisionStrikeButton.hide();
       wildFlailButton.hide();
       healButton.hide();
-<<<<<<< HEAD
-      fleeButton.hide();
-      game.showMap();
-      playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
-      image(
-        playerImg,
-        game.player.location[0] + Config.cellSize / 4,
-        game.player.location[1] + Config.cellSize / 4
-      );
-      // fill(Config.playerColour);
-=======
 			fleeButton.hide();
 			game.showMap();
       playerFaintAnimation.hide();
@@ -104,7 +83,6 @@ function draw() {
         game.player.gridY + Config.cellSize / 4
       );
 			// fill(Config.playerColour);
->>>>>>> main
       // rect(game.player.location[0],game.player.location[1], Config.spriteSize);
 
       break;
@@ -116,37 +94,23 @@ function draw() {
       precisionStrikeButton.show();
       wildFlailButton.show();
       healButton.show();
-<<<<<<< HEAD
-      fleeButton.show();
-      break;
-    case 'gameOver':
-      okButton.hide();
-=======
 			fleeButton.show();
       playerFaintAnimation.hide();
       faintingEnemy.hide();
 			break;
 		case "gameOver":
 			okButton.hide();
->>>>>>> main
       enemyImg.hide();
       playerImg2.hide();
       precisionStrikeButton.hide();
       wildFlailButton.hide();
       healButton.hide();
-<<<<<<< HEAD
-      fleeButton.hide();
-      game.showGameOver();
-      break;
-    case 'victoryScreen':
-=======
 			fleeButton.hide();
       playerFaintAnimation.show();
       faintingEnemy.hide();
 			game.showGameOver();
 			break;
 		case "victoryScreen":
->>>>>>> main
       background(battleBackroundImage, 0, 0);
       enemyImg.hide();
       faintingEnemy.show();
@@ -196,12 +160,8 @@ function createOkButton() {
 }
 
 function createPrecisionStrikeButton() {
-<<<<<<< HEAD
-  precisionStrikeButton = createButton('Precision Strike');
-=======
 
   precisionStrikeButton = createImg('./images/precisionStrike150px.png');
->>>>>>> main
   precisionStrikeButton.parent('strike');
 
   precisionStrikeButton.mousePressed(() => {
@@ -215,9 +175,6 @@ function createWildFlailButton() {
   wildFlailButton = createButton('Wild Flail');
   // wildFlailButton.position(500, 500);
   wildFlailButton.parent('wildflail');
-
-<<<<<<< HEAD
-<<<<<<< HEAD
   wildFlailButton.mousePressed(() => {
     if (game.battle) {
       wildFlail = new Ability(
@@ -228,12 +185,10 @@ function createWildFlailButton() {
       game.battle.takeTurn(wildFlail);
     }
   });
-=======
 	wildFlailButton = createButton("Wild Flail");
 	//wildFlailButton.position(500, 500);
-=======
 	wildFlailButton = createImg("./images/wildFlail150px.png");
->>>>>>> main
+
   wildFlailButton.parent("wildflail");
 
 	wildFlailButton.mousePressed(() => {
@@ -241,22 +196,20 @@ function createWildFlailButton() {
 			game.battle.takeTurn(Ability.find("Wild Flail"));
 		}
 	});
->>>>>>> main
 }
 
 function createHealButton() {
-<<<<<<< HEAD
   healButton = createButton('Recovery');
   healButton.parent('heal');
-=======
   healButton = createImg('./images/recovery150px.png');
   healButton.parent("heal");
->>>>>>> main
 
   healButton.mousePressed(() => {
     if (game.battle) {
       heal = new Ability('Recovery');
       game.battle.takeTurn(heal);
+		if (game.battle) {
+			game.battle.takeTurn(Ability.find("Recovery"));
     }
   });
 }
