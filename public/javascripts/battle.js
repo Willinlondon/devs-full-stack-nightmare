@@ -5,8 +5,8 @@ class Battle {
     this.log = [];
   }
 
-  takeTurn(playerAbility, enemyAbility, flee = false) {
-    let turn = new Turn(this.player1, this.player2, playerAbility, enemyAbility, flee);
+  takeTurn(playerAbility, flee = false) {
+    let turn = new Turn(this.player1, this.player2, playerAbility, flee);
     this.log.push(turn);
     this.string = turn.outcome();
   }
