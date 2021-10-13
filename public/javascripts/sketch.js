@@ -114,16 +114,16 @@ function draw() {
 function keyPressed() {
   if (game.state === 'mapScreen') {
     if (keyCode === LEFT_ARROW || keyCode === 65) {
-      game.playerAction('west', 75);
+      game.player.move('west');
     }
     if (keyCode === RIGHT_ARROW || keyCode === 68) {
-      game.playerAction('east', 75);
+      game.player.move('east');
     }
     if (keyCode === UP_ARROW || keyCode === 87) {
-      game.playerAction('north', 75);
+      game.player.move('north');
     }
     if (keyCode === DOWN_ARROW || keyCode === 83) {
-      game.playerAction('south', 75);
+      game.player.move('south');
     }
   }
 }
