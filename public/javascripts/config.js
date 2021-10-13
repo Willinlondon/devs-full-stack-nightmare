@@ -23,4 +23,5 @@ class Config {
     static wildFlail = new Ability("Wild Flail", "Damaging", 2, 13, 0, 0);
     static heal = new Ability("Recovery", "Heal", 0, 0, 4, 7);
     static undefinitedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
+    static unexpectedFailure = new Ability("Unexpected Failure", "Heal", 0, 0, 4, 7)
 }
