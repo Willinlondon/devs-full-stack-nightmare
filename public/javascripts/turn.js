@@ -37,7 +37,7 @@ class Turn {
     this.p2Attack.baseDamage = this._attack(this.p2Attack.min, this.p2Attack.max);
 
     // Judge player 1 move
-    if (this.flee === false) {
+    if (this.flee === false && this.p1Attack.type == "Damaging") {
       this.p1Attack.baseDamage = this._attack(this.p1Attack.min, this.p1Attack.max);
       if (Math.random() > Config.dodgeChance) {
         this.p1Attack.dodged = false;
@@ -58,27 +58,29 @@ class Turn {
       }
     }
     // Judge player 2 move
+    if (this.p2Attack.type == "Damaging") {
+      if (Math.random() > Config.dodgeChance) {
+        this.p2Attack.dodged = false;
 
-    if (Math.random() > Config.dodgeChance) {
-      this.p2Attack.dodged = false;
-
-      if (Math.random() < Config.critChance) {
-        this.p2Attack.totalDamage = this.p2Attack.baseDamage * Config.critAttackMultiplier;
-        this.p2Attack.crit = true
-        this.player1.takeHit(this.p2Attack.baseDamage * Config.critAttackMultiplier)
+        if (Math.random() < Config.critChance) {
+          this.p2Attack.totalDamage = this.p2Attack.baseDamage * Config.critAttackMultiplier;
+          this.p2Attack.crit = true
+          this.player1.takeHit(this.p2Attack.baseDamage * Config.critAttackMultiplier)
+        } else {
+          this.p2Attack.crit = false
+          this.p2Attack.totalDamage = this.p2Attack.baseDamage;
+          this.player1.takeHit(this.p2Attack.baseDamage);
+        }
       } else {
-        this.p2Attack.crit = false
+        this.p2Attack.dodged = true;
         this.p2Attack.totalDamage = this.p2Attack.baseDamage;
-        this.player1.takeHit(this.p2Attack.baseDamage);
       }
-    } else {
-      this.p2Attack.dodged = true;
-      this.p2Attack.totalDamage = this.p2Attack.baseDamage;
     }
   }
 
   _attack(min, max) {
     return Math.floor(Math.random() * (max - min) + min)
   } 
+
 }
 
