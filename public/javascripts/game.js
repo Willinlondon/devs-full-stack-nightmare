@@ -65,7 +65,13 @@ class Game {
   spawnBosses() {
     this.cells.forEach((cell) => {
       if (cell.localDifficulty > Config.bossSpawnThreshold) {
-        cell.boss = new Character("Git", 1000, ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"]);
+        cell.boss = new Character(
+          "Git",
+          1000,
+          ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"],
+          "obstructed",
+          "a passive aggressive"
+        );
       }
     })
   }
@@ -85,7 +91,13 @@ class Game {
     textSize(Config.battleFontSize);
     textAlign(CENTER, CENTER);
     text(
-      `You were ambushed by an angry, \nobnoxious troll called ${this.battle.player2.name}!`,
+      `You were ${
+        this.battle.player2.verb
+      } by\n ${
+        this.battle.player2.adjective
+      } troll called ${
+        this.battle.player2.name
+      }!`,
       canvas.width / 2,
       canvas.height / 6
     );
@@ -137,7 +149,14 @@ class Game {
     this.state = state;
   }
 
-  enterBattle(enemy = new Character('Jasmine', Config.defaultEnemyHealth, ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"])) {
+  enterBattle(enemy = new Character(
+    'Jasmine',
+    Config.defaultEnemyHealth,
+    ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"],
+    "ambushed",
+    "an angry, obnoxious"
+    )
+  ) {
     this.battle = new Battle(this.player, enemy);
     this.state = 'battleScreen';
   }
