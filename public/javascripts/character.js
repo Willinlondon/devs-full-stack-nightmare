@@ -1,15 +1,10 @@
 class Character {
-
 	constructor(name = "Player", health = Config.playerHealth, abilities) {
 		this.name = name;
-<<<<<<< HEAD
-		this.health = Config.playerHealth;
-=======
 		this.health = health;
     this.maxHealth = health;
 		this.location = [0, 0];
     this.abilities = abilities
->>>>>>> main
 	}
 
 	spawn(x, y) {
