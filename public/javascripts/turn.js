@@ -14,6 +14,7 @@ class Turn {
 
     let p1AttackString;
     let p2AttackString;
+
     if (this.flee === false) {
       if (this.p1Attack.type === "Damaging") {
         if (!this.p1Attack.dodged) {
@@ -24,10 +25,11 @@ class Turn {
       }
         if (this.p1Attack.type === "Heal") {
           p1AttackString = `${this.player1.name} used ${this.p1Attack.name} and healed for ${this.p1Attack.totalHeal}!`
-      } else {
-        p1AttackString = `${this.player1.name} was unable to flee!`
-      }
+      } 
+    } else {
+      p1AttackString = `${this.player1.name} was unable to flee!`
     }
+
     if (this.p2Attack.type === "Damaging") {
       if (!this.p2Attack.dodged) {
         p2AttackString = `${p2CritString}${this.player2.name} used ${this.p2Attack.name}\n and dealt ${this.p2Attack.totalDamage} damage to ${this.player1.name}!` 
@@ -35,6 +37,7 @@ class Turn {
         p2AttackString = `${this.player1.name} dodged ${this.player2.name}'s attack!`
       }
     }
+
     if (this.p2Attack.type === "Heal") {
       p2AttackString = `${this.player2.name} used ${this.p2Attack.name} and healed for ${this.p2Attack.totalHeal}!`
     }
@@ -91,7 +94,7 @@ class Turn {
     }
 
     if (this.p2Attack.type === "Heal") {
-      this.p2Attack.totalHeal = this._valueAmount(this.p2Attack.minHeal, this.p1Attack.maxHeal)
+      this.p2Attack.totalHeal = this._valueAmount(this.p2Attack.minHeal, this.p2Attack.maxHeal)
       this.player2.takeHeal(this.p2Attack.totalHeal)
     }
   }
