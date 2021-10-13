@@ -70,6 +70,7 @@ function setup() {
   createLocalDifficulty();
   createLocalLuck();
   game.spawnBosses();
+  game.spawnItems();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
   enemyImg.parent("right");
