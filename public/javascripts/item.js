@@ -35,6 +35,7 @@ class Item {
   }
 
   show() {
+    // Broken! Debug?
     if (this.available) {
       fill(0, 255, 0)
       circle(this.regionX + Config.cellSize / 2, this.regionY + Config.cellSize / 2, 20)
