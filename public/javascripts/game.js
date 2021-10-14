@@ -35,12 +35,8 @@ class Game {
   }
 
   _generateCells() {
-<<<<<<< HEAD
-    const region = -1;
-=======
     let region = -1;
     let noiseScale = 0.1;
->>>>>>> main
 
     this.map.forEach((y, yi) => {
       y.forEach((x, xi) => {
@@ -145,14 +141,7 @@ class Game {
   }
 
   enterBattle() {
-<<<<<<< HEAD
-    this.battle = new Battle(
-      this.player,
-      new Character('Jasmine', Config.defaultEnemyHealth)
-    );
-=======
     this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth, ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"]));
->>>>>>> main
     this.state = 'battleScreen';
   }
 
