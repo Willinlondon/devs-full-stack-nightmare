@@ -2,7 +2,7 @@ class Config {
 	static canvasWidth = 750;
 	static canvasHeight = 750;
 	static cellSize = 75;
-	static encounterProbability = 0.5;
+	static encounterProbability = 1;
 	static gridSize = 100;
 	static spriteSize = 75;
 	static playerColour = 155;
@@ -19,13 +19,17 @@ class Config {
 	static mapDimension = 100;
 	static NoOfTunnels = 50;
 	static maxTunnelLength = 20;
-	static regionDivisor = 10; // meaning e.g. 2 horizontally * 2 vertically, = 4 in total
+	static regionDivisor = 10;
 	static precisionStrike = new Ability("Precision Strike", "Damaging", 5, 8, 0, 0);
 	static wildFlail = new Ability("Wild Flail", "Damaging", 2, 13, 0, 0);
 	static heal = new Ability("Recovery", "Heal", 0, 0, 4, 7);
 	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
 	static unexpectedFailure = new Ability("Unexpected Failure", "Heal", 0, 0, 4, 7);
-  static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0)
-    static noiseScale = 0.1;
-    static noiseRange = 100;
+    static noiseScale = 0.01;
+    static noiseRange = 10000;
+    static bossSpawnThreshold = 75;
+    static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0)
+    static difficultyNoiseOffset = 0.05;
+    static luckNoiseOffset = 0.376;
+    static itemSpawnThreshold = 65;
 }

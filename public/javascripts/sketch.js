@@ -67,7 +67,10 @@ function setup() {
 	createOkButton();
 	createFleeButton();
   createNewGameButton();
-//  createLocalDifficulty();
+  createLocalDifficulty();
+  createLocalLuck();
+  game.spawnBosses();
+  game.spawnItems();
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
   enemyImg.parent("right");
@@ -142,6 +145,19 @@ function draw() {
       newGameButton.hide();
       game.showVictoryScreen();
       break;
+    case 'itemScreen':
+      background(battleBackroundImage, 0, 0);
+      enemyImg.hide();
+      faintingEnemy.hide();
+      okButton.show();
+      playerImg2.show();
+      precisionStrikeButton.hide();
+      wildFlailButton.hide();
+      fleeButton.hide();
+      healButton.hide();
+      newGameButton.hide();
+      game.showItemScreen();
+      break;
   }
 }
 
@@ -165,9 +181,14 @@ function keyPressed() {
       moved = true;
     }
 
-    // THIS WAS TAKEN OUT IN MORE TILING AND IS JUST HERE FOR ARCHIVAL PURPOSES
     if (moved) {
-      if (Math.random() > Config.encounterProbability) game.enterBattle();
+      if (game.player.cell.boss) {
+        game.enterBattle(game.player.cell.boss)
+      } else if (game.player.cell.item) {
+        game.player.cell.item.pickUp();
+      } else {
+        if (Math.random() > Config.encounterProbability) game.enterBattle()
+      }
     }
   }
 }
@@ -256,9 +277,20 @@ function reverseColor() {
         "background-color: transparent"
 )};
 
-//function createLocalDifficulty() {
-//  game.cells.forEach((cell) => {
-//    cell.localDifficulty = Math.floor((noise(cell.x, cell.y) * Config.noiseScale) * Config.noiseRange);
-//  })
-//
-//};
+function createLocalDifficulty() {
+  game.cells.forEach((cell) => {
+    cell.localDifficulty = Math.floor((noise(
+      cell.x + Config.difficultyNoiseOffset,
+      cell.y + Config.difficultyNoiseOffset
+      ) * Config.noiseScale) * Config.noiseRange);
+  })
+};
+
+function createLocalLuck() {
+  game.cells.forEach((cell) => {
+    cell.localLuck = Math.floor((noise(
+      cell.x + Config.luckNoiseOffset,
+      cell.y + Config.luckNoiseOffset
+      ) * Config.noiseScale) * Config.noiseRange);
+  })
+}
