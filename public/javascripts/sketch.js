@@ -30,6 +30,7 @@ let playerFaintAnimation;
 let faintingEnemy;
 let startTime;
 let ghLogo;
+let idleMinotaur2;
 
 function preload() {
   wallImg = loadImage('./images/wall1.png');
@@ -37,6 +38,7 @@ function preload() {
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
   playerImg2 = createImg('./images/playerIdleAnimations.gif');
   enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
+  idleMinotaur2 = createImg('./images/idleMinotaur2.gif', 'enemy');
   tileArray = loadTiles();
   playerFaintAnimation = createImg(
     './images/playerFaintAnimation.gif',
@@ -76,6 +78,7 @@ function setup() {
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
   enemyImg.parent("right");
+  idleMinotaur2.parent("right");
   playerImg2.parent("left");
   playerFaintAnimation.parent("left");
   faintingEnemy.parent("right");
@@ -88,7 +91,7 @@ function draw() {
   switch (game.state) {
     case 'mapScreen':
       //  backgroundMusic.play();
-      enemyImg.hide();
+      enemyDisplayNoBattle();
       playerImg2.show();
       okButton.hide();
       newGameButton.hide();
@@ -136,7 +139,7 @@ function draw() {
       break;
     case 'battleScreen':
       background(battleBackroundImage, 0, 0);
-      enemyImg.show();
+      enemyDisplayBattle();
       playerImg2.show();
       game.showBattle();
       calculatedProcessButton.show();
@@ -148,22 +151,20 @@ function draw() {
       newGameButton.hide();
       break;
     case 'gameOver':
+      enemyDisplayNoBattle();
       okButton.hide();
-      enemyImg.hide();
       playerImg2.hide();
       calculatedProcessButton.hide();
       stabInTheDarkButton.hide();
       refreshButton.hide();
       fleeButton.hide();
       playerFaintAnimation.show();
-      faintingEnemy.hide();
       newGameButton.show();
       game.showGameOver();
       break;
     case 'victoryScreen':
       background(battleBackroundImage, 0, 0);
-      enemyImg.hide();
-      faintingEnemy.show();
+      enemyFainted();
       okButton.show();
       playerImg2.show();
       calculatedProcessButton.hide();
@@ -175,8 +176,7 @@ function draw() {
       break;
     case 'itemScreen':
       background(battleBackroundImage, 0, 0);
-      enemyImg.hide();
-      faintingEnemy.hide();
+      enemyDisplayNoBattle();
       okButton.show();
       playerImg2.show();
       calculatedProcessButton.hide();
@@ -215,7 +215,7 @@ function keyPressed() {
       } else if (game.player.cell.item) {
         game.player.cell.item.pickUp();
       } else {
-        if (Math.random() > Config.encounterProbability) game.enterBattle()
+        if (Math.random() > Config.encounterProbability) game.enterBattle();
       }
     }
   }
@@ -334,3 +334,25 @@ function stopElementHighlight(element) {
       "background-color: transparent"
 )};
 };
+
+function enemyDisplayBattle() {
+  if (game.battle.player2.name = 'Bugger')
+  { idleMinotaur2.show();
+    enemyImg.hide(); }
+  else {
+    enemyImg.show();
+    idleMinotaur2.hide();
+  }
+}
+
+function enemyDisplayNoBattle(){
+  enemyImg.hide();
+  idleMinotaur2.hide();
+  faintingEnemy.hide();
+}
+
+function enemyFainted(){
+  enemyImg.hide();
+  idleMinotaur2.hide();
+  faintingEnemy.show();
+}
