@@ -190,3 +190,17 @@ td {
 td {
 	text-align: center;
 }
+
+a > div {
+	display: none;
+	position: absolute;
+}
+a:hover > div {
+	display: block;
+	color: aqua;
+	position: absolute;
+}
+img {
+	width: 100px;
+	height: 100px;
+}
