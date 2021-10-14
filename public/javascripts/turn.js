@@ -48,7 +48,7 @@ class Turn {
 	_judge() {
 		// Judge player 1 move
 		if (this.flee === false && this.p1Attack.type === "Damaging") {
-			this.p1Attack.baseDamage = this._valueAmount(
+			this.p1Attack.baseDamage = this._attackValue(
 				this.p1Attack.min,
 				this.p1Attack.max
 			);
@@ -85,7 +85,7 @@ class Turn {
     let abilityRoll = Math.floor(Math.random() * (this.p2PossibleAttacks.length))
     this.p2Attack = Ability.find(this.p2PossibleAttacks[abilityRoll])
 		if (this.p2Attack.type == "Damaging") {
-			this.p2Attack.baseDamage = this._valueAmount(
+			this.p2Attack.baseDamage = this._attackValue(
 				this.p2Attack.min,
 				this.p2Attack.max
 			);
@@ -119,7 +119,11 @@ class Turn {
 		}
 	}
 
-	_valueAmount(min, max) {
+	_attackValue(min, max) {
+		return Math.floor(Math.random() * (max - min) + min);
+	}
+
+  _healValue(min, max) {
 		return Math.floor(Math.random() * (max - min) + min);
 	}
 }
