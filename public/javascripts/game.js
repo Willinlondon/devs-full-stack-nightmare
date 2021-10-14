@@ -143,11 +143,20 @@ class Game {
 
   showGameOver() {
     background(0);
-    fill(255);
-    textSize(32);
-    textAlign(CENTER, CENTER);
-    text('GAME OVER', Config.canvasWidth / 2, Config.canvasHeight / 4);
-    text(`Your Score: ${this.player.score}`, Config.canvasWidth / 2, Config.canvasHeight / 4 + 50);
+    if (this.player.score > Config.winningScore) {
+      fill(255);
+      textSize(32);
+      textAlign(CENTER, CENTER);
+      text("As Dev's spectre form was defeated, they\nawoke from the nightmare with a\nfresh mind, confident that they had done\nenough, and ready to tackle the day ahead!", Config.canvasWidth / 2, Config.canvasHeight / 5);
+      text('VICTORY!', Config.canvasWidth / 2, Config.canvasHeight / 4 * 3);
+      text(`Your Score: ${this.player.score}`, Config.canvasWidth / 2, Config.canvasHeight / 4 * 3 + 50);
+    } else {
+      fill(255);
+      textSize(32);
+      textAlign(CENTER, CENTER);
+      text('GAME OVER', Config.canvasWidth / 2, Config.canvasHeight / 4 * 3);
+      text(`Your Score: ${this.player.score}`, Config.canvasWidth / 2, Config.canvasHeight / 4 * 3 + 50);
+    }
   }
 
   showItemScreen() {

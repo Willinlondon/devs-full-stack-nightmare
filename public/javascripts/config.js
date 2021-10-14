@@ -23,6 +23,7 @@ class Config {
 	static NoOfTunnels = 550;
 	static maxTunnelLength = 20;
 	static regionDivisor = 10;
+  static winningScore = 1;
 	static calculatedProcess = new Ability("Calculated Process", "Damaging", 25, 30, 0, 0);
 	static stabInTheDark = new Ability("Stab in the Dark", "Damaging", 10, 45, 0, 0);
 	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 80, 120);
