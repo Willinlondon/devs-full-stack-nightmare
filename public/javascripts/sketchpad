@@ -1,17 +1,46 @@
-let hoverOverMe;
-let showHighlight = false;
-function setup() {
-  createCanvas(400, 400);
-  hoverOverMe = createElement("h1", "Hover over me");
-  hoverOverMe.mouseOver(() => showInfo = true);
-  hoverOverMe.mouseOut(() => showInfo = false);
+game.battle.player2.name
+
+function enemyDisplayBattle() {
+  faintingEnemy.hide();
+  if (game.battle.player2.name = 'Buggar')
+  { idleMinotaur2.show();
+    enemyImg.hide(); }
+  else {
+    enemyImg.show();
+    idleMinotaur2.hide();
+  }
 }
 
-function draw() {
-  
-  if (showHighlight) {
-      precisionStrikeButton.style(
-      "background-color: lightgreen"
-    );
+function enemyDisplayNoBattle(){
+  enemyImg.hide();
+  idleMinotaur2.hide();
+  faintingEnemy.hide();
+}
 
+
+function enemyFainted(){
+  enemyImg.hide();
+  idleMinotaur2.hide();
+    if(game.battle.player2.name = 'Bugger')
+    {faintingEnemy.show();}
+}
+
+function buttonsNoBattle(){
+      calculatedProcessButton.hide();
+      stabInTheDarkButton.hide();
+      refreshButton.hide();
+      fleeButton.hide();
+}
+
+function battleButtons(){
+  calculatedProcessButton.show();
+  stabInTheDarkButton.show();
+  refreshButton.show();
+  fleeButton.show();
+}
+
+function newGame(){
+  if (game.state = 'gameOver')
+  {newGameButton.show();}
+  else{newGameButton.hide();}
 }

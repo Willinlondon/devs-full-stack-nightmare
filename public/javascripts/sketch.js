@@ -14,38 +14,54 @@ async function addToScoreDatabase(username, score) {
 }
 
 const game = new Game();
-let precisionStrikeButton;
-let wildFlailButton;
-let healButton;
-let okButton;
+//Buttons
+let calculatedProcessButton;
+let stabInTheDarkButton;
+let refreshButton;
 let fleeButton;
+let okButton;
+//Background assets
 let battleBackgroundImage;
 const battleBackgroundImagePath = './stylesheets/assets/battleBackground.jpg';
 let wallImg;
+let backgroundMusic;
+//Player assets
 let playerImg;
 let playerImg2;
-let enemyImg;
-let backgroundMusic;
 let playerFaintAnimation;
+//Enemy assets
+let enemyImg;
 let faintingEnemy;
+let idleMinotaur2;
+//Misc assets
 let startTime;
 let ghLogo;
+let jasmineLogo;
+let zoomLogo;
 
 function preload() {
+  //Enemy assets
+  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
+  idleMinotaur2 = createImg('./images/idleMinotaur2.gif', 'enemy');
+  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
+  jasmineLogo = loadImage('./images/jasmine-logo.png');
+  zoomLogo = loadImage('./images/zoom.png');
+  //Background assets
+  backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
+  tileArray = loadTiles();
   wallImg = loadImage('./images/wall1.png');
   wallImg.resize(Config.cellSize, Config.cellSize);
+  ticketImg = loadImage('./images/tickets.png');
+  //Misc assets
+  ghLogo = loadImage('./images/gh-logo.png');
+    ticketImg = loadImage('./images/tickets.png');
+  //Player assets
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
   playerImg2 = createImg('./images/playerIdleAnimations.gif');
-  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
-  tileArray = loadTiles();
   playerFaintAnimation = createImg(
     './images/playerFaintAnimation.gif',
     'fainting player'
   );
-  backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
-  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
-  ghLogo = loadImage('./images/gh-logo.png');
-  ticketImg = loadImage('./images/tickets.png');
 }
 
 function loadTiles() {
@@ -63,23 +79,52 @@ function loadTiles() {
 }
 
 function setup() {
-	createPrecisionStrikeButton();
-	createWildFlailButton();
-	createHealButton();
-	createOkButton();
-	createFleeButton();
-  createNewGameButton();
+  
+  //Gameplay 
   createLocalDifficulty();
   createLocalLuck();
   game.spawnBosses();
   game.spawnItems();
+  //Buttons
+	createcalculatedProcessButton();
+	createstabInTheDarkButton();
+	createrefreshButton();
+	createOkButton();
+	createFleeButton();
+  createNewGameButton();
+  //Background
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
+  battleBackroundImage = loadImage(battleBackgroundImagePath);
+  //Enemy assets
   enemyImg.parent("right");
+  idleMinotaur2.parent("right");
+  faintingEnemy.parent("right");
+  //Player assets
   playerImg2.parent("left");
   playerFaintAnimation.parent("left");
-  faintingEnemy.parent("right");
-	battleBackroundImage = loadImage(battleBackgroundImagePath);
+
+  Cell.all.forEach((cell) => {
+    if (cell.boss) {
+      cell.bossImg = null;
+
+      switch(cell.boss.name) {
+        case 'Git, Master of Sabotage':
+          cell.bossImg = ghLogo;
+        break;
+        case 'Jasmine':
+          cell.bossImg = jasmineLogo;
+        break;
+        case 'Zoomer':
+          cell.bossImg = zoomLogo;
+        break;
+        default:
+          cell.bossImg = ghLogo;
+        break;
+      }
+    }
+  })
+
 }
 
 function draw() {
@@ -88,19 +133,17 @@ function draw() {
   switch (game.state) {
     case 'mapScreen':
       //  backgroundMusic.play();
-      enemyImg.hide();
+      game.showMap();
+      enemyDisplayNoBattle();
+      battleButtonsCheck();
+      newGameCheck();
       playerImg2.show();
       okButton.hide();
-      newGameButton.hide();
-      faintingEnemy.hide();
-      precisionStrikeButton.hide();
-      wildFlailButton.hide();
-      healButton.hide();
-      fleeButton.hide();
-      game.showMap();
       playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      jasmineLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      zoomLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ticketImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 
       Cell.all.forEach((cell) => {
@@ -108,7 +151,7 @@ function draw() {
           if (cell.boss) {
             if (!cell.boss.hasFainted()) {
               image(
-                ghLogo,
+                cell.bossImg,
                 cell.regionX + Config.cellSize / 4,
                 cell.regionY + Config.cellSize / 4
               );
@@ -136,54 +179,38 @@ function draw() {
       break;
     case 'battleScreen':
       background(battleBackroundImage, 0, 0);
-      enemyImg.show();
-      playerImg2.show();
       game.showBattle();
-      precisionStrikeButton.show();
-      wildFlailButton.show();
-      healButton.show();
-      fleeButton.show();
+      enemyDisplayBattle();
+      battleButtonsCheck();
+      newGameCheck();
+      playerImg2.show();
       playerFaintAnimation.hide();
-      faintingEnemy.hide();
-      newGameButton.hide();
       break;
     case 'gameOver':
+      enemyDisplayNoBattle();
+      newGameCheck();
+      buttonsNoBattle();
       okButton.hide();
-      enemyImg.hide();
       playerImg2.hide();
-      precisionStrikeButton.hide();
-      wildFlailButton.hide();
-      healButton.hide();
-      fleeButton.hide();
       playerFaintAnimation.show();
-      faintingEnemy.hide();
-      newGameButton.show();
       game.showGameOver();
       break;
     case 'victoryScreen':
       background(battleBackroundImage, 0, 0);
-      enemyImg.hide();
-      faintingEnemy.show();
+      battleButtonsCheck();
+      enemyFainted();
+      newGameCheck();
       okButton.show();
       playerImg2.show();
-      precisionStrikeButton.hide();
-      wildFlailButton.hide();
-      fleeButton.hide();
-      healButton.hide();
-      newGameButton.hide();
       game.showVictoryScreen();
       break;
     case 'itemScreen':
       background(battleBackroundImage, 0, 0);
-      enemyImg.hide();
-      faintingEnemy.hide();
+      enemyDisplayNoBattle();
+      newGameCheck();
+      battleButtonsCheck();
       okButton.show();
       playerImg2.show();
-      precisionStrikeButton.hide();
-      wildFlailButton.hide();
-      fleeButton.hide();
-      healButton.hide();
-      newGameButton.hide();
       game.showItemScreen();
       break;
   }
@@ -215,7 +242,7 @@ function keyPressed() {
       } else if (game.player.cell.item) {
         game.player.cell.item.pickUp();
       } else {
-        if (Math.random() > Config.encounterProbability) game.enterBattle()
+        if (Math.random() > Config.encounterProbability) game.enterBattle();
       }
     }
   }
@@ -242,13 +269,13 @@ function createNewGameButton() {
   });
 }
 
-function createPrecisionStrikeButton() {
+function createcalculatedProcessButton() {
 
-  precisionStrikeButton = createImg('./images/precisionStrike150px.png');
-  precisionStrikeButton.parent('strike');
-  elementHighlight(precisionStrikeButton);
-  stopElementHighlight(precisionStrikeButton);
-  precisionStrikeButton.mousePressed(() => {
+  calculatedProcessButton = createImg('./images/calculatedProcess.png');
+  calculatedProcessButton.parent('strike');
+  elementHighlight(calculatedProcessButton);
+  stopElementHighlight(calculatedProcessButton);
+  calculatedProcessButton.mousePressed(() => {
     startTime = frameCount;
     if (game.battle) {
       game.battle.takeTurn(Ability.find("Calculated Process"));
@@ -256,12 +283,12 @@ function createPrecisionStrikeButton() {
   });
 }
 
-function createWildFlailButton() {
-  wildFlailButton = createImg('./images/wildFlail150px.png');
-  wildFlailButton.parent('wildflail');
-  elementHighlight(wildFlailButton);
-  stopElementHighlight(wildFlailButton);
-  wildFlailButton.mousePressed(() => {
+function createstabInTheDarkButton() {
+  stabInTheDarkButton = createImg('./images/stabInTheDark.png');
+  stabInTheDarkButton.parent('wildflail');
+  elementHighlight(stabInTheDarkButton);
+  stopElementHighlight(stabInTheDarkButton);
+  stabInTheDarkButton.mousePressed(() => {
     startTime = frameCount;
 		if (game.battle) {
 			game.battle.takeTurn(Ability.find("Stab in the Dark"));
@@ -269,12 +296,12 @@ function createWildFlailButton() {
 	});
 }
 
-function createHealButton() {
-  healButton = createImg('./images/recovery150px.png');
-  healButton.parent('heal');
-  elementHighlight(healButton);
-  stopElementHighlight(healButton);
-	healButton.mousePressed(() => {
+function createrefreshButton() {
+  refreshButton = createImg('./images/refresh150px.png');
+  refreshButton.parent('heal');
+  elementHighlight(refreshButton);
+  stopElementHighlight(refreshButton);
+	refreshButton.mousePressed(() => {
     startTime = frameCount;
 		if (game.battle) {
 			game.battle.takeTurn(Ability.find("Refresh"));
@@ -334,3 +361,47 @@ function stopElementHighlight(element) {
       "background-color: transparent"
 )};
 };
+
+function enemyDisplayBattle() {
+  faintingEnemy.hide();
+  if (game.battle.player2.name = 'Bugger')
+  { idleMinotaur2.show();
+    enemyImg.hide(); }
+  else {
+    enemyImg.show();
+    idleMinotaur2.hide();
+  }
+}
+
+function enemyDisplayNoBattle(){
+  enemyImg.hide();
+  idleMinotaur2.hide();
+  faintingEnemy.hide();
+}
+
+function enemyFainted(){
+  enemyImg.hide();
+  idleMinotaur2.hide();
+    if(game.battle.player2.name = 'Bugger')
+    {faintingEnemy.show();}
+}
+
+function battleButtonsCheck(){
+  if (game.state === 'battleScreen'){
+  calculatedProcessButton.show();
+  stabInTheDarkButton.show();
+  refreshButton.show();
+  fleeButton.show();}
+  else{
+  calculatedProcessButton.hide();
+  stabInTheDarkButton.hide();
+  refreshButton.hide();
+  fleeButton.hide();
+  }
+}
+
+function newGameCheck(){
+  if (game.state === 'gameOver')
+  {newGameButton.show();}
+  else{newGameButton.hide();}
+}
