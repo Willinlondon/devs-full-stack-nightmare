@@ -78,8 +78,12 @@ class Turn {
 				this.p1Attack.minHeal,
 				this.p1Attack.maxHeal
 			);
+      if (this.p1Attack.totalHeal + this.player1.health <= this.player1.maxHealth) {
 			this.player1.takeHeal(this.p1Attack.totalHeal);
       this.player1.score += 4;
+      } else {
+        this.p1Attack.totalHeal = 1
+      }
 		}
 		// Judge player 2 move
     let abilityRoll = Math.floor(Math.random() * (this.p2PossibleAttacks.length))
