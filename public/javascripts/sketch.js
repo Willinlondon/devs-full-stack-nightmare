@@ -222,7 +222,7 @@ function createPrecisionStrikeButton() {
   precisionStrikeButton.mousePressed(() => {
     startTime = frameCount;
     if (game.battle) {
-      game.battle.takeTurn(Ability.find("Precision Strike"));
+      game.battle.takeTurn(Ability.find("Calculated Process"));
     }
   });
 }
@@ -235,7 +235,7 @@ function createWildFlailButton() {
   wildFlailButton.mousePressed(() => {
     startTime = frameCount;
 		if (game.battle) {
-			game.battle.takeTurn(Ability.find("Wild Flail"));
+			game.battle.takeTurn(Ability.find("Stab in the Dark"));
 		}
 	});
 }
@@ -247,7 +247,7 @@ function createHealButton() {
 	healButton.mousePressed(() => {
     startTime = frameCount;
 		if (game.battle) {
-			game.battle.takeTurn(Ability.find("Recovery"));
+			game.battle.takeTurn(Ability.find("Refresh"));
 		}
 	});
 }
