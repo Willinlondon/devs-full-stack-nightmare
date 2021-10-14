@@ -9,13 +9,13 @@ class Config {
 	static wallColour = [150, 50, 150];
 	static battleFontSize = 32;
 	static battleTextColor = [212, 217, 166];
-	static playerHealth = 110;
+	static playerHealth = 500;
 	static critAttackMultiplier = 3;
 	static victoryScreenBackground = [251, 72, 196];
 	static dodgeChance = 0.1;
 	static critChance = 0.1;
 	static fleeFailureChance = 0.1;
-	static defaultEnemyHealth = 80;
+	static defaultEnemyHealth = 50;
 	static mapDimension = 100;
 	static NoOfTunnels = 50;
 	static maxTunnelLength = 20;
