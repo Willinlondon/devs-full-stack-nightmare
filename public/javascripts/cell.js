@@ -53,12 +53,6 @@ class Cell {
 		} else {
 			image(tileArray[this.tileType - 1], this.regionX, this.regionY);
 
-			if (this.boss) {
-				fill(255, 0, 0)
-				rectMode(CENTER)
-				rect(this.regionX + Config.cellSize / 2, this.regionY + Config.cellSize / 2, 40);
-			}
-
 			if (this.item) {
 				if (this.item.available) {
 					fill(0, 255, 0)
