@@ -2,7 +2,7 @@ class NormalEnemies {
   static all = [
     new Character(
     'Bugger',
-    80,
+    Config.defaultEnemyHealth,
     ["Break", "Crash"],
     "ambushed",
     "a pesky"

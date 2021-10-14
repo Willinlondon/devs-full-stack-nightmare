@@ -48,7 +48,7 @@ class Turn {
 	_judge() {
 		// Judge player 1 move
 		if (this.flee === false && this.p1Attack.type === "Damaging") {
-			this.p1Attack.baseDamage = this._valueAmount(
+			this.p1Attack.baseDamage = this._attackValue(
 				this.p1Attack.min,
 				this.p1Attack.max
 			);
@@ -74,18 +74,24 @@ class Turn {
 		}
 
 		if (this.flee === false && this.p1Attack.type === "Heal") {
-			this.p1Attack.totalHeal = this._valueAmount(
+			this.p1Attack.totalHeal = this._healValue(
 				this.p1Attack.minHeal,
 				this.p1Attack.maxHeal
 			);
+      if (this.p1Attack.totalHeal + this.player1.health <= this.player1.maxHealth) {
 			this.player1.takeHeal(this.p1Attack.totalHeal);
       this.player1.score += 4;
+      } else {
+        this.p1Attack.totalHeal = this.player1.maxHealth - this.player1.health
+        this.player1.takeHeal(this.p1Attack.totalHeal);
+       this.player1.score += 4;
+      }
 		}
 		// Judge player 2 move
     let abilityRoll = Math.floor(Math.random() * (this.p2PossibleAttacks.length))
     this.p2Attack = Ability.find(this.p2PossibleAttacks[abilityRoll])
 		if (this.p2Attack.type == "Damaging") {
-			this.p2Attack.baseDamage = this._valueAmount(
+			this.p2Attack.baseDamage = this._attackValue(
 				this.p2Attack.min,
 				this.p2Attack.max
 			);
@@ -111,15 +117,24 @@ class Turn {
 		}
 
 		if (this.p2Attack.type === "Heal") {
-			this.p2Attack.totalHeal = this._valueAmount(
+			this.p2Attack.totalHeal = this._healValue(
 				this.p2Attack.minHeal,
 				this.p2Attack.maxHeal
 			);
-			this.player2.takeHeal(this.p2Attack.totalHeal);
-		}
+      if (this.p2Attack.totalHeal + this.player2.health <= this.player2.maxHealth) {
+        this.player2.takeHeal(this.p2Attack.totalHeal);
+        } else {
+          this.p2Attack.totalHeal = this.player2.maxHealth - this.player2.health
+          this.player2.takeHeal(this.p2Attack.totalHeal);
+        }
+	  }
+  }
+
+	_attackValue(min, max) {
+		return Math.floor(Math.random() * (max - min) + min);
 	}
 
-	_valueAmount(min, max) {
+  _healValue(min, max) {
 		return Math.floor(Math.random() * (max - min) + min);
 	}
 }
