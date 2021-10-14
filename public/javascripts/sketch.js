@@ -29,6 +29,7 @@ let backgroundMusic;
 let playerFaintAnimation;
 let faintingEnemy;
 let startTime;
+let ghLogo;
 
 function preload() {
   wallImg = loadImage('./images/wall1.png');
@@ -43,6 +44,8 @@ function preload() {
   );
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
+  ghLogo = loadImage('./images/gh-logo.png');
+  ticketImg = loadImage('./images/tickets.png');
 }
 
 function loadTiles() {
@@ -97,6 +100,32 @@ function draw() {
       game.showMap();
       playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      ticketImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+
+      Cell.all.forEach((cell) => {
+        if (cell.region == game.player.region && !cell.isWall()) {
+          if (cell.boss) {
+            if (!cell.boss.hasFainted()) {
+              image(
+                ghLogo,
+                cell.regionX + Config.cellSize / 4,
+                cell.regionY + Config.cellSize / 4
+              );
+            }
+          }
+
+          if (cell.item) {
+            if (cell.item.available) {
+              image(
+                ticketImg,
+                cell.regionX + Config.cellSize / 4,
+                cell.regionY + Config.cellSize / 4
+              );
+            }
+          }
+        }
+      })
 
       image(
         playerImg,
@@ -186,7 +215,7 @@ function keyPressed() {
       } else if (game.player.cell.item) {
         game.player.cell.item.pickUp();
       } else {
-        if (Math.random() > Config.encounterProbability) game.enterBattle()
+        if (Math.random() > Config.encounterProbability) game.enterBattle();
       }
     }
   }
@@ -222,7 +251,7 @@ function createPrecisionStrikeButton() {
   precisionStrikeButton.mousePressed(() => {
     startTime = frameCount;
     if (game.battle) {
-      game.battle.takeTurn(Ability.find("Precision Strike"));
+      game.battle.takeTurn(Ability.find("Calculated Process"));
     }
   });
 }
@@ -235,7 +264,7 @@ function createWildFlailButton() {
   wildFlailButton.mousePressed(() => {
     startTime = frameCount;
 		if (game.battle) {
-			game.battle.takeTurn(Ability.find("Wild Flail"));
+			game.battle.takeTurn(Ability.find("Stab in the Dark"));
 		}
 	});
 }
@@ -248,7 +277,7 @@ function createHealButton() {
 	healButton.mousePressed(() => {
     startTime = frameCount;
 		if (game.battle) {
-			game.battle.takeTurn(Ability.find("Recovery"));
+			game.battle.takeTurn(Ability.find("Refresh"));
 		}
 	});
 }

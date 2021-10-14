@@ -65,13 +65,7 @@ class Game {
   spawnBosses() {
     this.cells.forEach((cell) => {
       if (cell.localDifficulty > Config.bossSpawnThreshold && !cell.item) {
-        cell.boss = new Character(
-          "Git",
-          1000,
-          ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"],
-          "obstructed",
-          "a passive aggressive"
-        );
+        cell.boss = Bosses.sample();
       }
     })
   }
@@ -176,14 +170,7 @@ class Game {
     this.state = state;
   }
 
-  enterBattle(enemy = new Character(
-    'Jasmine',
-    Config.defaultEnemyHealth,
-    ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"],
-    "ambushed",
-    "an angry, obnoxious"
-    )
-  ) {
+  enterBattle(enemy = NormalEnemies.sample()) {
     this.battle = new Battle(this.player, enemy);
     this.state = 'battleScreen';
   }
