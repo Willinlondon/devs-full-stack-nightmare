@@ -52,6 +52,7 @@ class Config {
     "imposing, diabolical"
   )
   static unknownOrigin = new Ability("Unknown Origin", "Damaging", 5, 8, 0, 0);
+  static pushUpstream = new Ability("Push Upstream", "Heal", 0, 0, 10, 20);
   static noiseScale = 0.01;
   static noiseRange = 10000;
   static bossSpawnThreshold = 75;
