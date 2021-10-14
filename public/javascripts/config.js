@@ -26,8 +26,8 @@ class Config {
 	static calculatedProcess = new Ability("Calculated Process", "Damaging", 25, 30, 0, 0);
 	static stabInTheDark = new Ability("Stab in the Dark", "Damaging", 10, 45, 0, 0);
 	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 80, 120);
-  static breakAttack = new Ability("Break", "Damaging", 5, 8, 0, 0);
-  static crashAttack = new Ability("Crash", "Damaging", 5, 8, 0, 0);
+  static breakAttack = new Ability("Break", "Damaging", 18, 22, 0, 0);
+  static crashAttack = new Ability("Crash", "Damaging", 35, 45, 0, 0);
 	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
 	static failureBombardment = new Ability("Failure Bombardment", "Damaging", 6, 12, 0, 0);
   static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0);  
