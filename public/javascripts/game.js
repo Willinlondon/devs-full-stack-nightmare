@@ -172,7 +172,7 @@ class Game {
   enterBattle(enemy = new Character(
     'Jasmine',
     Config.defaultEnemyHealth,
-    ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"],
+    ["Undefined Reality", "Failure Bombardment", "Confusion & Chaos"],
     "ambushed",
     "an angry, obnoxious"
     )
