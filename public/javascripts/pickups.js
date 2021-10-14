@@ -3,7 +3,7 @@ class Pickups {
     function(game, x, y) {
       let ticketXS = new Item(
         game, x, y, 0.5,
-        "You attempted up a tiny xs ticket",
+        "You attempted a tiny xs ticket",
         "Job done! Your health increased by 1",
         () => { if (game.player.health < game.player.maxHealth) game.player.health += 1 },
       )
