@@ -55,6 +55,7 @@ class Config {
   static pushUpstream = new Ability("Push Upstream", "Heal", 0, 0, 10, 20);
   static conflictiveMerge = new Ability("Conflictive Merge", "Damaging", 5, 8, 0, 0);
   static invisibileBranch = new Ability("Invisible Branch", "Damaging", 5, 8, 0, 0);
+  static detatchHead = new Ability("Detatch Head", "Damaging", 5, 8, 0, 0);
   static noiseScale = 0.01;
   static noiseRange = 10000;
   static bossSpawnThreshold = 75;
