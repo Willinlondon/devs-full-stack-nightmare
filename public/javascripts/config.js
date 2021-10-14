@@ -23,9 +23,9 @@ class Config {
 	static NoOfTunnels = 50;
 	static maxTunnelLength = 20;
 	static regionDivisor = 10;
-	static calculatedProcess = new Ability("Calculated Process", "Damaging", 5, 8, 0, 0);
-	static stabInTheDark = new Ability("Stab in the Dark", "Damaging", 2, 13, 0, 0);
-	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 4, 7);
+	static calculatedProcess = new Ability("Calculated Process", "Damaging", 25, 30, 0, 0);
+	static stabInTheDark = new Ability("Stab in the Dark", "Damaging", 10, 45, 0, 0);
+	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 80, 120);
   static breakAttack = new Ability("Break", "Damaging", 5, 8, 0, 0);
   static crashAttack = new Ability("Crash", "Damaging", 5, 8, 0, 0);
 	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
