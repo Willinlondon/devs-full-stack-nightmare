@@ -387,7 +387,7 @@ function enemyDisplayNoBattle(){
 function enemyFainted(){
   enemyImg.hide();
   idleMinotaur2.hide();
-    if(game.battle.player2.name = 'Bugger')
+    if(game.battle.player2.name == 'Bugger')
     {faintingEnemy.show();}
 }
 
