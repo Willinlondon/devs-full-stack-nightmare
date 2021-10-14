@@ -17,11 +17,25 @@ class Config {
 	static fleeFailureChance = 0.1;
 	static defaultEnemyHealth = 80;
 	static mapDimension = 100;
-	static NoOfTunnels = 50;
+	static NoOfTunnels = 550;
 	static maxTunnelLength = 20;
 	static regionDivisor = 10;
-	static calculatedProcess = new Ability("Calculated Process", "Damaging", 5, 8, 0, 0);
-	static stabInTheDark = new Ability("Stab in the Dark", "Damaging", 2, 13, 0, 0);
+	static calculatedProcess = new Ability(
+		"Calculated Process",
+		"Damaging",
+		5,
+		8,
+		0,
+		0
+	);
+	static stabInTheDark = new Ability(
+		"Stab in the Dark",
+		"Damaging",
+		2,
+		13,
+		0,
+		0
+	);
 	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 4, 7);
   static breakAttack = new Ability("Break", "Damaging", 5, 8, 0, 0);
   static crashAttack = new Ability("Crash", "Damaging", 5, 8, 0, 0);
