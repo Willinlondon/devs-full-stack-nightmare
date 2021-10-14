@@ -23,13 +23,6 @@ class Config {
 	static calculatedProcess = new Ability("Calculated Process", "Damaging", 5, 8, 0, 0);
 	static stabInTheDark = new Ability("Stab in the Dark", "Damaging", 2, 13, 0, 0);
 	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 4, 7);
-  // static enemyBugger = new Character(
-  //   'Bugger',
-  //   30,
-  //   ["Break", "Crash"],
-  //   "ambushed",
-  //   "a pesky"
-  //   )
   static breakAttack = new Ability("Break", "Damaging", 5, 8, 0, 0);
   static crashAttack = new Ability("Crash", "Damaging", 5, 8, 0, 0);
 	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
@@ -50,29 +43,4 @@ class Config {
   static difficultyNoiseOffset = 0.05;
   static luckNoiseOffset = 0.376;
   static itemSpawnThreshold = 65;
-
-  // Config.bosses.jasmine = new Character(
-  //     'Git, Master of Sabotage',
-  //     120,
-  //     ["Unknown Origin", "Push Upstream", "Conflictive Merge", "Invisible Branch", "Detatch Head"],
-  //     "oppressed",
-  //     "imposing, diabolical"
-  //   )
-// 
-//   const b = new Character(
-//       'Zoomer',
-//       90,
-//       ["Visual Termination", "Countdown Initiated", "Time's End", "Unforseen Blackout"],
-//       "caught",
-//       "impatient, rude"
-//     )
-// 
-//   const c = new Character(
-//       'Jasmine',
-//       Config.defaultEnemyHealth,
-//       ["Undefined Reality", "Failure Bombardment", "Confusion & Chaos"],
-//       "ambushed",
-//       "an angry, obnoxious"
-//     )
-
 }

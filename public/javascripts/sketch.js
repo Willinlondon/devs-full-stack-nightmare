@@ -215,7 +215,7 @@ function keyPressed() {
       } else if (game.player.cell.item) {
         game.player.cell.item.pickUp();
       } else {
-        if (Math.random() > Config.encounterProbability) game.enterBattle()
+        if (Math.random() > Config.encounterProbability) game.enterBattle();
       }
     }
   }
