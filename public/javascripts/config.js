@@ -23,6 +23,13 @@ class Config {
 	static calculatedProcess = new Ability("Calculated Process", "Damaging", 5, 8, 0, 0);
 	static stabInTheDark = new Ability("Stab in the Dark", "Damaging", 2, 13, 0, 0);
 	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 4, 7);
+  static bossJasmine = new Character(
+    'Jasmine',
+    Config.defaultEnemyHealth,
+    ["Undefined Reality", "Failure Bombardment", "Confusion & Chaos"],
+    "ambushed",
+    "an angry, obnoxious"
+    )
 	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
 	static failureBombardment = new Ability("Failure Bombardment", "Damaging", 6, 12, 0, 0);
   static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0);  
