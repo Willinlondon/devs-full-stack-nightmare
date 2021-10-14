@@ -30,6 +30,7 @@ class Config {
     "ambushed",
     "a pesky"
     )
+  static breakAttack = new Ability("Break", "Damaging", 5, 8, 0, 0);
   static bossJasmine = new Character(
     'Jasmine',
     Config.defaultEnemyHealth,
