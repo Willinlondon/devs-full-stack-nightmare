@@ -46,6 +46,7 @@ function preload() {
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
   jasmineLogo = loadImage('./images/jasmine-logo.png');
   zoomLogo = loadImage('./images/zoom.png');
+  ghLogo = loadImage('./images/gh-logo.png');
   //Background assets
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   tileArray = loadTiles();
@@ -53,8 +54,7 @@ function preload() {
   wallImg.resize(Config.cellSize, Config.cellSize);
   ticketImg = loadImage('./images/tickets.png');
   //Misc assets
-  ghLogo = loadImage('./images/gh-logo.png');
-    ticketImg = loadImage('./images/tickets.png');
+  ticketImg = loadImage('./images/tickets.png');
   //Player assets
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
   playerImg2 = createImg('./images/playerIdleAnimations.gif');
@@ -238,11 +238,16 @@ function keyPressed() {
 
     if (moved) {
       if (game.player.cell.boss) {
-        game.enterBattle(game.player.cell.boss)
+        if (!game.player.cell.boss.hasFainted()) {
+          game.enterBattle(game.player.cell.boss)
+        }
       } else if (game.player.cell.item) {
         game.player.cell.item.pickUp();
       } else {
-        if (Math.random() > Config.encounterProbability) game.enterBattle();
+        if (Math.random() > Config.encounterProbability) {
+          let enemy  = NormalEnemies.sample()
+          game.enterBattle(enemy);
+        }
       }
     }
   }
@@ -364,8 +369,9 @@ function stopElementHighlight(element) {
 
 function enemyDisplayBattle() {
   faintingEnemy.hide();
-  if (game.battle.player2.name = 'Bugger')
-  { Zoomer.show();
+  if (game.battle.player2.name == 'Bugger')
+  { idleMinotaur2.show();
+
     enemyImg.hide(); }
   else {
     enemyImg.show();
@@ -381,8 +387,9 @@ function enemyDisplayNoBattle(){
 
 function enemyFainted(){
   enemyImg.hide();
-  Zoomer.hide();
-    if(game.battle.player2.name = 'Bugger')
+  idleMinotaur2.hide();
+    if(game.battle.player2.name == 'Bugger')
+
     {faintingEnemy.show();}
 }
 

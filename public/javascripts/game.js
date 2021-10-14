@@ -170,7 +170,7 @@ class Game {
     this.state = state;
   }
 
-  enterBattle(enemy = NormalEnemies.sample()) {
+  enterBattle(enemy) {
     this.battle = new Battle(this.player, enemy);
     this.state = 'battleScreen';
   }
