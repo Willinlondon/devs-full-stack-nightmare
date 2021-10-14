@@ -159,13 +159,13 @@ function draw() {
       playerFaintAnimation.hide();
       break;
     case 'gameOver':
+      game.showGameOver();
       enemyDisplayNoBattle();
       newGameCheck();
       buttonsNoBattle();
       okButton.hide();
       playerImg2.hide();
       playerFaintAnimation.show();
-      game.showGameOver();
       break;
     case 'victoryScreen':
       background(battleBackroundImage, 0, 0);
