@@ -46,8 +46,9 @@ function preload() {
   );
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
-  jasmineLogo = loadImage('./images/jasmine-logo.png');
   ghLogo = loadImage('./images/gh-logo.png');
+  jasmineLogo = loadImage('./images/jasmine-logo.png');
+  zoomLogo = loadImage('./images/zoom.png');
   ticketImg = loadImage('./images/tickets.png');
 }
 
@@ -95,8 +96,9 @@ function setup() {
         case 'Jasmine':
           cell.bossImg = jasmineLogo;
         break;
-        // case 'Zoomer':
-        // break;
+        case 'Zoomer':
+          cell.bossImg = zoomLogo;
+        break;
         default:
           cell.bossImg = ghLogo;
         break;
@@ -125,6 +127,7 @@ function draw() {
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       jasmineLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      zoomLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ticketImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 
       Cell.all.forEach((cell) => {
