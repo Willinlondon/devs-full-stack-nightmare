@@ -238,7 +238,7 @@ function keyPressed() {
 
     if (moved) {
       if (game.player.cell.boss) {
-        if (!game.player.boss.hasFainted()) {
+        if (!game.player.cell.boss.hasFainted()) {
           game.enterBattle(game.player.cell.boss)
         }
       } else if (game.player.cell.item) {
