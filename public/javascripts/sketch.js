@@ -75,24 +75,30 @@ function loadTiles() {
 }
 
 function setup() {
+  
+  //Gameplay 
+  createLocalDifficulty();
+  createLocalLuck();
+  game.spawnBosses();
+  game.spawnItems();
+  //Buttons
 	createcalculatedProcessButton();
 	createstabInTheDarkButton();
 	createrefreshButton();
 	createOkButton();
 	createFleeButton();
   createNewGameButton();
-  createLocalDifficulty();
-  createLocalLuck();
-  game.spawnBosses();
-  game.spawnItems();
+  //Background
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
+  battleBackroundImage = loadImage(battleBackgroundImagePath);
+  //Enemy assets
   enemyImg.parent("right");
   idleMinotaur2.parent("right");
+  faintingEnemy.parent("right");
+  //Player assets
   playerImg2.parent("left");
   playerFaintAnimation.parent("left");
-  faintingEnemy.parent("right");
-	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
 function draw() {
@@ -101,12 +107,12 @@ function draw() {
   switch (game.state) {
     case 'mapScreen':
       //  backgroundMusic.play();
+      game.showMap();
       enemyDisplayNoBattle();
+      buttonsNoBattle();
       playerImg2.show();
       okButton.hide();
       newGameButton.hide();
-      buttonsNoBattle();
-      game.showMap();
       playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -145,12 +151,11 @@ function draw() {
       break;
     case 'battleScreen':
       background(battleBackroundImage, 0, 0);
-      enemyDisplayBattle();
-      playerImg2.show();
       game.showBattle();
+      enemyDisplayBattle();
       battleButtons();
+      playerImg2.show();
       playerFaintAnimation.hide();
-      faintingEnemy.hide();
       newGameButton.hide();
       break;
     case 'gameOver':
@@ -330,6 +335,7 @@ function stopElementHighlight(element) {
 };
 
 function enemyDisplayBattle() {
+  faintingEnemy.hide();
   if (game.battle.player2.name = 'Bugger')
   { idleMinotaur2.show();
     enemyImg.hide(); }
