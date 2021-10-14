@@ -158,7 +158,7 @@ html, body { max-width: 100%; overflow-x: hidden; overflow-y: hidden}*/
 	color: #d4d9a6;
 }
 
-.score-container {
+#score-container {
 	display: grid;
 	grid-template-columns: 1fr 1fr 1fr;
 	grid-template-rows: 1fr 1fr 1fr;
@@ -170,7 +170,7 @@ html, body { max-width: 100%; overflow-x: hidden; overflow-y: hidden}*/
 		". . .";
 }
 
-.Score-board- {
+#Score-board- {
 	grid-area: Score-board-;
 	background-color: #d4d9a6;
 }
@@ -184,23 +184,21 @@ th,
 td {
 	padding: 5px;
 }
-/* tr:hover {
-	background-color: #d6eeee;
-} */
+
 td {
 	text-align: center;
 }
 
-a > div {
+#a > div {
 	display: none;
 	position: absolute;
 }
-a:hover > div {
+#a:hover > div {
 	display: block;
 	color: aqua;
 	position: absolute;
 }
-img {
+#img {
 	width: 100px;
 	height: 100px;
 }

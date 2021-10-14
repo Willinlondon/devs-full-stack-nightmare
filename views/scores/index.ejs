@@ -12,6 +12,44 @@
 		<script type="text/javascript" src="javascripts/config.js"></script>
 	</head>
 	<body>
+		<div id="page-container">
+			<div id="page-header">
+				<img src="./images/theGameText.png" , height="50" /> 
+			  </div>
+
+			  <div id="page-footer">
+				<a href="/about" target="_blank"
+				  ><img src="./images/createdByUs.png" , height="33"
+				/></a>
+			  </div>
+
+			  <div id="main-area">
+				<div id="left-sidebar"></div>
+		
+				<div id="play-area">
+					
+					<table style="width: 100%">
+						<tr>
+							<th>Player Name</th>
+							<th>Player Score</th>
+						</tr>
+						<% scores.map((result)=>{ %>
+						<tr>
+							<td><%= result.username %></td>
+							<td><%= result.score %></td>
+						</tr>
+						<% }) %>
+					</table>
+				</div>
+		
+				<div id="left"></div>
+				<div id="right"></div>
+				<div id="right-sidebar"></div>
+			  </div>
+
+		</div>
+
+		<!--
 		<a href="/">
 			<img
 				border="0"
@@ -39,5 +77,6 @@
 				</table>
 			</div>
 		</div>
+-->
 	</body>
 </html>
