@@ -24,8 +24,12 @@ class Config {
 	static wildFlail = new Ability("Wild Flail", "Damaging", 2, 13, 0, 0);
 	static heal = new Ability("Recovery", "Heal", 0, 0, 4, 7);
 	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
-	static unexpectedFailure = new Ability("Unexpected Failure", "Heal", 0, 0, 4, 7);
+	static failureBombardment = new Ability("Failure Bombardment", "Damaging", 6, 12, 0, 0);
   static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0);
+  static visualTermination = new Ability("Visual Termination", "Damaging", 9, 16, 0, 0);
+  static unforseenBlackout = new Ability("Unforseen Blackout", "Damaging", 9, 16, 0, 0);
+  static rudeInterruption = new Ability("Rude Interruption", "Damaging", 9, 16, 0, 0);
+  static timesEnd = new Ability("Time's End", "Damaging", 9, 16, 0, 0);
   static noiseScale = 0.01;
   static noiseRange = 10000;
   static bossSpawnThreshold = 75;
