@@ -18,8 +18,8 @@ const game = new Game();
 let calculatedProcessButton;
 let stabInTheDarkButton;
 let refreshButton;
-let okButton;
 let fleeButton;
+let okButton;
 //Background assets
 let battleBackgroundImage;
 const battleBackgroundImagePath = './stylesheets/assets/battleBackground.jpg';
@@ -109,10 +109,10 @@ function draw() {
       //  backgroundMusic.play();
       game.showMap();
       enemyDisplayNoBattle();
-      buttonsNoBattle();
+      battleButtonsCheck();
+      newGameCheck();
       playerImg2.show();
       okButton.hide();
-      newGameButton.hide();
       playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -153,36 +153,36 @@ function draw() {
       background(battleBackroundImage, 0, 0);
       game.showBattle();
       enemyDisplayBattle();
-      battleButtons();
+      battleButtonsCheck();
+      newGameCheck();
       playerImg2.show();
       playerFaintAnimation.hide();
-      newGameButton.hide();
       break;
     case 'gameOver':
       enemyDisplayNoBattle();
+      newGameCheck();
+      buttonsNoBattle();
       okButton.hide();
       playerImg2.hide();
-      buttonsNoBattle();
       playerFaintAnimation.show();
-      newGameButton.show();
       game.showGameOver();
       break;
     case 'victoryScreen':
       background(battleBackroundImage, 0, 0);
+      battleButtonsCheck();
       enemyFainted();
+      newGameCheck();
       okButton.show();
       playerImg2.show();
-      buttonsNoBattle();
-      newGameButton.hide();
       game.showVictoryScreen();
       break;
     case 'itemScreen':
       background(battleBackroundImage, 0, 0);
       enemyDisplayNoBattle();
+      newGameCheck();
+      battleButtonsCheck();
       okButton.show();
       playerImg2.show();
-      buttonsNoBattle();
-      newGameButton.hide();
       game.showItemScreen();
       break;
   }
@@ -358,16 +358,22 @@ function enemyFainted(){
     {faintingEnemy.show();}
 }
 
-function buttonsNoBattle(){
+function battleButtonsCheck(){
+  if (game.state === 'battleScreen'){
+  calculatedProcessButton.show();
+  stabInTheDarkButton.show();
+  refreshButton.show();
+  fleeButton.show();}
+  else{
   calculatedProcessButton.hide();
   stabInTheDarkButton.hide();
   refreshButton.hide();
   fleeButton.hide();
+  }
 }
 
-function battleButtons(){
-  calculatedProcessButton.show();
-  stabInTheDarkButton.show();
-  refreshButton.show();
-  fleeButton.show();
+function newGameCheck(){
+  if (game.state === 'gameOver')
+  {newGameButton.show();}
+  else{newGameButton.hide();}
 }
