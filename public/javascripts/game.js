@@ -72,6 +72,8 @@ class Game {
           "obstructed",
           "a passive aggressive"
         );
+
+        // cell.boss = Config.bosses[Math.floor(Math.random() * Config.bosses.length)]
       }
     })
   }

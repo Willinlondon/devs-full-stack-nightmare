@@ -51,29 +51,28 @@ class Config {
   static luckNoiseOffset = 0.376;
   static itemSpawnThreshold = 65;
 
-  bossGit = new Character(
-    'Git, Master of Sabotage',
-    120,
-    ["Unknown Origin", "Push Upstream", "Conflictive Merge", "Invisible Branch", "Detatch Head"],
-    "oppressed",
-    "imposing, diabolical"
-  )
+  // Config.bosses.jasmine = new Character(
+  //     'Git, Master of Sabotage',
+  //     120,
+  //     ["Unknown Origin", "Push Upstream", "Conflictive Merge", "Invisible Branch", "Detatch Head"],
+  //     "oppressed",
+  //     "imposing, diabolical"
+  //   )
+// 
+//   const b = new Character(
+//       'Zoomer',
+//       90,
+//       ["Visual Termination", "Countdown Initiated", "Time's End", "Unforseen Blackout"],
+//       "caught",
+//       "impatient, rude"
+//     )
+// 
+//   const c = new Character(
+//       'Jasmine',
+//       Config.defaultEnemyHealth,
+//       ["Undefined Reality", "Failure Bombardment", "Confusion & Chaos"],
+//       "ambushed",
+//       "an angry, obnoxious"
+//     )
 
-  bossZoom = new Character(
-    'Zoomer',
-    90,
-    ["Visual Termination", "Countdown Initiated", "Time's End", "Unforseen Blackout"],
-    "caught",
-    "impatient, rude"
-  )
-
-  bossJasmine = new Character(
-    'Jasmine',
-    Config.defaultEnemyHealth,
-    ["Undefined Reality", "Failure Bombardment", "Confusion & Chaos"],
-    "ambushed",
-    "an angry, obnoxious"
-  )
-
-  static bosses = [bossJasmine, bossZoom, bossGit];
 }
