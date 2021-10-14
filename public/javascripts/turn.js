@@ -53,6 +53,7 @@ class Turn {
 					this.p1Attack.totalDamage =
 						this.p1Attack.baseDamage * Config.critAttackMultiplier;
 					this.player2.takeHit(this.p1Attack.totalDamage);
+          this.player.score += 10;
 				} else {
 					this.p1Attack.crit = false;
 					this.p1Attack.totalDamage = this.p1Attack.baseDamage;

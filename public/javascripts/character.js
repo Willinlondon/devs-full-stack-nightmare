@@ -1,5 +1,6 @@
 class Character {
 	constructor(name = "Player", health = Config.playerHealth, abilities, verb, adjective) {
+    this.score = 0;
 		this.name = name;
 		this.health = health;
 		this.maxHealth = health;
