@@ -8,6 +8,7 @@ class Character {
 		this.abilities = abilities;
     this.verb = verb;
     this.adjective = adjective;
+    this.image = null;
 	}
 
 	spawn(x, y) {

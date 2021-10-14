@@ -36,12 +36,16 @@ let idleMinotaur2;
 //Misc assets
 let startTime;
 let ghLogo;
+let jasmineLogo;
+let zoomLogo;
 
 function preload() {
   //Enemy assets
   enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
   idleMinotaur2 = createImg('./images/idleMinotaur2.gif', 'enemy');
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
+  jasmineLogo = loadImage('./images/jasmine-logo.png');
+  zoomLogo = loadImage('./images/zoom.png');
   //Background assets
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   tileArray = loadTiles();
@@ -50,6 +54,7 @@ function preload() {
   ticketImg = loadImage('./images/tickets.png');
   //Misc assets
   ghLogo = loadImage('./images/gh-logo.png');
+    ticketImg = loadImage('./images/tickets.png');
   //Player assets
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
   playerImg2 = createImg('./images/playerIdleAnimations.gif');
@@ -57,7 +62,6 @@ function preload() {
     './images/playerFaintAnimation.gif',
     'fainting player'
   );
-  
 }
 
 function loadTiles() {
@@ -99,6 +103,28 @@ function setup() {
   //Player assets
   playerImg2.parent("left");
   playerFaintAnimation.parent("left");
+
+  Cell.all.forEach((cell) => {
+    if (cell.boss) {
+      cell.bossImg = null;
+
+      switch(cell.boss.name) {
+        case 'Git, Master of Sabotage':
+          cell.bossImg = ghLogo;
+        break;
+        case 'Jasmine':
+          cell.bossImg = jasmineLogo;
+        break;
+        case 'Zoomer':
+          cell.bossImg = zoomLogo;
+        break;
+        default:
+          cell.bossImg = ghLogo;
+        break;
+      }
+    }
+  })
+
 }
 
 function draw() {
@@ -116,6 +142,8 @@ function draw() {
       playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      jasmineLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      zoomLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ticketImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 
       Cell.all.forEach((cell) => {
@@ -123,7 +151,7 @@ function draw() {
           if (cell.boss) {
             if (!cell.boss.hasFainted()) {
               image(
-                ghLogo,
+                cell.bossImg,
                 cell.regionX + Config.cellSize / 4,
                 cell.regionY + Config.cellSize / 4
               );
