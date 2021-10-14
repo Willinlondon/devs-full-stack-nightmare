@@ -28,9 +28,9 @@ class Config {
 	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 80, 120);
   static breakAttack = new Ability("Break", "Damaging", 18, 22, 0, 0);
   static crashAttack = new Ability("Crash", "Damaging", 35, 45, 0, 0);
-	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
-	static failureBombardment = new Ability("Failure Bombardment", "Damaging", 6, 12, 0, 0);
-  static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0);  
+	static undefinedReality = new Ability("Undefined Reality", "Damaging", 40, 60, 0, 0);
+	static failureBombardment = new Ability("Failure Bombardment", "Damaging", 80, 100, 0, 0);
+  static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 100, 120, 0, 0);  
   static visualTermination = new Ability("Visual Termination", "Damaging", 5, 8, 0, 0);
   static countdownInitiated = new Ability("Countdown Initiated", "Damaging", 6, 12, 0, 0);
   static timesEnd = new Ability("Time's End", "Damaging", 6, 12, 0, 0);
