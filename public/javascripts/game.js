@@ -10,7 +10,7 @@ class Game {
     this.gameMap = map;
     this.map = this.gameMap.createMap();
     this.player = player;
-    this.state = 'mapScreen';
+    this.state = 'introScreen';
     this.player.spawn(this.gameMap.startingColumn, this.gameMap.startingRow);
     this._generateCells();
 
