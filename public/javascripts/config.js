@@ -20,7 +20,7 @@ class Config {
   static bossJasmineHealth = 350;
   static bossZoomHealth = 500;
 	static mapDimension = 100;
-	static NoOfTunnels = 50;
+	static NoOfTunnels = 550;
 	static maxTunnelLength = 20;
 	static regionDivisor = 10;
 	static calculatedProcess = new Ability("Calculated Process", "Damaging", 25, 30, 0, 0);
