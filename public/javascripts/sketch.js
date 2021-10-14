@@ -14,40 +14,50 @@ async function addToScoreDatabase(username, score) {
 }
 
 const game = new Game();
+//Buttons
 let calculatedProcessButton;
 let stabInTheDarkButton;
 let refreshButton;
-let okButton;
 let fleeButton;
+let okButton;
+//Background assets
 let battleBackgroundImage;
 const battleBackgroundImagePath = './stylesheets/assets/battleBackground.jpg';
 let wallImg;
+let backgroundMusic;
+//Player assets
 let playerImg;
 let playerImg2;
-let enemyImg;
-let backgroundMusic;
 let playerFaintAnimation;
+//Enemy assets
+let enemyImg;
 let faintingEnemy;
+let idleMinotaur2;
+//Misc assets
 let startTime;
 let ghLogo;
-let idleMinotaur2;
 
 function preload() {
-  wallImg = loadImage('./images/wall1.png');
-  wallImg.resize(Config.cellSize, Config.cellSize);
-  playerImg = loadImage('./images/idlePlayer1CROPPED.png');
-  playerImg2 = createImg('./images/playerIdleAnimations.gif');
+  //Enemy assets
   enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
   idleMinotaur2 = createImg('./images/idleMinotaur2.gif', 'enemy');
+  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
+  //Background assets
+  backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   tileArray = loadTiles();
+  wallImg = loadImage('./images/wall1.png');
+  wallImg.resize(Config.cellSize, Config.cellSize);
+  ticketImg = loadImage('./images/tickets.png');
+  //Misc assets
+  ghLogo = loadImage('./images/gh-logo.png');
+  //Player assets
+  playerImg = loadImage('./images/idlePlayer1CROPPED.png');
+  playerImg2 = createImg('./images/playerIdleAnimations.gif');
   playerFaintAnimation = createImg(
     './images/playerFaintAnimation.gif',
     'fainting player'
   );
-  backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
-  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
-  ghLogo = loadImage('./images/gh-logo.png');
-  ticketImg = loadImage('./images/tickets.png');
+  
 }
 
 function loadTiles() {
@@ -65,24 +75,30 @@ function loadTiles() {
 }
 
 function setup() {
+  
+  //Gameplay 
+  createLocalDifficulty();
+  createLocalLuck();
+  game.spawnBosses();
+  game.spawnItems();
+  //Buttons
 	createcalculatedProcessButton();
 	createstabInTheDarkButton();
 	createrefreshButton();
 	createOkButton();
 	createFleeButton();
   createNewGameButton();
-  createLocalDifficulty();
-  createLocalLuck();
-  game.spawnBosses();
-  game.spawnItems();
+  //Background
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
+  battleBackroundImage = loadImage(battleBackgroundImagePath);
+  //Enemy assets
   enemyImg.parent("right");
   idleMinotaur2.parent("right");
+  faintingEnemy.parent("right");
+  //Player assets
   playerImg2.parent("left");
   playerFaintAnimation.parent("left");
-  faintingEnemy.parent("right");
-	battleBackroundImage = loadImage(battleBackgroundImagePath);
 }
 
 function draw() {
@@ -91,16 +107,12 @@ function draw() {
   switch (game.state) {
     case 'mapScreen':
       //  backgroundMusic.play();
+      game.showMap();
       enemyDisplayNoBattle();
+      battleButtonsCheck();
+      newGameCheck();
       playerImg2.show();
       okButton.hide();
-      newGameButton.hide();
-      faintingEnemy.hide();
-      calculatedProcessButton.hide();
-      stabInTheDarkButton.hide();
-      refreshButton.hide();
-      fleeButton.hide();
-      game.showMap();
       playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -139,51 +151,38 @@ function draw() {
       break;
     case 'battleScreen':
       background(battleBackroundImage, 0, 0);
-      enemyDisplayBattle();
-      playerImg2.show();
       game.showBattle();
-      calculatedProcessButton.show();
-      stabInTheDarkButton.show();
-      refreshButton.show();
-      fleeButton.show();
+      enemyDisplayBattle();
+      battleButtonsCheck();
+      newGameCheck();
+      playerImg2.show();
       playerFaintAnimation.hide();
-      faintingEnemy.hide();
-      newGameButton.hide();
       break;
     case 'gameOver':
       enemyDisplayNoBattle();
+      newGameCheck();
+      buttonsNoBattle();
       okButton.hide();
       playerImg2.hide();
-      calculatedProcessButton.hide();
-      stabInTheDarkButton.hide();
-      refreshButton.hide();
-      fleeButton.hide();
       playerFaintAnimation.show();
-      newGameButton.show();
       game.showGameOver();
       break;
     case 'victoryScreen':
       background(battleBackroundImage, 0, 0);
+      battleButtonsCheck();
       enemyFainted();
+      newGameCheck();
       okButton.show();
       playerImg2.show();
-      calculatedProcessButton.hide();
-      stabInTheDarkButton.hide();
-      fleeButton.hide();
-      refreshButton.hide();
-      newGameButton.hide();
       game.showVictoryScreen();
       break;
     case 'itemScreen':
       background(battleBackroundImage, 0, 0);
       enemyDisplayNoBattle();
+      newGameCheck();
+      battleButtonsCheck();
       okButton.show();
       playerImg2.show();
-      calculatedProcessButton.hide();
-      stabInTheDarkButton.hide();
-      fleeButton.hide();
-      refreshButton.hide();
-      newGameButton.hide();
       game.showItemScreen();
       break;
   }
@@ -336,6 +335,7 @@ function stopElementHighlight(element) {
 };
 
 function enemyDisplayBattle() {
+  faintingEnemy.hide();
   if (game.battle.player2.name = 'Bugger')
   { idleMinotaur2.show();
     enemyImg.hide(); }
@@ -354,5 +354,26 @@ function enemyDisplayNoBattle(){
 function enemyFainted(){
   enemyImg.hide();
   idleMinotaur2.hide();
-  faintingEnemy.show();
+    if(game.battle.player2.name = 'Bugger')
+    {faintingEnemy.show();}
+}
+
+function battleButtonsCheck(){
+  if (game.state === 'battleScreen'){
+  calculatedProcessButton.show();
+  stabInTheDarkButton.show();
+  refreshButton.show();
+  fleeButton.show();}
+  else{
+  calculatedProcessButton.hide();
+  stabInTheDarkButton.hide();
+  refreshButton.hide();
+  fleeButton.hide();
+  }
+}
+
+function newGameCheck(){
+  if (game.state === 'gameOver')
+  {newGameButton.show();}
+  else{newGameButton.hide();}
 }
