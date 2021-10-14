@@ -195,7 +195,8 @@ function keyPressed() {
 function createOkButton() {
   okButton = createImg('./images/okButton150px.png');
   okButton.parent('okButton');
-
+  elementHighlight(okButton);
+  stopElementHighlight(okButton);
   okButton.mousePressed(() => {
     game.battle = null;
     game.state = 'mapScreen';
@@ -205,10 +206,87 @@ function createOkButton() {
 function createNewGameButton() {
   newGameButton = createImg('./images/newGame150px.png');
   newGameButton.parent('okButton');
-
+  elementHighlight(newGameButton);
+  stopElementHighlight(newGameButton);
   newGameButton.mousePressed(() => {
     window.open('/');
   });
+}
+
+function createPrecisionStrikeButton() {
+
+  precisionStrikeButton = createImg('./images/precisionStrike150px.png');
+  precisionStrikeButton.parent('strike');
+  elementHighlight(precisionStrikeButton);
+  stopElementHighlight(precisionStrikeButton);
+  precisionStrikeButton.mouseOut(reverseColor);
+  precisionStrikeButton.mousePressed(() => {
+    startTime = frameCount;
+    if (game.battle) {
+      game.battle.takeTurn(Ability.find("Precision Strike"));
+    }
+  });
+}
+
+function createWildFlailButton() {
+  wildFlailButton = createImg('./images/wildFlail150px.png');
+  wildFlailButton.parent('wildflail');
+  elementHighlight(wildFlailButton);
+  stopElementHighlight(wildFlailButton);
+  wildFlailButton.mousePressed(() => {
+    startTime = frameCount;
+		if (game.battle) {
+			game.battle.takeTurn(Ability.find("Wild Flail"));
+		}
+	});
+}
+
+function createHealButton() {
+  healButton = createImg('./images/recovery150px.png');
+  healButton.parent('heal');
+  elementHighlight(healButton);
+  stopElementHighlight(healButton);
+	healButton.mousePressed(() => {
+    startTime = frameCount;
+		if (game.battle) {
+			game.battle.takeTurn(Ability.find("Recovery"));
+		}
+	});
+}
+
+function createFleeButton() {
+  fleeButton = createImg('./images/flee150px.png');
+  fleeButton.parent('flee');
+  elementHighlight(fleeButton);
+  stopElementHighlight(fleeButton);
+  fleeButton.mousePressed(() => {
+    startTime = frameCount;
+    if (Math.random() > Config.fleeFailureChance) {
+      game.battle = null;
+      game.state = 'mapScreen';
+    } else {
+      game.battle.takeTurn('Flee!', true);
+    }
+  });
+}
+
+
+function createLocalDifficulty() {
+  game.cells.forEach((cell) => {
+    cell.localDifficulty = Math.floor((noise(
+      cell.x + Config.difficultyNoiseOffset,
+      cell.y + Config.difficultyNoiseOffset
+      ) * Config.noiseScale) * Config.noiseRange);
+  })
+};
+
+function createLocalLuck() {
+  game.cells.forEach((cell) => {
+    cell.localLuck = Math.floor((noise(
+      cell.x + Config.luckNoiseOffset,
+      cell.y + Config.luckNoiseOffset
+      ) * Config.noiseScale) * Config.noiseRange);
+  })
 }
 
 function elementHighlight(element) {
@@ -228,93 +306,3 @@ function stopElementHighlight(element) {
       "background-color: transparent"
 )};
 };
-
-//function changeColor() {
-//  precisionStrikeButton.style(
-//          "background-color: lightgreen"
-//    )};
-
-function createPrecisionStrikeButton() {
-
-  precisionStrikeButton = createImg('./images/precisionStrike150px.png');
-  precisionStrikeButton.parent('strike');
-  elementHighlight(precisionStrikeButton);
-  stopElementHighlight(precisionStrikeButton);
-  //precisionStrikeButton.mouseOver(changeColor);
-  precisionStrikeButton.mouseOut(reverseColor);
-  precisionStrikeButton.mousePressed(() => {
-    startTime = frameCount;
-    if (game.battle) {
-      game.battle.takeTurn(Ability.find("Precision Strike"));
-    }
-  });
-}
-
-function createWildFlailButton() {
-  wildFlailButton = createImg('./images/wildFlail150px.png');
-
-  wildFlailButton.parent('wildflail');
-  elementHighlight(wildFlailButton);
-
-  wildFlailButton.mousePressed(() => {
-    startTime = frameCount;
-		if (game.battle) {
-			game.battle.takeTurn(Ability.find("Wild Flail"));
-		}
-	});
-}
-
-function createHealButton() {
-  healButton = createImg('./images/recovery150px.png');
-  healButton.parent('heal');
-
-	healButton.mousePressed(() => {
-    startTime = frameCount;
-		if (game.battle) {
-			game.battle.takeTurn(Ability.find("Recovery"));
-		}
-	});
-}
-
-function createFleeButton() {
-  fleeButton = createImg('./images/flee150px.png');
-  fleeButton.parent('flee');
-
-  fleeButton.mousePressed(() => {
-    startTime = frameCount;
-    if (Math.random() > Config.fleeFailureChance) {
-      game.battle = null;
-      game.state = 'mapScreen';
-    } else {
-      game.battle.takeTurn('Flee!', true);
-    }
-  });
-}
-
-//function changeColor() {
-//  precisionStrikeButton.style(
-//          "background-color: lightgreen"
-//    )};
-
-function reverseColor() {
-      precisionStrikeButton.style(
-        "background-color: transparent"
-)};
-
-function createLocalDifficulty() {
-  game.cells.forEach((cell) => {
-    cell.localDifficulty = Math.floor((noise(
-      cell.x + Config.difficultyNoiseOffset,
-      cell.y + Config.difficultyNoiseOffset
-      ) * Config.noiseScale) * Config.noiseRange);
-  })
-};
-
-function createLocalLuck() {
-  game.cells.forEach((cell) => {
-    cell.localLuck = Math.floor((noise(
-      cell.x + Config.luckNoiseOffset,
-      cell.y + Config.luckNoiseOffset
-      ) * Config.noiseScale) * Config.noiseRange);
-  })
-}
