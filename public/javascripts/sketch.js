@@ -14,9 +14,9 @@ async function addToScoreDatabase(username, score) {
 }
 
 const game = new Game();
-let precisionStrikeButton;
-let wildFlailButton;
-let healButton;
+let calculatedProcessButton;
+let stabInTheDarkButton;
+let refreshButton;
 let okButton;
 let fleeButton;
 let battleBackgroundImage;
@@ -63,9 +63,9 @@ function loadTiles() {
 }
 
 function setup() {
-	createPrecisionStrikeButton();
-	createWildFlailButton();
-	createHealButton();
+	createcalculatedProcessButton();
+	createstabInTheDarkButton();
+	createrefreshButton();
 	createOkButton();
 	createFleeButton();
   createNewGameButton();
@@ -93,9 +93,9 @@ function draw() {
       okButton.hide();
       newGameButton.hide();
       faintingEnemy.hide();
-      precisionStrikeButton.hide();
-      wildFlailButton.hide();
-      healButton.hide();
+      calculatedProcessButton.hide();
+      stabInTheDarkButton.hide();
+      refreshButton.hide();
       fleeButton.hide();
       game.showMap();
       playerFaintAnimation.hide();
@@ -139,9 +139,9 @@ function draw() {
       enemyImg.show();
       playerImg2.show();
       game.showBattle();
-      precisionStrikeButton.show();
-      wildFlailButton.show();
-      healButton.show();
+      calculatedProcessButton.show();
+      stabInTheDarkButton.show();
+      refreshButton.show();
       fleeButton.show();
       playerFaintAnimation.hide();
       faintingEnemy.hide();
@@ -151,9 +151,9 @@ function draw() {
       okButton.hide();
       enemyImg.hide();
       playerImg2.hide();
-      precisionStrikeButton.hide();
-      wildFlailButton.hide();
-      healButton.hide();
+      calculatedProcessButton.hide();
+      stabInTheDarkButton.hide();
+      refreshButton.hide();
       fleeButton.hide();
       playerFaintAnimation.show();
       faintingEnemy.hide();
@@ -166,10 +166,10 @@ function draw() {
       faintingEnemy.show();
       okButton.show();
       playerImg2.show();
-      precisionStrikeButton.hide();
-      wildFlailButton.hide();
+      calculatedProcessButton.hide();
+      stabInTheDarkButton.hide();
       fleeButton.hide();
-      healButton.hide();
+      refreshButton.hide();
       newGameButton.hide();
       game.showVictoryScreen();
       break;
@@ -179,10 +179,10 @@ function draw() {
       faintingEnemy.hide();
       okButton.show();
       playerImg2.show();
-      precisionStrikeButton.hide();
-      wildFlailButton.hide();
+      calculatedProcessButton.hide();
+      stabInTheDarkButton.hide();
       fleeButton.hide();
-      healButton.hide();
+      refreshButton.hide();
       newGameButton.hide();
       game.showItemScreen();
       break;
@@ -242,13 +242,13 @@ function createNewGameButton() {
   });
 }
 
-function createPrecisionStrikeButton() {
+function createcalculatedProcessButton() {
 
-  precisionStrikeButton = createImg('./images/precisionStrike150px.png');
-  precisionStrikeButton.parent('strike');
-  elementHighlight(precisionStrikeButton);
-  stopElementHighlight(precisionStrikeButton);
-  precisionStrikeButton.mousePressed(() => {
+  calculatedProcessButton = createImg('./images/calculatedProcess.png');
+  calculatedProcessButton.parent('strike');
+  elementHighlight(calculatedProcessButton);
+  stopElementHighlight(calculatedProcessButton);
+  calculatedProcessButton.mousePressed(() => {
     startTime = frameCount;
     if (game.battle) {
       game.battle.takeTurn(Ability.find("Calculated Process"));
@@ -256,12 +256,12 @@ function createPrecisionStrikeButton() {
   });
 }
 
-function createWildFlailButton() {
-  wildFlailButton = createImg('./images/wildFlail150px.png');
-  wildFlailButton.parent('wildflail');
-  elementHighlight(wildFlailButton);
-  stopElementHighlight(wildFlailButton);
-  wildFlailButton.mousePressed(() => {
+function createstabInTheDarkButton() {
+  stabInTheDarkButton = createImg('./images/stabInTheDark.png');
+  stabInTheDarkButton.parent('wildflail');
+  elementHighlight(stabInTheDarkButton);
+  stopElementHighlight(stabInTheDarkButton);
+  stabInTheDarkButton.mousePressed(() => {
     startTime = frameCount;
 		if (game.battle) {
 			game.battle.takeTurn(Ability.find("Stab in the Dark"));
@@ -269,12 +269,12 @@ function createWildFlailButton() {
 	});
 }
 
-function createHealButton() {
-  healButton = createImg('./images/recovery150px.png');
-  healButton.parent('heal');
-  elementHighlight(healButton);
-  stopElementHighlight(healButton);
-	healButton.mousePressed(() => {
+function createrefreshButton() {
+  refreshButton = createImg('./images/refresh150px.png');
+  refreshButton.parent('heal');
+  elementHighlight(refreshButton);
+  stopElementHighlight(refreshButton);
+	refreshButton.mousePressed(() => {
     startTime = frameCount;
 		if (game.battle) {
 			game.battle.takeTurn(Ability.find("Refresh"));
