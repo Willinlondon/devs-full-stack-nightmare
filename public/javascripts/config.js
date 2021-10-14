@@ -42,6 +42,7 @@ class Config {
   )
   static visualTermination = new Ability("Visual Termination", "Damaging", 5, 8, 0, 0);
   static countdownInitiated = new Ability("Countdown Initiated", "Damaging", 6, 12, 0, 0);
+  static timesEnd = new Ability("Time's End", "Damaging", 6, 12, 0, 0);
   static noiseScale = 0.01;
   static noiseRange = 10000;
   static bossSpawnThreshold = 75;
