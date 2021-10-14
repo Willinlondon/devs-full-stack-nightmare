@@ -16,6 +16,9 @@ class Config {
 	static critChance = 0.1;
 	static fleeFailureChance = 0.1;
 	static defaultEnemyHealth = 50;
+  static bossGitHealth = 1000;
+  static bossJasmineHealth = 350;
+  static bossZoomHealth = 500;
 	static mapDimension = 100;
 	static NoOfTunnels = 50;
 	static maxTunnelLength = 20;

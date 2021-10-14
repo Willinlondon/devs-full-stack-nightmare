@@ -2,21 +2,21 @@ class Bosses {
   static all = [
     new Character(
     'Git, Master of Sabotage',
-      120,
+      Config.bossGitHealth,
       ["Unknown Origin", "Push Upstream", "Conflictive Merge", "Invisible Branch", "Detatch Head"],
       "oppressed",
       "imposing, diabolical"
     ),
     new Character(
       'Zoomer',
-      90,
+      Config.bossZoomHealth,
       ["Visual Termination", "Countdown Initiated", "Time's End", "Unforseen Blackout"],
       "caught",
       "impatient, rude"
     ),
     new Character(
       'Jasmine',
-      Config.defaultEnemyHealth,
+      Config.bossJasmineHealth,
       ["Undefined Reality", "Failure Bombardment", "Confusion & Chaos"],
       "ambushed",
       "an angry, obnoxious"
