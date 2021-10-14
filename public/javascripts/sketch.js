@@ -151,6 +151,8 @@ function draw() {
 			newGameCheck();
 			playerImg2.show();
 			okButton.hide();
+      beginButton.hide();
+      inputPlayerName.hide();
 			playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -194,6 +196,8 @@ function draw() {
       game.showBattle();
       enemyDisplayBattle();
       battleButtonsCheck();
+      beginButton.hide();
+      inputPlayerName.hide();
       newGameCheck();
       playerImg2.show();
       playerFaintAnimation.hide();
@@ -204,6 +208,8 @@ function draw() {
 			newGameCheck();
 			buttonsNoBattle();
 			okButton.hide();
+      beginButton.hide();
+      inputPlayerName.hide();
 			playerImg2.hide();
 			playerFaintAnimation.show();
 		break;
@@ -214,6 +220,8 @@ function draw() {
       newGameCheck();
       okButton.show();
       playerImg2.show();
+      beginButton.hide();
+      inputPlayerName.hide();
       game.showVictoryScreen();
       break;
     case 'itemScreen':
@@ -222,6 +230,8 @@ function draw() {
       newGameCheck();
       battleButtonsCheck();
       okButton.show();
+      beginButton.hide();
+      inputPlayerName.hide();
       playerImg2.show();
       game.showItemScreen();
       break;
@@ -230,6 +240,8 @@ function draw() {
       enemyDisplayNoBattle();
       newGameCheck();
       battleButtonsCheck();
+      beginButton.show();
+      inputPlayerName.show();
       okButton.hide();
       playerImg2.show();
       game.showIntroScreen();
