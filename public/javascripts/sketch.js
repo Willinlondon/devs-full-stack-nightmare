@@ -29,7 +29,6 @@ let backgroundMusic;
 let playerFaintAnimation;
 let faintingEnemy;
 let startTime;
-let elementHighlight;
 
 function preload() {
   wallImg = loadImage('./images/wall1.png');
@@ -212,12 +211,36 @@ function createNewGameButton() {
   });
 }
 
+function elementHighlight(element) {
+  let toChange = element
+  toChange.mouseOver(changeColor)
+    function changeColor() {
+      toChange.style(
+                "background-color: lightgreen"
+          )};
+};
+
+function stopElementHighlight(element) {
+  let toChange = element
+  toChange.mouseOut(reverseColor)
+  function reverseColor() {
+    toChange.style(
+      "background-color: transparent"
+)};
+};
+
+//function changeColor() {
+//  precisionStrikeButton.style(
+//          "background-color: lightgreen"
+//    )};
+
 function createPrecisionStrikeButton() {
 
   precisionStrikeButton = createImg('./images/precisionStrike150px.png');
   precisionStrikeButton.parent('strike');
-
-  precisionStrikeButton.mouseOver(changeColor);
+  elementHighlight(precisionStrikeButton);
+  stopElementHighlight(precisionStrikeButton);
+  //precisionStrikeButton.mouseOver(changeColor);
   precisionStrikeButton.mouseOut(reverseColor);
   precisionStrikeButton.mousePressed(() => {
     startTime = frameCount;
@@ -231,6 +254,7 @@ function createWildFlailButton() {
   wildFlailButton = createImg('./images/wildFlail150px.png');
 
   wildFlailButton.parent('wildflail');
+  elementHighlight(wildFlailButton);
 
   wildFlailButton.mousePressed(() => {
     startTime = frameCount;
@@ -267,10 +291,10 @@ function createFleeButton() {
   });
 }
 
-function changeColor() {
-  precisionStrikeButton.style(
-          "background-color: lightgreen"
-    )};
+//function changeColor() {
+//  precisionStrikeButton.style(
+//          "background-color: lightgreen"
+//    )};
 
 function reverseColor() {
       precisionStrikeButton.style(
