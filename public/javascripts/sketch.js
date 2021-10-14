@@ -40,6 +40,8 @@ let startTime;
 let ghLogo;
 let jasmineLogo;
 let zoomLogo;
+let inputPlayerName;
+let beginButton;
 
 function preload() {
 	//Enemy assets
@@ -65,7 +67,7 @@ function preload() {
 	playerFaintAnimation = createImg(
 		"./images/playerFaintAnimation.gif",
 		"fainting player"
-	);
+  );
 }
 
 function loadTiles() {
@@ -93,6 +95,7 @@ function setup() {
 	createstabInTheDarkButton();
 	createrefreshButton();
 	createOkButton();
+  createBeginButton();
 	createFleeButton();
 	createNewGameButton();
 	//Background
@@ -108,6 +111,10 @@ function setup() {
   //Player assets
   playerImg2.parent("left");
   playerFaintAnimation.parent("left");
+  //Player Name Input
+  inputPlayerName = createInput();
+  inputPlayerName.parent("play-area")
+  inputPlayerName.position(Config.canvasWidth / 2, Config.canvasWidth / 3 * 2);
 
   Cell.all.forEach((cell) => {
     if (cell.boss) {
@@ -223,7 +230,7 @@ function draw() {
       enemyDisplayNoBattle();
       newGameCheck();
       battleButtonsCheck();
-      okButton.show();
+      okButton.hide();
       playerImg2.show();
       game.showIntroScreen();
       break;
@@ -266,6 +273,17 @@ function keyPressed() {
     }
   }
 
+}
+function createBeginButton() {
+	beginButton = createImg("./images/okButton150px.png");
+	beginButton.parent("okButton");
+	elementHighlight(beginButton);
+	stopElementHighlight(beginButton);
+	beginButton.mousePressed(() => {
+		game.battle = null;
+		game.state = "mapScreen";
+    game.player.name = inputPlayerName.value();
+	});
 }
 
 function createOkButton() {
