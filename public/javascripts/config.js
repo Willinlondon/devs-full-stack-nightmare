@@ -31,10 +31,10 @@ class Config {
 	static undefinedReality = new Ability("Undefined Reality", "Damaging", 40, 60, 0, 0);
 	static failureBombardment = new Ability("Failure Bombardment", "Damaging", 80, 100, 0, 0);
   static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 100, 120, 0, 0);  
-  static visualTermination = new Ability("Visual Termination", "Damaging", 5, 8, 0, 0);
-  static countdownInitiated = new Ability("Countdown Initiated", "Damaging", 6, 12, 0, 0);
-  static timesEnd = new Ability("Time's End", "Damaging", 6, 12, 0, 0);
-  static unforseenBlackout = new Ability("Unforseen Blackout", "Damaging", 6, 12, 0, 0);
+  static visualTermination = new Ability("Visual Termination", "Damaging", 30, 60, 0, 0);
+  static countdownInitiated = new Ability("Countdown Initiated", "Damaging", 80, 110, 0, 0);
+  static timesEnd = new Ability("Time's End", "Damaging", 100, 120, 0, 0);
+  static unforseenBlackout = new Ability("Unforseen Blackout", "Damaging", 1, 200, 0, 0);
   static unknownOrigin = new Ability("Unknown Origin", "Damaging", 5, 8, 0, 0);
   static pushUpstream = new Ability("Push Upstream", "Heal", 0, 0, 10, 20);
   static conflictiveMerge = new Ability("Conflictive Merge", "Damaging", 5, 8, 0, 0);
