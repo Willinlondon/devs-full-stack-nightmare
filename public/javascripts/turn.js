@@ -74,7 +74,7 @@ class Turn {
 		}
 
 		if (this.flee === false && this.p1Attack.type === "Heal") {
-			this.p1Attack.totalHeal = this._valueAmount(
+			this.p1Attack.totalHeal = this._healValue(
 				this.p1Attack.minHeal,
 				this.p1Attack.maxHeal
 			);
@@ -111,7 +111,7 @@ class Turn {
 		}
 
 		if (this.p2Attack.type === "Heal") {
-			this.p2Attack.totalHeal = this._valueAmount(
+			this.p2Attack.totalHeal = this._healValue(
 				this.p2Attack.minHeal,
 				this.p2Attack.maxHeal
 			);
