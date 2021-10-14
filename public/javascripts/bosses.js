@@ -1,7 +1,7 @@
 class Bosses {
   static all = [
     new Character(
-    'Git, Master of Sabotage',
+    'Git',
       Config.bossGitHealth,
       ["Unknown Origin", "Push Upstream", "Conflictive Merge", "Invisible Branch", "Detatch Head"],
       "oppressed",
