@@ -44,7 +44,7 @@ let zoomLogo;
 function preload() {
 	//Enemy assets
 	enemyImg = createImg("./images/idleMinotaur.gif", "enemy");
-  Zoomer = createImg("./images/idleMinotaur2.gif", "enemy");
+  Zoomer = createImg("./images/Zoomer.gif", "enemy");
 	faintingEnemy = createImg("./images/faintingEnemy.gif", "fainting monster");
 	buggerIdle = createImg("./images/buggerIdle.gif", "enemy");
 	buggerFainting = createImg("./images/buggerFainting.gif", "fainting golem");
@@ -395,16 +395,13 @@ function enemyDisplayBattle() {
 
 function enemyDisplayNoBattle() {
 	enemyImg.hide();
-	idleMinotaur2.hide();
+	Zoomer.hide();
 	faintingEnemy.hide();
 	buggerFainting.hide();
 	buggerIdle.hide();
 }
 
 function enemyFainted() {
-	enemyImg.hide();
-	Zoomer.hide();
-	buggerIdle.hide();
 	if (game.battle.player2.name === "Bugger") {
 		buggerFainting.show();
 	} else {
