@@ -225,6 +225,7 @@ function draw() {
       battleButtonsCheck();
       okButton.show();
       playerImg2.show();
+      game.showIntroScreen();
       break;
   }
 }

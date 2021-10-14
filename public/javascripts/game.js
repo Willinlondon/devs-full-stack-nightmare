@@ -158,6 +158,14 @@ class Game {
     text(`${this.player.cell.item.effectText}`, Config.canvasWidth / 2, Config.canvasHeight / 4 + 50);
   }
 
+  showIntroScreen() {
+    // background(0);
+    fill(255);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text("Meet Dev! An aspiring junior software developer!\nOr at least, their spectral form!\nAs unfortunately poor Dev is having a hard \ntime learning to code, and is having\nlabyrinth nightmares! Can you guide Dev and\nhelp them overcome their fears and awaken\nfrom the nightmare?", Config.canvasWidth / 2, Config.canvasHeight / 4);
+  }
+
   showVictoryScreen() {
     textSize(32);
     textAlign(CENTER, CENTER);
