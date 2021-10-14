@@ -2,8 +2,8 @@ class Bosses {
   static all = [
     function() {
       let git = new Character(
-      'Git, Master of Sabotage',
-        120,
+      'Git',
+        Config.bossGitHealth,
         ["Unknown Origin", "Push Upstream", "Conflictive Merge", "Invisible Branch", "Detatch Head"],
         "oppressed",
         "imposing, diabolical"
@@ -15,7 +15,7 @@ class Bosses {
     function() {
       let zoomer = new Character(
         'Zoomer',
-        90,
+        Config.bossZoomHealth,
         ["Visual Termination", "Countdown Initiated", "Time's End", "Unforseen Blackout"],
         "caught",
         "impatient, rude"
@@ -27,7 +27,7 @@ class Bosses {
     function() {
       let jasmine = new Character(
         'Jasmine',
-        Config.defaultEnemyHealth,
+        Config.bossJasmineHealth,
         ["Undefined Reality", "Failure Bombardment", "Confusion & Chaos"],
         "ambushed",
         "an angry, obnoxious"

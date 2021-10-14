@@ -32,7 +32,7 @@ let playerFaintAnimation;
 //Enemy assets
 let enemyImg;
 let faintingEnemy;
-let idleMinotaur2;
+let Zoomer;
 //Misc assets
 let startTime;
 let ghLogo;
@@ -42,7 +42,7 @@ let zoomLogo;
 function preload() {
   //Enemy assets
   enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
-  idleMinotaur2 = createImg('./images/idleMinotaur2.gif', 'enemy');
+  Zoomer = createImg('./images/Zoomer.gif', 'enemy');
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
   jasmineLogo = loadImage('./images/jasmine-logo.png');
   zoomLogo = loadImage('./images/zoom.png');
@@ -98,7 +98,7 @@ function setup() {
   battleBackroundImage = loadImage(battleBackgroundImagePath);
   //Enemy assets
   enemyImg.parent("right");
-  idleMinotaur2.parent("right");
+  Zoomer.parent("right");
   faintingEnemy.parent("right");
   //Player assets
   playerImg2.parent("left");
@@ -371,16 +371,17 @@ function enemyDisplayBattle() {
   faintingEnemy.hide();
   if (game.battle.player2.name == 'Bugger')
   { idleMinotaur2.show();
+
     enemyImg.hide(); }
   else {
     enemyImg.show();
-    idleMinotaur2.hide();
+    Zoomer.hide();
   }
 }
 
 function enemyDisplayNoBattle(){
   enemyImg.hide();
-  idleMinotaur2.hide();
+  Zoomer.hide();
   faintingEnemy.hide();
 }
 
@@ -388,6 +389,7 @@ function enemyFainted(){
   enemyImg.hide();
   idleMinotaur2.hide();
     if(game.battle.player2.name == 'Bugger')
+
     {faintingEnemy.show();}
 }
 

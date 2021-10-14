@@ -3,7 +3,7 @@ class NormalEnemies {
     function() {
       let bugger = new Character(
       'Bugger',
-      30,
+      Config.defaultEnemyHealth,
       ["Break", "Crash"],
       "ambushed",
       "a pesky"
