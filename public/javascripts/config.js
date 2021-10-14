@@ -2,7 +2,7 @@ class Config {
 	static canvasWidth = 750;
 	static canvasHeight = 750;
 	static cellSize = 75;
-	static encounterProbability = 1;
+	static encounterProbability = 0.9;
 	static gridSize = 100;
 	static spriteSize = 75;
 	static playerColour = 155;
@@ -15,7 +15,7 @@ class Config {
 	static dodgeChance = 0.1;
 	static critChance = 0.1;
 	static fleeFailureChance = 0.1;
-	static defaultEnemyHealth = 10;
+	static defaultEnemyHealth = 80;
 	static mapDimension = 100;
 	static NoOfTunnels = 50;
 	static maxTunnelLength = 20;
