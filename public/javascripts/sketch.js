@@ -218,6 +218,14 @@ function draw() {
       playerImg2.show();
       game.showItemScreen();
       break;
+    case 'introScreen':
+      background(battleBackroundImage, 0, 0);
+      enemyDisplayNoBattle();
+      newGameCheck();
+      battleButtonsCheck();
+      okButton.show();
+      playerImg2.show();
+      break;
   }
 }
 
