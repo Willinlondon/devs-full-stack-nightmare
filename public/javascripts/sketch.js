@@ -46,6 +46,7 @@ function preload() {
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
   ghLogo = loadImage('./images/gh-logo.png');
+  ticketImg = loadImage('./images/tickets.png');
 }
 
 function loadTiles() {
@@ -101,15 +102,28 @@ function draw() {
       playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      ticketImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 
       Cell.all.forEach((cell) => {
-        if (cell.region == game.player.region && !cell.isWall() && cell.boss) {
-          if (!cell.boss.hasFainted()) {
-            image(
-              ghLogo,
-              cell.regionX + Config.cellSize / 4,
-              cell.regionY + Config.cellSize / 4
-            );
+        if (cell.region == game.player.region && !cell.isWall()) {
+          if (cell.boss) {
+            if (!cell.boss.hasFainted()) {
+              image(
+                ghLogo,
+                cell.regionX + Config.cellSize / 4,
+                cell.regionY + Config.cellSize / 4
+              );
+            }
+          }
+
+          if (cell.item) {
+            if (cell.item.available) {
+              image(
+                ticketImg,
+                cell.regionX + Config.cellSize / 4,
+                cell.regionY + Config.cellSize / 4
+              );
+            }
           }
         }
       })
