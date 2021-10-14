@@ -114,7 +114,7 @@ function setup() {
       cell.bossImg = null;
 
       switch(cell.boss.name) {
-        case 'Git, Master of Sabotage':
+        case 'Git':
           cell.bossImg = ghLogo;
         break;
         case 'Jasmine':
