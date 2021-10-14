@@ -47,7 +47,7 @@ function preload() {
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
   ghLogo = loadImage('./images/gh-logo.png');
-  jasmineLogo = loadImage('./images/gh-logo.png');
+  jasmineLogo = loadImage('./images/jasmine-logo.png');
   ticketImg = loadImage('./images/tickets.png');
 }
 
@@ -104,14 +104,30 @@ function draw() {
       playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      jasmineLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ticketImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 
       Cell.all.forEach((cell) => {
         if (cell.region == game.player.region && !cell.isWall()) {
           if (cell.boss) {
             if (!cell.boss.hasFainted()) {
+              let bossImg;
+
+              switch(cell.boss.name) {
+                case 'Git, Master of Sabotage':
+                  bossImg = ghLogo;
+                break;
+                case 'Jasmine':
+                  bossImg = jasmineLogo;
+                break;
+                case 'Zoomer':
+                break;
+                default:
+                break;
+              }
+              
               image(
-                ghLogo,
+                bossImg,
                 cell.regionX + Config.cellSize / 4,
                 cell.regionY + Config.cellSize / 4
               );
