@@ -10,7 +10,7 @@ async function addToScoreDatabase(username, score) {
 		body: JSON.stringify(gameData),
 	});
 	const data = await response.json();
-	console.log(data);
+  console.log(data);
 }
 
 const game = new Game();
@@ -34,18 +34,23 @@ let enemyImg;
 let buggerIdle;
 let buggerFainting;
 let faintingEnemy;
-let idleMinotaur2;
+let Zoomer;
 //Misc assets
 let startTime;
 let ghLogo;
+let jasmineLogo;
+let zoomLogo;
 
 function preload() {
 	//Enemy assets
 	enemyImg = createImg("./images/idleMinotaur.gif", "enemy");
-	idleMinotaur2 = createImg("./images/idleMinotaur2.gif", "enemy");
+  Zoomer = createImg("./images/idleMinotaur2.gif", "enemy");
 	faintingEnemy = createImg("./images/faintingEnemy.gif", "fainting monster");
 	buggerIdle = createImg("./images/buggerIdle.gif", "enemy");
 	buggerFainting = createImg("./images/buggerFainting.gif", "fainting golem");
+  jasmineLogo = loadImage('./images/jasmine-logo.png');
+  zoomLogo = loadImage('./images/zoom.png');
+  ghLogo = loadImage('./images/gh-logo.png');
 	//Background assets
 	backgroundMusic = loadSound("./stylesheets/assets/map-music-but-quiet.wav");
 	tileArray = loadTiles();
@@ -93,16 +98,38 @@ function setup() {
 	//Background
 	canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
 	canvas.parent("play-area");
-	battleBackroundImage = loadImage(battleBackgroundImagePath);
-	//Enemy assets
-	enemyImg.parent("right");
-	idleMinotaur2.parent("right");
-	faintingEnemy.parent("right");
-	buggerIdle.parent("right");
+  battleBackroundImage = loadImage(battleBackgroundImagePath);
+  //Enemy assets
+  enemyImg.parent("right");
+  Zoomer.parent("right");
+  faintingEnemy.parent("right");
+  buggerIdle.parent("right");
 	buggerFainting.parent("right");
-	//Player assets
-	playerImg2.parent("left");
-	playerFaintAnimation.parent("left");
+  //Player assets
+  playerImg2.parent("left");
+  playerFaintAnimation.parent("left");
+
+  Cell.all.forEach((cell) => {
+    if (cell.boss) {
+      cell.bossImg = null;
+
+      switch(cell.boss.name) {
+        case 'Git, Master of Sabotage':
+          cell.bossImg = ghLogo;
+        break;
+        case 'Jasmine':
+          cell.bossImg = jasmineLogo;
+        break;
+        case 'Zoomer':
+          cell.bossImg = zoomLogo;
+        break;
+        default:
+          cell.bossImg = ghLogo;
+        break;
+      }
+    }
+  })
+
 }
 
 function draw() {
@@ -119,50 +146,52 @@ function draw() {
 			okButton.hide();
 			playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
-			ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
-			ticketImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      jasmineLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      zoomLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      ticketImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 
-			Cell.all.forEach((cell) => {
-				if (cell.region == game.player.region && !cell.isWall()) {
-					if (cell.boss) {
-						if (!cell.boss.hasFainted()) {
-							image(
-								ghLogo,
-								cell.regionX + Config.cellSize / 4,
-								cell.regionY + Config.cellSize / 4
-							);
-						}
-					}
+      Cell.all.forEach((cell) => {
+        if (cell.region == game.player.region && !cell.isWall()) {
+          if (cell.boss) {
+            if (!cell.boss.hasFainted()) {
+              image(
+                cell.bossImg,
+                cell.regionX + Config.cellSize / 4,
+                cell.regionY + Config.cellSize / 4
+              );
+            }
+          }
 
-					if (cell.item) {
-						if (cell.item.available) {
-							image(
-								ticketImg,
-								cell.regionX + Config.cellSize / 4,
-								cell.regionY + Config.cellSize / 4
-							);
-						}
-					}
-				}
-			});
+          if (cell.item) {
+            if (cell.item.available) {
+              image(
+                ticketImg,
+                cell.regionX + Config.cellSize / 4,
+                cell.regionY + Config.cellSize / 4
+              );
+            }
+          }
+        }
+      })
 
-			image(
-				playerImg,
-				game.player.gridX + Config.cellSize / 4,
-				game.player.gridY + Config.cellSize / 4
-			);
+      image(
+        playerImg,
+        game.player.gridX + Config.cellSize / 4,
+        game.player.gridY + Config.cellSize / 4
+      );
 
-			break;
-		case "battleScreen":
-			background(battleBackroundImage, 0, 0);
-			game.showBattle();
-			enemyDisplayBattle();
-			battleButtonsCheck();
-			newGameCheck();
-			playerImg2.show();
-			playerFaintAnimation.hide();
-			break;
-		case "gameOver":
+      break;
+    case 'battleScreen':
+      background(battleBackroundImage, 0, 0);
+      game.showBattle();
+      enemyDisplayBattle();
+      battleButtonsCheck();
+      newGameCheck();
+      playerImg2.show();
+      playerFaintAnimation.hide();
+      break;
+  	case "gameOver":
 			game.showGameOver();
 			enemyDisplayNoBattle();
 			newGameCheck();
@@ -170,26 +199,26 @@ function draw() {
 			okButton.hide();
 			playerImg2.hide();
 			playerFaintAnimation.show();
-			break;
-		case "victoryScreen":
-			background(battleBackroundImage, 0, 0);
-			battleButtonsCheck();
-			enemyFainted();
-			newGameCheck();
-			okButton.show();
-			playerImg2.show();
-			game.showVictoryScreen();
-			break;
-		case "itemScreen":
-			background(battleBackroundImage, 0, 0);
-			enemyDisplayNoBattle();
-			newGameCheck();
-			battleButtonsCheck();
-			okButton.show();
-			playerImg2.show();
-			game.showItemScreen();
-			break;
-	}
+		break;
+    case 'victoryScreen':
+      background(battleBackroundImage, 0, 0);
+      battleButtonsCheck();
+      enemyFainted();
+      newGameCheck();
+      okButton.show();
+      playerImg2.show();
+      game.showVictoryScreen();
+      break;
+    case 'itemScreen':
+      background(battleBackroundImage, 0, 0);
+      enemyDisplayNoBattle();
+      newGameCheck();
+      battleButtonsCheck();
+      okButton.show();
+      playerImg2.show();
+      game.showItemScreen();
+      break;
+  }
 }
 
 function keyPressed() {
@@ -212,16 +241,22 @@ function keyPressed() {
 			moved = true;
 		}
 
-		if (moved) {
-			if (game.player.cell.boss) {
-				game.enterBattle(game.player.cell.boss);
-			} else if (game.player.cell.item) {
-				game.player.cell.item.pickUp();
-			} else {
-				if (Math.random() > Config.encounterProbability) game.enterBattle();
-			}
-		}
-	}
+    if (moved) {
+      if (game.player.cell.boss) {
+        if (!game.player.cell.boss.hasFainted()) {
+          game.enterBattle(game.player.cell.boss)
+        }
+      } else if (game.player.cell.item) {
+        game.player.cell.item.pickUp();
+      } else {
+        if (Math.random() > Config.encounterProbability) {
+          let enemy  = NormalEnemies.sample()
+          game.enterBattle(enemy);
+        }
+      }
+    }
+  }
+
 }
 
 function createOkButton() {
@@ -340,20 +375,21 @@ function stopElementHighlight(element) {
 }
 
 function enemyDisplayBattle() {
+
 	faintingEnemy.hide();
 	buggerFainting.hide();
 	if (game.battle.player2.name === "Bugger") {
 		buggerIdle.show();
-		idleMinotaur2.hide();
+		Zoomer.hide();
 		enemyImg.hide();
 	} else if (game.battle.player2.name === "Zoomer") {
 		enemyImg.hide();
 		buggerIdle.hide();
-		idleMinotaur2.show();
+		Zoomer.show();
 	} else {
 		enemyImg.show();
 		buggerIdle.hide();
-		idleMinotaur2.hide();
+    Zoomer.hide();
 	}
 }
 
@@ -367,13 +403,14 @@ function enemyDisplayNoBattle() {
 
 function enemyFainted() {
 	enemyImg.hide();
-	idleMinotaur2.hide();
+	Zoomer.hide();
 	buggerIdle.hide();
 	if (game.battle.player2.name === "Bugger") {
 		buggerFainting.show();
 	} else {
 		faintingEnemy.show();
 	}
+
 }
 
 function battleButtonsCheck() {
