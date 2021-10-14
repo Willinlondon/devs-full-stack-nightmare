@@ -121,9 +121,14 @@ class Turn {
 				this.p2Attack.minHeal,
 				this.p2Attack.maxHeal
 			);
-			this.player2.takeHeal(this.p2Attack.totalHeal);
-		}
-	}
+      if (this.p2Attack.totalHeal + this.player2.health <= this.player2.maxHealth) {
+        this.player2.takeHeal(this.p2Attack.totalHeal);
+        } else {
+          this.p2Attack.totalHeal = this.player2.maxHealth - this.player2.health
+          this.player2.takeHeal(this.p2Attack.totalHeal);
+        }
+	  }
+  }
 
 	_attackValue(min, max) {
 		return Math.floor(Math.random() * (max - min) + min);
