@@ -170,11 +170,11 @@ class Game {
   }
 
   enterBattle(enemy = new Character(
-    'Jasmine',
-    Config.defaultEnemyHealth,
-    ["Undefined Reality", "Failure Bombardment", "Confusion & Chaos"],
+    'Bugger',
+    30,
+    ["Break", "Crash"],
     "ambushed",
-    "an angry, obnoxious"
+    "a pesky"
     )
   ) {
     this.battle = new Battle(this.player, enemy);
