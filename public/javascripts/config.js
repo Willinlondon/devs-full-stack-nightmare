@@ -23,43 +23,43 @@ class Config {
 	static calculatedProcess = new Ability("Calculated Process", "Damaging", 5, 8, 0, 0);
 	static stabInTheDark = new Ability("Stab in the Dark", "Damaging", 2, 13, 0, 0);
 	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 4, 7);
-  static enemyBugger = new Character(
-    'Bugger',
-    30,
-    ["Break", "Crash"],
-    "ambushed",
-    "a pesky"
-    )
+  // static enemyBugger = new Character(
+  //   'Bugger',
+  //   30,
+  //   ["Break", "Crash"],
+  //   "ambushed",
+  //   "a pesky"
+  //   )
   static breakAttack = new Ability("Break", "Damaging", 5, 8, 0, 0);
   static crashAttack = new Ability("Crash", "Damaging", 5, 8, 0, 0);
-  static bossJasmine = new Character(
-    'Jasmine',
-    Config.defaultEnemyHealth,
-    ["Undefined Reality", "Failure Bombardment", "Confusion & Chaos"],
-    "ambushed",
-    "an angry, obnoxious"
-    )
+  // static bossJasmine = new Character(
+  //   'Jasmine',
+  //   Config.defaultEnemyHealth,
+  //   ["Undefined Reality", "Failure Bombardment", "Confusion & Chaos"],
+  //   "ambushed",
+  //   "an angry, obnoxious"
+  //   )
 	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
 	static failureBombardment = new Ability("Failure Bombardment", "Damaging", 6, 12, 0, 0);
   static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0);  
-  static bossZoom = new Character(
-    'Zoomer',
-    90,
-    ["Visual Termination", "Countdown Initiated", "Time's End", "Unforseen Blackout"],
-    "caught",
-    "impatient, rude"
-  )
+  // static bossZoom = new Character(
+  //   'Zoomer',
+  //   90,
+  //   ["Visual Termination", "Countdown Initiated", "Time's End", "Unforseen Blackout"],
+  //   "caught",
+  //   "impatient, rude"
+  // )
   static visualTermination = new Ability("Visual Termination", "Damaging", 5, 8, 0, 0);
   static countdownInitiated = new Ability("Countdown Initiated", "Damaging", 6, 12, 0, 0);
   static timesEnd = new Ability("Time's End", "Damaging", 6, 12, 0, 0);
   static unforseenBlackout = new Ability("Unforseen Blackout", "Damaging", 6, 12, 0, 0);
-  static bossGit = new Character(
-    'Git, Master of Sabotage',
-    120,
-    ["Unknown Origin", "Push Upstream", "Conflictive Merge", "Invisible Branch", "Detatch Head"],
-    "oppressed",
-    "imposing, diabolical"
-  )
+  // static bossGit = new Character(
+  //   'Git, Master of Sabotage',
+  //   120,
+  //   ["Unknown Origin", "Push Upstream", "Conflictive Merge", "Invisible Branch", "Detatch Head"],
+  //   "oppressed",
+  //   "imposing, diabolical"
+  // )
   static unknownOrigin = new Ability("Unknown Origin", "Damaging", 5, 8, 0, 0);
   static pushUpstream = new Ability("Push Upstream", "Heal", 0, 0, 10, 20);
   static conflictiveMerge = new Ability("Conflictive Merge", "Damaging", 5, 8, 0, 0);
