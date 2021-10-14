@@ -1,21 +1,34 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Scores</title>
-    <link rel="stylesheet" href="/stylesheets/style.css" />
-    <link rel="shortcut icon" type="image/png" href="./images/idlePlayer1CROPPED.png">
-    <script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
-    <script type="text/javascript" src="javascripts/config.js"></script>
-  </head>
-  <body>
-    <a href="/">Back to game</a>
-    <div id="page-container">
-      <ul>
-        <% scores.map((result)=>{ %>
-        <li><%= result.username %></li>
-        <li><%= result.score %></li>
-        <% }) %>
-      </ul>
-    </div>
-  </body>
+	<head>
+		<title>Scores</title>
+		<link rel="stylesheet" href="/stylesheets/style.css" />
+		<link
+			rel="shortcut icon"
+			type="image/png"
+			href="./images/idlePlayer1CROPPED.png"
+		/>
+		<script src="https://cdn.jsdelivr.net/npm/p5@1.4.0/lib/p5.js"></script>
+		<script type="text/javascript" src="javascripts/config.js"></script>
+	</head>
+	<body>
+		<a href="/">Back to game</a>
+
+		<div class="score-container">
+			<div class="Score-board-">
+				<table style="width: 100%">
+					<tr>
+						<th>Player Name</th>
+						<th>Player Score</th>
+					</tr>
+					<% scores.map((result)=>{ %>
+					<tr>
+						<td><%= result.username %></td>
+						<td><%= result.score %></td>
+					</tr>
+					<% }) %>
+				</table>
+			</div>
+		</div>
+	</body>
 </html>
