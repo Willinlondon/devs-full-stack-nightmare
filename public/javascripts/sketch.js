@@ -219,7 +219,6 @@ function createPrecisionStrikeButton() {
   precisionStrikeButton.parent('strike');
   elementHighlight(precisionStrikeButton);
   stopElementHighlight(precisionStrikeButton);
-  precisionStrikeButton.mouseOut(reverseColor);
   precisionStrikeButton.mousePressed(() => {
     startTime = frameCount;
     if (game.battle) {
@@ -291,7 +290,7 @@ function createLocalLuck() {
 
 function elementHighlight(element) {
   let toChange = element
-  toChange.mouseOver(changeColor)
+  toChange.mouseOver(changeColor);
     function changeColor() {
       toChange.style(
                 "background-color: lightgreen"
@@ -300,7 +299,7 @@ function elementHighlight(element) {
 
 function stopElementHighlight(element) {
   let toChange = element
-  toChange.mouseOut(reverseColor)
+  toChange.mouseOut(reverseColor);
   function reverseColor() {
     toChange.style(
       "background-color: transparent"
