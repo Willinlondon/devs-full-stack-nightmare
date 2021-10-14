@@ -208,7 +208,7 @@ function createNewGameButton() {
   newGameButton.parent('okButton');
 
   newGameButton.mousePressed(() => {
-    window.open('/');
+    open('/', '_self');
   });
 }
 
