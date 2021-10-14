@@ -146,7 +146,8 @@ class Game {
     fill(255);
     textSize(32);
     textAlign(CENTER, CENTER);
-    text('GAME OVER', Config.canvasWidth / 2, Config.canvasHeight / 2);
+    text('GAME OVER', Config.canvasWidth / 2, Config.canvasHeight / 4);
+    text(`Your Score: ${this.player.score}`, Config.canvasWidth / 2, Config.canvasHeight / 4 + 50);
   }
 
   showItemScreen() {
