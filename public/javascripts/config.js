@@ -25,11 +25,12 @@ class Config {
 	static heal = new Ability("Recovery", "Heal", 0, 0, 4, 7);
 	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
 	static unexpectedFailure = new Ability("Unexpected Failure", "Heal", 0, 0, 4, 7);
-    static noiseScale = 0.01;
-    static noiseRange = 10000;
-    static bossSpawnThreshold = 75;
-    static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0)
-    static difficultyNoiseOffset = 0.05;
-    static luckNoiseOffset = 0.376;
-    static itemSpawnThreshold = 65;
+  static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0);
+  static noiseScale = 0.01;
+  static noiseRange = 10000;
+  static bossSpawnThreshold = 75;
+  static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0);
+  static difficultyNoiseOffset = 0.05;
+  static luckNoiseOffset = 0.376;
+  static itemSpawnThreshold = 65;
 }
