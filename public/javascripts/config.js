@@ -51,6 +51,7 @@ class Config {
     "oppressed",
     "imposing, diabolical"
   )
+  static unknownOrigin = new Ability("Unknown Origin", "Damaging", 5, 8, 0, 0);
   static noiseScale = 0.01;
   static noiseRange = 10000;
   static bossSpawnThreshold = 75;
