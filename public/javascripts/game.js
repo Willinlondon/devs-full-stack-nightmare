@@ -10,7 +10,7 @@ class Game {
     this.gameMap = map;
     this.map = this.gameMap.createMap();
     this.player = player;
-    this.state = 'nameScreen';
+    this.state = 'mapScreen';
     this.player.spawn(this.gameMap.startingColumn, this.gameMap.startingRow);
     this._generateCells();
 
@@ -22,12 +22,8 @@ class Game {
     this.player.setGridPosition();
   }
 
-  addUserName(name) {
-    console.log(name);
-  }
-
   showMap() {
-    Cell.filterByRegion(this.player.region).forEach((cell) => cell.show());
+    Cell.filterByRegion(this.player.region).forEach(cell => cell.show())
   }
 
   _cellAt(x, y) {
@@ -35,41 +31,31 @@ class Game {
   }
 
   _generateCells() {
-<<<<<<< HEAD
-    const region = -1;
-=======
     let region = -1;
     let noiseScale = 0.1;
->>>>>>> main
 
     this.map.forEach((y, yi) => {
       y.forEach((x, xi) => {
-        const cell = new Cell(
-          xi * Config.cellSize,
-          yi * Config.cellSize,
-          x == 1
+        let cell = new Cell(xi * Config.cellSize, yi * Config.cellSize, x == 1)
+
+        cell.regionY = (xi * Config.gridSize + yi)
+        % (Config.gridSize / Config.regionDivisor)
+        * Config.cellSize
+
+        cell.regionX = (yi * Config.gridSize + xi)
+        % (Config.gridSize / Config.regionDivisor)
+        * Config.cellSize
+
+        cell.number = (cell.y * Config.gridSize + cell.x) / Config.cellSize
+        
+        cell.region = (
+          Math.floor(
+            (cell.y / Config.cellSize)/(Config.gridSize / Config.regionDivisor)
+          )
+          * Config.regionDivisor
+          + Math.floor(
+            (cell.x / Config.cellSize)/(Config.gridSize / Config.regionDivisor))
         );
-
-        cell.regionY =
-          ((xi * Config.gridSize + yi) %
-            (Config.gridSize / Config.regionDivisor)) *
-          Config.cellSize;
-
-        cell.regionX =
-          ((yi * Config.gridSize + xi) %
-            (Config.gridSize / Config.regionDivisor)) *
-          Config.cellSize;
-
-        cell.number = (cell.y * Config.gridSize + cell.x) / Config.cellSize;
-
-        cell.region =
-          Math.floor(
-            cell.y / Config.cellSize / (Config.gridSize / Config.regionDivisor)
-          ) *
-            Config.regionDivisor +
-          Math.floor(
-            cell.x / Config.cellSize / (Config.gridSize / Config.regionDivisor)
-          );
       });
     });
 
@@ -145,16 +131,9 @@ class Game {
   }
 
   enterBattle() {
-<<<<<<< HEAD
-    this.battle = new Battle(
-      this.player,
-      new Character('Jasmine', Config.defaultEnemyHealth)
-    );
-=======
     this.battle = new Battle(this.player, new Character('Jasmine', Config.defaultEnemyHealth, ["Undefined Reality", "Unexpected Failure", "Confusion & Chaos"]));
->>>>>>> main
     this.state = 'battleScreen';
   }
 
-  _removeEnemy() {}
+	_removeEnemy() {}
 }

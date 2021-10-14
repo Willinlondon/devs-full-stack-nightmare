@@ -1,4 +1,2 @@
 node_modules/
 .DS_Store
-# dotenv environment variables file
-.env
