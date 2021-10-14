@@ -35,11 +35,11 @@ class Config {
   static countdownInitiated = new Ability("Countdown Initiated", "Damaging", 80, 110, 0, 0);
   static timesEnd = new Ability("Time's End", "Damaging", 100, 120, 0, 0);
   static unforseenBlackout = new Ability("Unforseen Blackout", "Damaging", 1, 200, 0, 0);
-  static unknownOrigin = new Ability("Unknown Origin", "Damaging", 5, 8, 0, 0);
-  static pushUpstream = new Ability("Push Upstream", "Heal", 0, 0, 10, 20);
-  static conflictiveMerge = new Ability("Conflictive Merge", "Damaging", 5, 8, 0, 0);
-  static invisibileBranch = new Ability("Invisible Branch", "Damaging", 5, 8, 0, 0);
-  static detatchHead = new Ability("Detatch Head", "Damaging", 5, 8, 0, 0);
+  static unknownOrigin = new Ability("Unknown Origin", "Damaging", 20, 50, 0, 0);
+  static pushUpstream = new Ability("Push Upstream", "Heal", 0, 0, 40, 100);
+  static conflictiveMerge = new Ability("Conflictive Merge", "Damaging", 60, 110, 0, 0);
+  static invisibileBranch = new Ability("Invisible Branch", "Damaging", 20, 110, 0, 0);
+  static detatchHead = new Ability("Detatch Head", "Damaging", 100, 150, 0, 0);
   static noiseScale = 0.01;
   static noiseRange = 10000;
   static bossSpawnThreshold = 75;
