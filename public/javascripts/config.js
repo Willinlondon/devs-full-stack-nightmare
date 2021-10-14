@@ -33,6 +33,13 @@ class Config {
 	static undefinedReality = new Ability("Undefined Reality", "Damaging", 5, 8, 0, 0);
 	static failureBombardment = new Ability("Failure Bombardment", "Damaging", 6, 12, 0, 0);
   static confusionAndChaos = new Ability("Confusion & Chaos", "Damaging", 9, 16, 0, 0);  
+  static bossZoom = new Character(
+    'Zoomer',
+    90,
+    ["Visual Termination", "Countdown Initiated", "Time's End", "Unforseen Blackout"],
+    "caught",
+    "impatient, rude"
+  )
   static noiseScale = 0.01;
   static noiseRange = 10000;
   static bossSpawnThreshold = 75;
