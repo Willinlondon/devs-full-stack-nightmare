@@ -30,6 +30,8 @@ let playerFaintAnimation;
 let faintingEnemy;
 let startTime;
 let ghLogo;
+let jasmineLogo;
+let zoomLogo;
 
 function preload() {
   wallImg = loadImage('./images/wall1.png');
@@ -45,6 +47,7 @@ function preload() {
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
   ghLogo = loadImage('./images/gh-logo.png');
+  jasmineLogo = loadImage('./images/gh-logo.png');
   ticketImg = loadImage('./images/tickets.png');
 }
 
