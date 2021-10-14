@@ -12,6 +12,7 @@ class Item {
 
   pickUp() {
     if (this.available) {
+      this.game.player.score += 100;
       this.game.state = "itemScreen"
       this.applyEffect();
       this.available = false;
