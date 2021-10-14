@@ -36,7 +36,7 @@ class Config {
   static timesEnd = new Ability("Time's End", "Damaging", 100, 120, 0, 0);
   static unforseenBlackout = new Ability("Unforseen Blackout", "Damaging", 1, 200, 0, 0);
   static unknownOrigin = new Ability("Unknown Origin", "Damaging", 20, 50, 0, 0);
-  static pushUpstream = new Ability("Push Upstream", "Heal", 0, 0, 40, 100);
+  static pushUpstream = new Ability("Push Upstream", "Heal", 0, 0, 20, 40);
   static conflictiveMerge = new Ability("Conflictive Merge", "Damaging", 60, 110, 0, 0);
   static invisibileBranch = new Ability("Invisible Branch", "Damaging", 20, 110, 0, 0);
   static detatchHead = new Ability("Detatch Head", "Damaging", 100, 150, 0, 0);
