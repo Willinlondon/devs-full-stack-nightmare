@@ -44,6 +44,13 @@ class Config {
   static countdownInitiated = new Ability("Countdown Initiated", "Damaging", 6, 12, 0, 0);
   static timesEnd = new Ability("Time's End", "Damaging", 6, 12, 0, 0);
   static unforseenBlackout = new Ability("Unforseen Blackout", "Damaging", 6, 12, 0, 0);
+  static bossGit = new Character(
+    'Git, Master of Sabotage',
+    120,
+    ["Unknown Origin", "Push Upstream", "Conflictive Merge", "Invisible Branch", "Detatch Head"],
+    "oppressed",
+    "imposing, diabolical"
+  )
   static noiseScale = 0.01;
   static noiseRange = 10000;
   static bossSpawnThreshold = 75;
