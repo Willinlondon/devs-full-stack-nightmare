@@ -2,7 +2,7 @@ class NormalEnemies {
   static all = [
     new Character(
     'Bugger',
-    30,
+    80,
     ["Break", "Crash"],
     "ambushed",
     "a pesky"
