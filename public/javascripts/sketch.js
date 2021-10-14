@@ -14,40 +14,50 @@ async function addToScoreDatabase(username, score) {
 }
 
 const game = new Game();
+//Buttons
 let calculatedProcessButton;
 let stabInTheDarkButton;
 let refreshButton;
 let okButton;
 let fleeButton;
+//Background assets
 let battleBackgroundImage;
 const battleBackgroundImagePath = './stylesheets/assets/battleBackground.jpg';
 let wallImg;
+let backgroundMusic;
+//Player assets
 let playerImg;
 let playerImg2;
-let enemyImg;
-let backgroundMusic;
 let playerFaintAnimation;
+//Enemy assets
+let enemyImg;
 let faintingEnemy;
+let idleMinotaur2;
+//Misc assets
 let startTime;
 let ghLogo;
-let idleMinotaur2;
 
 function preload() {
-  wallImg = loadImage('./images/wall1.png');
-  wallImg.resize(Config.cellSize, Config.cellSize);
-  playerImg = loadImage('./images/idlePlayer1CROPPED.png');
-  playerImg2 = createImg('./images/playerIdleAnimations.gif');
+  //Enemy assets
   enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
   idleMinotaur2 = createImg('./images/idleMinotaur2.gif', 'enemy');
+  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
+  //Background assets
+  backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   tileArray = loadTiles();
+  wallImg = loadImage('./images/wall1.png');
+  wallImg.resize(Config.cellSize, Config.cellSize);
+  ticketImg = loadImage('./images/tickets.png');
+  //Misc assets
+  ghLogo = loadImage('./images/gh-logo.png');
+  //Player assets
+  playerImg = loadImage('./images/idlePlayer1CROPPED.png');
+  playerImg2 = createImg('./images/playerIdleAnimations.gif');
   playerFaintAnimation = createImg(
     './images/playerFaintAnimation.gif',
     'fainting player'
   );
-  backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
-  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
-  ghLogo = loadImage('./images/gh-logo.png');
-  ticketImg = loadImage('./images/tickets.png');
+  
 }
 
 function loadTiles() {
@@ -95,11 +105,7 @@ function draw() {
       playerImg2.show();
       okButton.hide();
       newGameButton.hide();
-      faintingEnemy.hide();
-      calculatedProcessButton.hide();
-      stabInTheDarkButton.hide();
-      refreshButton.hide();
-      fleeButton.hide();
+      buttonsNoBattle();
       game.showMap();
       playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -142,10 +148,7 @@ function draw() {
       enemyDisplayBattle();
       playerImg2.show();
       game.showBattle();
-      calculatedProcessButton.show();
-      stabInTheDarkButton.show();
-      refreshButton.show();
-      fleeButton.show();
+      battleButtons();
       playerFaintAnimation.hide();
       faintingEnemy.hide();
       newGameButton.hide();
@@ -154,10 +157,7 @@ function draw() {
       enemyDisplayNoBattle();
       okButton.hide();
       playerImg2.hide();
-      calculatedProcessButton.hide();
-      stabInTheDarkButton.hide();
-      refreshButton.hide();
-      fleeButton.hide();
+      buttonsNoBattle();
       playerFaintAnimation.show();
       newGameButton.show();
       game.showGameOver();
@@ -167,10 +167,7 @@ function draw() {
       enemyFainted();
       okButton.show();
       playerImg2.show();
-      calculatedProcessButton.hide();
-      stabInTheDarkButton.hide();
-      fleeButton.hide();
-      refreshButton.hide();
+      buttonsNoBattle();
       newGameButton.hide();
       game.showVictoryScreen();
       break;
@@ -179,10 +176,7 @@ function draw() {
       enemyDisplayNoBattle();
       okButton.show();
       playerImg2.show();
-      calculatedProcessButton.hide();
-      stabInTheDarkButton.hide();
-      fleeButton.hide();
-      refreshButton.hide();
+      buttonsNoBattle();
       newGameButton.hide();
       game.showItemScreen();
       break;
@@ -354,5 +348,20 @@ function enemyDisplayNoBattle(){
 function enemyFainted(){
   enemyImg.hide();
   idleMinotaur2.hide();
-  faintingEnemy.show();
+    if(game.battle.player2.name = 'Bugger')
+    {faintingEnemy.show();}
+}
+
+function buttonsNoBattle(){
+  calculatedProcessButton.hide();
+  stabInTheDarkButton.hide();
+  refreshButton.hide();
+  fleeButton.hide();
+}
+
+function battleButtons(){
+  calculatedProcessButton.show();
+  stabInTheDarkButton.show();
+  refreshButton.show();
+  fleeButton.show();
 }
