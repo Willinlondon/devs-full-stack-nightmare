@@ -124,7 +124,6 @@ function setup() {
       }
     }
   })
-
 }
 
 function draw() {
@@ -132,7 +131,6 @@ function draw() {
 
   switch (game.state) {
     case 'mapScreen':
-      //  backgroundMusic.play();
       game.showMap();
       enemyDisplayNoBattle();
       battleButtonsCheck();
@@ -217,6 +215,8 @@ function draw() {
 }
 
 function keyPressed() {
+  if (!backgroundMusic.isPlaying()) backgroundMusic.play();
+  
   if (game.state === 'mapScreen') {
     let moved = false;
     if (keyCode === 65) {
