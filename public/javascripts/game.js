@@ -154,6 +154,7 @@ class Game {
       fill(255);
       textSize(32);
       textAlign(CENTER, CENTER);
+      text("As Dev's spectre form was defeated, they\nunfortunately succumbed to their nightmares\nand were forever haunted by failing\n tests and merge conflicts!", Config.canvasWidth / 2, Config.canvasHeight / 5);
       text('GAME OVER', Config.canvasWidth / 2, Config.canvasHeight / 4 * 3);
       text(`Your Score: ${this.player.score}`, Config.canvasWidth / 2, Config.canvasHeight / 4 * 3 + 50);
     }
