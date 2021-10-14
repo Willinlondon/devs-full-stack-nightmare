@@ -23,6 +23,13 @@ class Config {
 	static calculatedProcess = new Ability("Calculated Process", "Damaging", 5, 8, 0, 0);
 	static stabInTheDark = new Ability("Stab in the Dark", "Damaging", 2, 13, 0, 0);
 	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 4, 7);
+  static enemyBugger = new Character(
+    'Bugger',
+    30,
+    ["Break", "Crash"],
+    "ambushed",
+    "a pesky"
+    )
   static bossJasmine = new Character(
     'Jasmine',
     Config.defaultEnemyHealth,
