@@ -60,10 +60,12 @@ class Turn {
 					this.p1Attack.totalDamage =
 						this.p1Attack.baseDamage * Config.critAttackMultiplier;
 					this.player2.takeHit(this.p1Attack.totalDamage);
+          this.player1.score += this.p1Attack.totalDamage * 2;
 				} else {
 					this.p1Attack.crit = false;
 					this.p1Attack.totalDamage = this.p1Attack.baseDamage;
 					this.player2.takeHit(this.p1Attack.baseDamage);
+          this.player1.score += this.p1Attack.baseDamage;
 				}
 			} else {
 				this.p1Attack.dodged = true;
@@ -77,6 +79,7 @@ class Turn {
 				this.p1Attack.maxHeal
 			);
 			this.player1.takeHeal(this.p1Attack.totalHeal);
+      this.player1.score += 4;
 		}
 		// Judge player 2 move
     let abilityRoll = Math.floor(Math.random() * (this.p2PossibleAttacks.length))

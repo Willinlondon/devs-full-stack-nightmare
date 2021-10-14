@@ -91,9 +91,16 @@ class Game {
   showBattle() {
     if (this.battle.over()) {
       if (this.player.hasFainted()) {
-        addToScoreDatabase('new-test-player-2', 500);
+        addToScoreDatabase(this.player.name, this.player.score);
         this.state = 'gameOver';
       } else {
+        if (this.battle.player2.hasFainted()) {
+          if (this.battle.player2.name == "Jasmine") {
+            this.player.score += 50;
+          } else {
+            this.player.score += 1000;
+          }
+        }
         this.state = 'victoryScreen';
       }
       return;

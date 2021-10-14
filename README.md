@@ -88,10 +88,16 @@ To increase replayability,
 I want the map to be different each time
 ```
 
-#Database Setup
+# Database Setup
 
 ```
 CREATE DATABASE the_game;
 CREATE DATABASE the_game_test;
 CREATE TABLE scores(id SERIAL PRIMARY KEY, username VARCHAR(200), score integer);
 ```
+
+# Graphical copyright attribution
+
+- Map floor tiles sourced from https://opengameart.org/content/sci-fi-interior-tiles : Copyright/Attribution Notice:
+  NOT REQUIRED, Buch https://opengameart.org/users/buch or http://blog-buch.rhcloud.com;
+  Surrounding map tiles sourced from https://3dtextures.me/2020/09/30/sci-fi-floor-001/ : Copyright/Attribution Notice: All textures on this site are licensed as CC0. \*See https://3dtextures.me/about/ for further details on f.a.q./textures license.
