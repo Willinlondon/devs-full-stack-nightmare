@@ -112,7 +112,7 @@ function setup() {
   playerImg2.parent('left');
   playerFaintAnimation.parent('left');
   // Player Name Input
-  inputPlayerName = createInput();
+  inputPlayerName = createInput().attribute('maxlength', 10);
   inputPlayerName.parent('play-area');
   inputPlayerName.position(
     Config.canvasWidth / 2,
