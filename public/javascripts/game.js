@@ -181,6 +181,9 @@ class Game {
     textSize(32);
     textAlign(CENTER, CENTER);
     text("Meet Dev! An aspiring junior software developer!\nOr at least, their spectral form!\nAs unfortunately poor Dev is having a hard \ntime learning to code, and is having\nlabyrinth nightmares! Can you guide Dev and\nhelp them overcome their fears and awaken\nfrom the nightmare?", Config.canvasWidth / 2, Config.canvasHeight / 4);
+    textSize(24);
+    text("Navigate using the 'W, A, S, D' keys.\nEnter your name below", Config.canvasWidth / 2, (Config.canvasHeight / 4) + 250)
+
   }
 
   showVictoryScreen() {
