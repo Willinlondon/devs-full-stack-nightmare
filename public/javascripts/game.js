@@ -149,6 +149,7 @@ class Game {
 
   showGameOver() {
     background(0);
+    fill(Config.battleTextColor);
     if (this.player.score > Config.winningScore) {
       fill(255);
       textSize(32);
@@ -157,7 +158,6 @@ class Game {
       text('VICTORY!', Config.canvasWidth / 2, Config.canvasHeight / 4 * 3);
       text(`Your Score: ${this.player.score}`, Config.canvasWidth / 2, Config.canvasHeight / 4 * 3 + 50);
     } else {
-      fill(255);
       textSize(32);
       textAlign(CENTER, CENTER);
       text("As Dev's spectre form was defeated, they\nunfortunately succumbed to their nightmares\nand were forever haunted by failing\n tests and merge conflicts!", Config.canvasWidth / 2, Config.canvasHeight / 5);
@@ -168,7 +168,7 @@ class Game {
 
   showItemScreen() {
     background(0);
-    fill(255);
+    fill(Config.battleTextColor);
     textSize(32);
     textAlign(CENTER, CENTER);
     text(`${this.player.cell.item.descriptionText}`, Config.canvasWidth / 2, Config.canvasHeight / 4);
@@ -177,13 +177,14 @@ class Game {
 
   showIntroScreen() {
     // background(0);
-    fill(255);
+    fill(Config.battleTextColor);
     textSize(32);
     textAlign(CENTER, CENTER);
     text("Meet Dev! An aspiring junior software developer!\nOr at least, their spectral form!\nAs unfortunately poor Dev is having a hard \ntime learning to code, and is having\nlabyrinth nightmares! Can you guide Dev and\nhelp them overcome their fears and awaken\nfrom the nightmare?", Config.canvasWidth / 2, Config.canvasHeight / 4);
   }
 
   showVictoryScreen() {
+    fill(Config.battleTextColor);
     textSize(32);
     textAlign(CENTER, CENTER);
     text(
