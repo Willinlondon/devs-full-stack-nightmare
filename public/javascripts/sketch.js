@@ -25,7 +25,8 @@ let battleBackgroundImage;
 const battleBackgroundImagePath = './stylesheets/assets/battleBackground.jpg';
 let wallImg;
 let backgroundMusic;
-// Player assets
+let battleMusic;
+//Player assets
 let playerImg;
 let playerImg2;
 let playerFaintAnimation;
@@ -53,15 +54,16 @@ function preload() {
   jasmineLogo = loadImage('./images/jasmine-logo.png');
   zoomLogo = loadImage('./images/zoom.png');
   ghLogo = loadImage('./images/gh-logo.png');
-  // Background assets
+  //Background assets
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
+  battleMusic = loadSound('./stylesheets/assets/battle-music.wav');
   tileArray = loadTiles();
   wallImg = loadImage('./images/wall1.png');
   wallImg.resize(Config.cellSize, Config.cellSize);
   ticketImg = loadImage('./images/tickets.png');
-  // Misc assets
-  ghLogo = loadImage('./images/gh-logo.png');
-  // Player assets
+  //Misc assets
+  ticketImg = loadImage('./images/tickets.png');
+  //Player assets
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
   playerImg2 = createImg('./images/playerIdleAnimations.gif');
   playerFaintAnimation = createImg(
@@ -139,6 +141,7 @@ function setup() {
       }
     }
   });
+
 }
 
 function draw() {
@@ -146,6 +149,8 @@ function draw() {
 
   switch (game.state) {
     case 'mapScreen':
+      // THIS IS HOW SKETCH HAS UPDATED ITSELF IN THIS MERGE CONFLICT
+      // I SUSPECT WE WILL HAVE TO UNCOMMENT THIS - FA
       //  backgroundMusic.play();
       game.showMap();
       enemyDisplayNoBattle();
@@ -156,7 +161,7 @@ function draw() {
       beginButton.hide();
       inputPlayerName.hide();
       playerFaintAnimation.hide();
-      playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       jasmineLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       zoomLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -192,6 +197,8 @@ function draw() {
         game.player.gridY + Config.cellSize / 4
       );
 
+      battleMusic.stop();
+      if (!backgroundMusic.isPlaying()) backgroundMusic.play();
       break;
     case 'battleScreen':
       background(battleBackroundImage, 0, 0);
@@ -203,6 +210,8 @@ function draw() {
       newGameCheck();
       playerImg2.show();
       playerFaintAnimation.hide();
+      backgroundMusic.stop();
+      if (!battleMusic.isPlaying()) battleMusic.play();
       break;
     case 'gameOver':
       game.showGameOver();
@@ -252,6 +261,7 @@ function draw() {
 }
 
 function keyPressed() {
+  userStartAudio();
   if (game.state === 'mapScreen') {
     let moved = false;
     if (keyCode === 65) {
@@ -441,8 +451,10 @@ function enemyDisplayNoBattle() {
 function enemyFainted() {
   if (game.battle.player2.name === 'Bugger') {
     buggerFainting.show();
+    faintingEnemy.hide();
   } else {
     faintingEnemy.show();
+    buggerFainting.hide();
   }
 }
 
