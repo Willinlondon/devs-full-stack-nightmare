@@ -91,9 +91,15 @@ class Game {
       } else {
         if (this.battle.player2.hasFainted()) {
           if (this.battle.player2.name == "Jasmine") {
-            this.player.score += 50;
+            this.player.score += 250;
+           }
+          if (this.battle.player2.name == "Zoomer") {
+            this.player.score += 500;
+          }
+          if (this.battle.player2.name == "Git") {
+            this.player.score += 2500;
           } else {
-            this.player.score += 1000;
+            this.player.score += 50;
           }
         }
         this.state = 'victoryScreen';
