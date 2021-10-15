@@ -23,7 +23,7 @@ class Score {
         score: element.score,
       }))
       .sort((a, b) => parseFloat(b.score) - parseFloat(a.score))
-      .slice(0, 10);
+      .slice(0, 20);
   }
 }
 
