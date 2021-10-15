@@ -25,6 +25,7 @@ let battleBackgroundImage;
 const battleBackgroundImagePath = "./stylesheets/assets/battleBackground.jpg";
 let wallImg;
 let backgroundMusic;
+let battleMusic;
 //Player assets
 let playerImg;
 let playerImg2;
@@ -40,6 +41,8 @@ let startTime;
 let ghLogo;
 let jasmineLogo;
 let zoomLogo;
+let inputPlayerName;
+let beginButton;
 
 function preload() {
 	//Enemy assets
@@ -51,21 +54,22 @@ function preload() {
   jasmineLogo = loadImage('./images/jasmine-logo.png');
   zoomLogo = loadImage('./images/zoom.png');
   ghLogo = loadImage('./images/gh-logo.png');
-	//Background assets
-	backgroundMusic = loadSound("./stylesheets/assets/map-music-but-quiet.wav");
-	tileArray = loadTiles();
-	wallImg = loadImage("./images/wall1.png");
-	wallImg.resize(Config.cellSize, Config.cellSize);
-	ticketImg = loadImage("./images/tickets.png");
-	//Misc assets
-	ghLogo = loadImage("./images/gh-logo.png");
-	//Player assets
-	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
-	playerImg2 = createImg("./images/playerIdleAnimations.gif");
-	playerFaintAnimation = createImg(
-		"./images/playerFaintAnimation.gif",
-		"fainting player"
-	);
+  //Background assets
+  backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
+  battleMusic = loadSound('./stylesheets/assets/battle-music.wav');
+  tileArray = loadTiles();
+  wallImg = loadImage('./images/wall1.png');
+  wallImg.resize(Config.cellSize, Config.cellSize);
+  ticketImg = loadImage('./images/tickets.png');
+  //Misc assets
+  ticketImg = loadImage('./images/tickets.png');
+  //Player assets
+  playerImg = loadImage('./images/idlePlayer1CROPPED.png');
+  playerImg2 = createImg('./images/playerIdleAnimations.gif');
+  playerFaintAnimation = createImg(
+    './images/playerFaintAnimation.gif',
+    'fainting player'
+  );
 }
 
 function loadTiles() {
@@ -93,6 +97,7 @@ function setup() {
 	createstabInTheDarkButton();
 	createrefreshButton();
 	createOkButton();
+  createBeginButton();
 	createFleeButton();
 	createNewGameButton();
 	//Background
@@ -108,6 +113,10 @@ function setup() {
   //Player assets
   playerImg2.parent("left");
   playerFaintAnimation.parent("left");
+  //Player Name Input
+  inputPlayerName = createInput();
+  inputPlayerName.parent("play-area")
+  inputPlayerName.position(Config.canvasWidth / 2, Config.canvasWidth / 3 * 2);
 
   Cell.all.forEach((cell) => {
     if (cell.boss) {
@@ -129,22 +138,22 @@ function setup() {
       }
     }
   })
-
 }
 
 function draw() {
-	background(0);
+  background(0);
 
-	switch (game.state) {
-		case "mapScreen":
-			//  backgroundMusic.play();
-			game.showMap();
-			enemyDisplayNoBattle();
-			battleButtonsCheck();
-			newGameCheck();
-			playerImg2.show();
-			okButton.hide();
-			playerFaintAnimation.hide();
+  switch (game.state) {
+    case 'mapScreen':
+      game.showMap();
+      enemyDisplayNoBattle();
+      battleButtonsCheck();
+      newGameCheck();
+      playerImg2.show();
+      okButton.hide();
+      beginButton.hide();
+      inputPlayerName.hide();
+      playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       jasmineLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -181,15 +190,21 @@ function draw() {
         game.player.gridY + Config.cellSize / 4
       );
 
+      battleMusic.stop();
+      if (!backgroundMusic.isPlaying()) backgroundMusic.play();
       break;
     case 'battleScreen':
       background(battleBackroundImage, 0, 0);
       game.showBattle();
       enemyDisplayBattle();
       battleButtonsCheck();
+      beginButton.hide();
+      inputPlayerName.hide();
       newGameCheck();
       playerImg2.show();
       playerFaintAnimation.hide();
+      backgroundMusic.stop();
+      if (!battleMusic.isPlaying()) battleMusic.play();
       break;
   	case "gameOver":
 			game.showGameOver();
@@ -197,6 +212,8 @@ function draw() {
 			newGameCheck();
 			buttonsNoBattle();
 			okButton.hide();
+      beginButton.hide();
+      inputPlayerName.hide();
 			playerImg2.hide();
 			playerFaintAnimation.show();
 		break;
@@ -207,6 +224,8 @@ function draw() {
       newGameCheck();
       okButton.show();
       playerImg2.show();
+      beginButton.hide();
+      inputPlayerName.hide();
       game.showVictoryScreen();
       break;
     case 'itemScreen':
@@ -215,31 +234,46 @@ function draw() {
       newGameCheck();
       battleButtonsCheck();
       okButton.show();
+      beginButton.hide();
+      inputPlayerName.hide();
       playerImg2.show();
       game.showItemScreen();
+      break;
+    case 'introScreen':
+      background(battleBackroundImage, 0, 0);
+      enemyDisplayNoBattle();
+      newGameCheck();
+      battleButtonsCheck();
+      beginButton.show();
+      inputPlayerName.show();
+      okButton.hide();
+      playerImg2.show();
+      game.showIntroScreen();
       break;
   }
 }
 
 function keyPressed() {
-	if (game.state === "mapScreen") {
-		let moved = false;
-		if (keyCode === 65) {
-			game.player.move("west");
-			moved = true;
-		}
-		if (keyCode === 68) {
-			game.player.move("east");
-			moved = true;
-		}
-		if (keyCode === 87) {
-			game.player.move("north");
-			moved = true;
-		}
-		if (keyCode === 83) {
-			game.player.move("south");
-			moved = true;
-		}
+  userStartAudio();
+
+  if (game.state === 'mapScreen') {
+    let moved = false;
+    if (keyCode === 65) {
+      game.player.move('west');
+      moved = true;
+    }
+    if (keyCode === 68) {
+      game.player.move('east');
+      moved = true;
+    }
+    if (keyCode === 87) {
+      game.player.move('north');
+      moved = true;
+    }
+    if (keyCode === 83) {
+      game.player.move('south');
+      moved = true;
+    }
 
     if (moved) {
       if (game.player.cell.boss) {
@@ -257,6 +291,17 @@ function keyPressed() {
     }
   }
 
+}
+function createBeginButton() {
+	beginButton = createImg("./images/okButton150px.png");
+	beginButton.parent("okButton");
+	elementHighlight(beginButton);
+	stopElementHighlight(beginButton);
+	beginButton.mousePressed(() => {
+		game.battle = null;
+		game.state = "mapScreen";
+    game.player.name = inputPlayerName.value();
+	});
 }
 
 function createOkButton() {
