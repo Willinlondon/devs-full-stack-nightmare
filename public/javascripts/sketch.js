@@ -35,7 +35,7 @@ let enemyImg;
 let buggerIdle;
 let buggerFainting;
 let faintingEnemy;
-let Zoomer;
+let zoomer;
 // Misc assets
 let startTime;
 let ghLogo;
@@ -47,7 +47,7 @@ let beginButton;
 function preload() {
   // Enemy assets
   enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
-  Zoomer = createImg('./images/Zoomer.gif', 'enemy');
+  zoomer = createImg('./images/Zoomer.gif', 'enemy');
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
   buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
   buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
@@ -106,7 +106,7 @@ function setup() {
   battleBackroundImage = loadImage(battleBackgroundImagePath);
   // Enemy assets
   enemyImg.parent('right');
-  Zoomer.parent('right');
+  zoomer.parent('right');
   faintingEnemy.parent('right');
   buggerIdle.parent('right');
   buggerFainting.parent('right');
@@ -224,20 +224,20 @@ function draw() {
       playerImg2.hide();
       playerFaintAnimation.show();
       break;
-    case 'victoryScreen':
-      background(battleBackroundImage, 0, 0);
-      battleButtonsCheck();
-      enemyFainted();
-	  enemyDisplayNoBattle();
-      newGameCheck();
-      okButton.show();
-      playerImg2.show();
-      beginButton.hide();
-      inputPlayerName.hide();
-	  playerFaintAnimation.hide();
-      game.showVictoryScreen();
-      break;
-    case 'itemScreen':
+	  case 'victoryScreen':
+		background(battleBackroundImage, 0, 0);
+		battleButtonsCheck();
+		enemyFainted();
+		enemyDisplayNoBattle();
+		newGameCheck();
+		okButton.show();
+		playerImg2.show();
+		beginButton.hide();
+		inputPlayerName.hide();
+		  playerFaintAnimation.hide();
+		game.showVictoryScreen();
+		break;
+	case 'itemScreen':
       background(battleBackroundImage, 0, 0);
       enemyDisplayNoBattle();
       newGameCheck();
@@ -431,22 +431,22 @@ function enemyDisplayBattle() {
   buggerFainting.hide();
   if (game.battle.player2.name === 'Bugger') {
     buggerIdle.show();
-    Zoomer.hide();
+    zoomer.hide();
     enemyImg.hide();
   } else if (game.battle.player2.name === 'Zoomer') {
     enemyImg.hide();
     buggerIdle.hide();
-    Zoomer.show();
+    zoomer.show();
   } else {
     enemyImg.show();
     buggerIdle.hide();
-    Zoomer.hide();
+    zoomer.hide();
   }
 }
 
 function enemyDisplayNoBattle() {
   enemyImg.hide();
-  Zoomer.hide();
+  zoomer.hide();
   faintingEnemy.hide();
   buggerFainting.hide();
   buggerIdle.hide();
