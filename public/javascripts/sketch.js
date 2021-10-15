@@ -25,6 +25,7 @@ let battleBackgroundImage;
 const battleBackgroundImagePath = './stylesheets/assets/battleBackground.jpg';
 let wallImg;
 let backgroundMusic;
+let battleMusic;
 // Player assets
 let playerImg;
 let playerImg2;
@@ -55,12 +56,13 @@ function preload() {
   ghLogo = loadImage('./images/gh-logo.png');
   // Background assets
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
+  battleMusic = loadSound('./stylesheets/assets/battle-music.wav');
   tileArray = loadTiles();
   wallImg = loadImage('./images/wall1.png');
   wallImg.resize(Config.cellSize, Config.cellSize);
   ticketImg = loadImage('./images/tickets.png');
   // Misc assets
-  ghLogo = loadImage('./images/gh-logo.png');
+  ticketImg = loadImage('./images/tickets.png');
   // Player assets
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
   playerImg2 = createImg('./images/playerIdleAnimations.gif');
@@ -146,7 +148,6 @@ function draw() {
 
   switch (game.state) {
     case 'mapScreen':
-      //  backgroundMusic.play();
       game.showMap();
       enemyDisplayNoBattle();
       battleButtonsCheck();
@@ -192,6 +193,8 @@ function draw() {
         game.player.gridY + Config.cellSize / 4
       );
 
+      battleMusic.stop();
+      if (!backgroundMusic.isPlaying()) backgroundMusic.play();
       break;
     case 'battleScreen':
       background(battleBackroundImage, 0, 0);
@@ -203,6 +206,8 @@ function draw() {
       newGameCheck();
       playerImg2.show();
       playerFaintAnimation.hide();
+      backgroundMusic.stop();
+      if (!battleMusic.isPlaying()) battleMusic.play();
       break;
     case 'gameOver':
       game.showGameOver();
@@ -252,6 +257,8 @@ function draw() {
 }
 
 function keyPressed() {
+  userStartAudio();
+
   if (game.state === 'mapScreen') {
     let moved = false;
     if (keyCode === 65) {

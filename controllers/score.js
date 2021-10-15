@@ -15,7 +15,10 @@ const ScoreController = {
     try {
       const score = new Score();
       const scores = await score.getScores();
-      console.log(scores);
+      // const scoreBoard = await scores
+      //   .sort((a, b) => parseFloat(b.score) - parseFloat(a.score))
+      //   .slice(0, 10);
+      // console.log(scoreBoard);
       res.render('scores/index', { scores });
     } catch (error) {
       console.log(error.message);

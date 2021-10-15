@@ -6,7 +6,7 @@ class Bosses {
         Config.bossGitHealth,
         ["Unknown Origin", "Push Upstream", "Conflictive Merge", "Invisible Branch", "Detatch Head"],
         "oppressed",
-        "imposing, diabolical"
+        "an imposing, diabolical"
       )
 
       return git;
@@ -18,7 +18,7 @@ class Bosses {
         Config.bossZoomHealth,
         ["Visual Termination", "Countdown Initiated", "Time's End", "Unforseen Blackout"],
         "caught",
-        "impatient, rude"
+        "an impatient, rude"
       )
 
       return zoomer;

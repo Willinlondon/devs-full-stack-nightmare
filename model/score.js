@@ -16,11 +16,14 @@ class Score {
 
   async getScores() {
     const allScores = await this.scoresDatabaseClass.all();
-    return allScores.map((element) => ({
-      id: element.id,
-      username: element.username,
-      score: element.score,
-    }));
+    return allScores
+      .map((element) => ({
+        id: element.id,
+        username: element.username,
+        score: element.score,
+      }))
+      .sort((a, b) => parseFloat(b.score) - parseFloat(a.score))
+      .slice(0, 20);
   }
 }
 
