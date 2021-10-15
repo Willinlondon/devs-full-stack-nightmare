@@ -10,7 +10,7 @@ class Game {
     this.gameMap = map;
     this.map = this.gameMap.createMap();
     this.player = player;
-    this.state = 'mapScreen';
+    this.state = 'introScreen';
     this.player.spawn(this.gameMap.startingColumn, this.gameMap.startingRow);
     this._generateCells();
 
@@ -73,11 +73,12 @@ class Game {
   spawnItems() {
     this.cells.forEach((cell) => {
       if (cell.localLuck > Config.itemSpawnThreshold && !cell.boss) {
-        cell.item = new Item(
-          this,
-          cell.x,
-          cell.y
-        );
+        // cell.item = new Item(
+        //   this,
+        //   cell.x,
+        //   cell.y
+        // );
+        cell.item = Pickups.sample(game, cell.x, cell.y)
       }
     })
   }
@@ -153,7 +154,16 @@ class Game {
     fill(255);
     textSize(32);
     textAlign(CENTER, CENTER);
-    text(`${this.player.cell.item.info}`, Config.canvasWidth / 2, Config.canvasHeight / 2);
+    text(`${this.player.cell.item.descriptionText}`, Config.canvasWidth / 2, Config.canvasHeight / 4);
+    text(`${this.player.cell.item.effectText}`, Config.canvasWidth / 2, Config.canvasHeight / 4 + 50);
+  }
+
+  showIntroScreen() {
+    // background(0);
+    fill(255);
+    textSize(32);
+    textAlign(CENTER, CENTER);
+    text("Meet Dev! An aspiring junior software developer!\nOr at least, their spectral form!\nAs unfortunately poor Dev is having a hard \ntime learning to code, and is having\nlabyrinth nightmares! Can you guide Dev and\nhelp them overcome their fears and awaken\nfrom the nightmare?", Config.canvasWidth / 2, Config.canvasHeight / 4);
   }
 
   showVictoryScreen() {
