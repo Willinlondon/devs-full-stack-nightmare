@@ -224,7 +224,9 @@ function draw() {
 		background(battleBackroundImage, 0, 0);
 		battleButtonsCheck();
 		enemyFainted();
-		enemyDisplayNoBattle();
+    buggerIdle.hide();
+    enemyImg.hide();
+    zoomer.hide();
 		newGameCheck();
 		okButton.show();
 		playerImg2.show();
@@ -446,6 +448,8 @@ function enemyDisplayNoBattle() {
   faintingEnemy.hide();
   buggerFainting.hide();
   buggerIdle.hide();
+  enemyImg.hide();
+  zoomer.hide();
 }
 
 function enemyFainted() {
