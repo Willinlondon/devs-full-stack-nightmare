@@ -25,6 +25,7 @@ let battleBackgroundImage;
 const battleBackgroundImagePath = "./stylesheets/assets/battleBackground.jpg";
 let wallImg;
 let backgroundMusic;
+let battleMusic;
 //Player assets
 let playerImg;
 let playerImg2;
@@ -53,20 +54,21 @@ function preload() {
   jasmineLogo = loadImage('./images/jasmine-logo.png');
   zoomLogo = loadImage('./images/zoom.png');
   ghLogo = loadImage('./images/gh-logo.png');
-	//Background assets
-	backgroundMusic = loadSound("./stylesheets/assets/map-music-but-quiet.wav");
-	tileArray = loadTiles();
-	wallImg = loadImage("./images/wall1.png");
-	wallImg.resize(Config.cellSize, Config.cellSize);
-	ticketImg = loadImage("./images/tickets.png");
-	//Misc assets
-	ghLogo = loadImage("./images/gh-logo.png");
-	//Player assets
-	playerImg = loadImage("./images/idlePlayer1CROPPED.png");
-	playerImg2 = createImg("./images/playerIdleAnimations.gif");
-	playerFaintAnimation = createImg(
-		"./images/playerFaintAnimation.gif",
-		"fainting player"
+  //Background assets
+  backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
+  battleMusic = loadSound('./stylesheets/assets/battle-music.wav');
+  tileArray = loadTiles();
+  wallImg = loadImage('./images/wall1.png');
+  wallImg.resize(Config.cellSize, Config.cellSize);
+  ticketImg = loadImage('./images/tickets.png');
+  //Misc assets
+  ticketImg = loadImage('./images/tickets.png');
+  //Player assets
+  playerImg = loadImage('./images/idlePlayer1CROPPED.png');
+  playerImg2 = createImg('./images/playerIdleAnimations.gif');
+  playerFaintAnimation = createImg(
+    './images/playerFaintAnimation.gif',
+    'fainting player'
   );
 }
 
@@ -136,24 +138,22 @@ function setup() {
       }
     }
   })
-
 }
 
 function draw() {
-	background(0);
+  background(0);
 
-	switch (game.state) {
-		case "mapScreen":
-			//  backgroundMusic.play();
-			game.showMap();
-			enemyDisplayNoBattle();
-			battleButtonsCheck();
-			newGameCheck();
-			playerImg2.show();
-			okButton.hide();
+  switch (game.state) {
+    case 'mapScreen':
+      game.showMap();
+      enemyDisplayNoBattle();
+      battleButtonsCheck();
+      newGameCheck();
+      playerImg2.show();
+      okButton.hide();
       beginButton.hide();
       inputPlayerName.hide();
-			playerFaintAnimation.hide();
+      playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       jasmineLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -190,6 +190,8 @@ function draw() {
         game.player.gridY + Config.cellSize / 4
       );
 
+      battleMusic.stop();
+      if (!backgroundMusic.isPlaying()) backgroundMusic.play();
       break;
     case 'battleScreen':
       background(battleBackroundImage, 0, 0);
@@ -201,6 +203,8 @@ function draw() {
       newGameCheck();
       playerImg2.show();
       playerFaintAnimation.hide();
+      backgroundMusic.stop();
+      if (!battleMusic.isPlaying()) battleMusic.play();
       break;
   	case "gameOver":
 			game.showGameOver();
@@ -250,24 +254,26 @@ function draw() {
 }
 
 function keyPressed() {
-	if (game.state === "mapScreen") {
-		let moved = false;
-		if (keyCode === 65) {
-			game.player.move("west");
-			moved = true;
-		}
-		if (keyCode === 68) {
-			game.player.move("east");
-			moved = true;
-		}
-		if (keyCode === 87) {
-			game.player.move("north");
-			moved = true;
-		}
-		if (keyCode === 83) {
-			game.player.move("south");
-			moved = true;
-		}
+  userStartAudio();
+
+  if (game.state === 'mapScreen') {
+    let moved = false;
+    if (keyCode === 65) {
+      game.player.move('west');
+      moved = true;
+    }
+    if (keyCode === 68) {
+      game.player.move('east');
+      moved = true;
+    }
+    if (keyCode === 87) {
+      game.player.move('north');
+      moved = true;
+    }
+    if (keyCode === 83) {
+      game.player.move('south');
+      moved = true;
+    }
 
     if (moved) {
       if (game.player.cell.boss) {
