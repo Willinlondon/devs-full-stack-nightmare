@@ -63,7 +63,19 @@ html, body { max-width: 100%; overflow-x: hidden; overflow-y: hidden}*/
 #okButton {
 	position: relative;
 	left: 300px;
-	top: 650px;
+	top: 350px;
+}
+
+#beginButton {
+	position: relative;
+	left: 300px;
+	top: 600px;
+}
+
+#inputPlayerName {
+	position: relative;
+	left: 300px;
+	top: 550px;	
 }
 
 #heal {
