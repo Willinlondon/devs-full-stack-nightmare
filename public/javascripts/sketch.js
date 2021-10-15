@@ -26,7 +26,7 @@ const battleBackgroundImagePath = './stylesheets/assets/battleBackground.jpg';
 let wallImg;
 let backgroundMusic;
 let battleMusic;
-//Player assets
+// Player assets
 let playerImg;
 let playerImg2;
 let playerFaintAnimation;
@@ -54,16 +54,16 @@ function preload() {
   jasmineLogo = loadImage('./images/jasmine-logo.png');
   zoomLogo = loadImage('./images/zoom.png');
   ghLogo = loadImage('./images/gh-logo.png');
-  //Background assets
+  // Background assets
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   battleMusic = loadSound('./stylesheets/assets/battle-music.wav');
   tileArray = loadTiles();
   wallImg = loadImage('./images/wall1.png');
   wallImg.resize(Config.cellSize, Config.cellSize);
   ticketImg = loadImage('./images/tickets.png');
-  //Misc assets
+  // Misc assets
   ticketImg = loadImage('./images/tickets.png');
-  //Player assets
+  // Player assets
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
 //  playerImg2 = createImg('./images/playerIdleAnimations.gif');
 //  playerFaintAnimation = createImg(
@@ -149,7 +149,6 @@ function setup() {
       }
     }
   });
-
 }
 
 function draw() {
@@ -169,7 +168,7 @@ function draw() {
       beginButton.hide();
       inputPlayerName.hide();
       playerFaintAnimation.hide();
-	  playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+      playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       jasmineLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       zoomLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -232,22 +231,22 @@ function draw() {
       playerImg2.hide();
       playerFaintAnimation.show();
       break;
-	  case 'victoryScreen':
-		background(battleBackroundImage, 0, 0);
-		battleButtonsCheck();
-		enemyFainted();
-    buggerIdle.hide();
-    enemyImg.hide();
-    zoomer.hide();
-		newGameCheck();
-		okButton.show();
-		playerImg2.show();
-		beginButton.hide();
-		inputPlayerName.hide();
-		  playerFaintAnimation.hide();
-		game.showVictoryScreen();
-		break;
-	case 'itemScreen':
+    case 'victoryScreen':
+      background(battleBackroundImage, 0, 0);
+      battleButtonsCheck();
+      enemyFainted();
+      buggerIdle.hide();
+      enemyImg.hide();
+      zoomer.hide();
+      newGameCheck();
+      okButton.show();
+      playerImg2.show();
+      beginButton.hide();
+      inputPlayerName.hide();
+      playerFaintAnimation.hide();
+      game.showVictoryScreen();
+      break;
+    case 'itemScreen':
       background(battleBackroundImage, 0, 0);
       enemyDisplayNoBattle();
       newGameCheck();
@@ -256,7 +255,7 @@ function draw() {
       beginButton.hide();
       inputPlayerName.hide();
       playerImg2.show();
-	  playerFaintAnimation.hide();
+      playerFaintAnimation.hide();
       game.showItemScreen();
       break;
     case 'introScreen':
@@ -268,7 +267,7 @@ function draw() {
       inputPlayerName.show();
       okButton.hide();
       playerImg2.show();
-	  playerFaintAnimation.hide();
+      playerFaintAnimation.hide();
       game.showIntroScreen();
       break;
   }
