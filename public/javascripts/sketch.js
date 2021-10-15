@@ -161,7 +161,7 @@ function draw() {
       beginButton.hide();
       inputPlayerName.hide();
       playerFaintAnimation.hide();
-			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
+	  playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       jasmineLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       zoomLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -228,11 +228,13 @@ function draw() {
       background(battleBackroundImage, 0, 0);
       battleButtonsCheck();
       enemyFainted();
+	  enemyDisplayNoBattle();
       newGameCheck();
       okButton.show();
       playerImg2.show();
       beginButton.hide();
       inputPlayerName.hide();
+	  playerFaintAnimation.hide();
       game.showVictoryScreen();
       break;
     case 'itemScreen':
@@ -244,6 +246,7 @@ function draw() {
       beginButton.hide();
       inputPlayerName.hide();
       playerImg2.show();
+	  playerFaintAnimation.hide();
       game.showItemScreen();
       break;
     case 'introScreen':
@@ -255,6 +258,7 @@ function draw() {
       inputPlayerName.show();
       okButton.hide();
       playerImg2.show();
+	  playerFaintAnimation.hide();
       game.showIntroScreen();
       break;
   }
