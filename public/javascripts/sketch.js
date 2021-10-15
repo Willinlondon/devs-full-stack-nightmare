@@ -115,11 +115,7 @@ function setup() {
   playerFaintAnimation.parent('left');
   // Player Name Input
   inputPlayerName = createInput().attribute('maxlength', 10);
-  inputPlayerName.parent('play-area');
-  inputPlayerName.position(
-    Config.canvasWidth / 2,
-    (Config.canvasWidth / 3) * 2
-  );
+  inputPlayerName.parent('inputPlayerName');
 
   Cell.all.forEach((cell) => {
     if (cell.boss) {
@@ -301,7 +297,7 @@ function keyPressed() {
 }
 function createBeginButton() {
   beginButton = createImg('./images/okButton150px.png');
-  beginButton.parent('okButton');
+  beginButton.parent('beginButton');
   elementHighlight(beginButton);
   stopElementHighlight(beginButton);
   beginButton.mousePressed(() => {
