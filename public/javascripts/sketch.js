@@ -40,6 +40,8 @@ let startTime;
 let ghLogo;
 let jasmineLogo;
 let zoomLogo;
+let inputPlayerName;
+let beginButton;
 
 function preload() {
 	//Enemy assets
@@ -65,7 +67,7 @@ function preload() {
 	playerFaintAnimation = createImg(
 		"./images/playerFaintAnimation.gif",
 		"fainting player"
-	);
+  );
 }
 
 function loadTiles() {
@@ -93,6 +95,7 @@ function setup() {
 	createstabInTheDarkButton();
 	createrefreshButton();
 	createOkButton();
+  createBeginButton();
 	createFleeButton();
 	createNewGameButton();
 	//Background
@@ -108,6 +111,10 @@ function setup() {
   //Player assets
   playerImg2.parent("left");
   playerFaintAnimation.parent("left");
+  //Player Name Input
+  inputPlayerName = createInput();
+  inputPlayerName.parent("play-area")
+  inputPlayerName.position(Config.canvasWidth / 2, Config.canvasWidth / 3 * 2);
 
   Cell.all.forEach((cell) => {
     if (cell.boss) {
@@ -144,6 +151,8 @@ function draw() {
 			newGameCheck();
 			playerImg2.show();
 			okButton.hide();
+      beginButton.hide();
+      inputPlayerName.hide();
 			playerFaintAnimation.hide();
 			playerImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
       ghLogo.resize(Config.spriteSize / 2, Config.spriteSize / 2);
@@ -187,6 +196,8 @@ function draw() {
       game.showBattle();
       enemyDisplayBattle();
       battleButtonsCheck();
+      beginButton.hide();
+      inputPlayerName.hide();
       newGameCheck();
       playerImg2.show();
       playerFaintAnimation.hide();
@@ -197,6 +208,8 @@ function draw() {
 			newGameCheck();
 			buttonsNoBattle();
 			okButton.hide();
+      beginButton.hide();
+      inputPlayerName.hide();
 			playerImg2.hide();
 			playerFaintAnimation.show();
 		break;
@@ -207,6 +220,8 @@ function draw() {
       newGameCheck();
       okButton.show();
       playerImg2.show();
+      beginButton.hide();
+      inputPlayerName.hide();
       game.showVictoryScreen();
       break;
     case 'itemScreen':
@@ -215,8 +230,21 @@ function draw() {
       newGameCheck();
       battleButtonsCheck();
       okButton.show();
+      beginButton.hide();
+      inputPlayerName.hide();
       playerImg2.show();
       game.showItemScreen();
+      break;
+    case 'introScreen':
+      background(battleBackroundImage, 0, 0);
+      enemyDisplayNoBattle();
+      newGameCheck();
+      battleButtonsCheck();
+      beginButton.show();
+      inputPlayerName.show();
+      okButton.hide();
+      playerImg2.show();
+      game.showIntroScreen();
       break;
   }
 }
@@ -257,6 +285,17 @@ function keyPressed() {
     }
   }
 
+}
+function createBeginButton() {
+	beginButton = createImg("./images/okButton150px.png");
+	beginButton.parent("okButton");
+	elementHighlight(beginButton);
+	stopElementHighlight(beginButton);
+	beginButton.mousePressed(() => {
+		game.battle = null;
+		game.state = "mapScreen";
+    game.player.name = inputPlayerName.value();
+	});
 }
 
 function createOkButton() {
