@@ -118,8 +118,8 @@ class Game {
 
     textSize(28);
     if (this.battle.outcomeStrings) {
-      if(frameCount > startTime + 30 && frameCount < startTime + 120){text(this.battle.outcomeStrings[0], canvas.width / 2, canvas.height / 2);}
-      if(frameCount > startTime + 60 && frameCount < startTime + 120){text(this.battle.outcomeStrings[1], canvas.width / 2, canvas.height / 2 + 80);}
+      if(frameCount > startTime + 30 && frameCount < startTime + 360){text(this.battle.outcomeStrings[0], canvas.width / 2, canvas.height / 2);}
+      if(frameCount > startTime + 90 && frameCount < startTime + 360){text(this.battle.outcomeStrings[1], canvas.width / 2, canvas.height / 2 + 80);}
     }
 
     textSize(32);
