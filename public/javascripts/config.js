@@ -2,7 +2,7 @@ class Config {
 	static canvasWidth = 750;
 	static canvasHeight = 750;
 	static cellSize = 75;
-	static encounterProbability = 1;
+	static encounterProbability = 0.9;
 	static gridSize = 100;
 	static spriteSize = 75;
 	static playerColour = 155;
@@ -23,7 +23,7 @@ class Config {
 	static NoOfTunnels = 550;
 	static maxTunnelLength = 20;
 	static regionDivisor = 10;
-  static winningScore = 3000;
+  static winningScore = 4500;
 	static calculatedProcess = new Ability("Calculated Process", "Damaging", 25, 30, 0, 0);
 	static stabInTheDark = new Ability("Stab in the Dark", "Damaging", 10, 45, 0, 0);
 	static refreshHeal = new Ability("Refresh", "Heal", 0, 0, 80, 120);

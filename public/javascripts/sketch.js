@@ -35,7 +35,7 @@ let enemyImg;
 let buggerIdle;
 let buggerFainting;
 let faintingEnemy;
-let Zoomer;
+let zoomer;
 // Misc assets
 let startTime;
 let ghLogo;
@@ -47,7 +47,7 @@ let beginButton;
 function preload() {
   // Enemy assets
   enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
-  Zoomer = createImg('./images/Zoomer.gif', 'enemy');
+  zoomer = createImg('./images/Zoomer.gif', 'enemy');
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
   buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
   buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
@@ -106,7 +106,7 @@ function setup() {
   battleBackroundImage = loadImage(battleBackgroundImagePath);
   // Enemy assets
   enemyImg.parent('right');
-  Zoomer.parent('right');
+  zoomer.parent('right');
   faintingEnemy.parent('right');
   buggerIdle.parent('right');
   buggerFainting.parent('right');
@@ -114,12 +114,8 @@ function setup() {
   playerImg2.parent('left');
   playerFaintAnimation.parent('left');
   // Player Name Input
-  inputPlayerName = createInput();
-  inputPlayerName.parent('play-area');
-  inputPlayerName.position(
-    Config.canvasWidth / 2,
-    (Config.canvasWidth / 3) * 2
-  );
+  inputPlayerName = createInput().attribute('maxlength', 10);
+  inputPlayerName.parent('inputPlayerName');
 
   Cell.all.forEach((cell) => {
     if (cell.boss) {
@@ -148,6 +144,9 @@ function draw() {
 
   switch (game.state) {
     case 'mapScreen':
+      // THIS IS HOW SKETCH HAS UPDATED ITSELF IN THIS MERGE CONFLICT
+      // I SUSPECT WE WILL HAVE TO UNCOMMENT THIS - FA
+      //  backgroundMusic.play();
       game.showMap();
       enemyDisplayNoBattle();
       battleButtonsCheck();
@@ -224,11 +223,15 @@ function draw() {
       background(battleBackroundImage, 0, 0);
       battleButtonsCheck();
       enemyFainted();
+      buggerIdle.hide();
+      enemyImg.hide();
+      zoomer.hide();
       newGameCheck();
       okButton.show();
       playerImg2.show();
       beginButton.hide();
       inputPlayerName.hide();
+      playerFaintAnimation.hide();
       game.showVictoryScreen();
       break;
     case 'itemScreen':
@@ -240,6 +243,7 @@ function draw() {
       beginButton.hide();
       inputPlayerName.hide();
       playerImg2.show();
+      playerFaintAnimation.hide();
       game.showItemScreen();
       break;
     case 'introScreen':
@@ -251,6 +255,7 @@ function draw() {
       inputPlayerName.show();
       okButton.hide();
       playerImg2.show();
+      playerFaintAnimation.hide();
       game.showIntroScreen();
       break;
   }
@@ -258,7 +263,6 @@ function draw() {
 
 function keyPressed() {
   userStartAudio();
-
   if (game.state === 'mapScreen') {
     let moved = false;
     if (keyCode === 65) {
@@ -294,7 +298,7 @@ function keyPressed() {
 }
 function createBeginButton() {
   beginButton = createImg('./images/okButton150px.png');
-  beginButton.parent('okButton');
+  beginButton.parent('beginButton');
   elementHighlight(beginButton);
   stopElementHighlight(beginButton);
   beginButton.mousePressed(() => {
@@ -424,32 +428,36 @@ function enemyDisplayBattle() {
   buggerFainting.hide();
   if (game.battle.player2.name === 'Bugger') {
     buggerIdle.show();
-    Zoomer.hide();
+    zoomer.hide();
     enemyImg.hide();
   } else if (game.battle.player2.name === 'Zoomer') {
     enemyImg.hide();
     buggerIdle.hide();
-    Zoomer.show();
+    zoomer.show();
   } else {
     enemyImg.show();
     buggerIdle.hide();
-    Zoomer.hide();
+    zoomer.hide();
   }
 }
 
 function enemyDisplayNoBattle() {
   enemyImg.hide();
-  Zoomer.hide();
+  zoomer.hide();
   faintingEnemy.hide();
   buggerFainting.hide();
   buggerIdle.hide();
+  enemyImg.hide();
+  zoomer.hide();
 }
 
 function enemyFainted() {
   if (game.battle.player2.name === 'Bugger') {
     buggerFainting.show();
+    faintingEnemy.hide();
   } else {
     faintingEnemy.show();
+    buggerFainting.hide();
   }
 }
 

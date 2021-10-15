@@ -91,9 +91,15 @@ class Game {
       } else {
         if (this.battle.player2.hasFainted()) {
           if (this.battle.player2.name == "Jasmine") {
-            this.player.score += 50;
+            this.player.score += 250;
+           }
+          if (this.battle.player2.name == "Zoomer") {
+            this.player.score += 500;
+          }
+          if (this.battle.player2.name == "Git") {
+            this.player.score += 2500;
           } else {
-            this.player.score += 1000;
+            this.player.score += 50;
           }
         }
         this.state = 'victoryScreen';
@@ -143,6 +149,7 @@ class Game {
 
   showGameOver() {
     background(0);
+    fill(Config.battleTextColor);
     if (this.player.score > Config.winningScore) {
       fill(255);
       textSize(32);
@@ -151,7 +158,6 @@ class Game {
       text('VICTORY!', Config.canvasWidth / 2, Config.canvasHeight / 4 * 3);
       text(`Your Score: ${this.player.score}`, Config.canvasWidth / 2, Config.canvasHeight / 4 * 3 + 50);
     } else {
-      fill(255);
       textSize(32);
       textAlign(CENTER, CENTER);
       text("As Dev's spectre form was defeated, they\nunfortunately succumbed to their nightmares\nand were forever haunted by failing\n tests and merge conflicts!", Config.canvasWidth / 2, Config.canvasHeight / 5);
@@ -162,7 +168,7 @@ class Game {
 
   showItemScreen() {
     background(0);
-    fill(255);
+    fill(Config.battleTextColor);
     textSize(32);
     textAlign(CENTER, CENTER);
     text(`${this.player.cell.item.descriptionText}`, Config.canvasWidth / 2, Config.canvasHeight / 4);
@@ -171,13 +177,17 @@ class Game {
 
   showIntroScreen() {
     // background(0);
-    fill(255);
+    fill(Config.battleTextColor);
     textSize(32);
     textAlign(CENTER, CENTER);
     text("Meet Dev! An aspiring junior software developer!\nOr at least, their spectral form!\nAs unfortunately poor Dev is having a hard \ntime learning to code, and is having\nlabyrinth nightmares! Can you guide Dev and\nhelp them overcome their fears and awaken\nfrom the nightmare?", Config.canvasWidth / 2, Config.canvasHeight / 4);
+    textSize(24);
+    text("Navigate using the 'W, A, S, D' keys.\nEnter your name below", Config.canvasWidth / 2, (Config.canvasHeight / 4) + 250)
+
   }
 
   showVictoryScreen() {
+    fill(Config.battleTextColor);
     textSize(32);
     textAlign(CENTER, CENTER);
     text(
