@@ -46,11 +46,11 @@ let beginButton;
 
 function preload() {
   // Enemy assets
-  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
-  zoomer = createImg('./images/Zoomer.gif', 'enemy');
-  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
-  buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
-  buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
+//  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
+//  zoomer = createImg('./images/Zoomer.gif', 'enemy');
+//  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
+//  buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
+//  buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
   jasmineLogo = loadImage('./images/jasmine-logo.png');
   zoomLogo = loadImage('./images/zoom.png');
   ghLogo = loadImage('./images/gh-logo.png');
@@ -65,11 +65,11 @@ function preload() {
   ticketImg = loadImage('./images/tickets.png');
   //Player assets
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
-  playerImg2 = createImg('./images/playerIdleAnimations.gif');
-  playerFaintAnimation = createImg(
-    './images/playerFaintAnimation.gif',
-    'fainting player'
-  );
+//  playerImg2 = createImg('./images/playerIdleAnimations.gif');
+//  playerFaintAnimation = createImg(
+//    './images/playerFaintAnimation.gif',
+//    'fainting player'
+//  );
 }
 
 function loadTiles() {
@@ -100,6 +100,18 @@ function setup() {
   createBeginButton();
   createFleeButton();
   createNewGameButton();
+
+  //Test
+  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
+  zoomer = createImg('./images/Zoomer.gif', 'enemy');
+  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
+  buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
+  buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
+  playerImg2 = createImg('./images/playerIdleAnimations.gif');
+  playerFaintAnimation = createImg(
+    './images/playerFaintAnimation.gif',
+    'fainting player'
+  );
   // Background
   canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
   canvas.parent('play-area');
