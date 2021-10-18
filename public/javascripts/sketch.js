@@ -68,20 +68,6 @@ function preload() {
 //  );
 }
 
-function loadTiles() {
-  const tileArray = [];
-
-  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].forEach((i) => {
-    tileArray.push(loadImage(`./images/new-tiles/${i}.png`));
-  });
-
-  tileArray.forEach((img) => {
-    img.resize(Config.cellSize, Config.cellSize);
-  });
-
-  return tileArray;
-}
-
 function setup() {
   // Gameplay
   createLocalDifficulty();
@@ -307,6 +293,20 @@ function newGameCheck() {
   } else {
     newGameButton.hide();
   }
+}
+
+function loadTiles() {
+  const tileArray = [];
+
+  [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15].forEach((i) => {
+    tileArray.push(loadImage(`./images/new-tiles/${i}.png`));
+  });
+
+  tileArray.forEach((img) => {
+    img.resize(Config.cellSize, Config.cellSize);
+  });
+
+  return tileArray;
 }
 
 async function addToScoreDatabase(username, score) {
