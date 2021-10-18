@@ -52,7 +52,7 @@ function createMapScreen() {
 
 function createBattleScreen() {
   return new State('battleScreen', () => {
-    background(battleBackroundImage, 0, 0);
+    background(battleBackgroundImage, 0, 0);
     game.showBattle();
     enemyDisplayBattle();
     battleButtonsCheck();
@@ -82,7 +82,7 @@ function createGameOverScreen() {
 
 function createVictoryScreen() {
   return new State('victoryScreen', () => {
-    background(battleBackroundImage, 0, 0);
+    background(battleBackgroundImage, 0, 0);
     battleButtonsCheck();
     enemyFainted();
     buggerIdle.hide();
@@ -100,7 +100,7 @@ function createVictoryScreen() {
 
 function createItemScreen() {
   return new State('itemScreen', () => {
-    background(battleBackroundImage, 0, 0);
+    background(battleBackgroundImage, 0, 0);
     enemyDisplayNoBattle();
     newGameCheck();
     battleButtonsCheck();
@@ -115,7 +115,7 @@ function createItemScreen() {
 
 function createIntroScreen() {
   return new State('introScreen', () => {
-    background(battleBackroundImage, 0, 0);
+    background(battleBackgroundImage, 0, 0);
     enemyDisplayNoBattle();
     newGameCheck();
     battleButtonsCheck();

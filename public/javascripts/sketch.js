@@ -40,41 +40,28 @@ let itemScreen;
 let introScreen;
 
 function preload() {
-  // Enemy assets
-//  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
-//  zoomer = createImg('./images/Zoomer.gif', 'enemy');
-//  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
-//  buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
-//  buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
+  // Load enemy assets
   jasmineLogo = loadImage('./images/jasmine-logo.png');
   zoomLogo = loadImage('./images/zoom.png');
   ghLogo = loadImage('./images/gh-logo.png');
-  // Background assets
-  battleBackroundImage = loadImage('./stylesheets/assets/battleBackground.jpg');
+  // Load player assets
+  playerImg = loadImage('./images/idlePlayer1CROPPED.png');
+  // Load background assets
+  battleBackgroundImage = loadImage('./stylesheets/assets/battleBackground.jpg');
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   battleMusic = loadSound('./stylesheets/assets/battle-music.wav');
   tileArray = loadTiles();
   wallImg = loadImage('./images/wall1.png');
   wallImg.resize(Config.cellSize, Config.cellSize);
+  // Load item assets
   ticketImg = loadImage('./images/tickets.png');
-  // Misc assets
-  ticketImg = loadImage('./images/tickets.png');
-  // Player assets
-  playerImg = loadImage('./images/idlePlayer1CROPPED.png');
-
-//  playerImg2 = createImg('./images/playerIdleAnimations.gif');
-//  playerFaintAnimation = createImg(
-//    './images/playerFaintAnimation.gif',
-//    'fainting player'
-//  );
-
+  // Create States
   mapScreen = createMapScreen();
   battleScreen = createBattleScreen();
   gameOverScreen = createGameOverScreen();
   victoryScreen = createVictoryScreen();
   itemScreen = createItemScreen();
   introScreen = createIntroScreen();
-
 }
 
 function setup() {
