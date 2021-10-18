@@ -1,20 +1,6 @@
 /* eslint-disable no-restricted-globals */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-use-before-define */
-async function addToScoreDatabase(username, score) {
-  const gameData = { username, score };
-
-  const response = await fetch('/score', {
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-    method: 'POST',
-    body: JSON.stringify(gameData),
-  });
-  const data = await response.json();
-  console.log(data);
-}
 
 const game = new Game();
 // Buttons
@@ -97,7 +83,6 @@ function setup() {
   game.spawnItems();
   // Buttons
   createButtons();
-
   // Test
   enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
   zoomer = createImg('./images/Zoomer.gif', 'enemy');
@@ -405,4 +390,19 @@ function newGameCheck() {
   } else {
     newGameButton.hide();
   }
+}
+
+async function addToScoreDatabase(username, score) {
+  const gameData = { username, score };
+
+  const response = await fetch('/score', {
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    method: 'POST',
+    body: JSON.stringify(gameData),
+  });
+  const data = await response.json();
+  console.log(data);
 }
