@@ -34,6 +34,7 @@ let inputPlayerName;
 let beginButton;
 
 let mapScreen;
+let battleScreen;
 
 function preload() {
   // Enemy assets
@@ -134,7 +135,8 @@ function setup() {
     }
   });
 
-  mapScreen = createMapScreen(); 
+  mapScreen = createMapScreen();
+  battleScreen = createBattleScreen();
 }
 
 function draw() {
@@ -145,17 +147,7 @@ function draw() {
       mapScreen.show();
       break;
     case 'battleScreen':
-      background(battleBackroundImage, 0, 0);
-      game.showBattle();
-      enemyDisplayBattle();
-      battleButtonsCheck();
-      beginButton.hide();
-      inputPlayerName.hide();
-      newGameCheck();
-      playerImg2.show();
-      playerFaintAnimation.hide();
-      backgroundMusic.stop();
-      if (!battleMusic.isPlaying()) battleMusic.play();
+      battleScreen.show();
       break;
     case 'gameOver':
       game.showGameOver();

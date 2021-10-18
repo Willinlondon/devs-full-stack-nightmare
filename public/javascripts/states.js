@@ -47,5 +47,21 @@ function createMapScreen() {
 
     battleMusic.stop();
     if (!backgroundMusic.isPlaying()) backgroundMusic.play();
-  })
+  });
+}
+
+function createBattleScreen() {
+  return new State('battleScreen', () => {
+    background(battleBackroundImage, 0, 0);
+    game.showBattle();
+    enemyDisplayBattle();
+    battleButtonsCheck();
+    beginButton.hide();
+    inputPlayerName.hide();
+    newGameCheck();
+    playerImg2.show();
+    playerFaintAnimation.hide();
+    backgroundMusic.stop();
+    if (!battleMusic.isPlaying()) battleMusic.play();
+  });
 }
