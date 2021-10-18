@@ -11,7 +11,6 @@ let fleeButton;
 let okButton;
 // Background assets
 let battleBackgroundImage;
-const battleBackgroundImagePath = './stylesheets/assets/battleBackground.jpg';
 let wallImg;
 let backgroundMusic;
 let battleMusic;
@@ -32,7 +31,7 @@ let jasmineLogo;
 let zoomLogo;
 let inputPlayerName;
 let beginButton;
-
+// States
 let mapScreen;
 let battleScreen;
 let gameOverScreen;
@@ -51,6 +50,7 @@ function preload() {
   zoomLogo = loadImage('./images/zoom.png');
   ghLogo = loadImage('./images/gh-logo.png');
   // Background assets
+  battleBackroundImage = loadImage('./stylesheets/assets/battleBackground.jpg');
   backgroundMusic = loadSound('./stylesheets/assets/map-music-but-quiet.wav');
   battleMusic = loadSound('./stylesheets/assets/battle-music.wav');
   tileArray = loadTiles();
@@ -61,22 +61,12 @@ function preload() {
   ticketImg = loadImage('./images/tickets.png');
   // Player assets
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
+
 //  playerImg2 = createImg('./images/playerIdleAnimations.gif');
 //  playerFaintAnimation = createImg(
 //    './images/playerFaintAnimation.gif',
 //    'fainting player'
 //  );
-}
-
-function setup() {
-  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
-  canvas.parent('play-area');
-  battleBackroundImage = loadImage(battleBackgroundImagePath);
-  createButtons();
-  createAnimatedElements();
-  createInputElements();
-  populateMap();
-  setBossMapImages();
 
   mapScreen = createMapScreen();
   battleScreen = createBattleScreen();
@@ -84,6 +74,17 @@ function setup() {
   victoryScreen = createVictoryScreen();
   itemScreen = createItemScreen();
   introScreen = createIntroScreen();
+
+}
+
+function setup() {
+  canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
+  canvas.parent('play-area');
+  createButtons();
+  createAnimatedElements();
+  createInputElements();
+  populateMap();
+  setBossMapImages();
 }
 
 function draw() {
