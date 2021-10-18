@@ -65,3 +65,65 @@ function createBattleScreen() {
     if (!battleMusic.isPlaying()) battleMusic.play();
   });
 }
+
+function createGameOverScreen() {
+  return new State('gameOverScreen', () => {
+    game.showGameOver();
+    enemyDisplayNoBattle();
+    newGameCheck();
+    buttonsNoBattle();
+    okButton.hide();
+    beginButton.hide();
+    inputPlayerName.hide();
+    playerImg2.hide();
+    playerFaintAnimation.show();
+  });
+}
+
+function createVictoryScreen() {
+  return new State('victoryScreen', () => {
+    background(battleBackroundImage, 0, 0);
+    battleButtonsCheck();
+    enemyFainted();
+    buggerIdle.hide();
+    enemyImg.hide();
+    zoomer.hide();
+    newGameCheck();
+    okButton.show();
+    playerImg2.show();
+    beginButton.hide();
+    inputPlayerName.hide();
+    playerFaintAnimation.hide();
+    game.showVictoryScreen();
+  });
+}
+
+function createItemScreen() {
+  return new State('itemScreen', () => {
+    background(battleBackroundImage, 0, 0);
+    enemyDisplayNoBattle();
+    newGameCheck();
+    battleButtonsCheck();
+    okButton.show();
+    beginButton.hide();
+    inputPlayerName.hide();
+    playerImg2.show();
+    playerFaintAnimation.hide();
+    game.showItemScreen();
+  });
+}
+
+function createIntroScreen() {
+  return new State('introScreen', () => {
+    background(battleBackroundImage, 0, 0);
+    enemyDisplayNoBattle();
+    newGameCheck();
+    battleButtonsCheck();
+    beginButton.show();
+    inputPlayerName.show();
+    okButton.hide();
+    playerImg2.show();
+    playerFaintAnimation.hide();
+    game.showIntroScreen();
+  });
+}

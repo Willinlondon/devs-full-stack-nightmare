@@ -35,6 +35,10 @@ let beginButton;
 
 let mapScreen;
 let battleScreen;
+let gameOverScreen;
+let victoryScreen;
+let itemScreen;
+let introScreen;
 
 function preload() {
   // Enemy assets
@@ -137,6 +141,10 @@ function setup() {
 
   mapScreen = createMapScreen();
   battleScreen = createBattleScreen();
+  gameOverScreen = createGameOverScreen();
+  victoryScreen = createVictoryScreen();
+  itemScreen = createItemScreen();
+  introScreen = createIntroScreen();
 }
 
 function draw() {
@@ -150,54 +158,16 @@ function draw() {
       battleScreen.show();
       break;
     case 'gameOver':
-      game.showGameOver();
-      enemyDisplayNoBattle();
-      newGameCheck();
-      buttonsNoBattle();
-      okButton.hide();
-      beginButton.hide();
-      inputPlayerName.hide();
-      playerImg2.hide();
-      playerFaintAnimation.show();
+      gameOverScreen.show();
       break;
     case 'victoryScreen':
-      background(battleBackroundImage, 0, 0);
-      battleButtonsCheck();
-      enemyFainted();
-      buggerIdle.hide();
-      enemyImg.hide();
-      zoomer.hide();
-      newGameCheck();
-      okButton.show();
-      playerImg2.show();
-      beginButton.hide();
-      inputPlayerName.hide();
-      playerFaintAnimation.hide();
-      game.showVictoryScreen();
+      victoryScreen.show();
       break;
     case 'itemScreen':
-      background(battleBackroundImage, 0, 0);
-      enemyDisplayNoBattle();
-      newGameCheck();
-      battleButtonsCheck();
-      okButton.show();
-      beginButton.hide();
-      inputPlayerName.hide();
-      playerImg2.show();
-      playerFaintAnimation.hide();
-      game.showItemScreen();
+      itemScreen.show();
       break;
     case 'introScreen':
-      background(battleBackroundImage, 0, 0);
-      enemyDisplayNoBattle();
-      newGameCheck();
-      battleButtonsCheck();
-      beginButton.show();
-      inputPlayerName.show();
-      okButton.hide();
-      playerImg2.show();
-      playerFaintAnimation.hide();
-      game.showIntroScreen();
+      introScreen.show();
       break;
     default:
       break;
