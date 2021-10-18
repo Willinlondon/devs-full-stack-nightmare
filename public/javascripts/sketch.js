@@ -69,41 +69,13 @@ function preload() {
 }
 
 function setup() {
-  // Gameplay
-  createLocalDifficulty();
-  createLocalLuck();
-  game.spawnBosses();
-  game.spawnItems();
-  // Buttons
-  createButtons();
-  // Test
-  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
-  zoomer = createImg('./images/Zoomer.gif', 'enemy');
-  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
-  buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
-  buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
-  playerImg2 = createImg('./images/playerIdleAnimations.gif');
-  playerFaintAnimation = createImg(
-    './images/playerFaintAnimation.gif',
-    'fainting player',
-  );
-  // Background
   canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
   canvas.parent('play-area');
   battleBackroundImage = loadImage(battleBackgroundImagePath);
-  // Enemy assets
-  enemyImg.parent('right');
-  zoomer.parent('right');
-  faintingEnemy.parent('right');
-  buggerIdle.parent('right');
-  buggerFainting.parent('right');
-  // Player assets
-  playerImg2.parent('left');
-  playerFaintAnimation.parent('left');
-  // Player Name Input
-  inputPlayerName = createInput().attribute('maxlength', 10);
-  inputPlayerName.parent('inputPlayerName');
-
+  createButtons();
+  createAnimatedElements();
+  createInputElements();
+  populateMap();
   setBossMapImages();
 
   mapScreen = createMapScreen();
@@ -230,6 +202,41 @@ function enemyFainted() {
     faintingEnemy.show();
     buggerFainting.hide();
   }
+}
+
+function createAnimatedElements() {
+  // Create elements
+  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
+  zoomer = createImg('./images/Zoomer.gif', 'enemy');
+  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
+  buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
+  buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
+  playerImg2 = createImg('./images/playerIdleAnimations.gif');
+  playerFaintAnimation = createImg(
+    './images/playerFaintAnimation.gif',
+    'fainting player',
+  );
+
+  // Position elements
+  enemyImg.parent('right');
+  zoomer.parent('right');
+  faintingEnemy.parent('right');
+  buggerIdle.parent('right');
+  buggerFainting.parent('right');
+  playerImg2.parent('left');
+  playerFaintAnimation.parent('left');
+}
+
+function createInputElements() {
+  inputPlayerName = createInput().attribute('maxlength', 10);
+  inputPlayerName.parent('inputPlayerName');
+}
+
+function populateMap() {
+  createLocalDifficulty();
+  createLocalLuck();
+  game.spawnBosses();
+  game.spawnItems();
 }
 
 function battleButtonsCheck() {
