@@ -1,3 +1,6 @@
+/* eslint-disable no-restricted-globals */
+/* eslint-disable no-param-reassign */
+/* eslint-disable no-use-before-define */
 async function addToScoreDatabase(username, score) {
   const gameData = { username, score };
 
@@ -101,7 +104,7 @@ function setup() {
   createFleeButton();
   createNewGameButton();
 
-  //Test
+  // Test
   enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
   zoomer = createImg('./images/Zoomer.gif', 'enemy');
   faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
@@ -110,7 +113,7 @@ function setup() {
   playerImg2 = createImg('./images/playerIdleAnimations.gif');
   playerFaintAnimation = createImg(
     './images/playerFaintAnimation.gif',
-    'fainting player'
+    'fainting player',
   );
   // Background
   canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
@@ -175,13 +178,13 @@ function draw() {
       ticketImg.resize(Config.spriteSize / 2, Config.spriteSize / 2);
 
       Cell.all.forEach((cell) => {
-        if (cell.region == game.player.region && !cell.isWall()) {
+        if (cell.region === game.player.region && !cell.isWall()) {
           if (cell.boss) {
             if (!cell.boss.hasFainted()) {
               image(
                 cell.bossImg,
                 cell.regionX + Config.cellSize / 4,
-                cell.regionY + Config.cellSize / 4
+                cell.regionY + Config.cellSize / 4,
               );
             }
           }
@@ -191,7 +194,7 @@ function draw() {
               image(
                 ticketImg,
                 cell.regionX + Config.cellSize / 4,
-                cell.regionY + Config.cellSize / 4
+                cell.regionY + Config.cellSize / 4,
               );
             }
           }
@@ -201,7 +204,7 @@ function draw() {
       image(
         playerImg,
         game.player.gridX + Config.cellSize / 4,
-        game.player.gridY + Config.cellSize / 4
+        game.player.gridY + Config.cellSize / 4,
       );
 
       battleMusic.stop();
@@ -269,6 +272,8 @@ function draw() {
       playerImg2.show();
       playerFaintAnimation.hide();
       game.showIntroScreen();
+      break;
+    default:
       break;
   }
 }
@@ -401,10 +406,10 @@ function createLocalDifficulty() {
     cell.localDifficulty = Math.floor(
       noise(
         cell.x + Config.difficultyNoiseOffset,
-        cell.y + Config.difficultyNoiseOffset
-      ) *
-        Config.noiseScale *
-        Config.noiseRange
+        cell.y + Config.difficultyNoiseOffset,
+      )
+        * Config.noiseScale
+        * Config.noiseRange,
     );
   });
 }
@@ -412,9 +417,9 @@ function createLocalDifficulty() {
 function createLocalLuck() {
   game.cells.forEach((cell) => {
     cell.localLuck = Math.floor(
-      noise(cell.x + Config.luckNoiseOffset, cell.y + Config.luckNoiseOffset) *
-        Config.noiseScale *
-        Config.noiseRange
+      noise(cell.x + Config.luckNoiseOffset, cell.y + Config.luckNoiseOffset)
+        * Config.noiseScale
+        * Config.noiseRange,
     );
   });
 }
