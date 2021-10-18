@@ -67,7 +67,7 @@ function createBattleScreen() {
 }
 
 function createGameOverScreen() {
-  return new State('gameOverScreen', () => {
+  return new State('gameOver', () => {
     game.showGameOver();
     enemyDisplayNoBattle();
     newGameCheck();

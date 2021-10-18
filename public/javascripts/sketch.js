@@ -116,29 +116,7 @@ function setup() {
 
 function draw() {
   background(0);
-
-  switch (game.state) {
-    case 'mapScreen':
-      mapScreen.show();
-      break;
-    case 'battleScreen':
-      battleScreen.show();
-      break;
-    case 'gameOver':
-      gameOverScreen.show();
-      break;
-    case 'victoryScreen':
-      victoryScreen.show();
-      break;
-    case 'itemScreen':
-      itemScreen.show();
-      break;
-    case 'introScreen':
-      introScreen.show();
-      break;
-    default:
-      break;
-  }
+  State.find(game.state).show();
 }
 
 function keyPressed() {
