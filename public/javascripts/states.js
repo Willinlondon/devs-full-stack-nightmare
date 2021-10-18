@@ -71,7 +71,7 @@ function createGameOverScreen() {
     game.showGameOver();
     enemyDisplayNoBattle();
     newGameCheck();
-    buttonsNoBattle();
+    // buttonsNoBattle(); <--- Where is this function?
     okButton.hide();
     beginButton.hide();
     inputPlayerName.hide();
