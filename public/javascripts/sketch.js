@@ -104,26 +104,7 @@ function setup() {
   inputPlayerName = createInput().attribute('maxlength', 10);
   inputPlayerName.parent('inputPlayerName');
 
-  Cell.all.forEach((cell) => {
-    if (cell.boss) {
-      cell.bossImg = null;
-
-      switch (cell.boss.name) {
-        case 'Git':
-          cell.bossImg = ghLogo;
-          break;
-        case 'Jasmine':
-          cell.bossImg = jasmineLogo;
-          break;
-        case 'Zoomer':
-          cell.bossImg = zoomLogo;
-          break;
-        default:
-          cell.bossImg = ghLogo;
-          break;
-      }
-    }
-  });
+  setBossMapImages();
 
   mapScreen = createMapScreen();
   battleScreen = createBattleScreen();
@@ -307,6 +288,29 @@ function loadTiles() {
   });
 
   return tileArray;
+}
+
+function setBossMapImages() {
+  Cell.all.forEach((cell) => {
+    if (cell.boss) {
+      cell.bossImg = null;
+
+      switch (cell.boss.name) {
+        case 'Git':
+          cell.bossImg = ghLogo;
+          break;
+        case 'Jasmine':
+          cell.bossImg = jasmineLogo;
+          break;
+        case 'Zoomer':
+          cell.bossImg = zoomLogo;
+          break;
+        default:
+          cell.bossImg = ghLogo;
+          break;
+      }
+    }
+  });
 }
 
 async function addToScoreDatabase(username, score) {
