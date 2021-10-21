@@ -1,4 +1,4 @@
-# The Game - Makers Academy Final Project
+# Dev's Full Stack Nightmare - A Makers Academy Final Project
 
 A Makers project for week 11-12, Engineering Project III. Created by Amelia, Ash, Dan, Fiona & Will.
 
@@ -6,19 +6,25 @@ A Makers project for week 11-12, Engineering Project III. Created by Amelia, Ash
 
 # Summary
 
-- So as our final project during our time in Makers, we were grouped together with the intention of creating some form of a game, which I believe was everybody's top choice and preference when it came to this project.
+- So as our final project during our time in Makers, we were grouped together with the intention of creating some form of a game, which I believe was everybody's top choice and preference when it came to this project. Needless to say the entire had some background in gaming, and were extremely passionate about creating something that reflected that.
 - We spent the first day of our time agreeing on what our approach and working standards would be, and then began to pitch ideas to create a product.
-- There were plenty of features thrown around, such as platforming, map making, turn based battle, text based story/fantasy etc. We somewhat compromised on the platforming part to be map exploring, and quickly put together a game format that would include every other feature.
+- The overall game came from a combination of features thrown around, such as platforming, map making, turn based battle, text based story/fantasy etc. We somewhat compromised on the platforming part to be map exploring, and quickly put together a game format that would include every other feature.
 - We somewhat compromised on the platforming part to be map exploring, and quickly put together a game format that would include every other feature.
-- We collectively agreed upon the technology and frameworks we plan to use to develop the game, and there are some new ones in there for quite a few people which should prove both exciting and a great learning experience!
+- We collectively agreed upon the technology and frameworks we plan to use to develop the game, and there are some new ones in there for quite a few people which proved to be both exciting and a great learning experience!
+- The concept and story was decided late into the project, but since we had named our bosses and enemies this point (as well as their abilities) after some of our biggest blockers so far, we opted to keep it that way, and build the story around that!
 
 # Technologies
 
-- We plan to use Node with Express for our backend
-- We will use Cypress for feature tests and Jasmine (and her spies) for unit tests.
-- For the front end we plan to use P5 as our library. We don't plan to create any of the artwork ourselves, and will instead be using free to use opensource materials, so we can focus purely on the code side of things.
+- Javascript (Most previous projects had been done in Ruby, and the group was keen to develop their second language further)
+- Node
+- Express
+- Cypress
+- P5.js library (Most of our game takes place on this sketch, and we were very keen to learn and try this out, needless to say it was a blast and we were able to get really creative with it!)
+- Postgres
 
 # User Stories MVP
+
+These were the user stories that our game was built around. Here were the ones that we deemed essential to achieve a basic minimum viable product (MVP).
 
 ```
 As a bored individual (at work),
@@ -51,6 +57,8 @@ I want to be able to see I've won or lost
 ```
 
 # Additional User Stories
+
+In addition, we also created another batch of "nice to have" features which we hoped to add to the game once we had the MVP working. We certainly did not expect to be able to get all of these into the game in time for its release, and were pleasantly suprised that we did in fact, manage to cover all of these user stories (and even some more!).
 
 ```
 As a player,
@@ -101,3 +109,4 @@ CREATE TABLE scores(id SERIAL PRIMARY KEY, username VARCHAR(200), score integer)
 - Map floor tiles sourced from https://opengameart.org/content/sci-fi-interior-tiles : Copyright/Attribution Notice:
   NOT REQUIRED, Buch https://opengameart.org/users/buch or http://blog-buch.rhcloud.com;
   Surrounding map tiles sourced from https://3dtextures.me/2020/09/30/sci-fi-floor-001/ : Copyright/Attribution Notice: All textures on this site are licensed as CC0. \*See https://3dtextures.me/about/ for further details on f.a.q./textures license.
+- Original music and sounds

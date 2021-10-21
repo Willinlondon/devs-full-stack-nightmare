@@ -106,7 +106,7 @@ html, body { max-width: 100%; overflow-x: hidden; overflow-y: hidden}*/
 
 #left {
 	position: relative;
-	align-items: left;
+	align-items: right;
 	bottom: 225px;
 	left: 350px;
 }
