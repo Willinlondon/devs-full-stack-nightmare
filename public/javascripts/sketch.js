@@ -36,6 +36,8 @@ let buggerIdle;
 let buggerFainting;
 let faintingEnemy;
 let zoomer;
+let gitFighting;
+let gitFainting;
 // Misc assets
 let startTime;
 let ghLogo;
@@ -46,11 +48,6 @@ let beginButton;
 
 function preload() {
   // Enemy assets
-//  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
-//  zoomer = createImg('./images/Zoomer.gif', 'enemy');
-//  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
-//  buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
-//  buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
   jasmineLogo = loadImage('./images/jasmine-logo.png');
   zoomLogo = loadImage('./images/zoom.png');
   ghLogo = loadImage('./images/gh-logo.png');
@@ -65,11 +62,6 @@ function preload() {
   ticketImg = loadImage('./images/tickets.png');
   // Player assets
   playerImg = loadImage('./images/idlePlayer1CROPPED.png');
-//  playerImg2 = createImg('./images/playerIdleAnimations.gif');
-//  playerFaintAnimation = createImg(
-//    './images/playerFaintAnimation.gif',
-//    'fainting player'
-//  );
 }
 
 function loadTiles() {
@@ -100,29 +92,28 @@ function setup() {
   createBeginButton();
   createFleeButton();
   createNewGameButton();
-
-  //Test
-  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
-  zoomer = createImg('./images/Zoomer.gif', 'enemy');
-  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
-  buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
-  buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
-  playerImg2 = createImg('./images/playerIdleAnimations.gif');
-  playerFaintAnimation = createImg(
-    './images/playerFaintAnimation.gif',
-    'fainting player'
-  );
   // Background
   canvas = createCanvas(Config.canvasWidth, Config.canvasHeight);
   canvas.parent('play-area');
   battleBackroundImage = loadImage(battleBackgroundImagePath);
   // Enemy assets
+  gitBattle = createImg('./images/gitBattle.gif', 'git');
+  gitFainting = createImg('./images/gitFainting.gif', 'git fainting')
+  enemyImg = createImg('./images/idleMinotaur.gif', 'enemy');
+  zoomer = createImg('./images/Zoomer.gif', 'enemy');
+  faintingEnemy = createImg('./images/faintingEnemy.gif', 'fainting monster');
+  buggerIdle = createImg('./images/buggerIdle.gif', 'enemy');
+  buggerFainting = createImg('./images/buggerFainting.gif', 'fainting golem');
+  gitFainting.parent('right');
+  gitBattle.parent('right');
   enemyImg.parent('right');
   zoomer.parent('right');
   faintingEnemy.parent('right');
   buggerIdle.parent('right');
   buggerFainting.parent('right');
   // Player assets
+  playerImg2 = createImg('./images/playerIdleAnimations.gif');
+  playerFaintAnimation = createImg('./images/playerFaintAnimation.gif','fainting player');
   playerImg2.parent('left');
   playerFaintAnimation.parent('left');
   // Player Name Input
@@ -238,6 +229,7 @@ function draw() {
       buggerIdle.hide();
       enemyImg.hide();
       zoomer.hide();
+      gitBattle.hide();
       newGameCheck();
       okButton.show();
       playerImg2.show();
@@ -438,15 +430,24 @@ function stopElementHighlight(element) {
 function enemyDisplayBattle() {
   faintingEnemy.hide();
   buggerFainting.hide();
+  gitFainting.hide();
   if (game.battle.player2.name === 'Bugger') {
     buggerIdle.show();
     zoomer.hide();
     enemyImg.hide();
+    gitBattle.hide();
   } else if (game.battle.player2.name === 'Zoomer') {
     enemyImg.hide();
     buggerIdle.hide();
     zoomer.show();
+    gitBattle.hide();
+  } else if (game.battle.player2.name === 'Git') {
+    enemyImg.hide();
+    buggerIdle.hide();
+    zoomer.hide();
+    gitBattle.show();
   } else {
+    gitBattle.hide();
     enemyImg.show();
     buggerIdle.hide();
     zoomer.hide();
@@ -461,15 +462,23 @@ function enemyDisplayNoBattle() {
   buggerIdle.hide();
   enemyImg.hide();
   zoomer.hide();
+  gitBattle.hide();
+  gitFainting.hide();
 }
 
 function enemyFainted() {
   if (game.battle.player2.name === 'Bugger') {
     buggerFainting.show();
     faintingEnemy.hide();
+    gitFainting.hide();
+  } else if (game.battle.player2.name === 'Git'){
+    buggerFainting.hide();
+    faintingEnemy.hide();
+    gitFainting.show();
   } else {
     faintingEnemy.show();
     buggerFainting.hide();
+    gitFainting.hide();
   }
 }
 
