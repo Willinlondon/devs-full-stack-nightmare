@@ -6,12 +6,12 @@ A Makers project for week 11-12, Engineering Project III. Created by Amelia, Ash
 
 # Summary
 
-- So as our final project during our time in Makers, we were grouped together with the intention of creating some form of a game, which I believe was everybody's top choice and preference when it came to this project. Needless to say the entire had some background in gaming, and were extremely passionate about creating something that reflected that.
-- We spent the first day of our time agreeing on what our approach and working standards would be, and then began to pitch ideas to create a product.
-- The overall game came from a combination of features thrown around, such as platforming, map making, turn based battle, text based story/fantasy etc. We somewhat compromised on the platforming part to be map exploring, and quickly put together a game format that would include every other feature.
-- We somewhat compromised on the platforming part to be map exploring, and quickly put together a game format that would include every other feature.
-- We collectively agreed upon the technology and frameworks we plan to use to develop the game, and there are some new ones in there for quite a few people which proved to be both exciting and a great learning experience!
-- The concept and story was decided late into the project, but since we had named our bosses and enemies this point (as well as their abilities) after some of our biggest blockers so far, we opted to keep it that way, and build the story around that!
+- As our final project for Makers, we were grouped together with the mission to create a game. This was the whole group's top choice of subject. We all had an interest in gaming and were extremely passionate about creating something that reflected that.
+- We spent the first day of this two week task devising a team charter to ensure that every team member's needs and learning goals could be met, pitching ideas for a product, and choosing the best tech stack for the job.
+- Our final idea was an amalgam of features thrown around in this planning session. We discussed platforming, map making, turn based battle, text based story/fantasy etc.
+- Everyone on the team contributed ideas which made it in to the final design, which was really satisfying.
+- We collectively agreed upon the technology and frameworks we planned to use to develop the game, including some that were new to all of us, which proved to be both exciting and a great learning experience.
+- The concept and story were not chosen until well into the project. During development, we had vented our frustrations (and made each other laugh) by naming our enemy characters after some of our biggest blockers as software development students. In the end we decided to keep them around and build the whole story around that theme!
 
 # Technologies
 
@@ -21,6 +21,7 @@ A Makers project for week 11-12, Engineering Project III. Created by Amelia, Ash
 - Cypress
 - P5.js library (Most of our game takes place on this sketch, and we were very keen to learn and try this out, needless to say it was a blast and we were able to get really creative with it!)
 - Postgres
+- Heroku
 
 # User Stories MVP
 
